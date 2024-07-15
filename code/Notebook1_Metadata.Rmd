@@ -1,0 +1,203 @@
+---
+title: "Notebook10_Metadata"
+output: html_document
+date: "2024-03-28"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+1. Pull in metadata
+2. Plot metadata for pub SI
+- tntp
+- do
+- turbidity 
+3. Run 2-way ANOVA for TNTP differences between year and sites
+4. Plot TNTP, DO, and Turbidity with Points displayed on top of boxes 
+
+
+1. Read in metadata
+```{r}
+Kenya_sample_table = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/lvictoria2223_metadata.csv") #read in metadata
+
+Kenya_sample_table %>% distinct(SampleID) %>% count #51 metagenome samples in dataset
+
+Kenya_sample_table = Kenya_sample_table %>% select(!X) #remove extra row number column 
+
+#Select only columns needed for analysis 
+Kenya_meta = Kenya_sample_table %>% select(c(site_name_sitenumber, SampleID, SampleName, StudyID, geo_loc_name, lat, lon, collection_date, depth, depth_at_sampling_location, pH, temp, nitrate, diss_oxygen, conduc, secchi, turbidity, part_microcyst, chlorophyl, diss_phosp, ammonia, Nitrate_Nitrite, urea, silicate, sky, Notes, total_sonde, cyano_sonde, replicate_id, orp, particulate_cyl, atmospheric_temp, salinity, ammended_site_name, env_Kenya_site, tot_nit, soluble_react_phosp, tot_phos, site_number))
+
+#Make date column readable and plottable 
+Kenya_meta = Kenya_meta %>% mutate(collection_date = ymd(collection_date),
+         year = year(collection_date),
+         month = month(collection_date),
+         day = day(collection_date))
+
+Kenya_meta = Kenya_meta %>% mutate(yday = yday(collection_date), week = week(collection_date))
+
+#order sites and remove sites not being used
+Kenya_meta1 = Kenya_meta %>% filter(!SampleID == "samp_4327", !SampleID == "samp_4328", !SampleID == "samp_4329", !SampleID == "samp_4330", !SampleID == "samp_4455", !SampleID == "samp_4456", !SampleID == "samp_4453", !SampleID == "samp_4315", !SampleID == "samp_4316")
+
+Kenya_meta1 = Kenya_meta1 %>% filter(!site_name_sitenumber == "H12. Homa Bay Coast")
+
+order_vector <- c(
+  "1. Homa Bay", "2. Homa Bay Pier", "3. Homa Bay Water Intake", "4. Soklo", "5. Mbita East",
+  "6. Mbita West", "7. Asembo Bay", "8. Ndere Island", "9. Mid Gulf", "10. Kisumu Harbor",
+  "11. Dunga","12. Nyando River","13. Sondu River Bridge", "14. Sondu River Shore","15. Sondu Miriu","16. Kibuon River", "17. Southern Mid-Gulf", "18. Awach River Mouth",
+  "19. Bala Rawi", "20. Ingra", "21. Kowuor", "22. Oluch", "23. Sikli", "24. Mirunda",
+  "25. Mbita East", "26. Mbita West", "27. Bridge Island", "28. Bondo", "29. Yala River Mouth",
+  "30. Rosinga Channel", "31. South Rosinga"
+)
+
+#Kenya_meta1$site_name_sitenumber <- factor(Kenya_meta1$site_name_sitenumber, levels = order_vector)
+
+#order_vector_reverse <- rev(order_vector)
+
+Kenya_meta1$site_name_sitenumber <- factor(Kenya_meta1$site_name_sitenumber, levels = order_vector)
+
+#Remove sites undeeded 
+Kenya_meta1 = Kenya_meta1 %>% filter(!ammended_site_name == "Nyando River", !ammended_site_name == "Sondu River Bridge",!ammended_site_name == "Sondu River Shore", !ammended_site_name == "Kibuon River")
+
+#Make dissn:p and total n:p variables
+Kenya_meta1 = Kenya_meta1 %>% mutate(tntp = as.numeric(tot_nit)/as.numeric(tot_phos))
+
+```
+
+
+2. Plot TNTP, DO, and Turbidity 
+```{r}
+#TNTP
+
+#Plot tntp with red line indicating nitrogen limitation
+Kenya_meta1 %>%
+  ggplot(aes(y = tntp)) +
+  geom_boxplot() +
+  geom_hline(yintercept = 20, color = "red", linetype = "dashed", size = 1) +  # Add red line at y = 20
+  theme_classic() +
+  labs(y = 'TN:TP') +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title.y = element_text(face = "bold", size = 12))
+
+Kenya_meta1 %>% filter(complete.cases(tntp)) %>% summarize(median(tntp))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/tntp_withline.png", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/tntp_withline.svg", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/tntp_withline.tiff", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+#Plot Dissolved oxygen points
+Kenya_meta1 %>%
+  ggplot(aes(y = as.numeric(diss_oxygen))) +
+  geom_boxplot() +
+  theme_classic() +
+  labs(y = 'Dissolved Oxygen (mg/L)') +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title.y = element_text(face = "bold", size = 12))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/do.png", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/do.svg", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/do.tiff", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+#Plot turbidity points
+Kenya_meta1 %>%
+  ggplot(aes(y = as.numeric(turbidity))) +
+  geom_boxplot() +
+  theme_classic() +
+  labs(y = 'Turbidity (NTU)') +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title.y = element_text(face = "bold", size = 12))
+
+Kenya_meta1 %>% filter(complete.cases(turbidity)) %>% summarize(median(turbidity))
+
+median(as.numeric(Kenya_meta1$turbidity))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/turbidity.png", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/turbidity.tiff", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/turbidity.svg", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+```
+
+3. Run 2-way ANOVA for TNTP differences between year and sites
+```{r}
+#remove data points missing for tntp (2022)
+tntp = Kenya_meta1 %>% filter(!year == 2022)
+
+#Fit the ANOVA model
+tntpanova_model <- aov(tntp ~ site_name_sitenumber, data = tntp)
+
+#View summary table of ANOVA
+tntpanova_model
+summary(tntpanova_model)
+
+#                      Df Sum Sq Mean Sq
+# site_name_sitenumber 17  376.9   22.17
+```
+
+4. Plot TNTP, DO, and Turbidity with Points displayed on top of boxes (FIGURE 2)
+```{r}
+#Plot tntp with red line indicating nitrogen limitation
+Kenya_meta1 %>%
+  ggplot(aes(x = factor(1), y = tntp)) +  # Set x as a factor to align with boxplot
+  geom_boxplot() +
+  geom_point(size = 2, alpha = 0.3) +  # Add points directly on top of the boxplot
+  geom_hline(yintercept = 20, color = "red", linetype = "dashed", size = 1) +  # Add red line at y = 20
+  theme_classic() +
+  labs(y = 'TN:TP', x = "" ) + 
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title.y = element_text(face = "bold", size = 12))
+
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/tntp_withlinejitter.png", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/tntp_withlinejitter.svg", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/tntp_withlinejitter.tiff", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+#Plot Dissolved oxygen points
+Kenya_meta1 %>%
+  ggplot(aes(x = factor(1), y = as.numeric(diss_oxygen))) +
+  geom_boxplot() +
+  geom_point(size = 2, alpha = 0.3) + 
+  theme_classic() +
+  labs(y = 'Dissolved Oxygen (mg/L)', x = "") +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title.y = element_text(face = "bold", size = 12))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/do_jitter.png", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/do_jitter.svg", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/do_jitter.tiff", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+#Plot turbidity points
+Kenya_meta1 %>%
+  ggplot(aes(x = factor(1), y = as.numeric(turbidity))) +
+  geom_boxplot() +
+  geom_point(size = 2, alpha = 0.3) +
+  theme_classic() +
+  labs(y = 'Turbidity (NTU)', x = "") +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title.y = element_text(face = "bold", size = 12))
+
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/turbidity_jitter.png", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/turbidity_jitter.tiff", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/metadata/turbidity_jitter.svg", width = 1, height =2, dpi=300, scale =2, limitsize = FALSE))
+
+```
+

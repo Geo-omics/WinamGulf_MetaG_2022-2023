@@ -1,0 +1,943 @@
+---
+title: "Notebook7_mcy_cyr_ownership_K22-23"
+output: html_document
+date: "2024-02-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+NOTEBOOK BREAKDOWN
+
+1. Making the mcy and cyr databases
+2. Run blast against assemblies with the databases 
+3. Process blast results on assemblies for mcy and cyr 
+4. Pull all raw bins belonging to assemblies with hits for mcy or cyr genes 
+5. Blast all raw bins for mcy and cyr genes 
+6. Process blast results on bins for mcy and cyr genes 
+7. Assign gtdb and checkm results to bins of interest with hits
+8. Link bins from mcy and cyr hits to another folder for dereplication and conduct drep on them 
+9. Look at samples and high quality bins in Anvio-Making Figure S4 (anvio profile)
+10. Cyr: look at assembly hits for cyr, pull contigs into one fasta file and blast in NCBI (Figure S1)
+11. Using clinkr to analyze mcy operon against standard mcy operon from Microcystis-Figure S4 (clinkr image)
+
+
+1. Making the mcy and cyr databases
+```{r}
+# - Mcy-use mcyABCDEG: based on this paper
+# 	- Pull all mcy genes from mibig into individual genes as a fasta file 
+# 	- Covers mcy genes from: planktothrix, anabaena, microcystis, fischerella, phormidium (BGC0002297), nodularin from nostoc (BGC0001705)
+# - Cyr-use cyrCEBA as conserved set of genes, based on this paper:https://www-sciencedirect-com.proxy.lib.umich.edu/science/article/pii/S1568988321000676?casa_token=qF57oxChGNQAAAAA:u59Ki-Ry3Sp3QoiSmlJwBzCTXQJx_yTtDiJa0PhahfDf72H_tYDD4-xO-6n3r9SN_8NfZHs
+# 	- Pull these from MiBIG:
+# 		- Aphan (BGC0000981)
+# 		- Aphan (BGC0000980)
+# 		- Cylindro (BGC0000978)
+# 	- Those above should cover the potential differences based on Theo's paper 
+# 
+# - made individual databases for cyr and mcy: 
+#   https://docs.google.com/spreadsheets/d/14K8cAQuniGHIsOpt4DTnl2fyVFj5lF67zjyJNmjs8H8/edit#gid=0
+# - google sheet outlines genes, organisms, header names, and lengths 
+# - then manually puled genes into 2 fasta files on computer since it wasn't very many I needed to do 
+# - uploaded those databases to server:/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/mcy_mibig_db.fa or cyr_mibig_db.fa 
+
+```
+
+2. Run blast against assemblies with the databases 
+```{r}
+# - Snakefile(s): /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/code
+# - Code to run for mcy: snakemake run_blastn_assemblies_vs_mcy --profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/vondamm
+# - Code to run for cyr: snakemake run_blastn_assemblies_vs_cyr --profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/vondamm
+
+# import os
+# import re
+# import snakemake.io
+# from glob import glob
+# 
+# #--profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/vondamm
+# 
+# #Ran first on Feb 25, 2024
+# #Run BLASTN for mcy genes on all Kenya assemblies 
+# # rule make_mcyABCDEG_db:
+# #     input: 
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa"
+# #     output: 
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa.nin"
+# #     log: 
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.txt"
+# #     conda: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+# #     resources: 
+# #         cpus=1, mem_mb=5000, time_min=10000
+# #     shell: 
+# #         """
+# #         makeblastdb -in {input} -dbtype nucl -logfile {log}
+# #         """
+# 
+# # rule blastn_assemblies_vs_mcy:
+# #     input: 
+# #         blast_db = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa",
+# #         blast_db_index = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa.nin",
+# #         assembly = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/assemblies/{sample}.fa"
+# #     output:
+# #          "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/mcy/assemblies/{sample}__mcy_mibig_db_assemblies_blastn.tsv"
+# #     log:
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/mcy/assemblies/log/{sample}__mcy_mibig_db_assemblies_blastn.log"
+# #     conda: 
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+# #     resources:
+# #         cpus=8, mem_mb=16000, time_min=10000
+# #     shell:
+# #         """
+# #         blastn -db {input.blast_db} -query {input.assembly} -out {output} -outfmt '6 std qcovs stitle' -num_threads {resources.cpus} -evalue 1e-2
+# #         """
+# 
+# # rule run_blastn_assemblies_vs_mcy:
+# #     input: 
+# #         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/mcy/assemblies/{sample}__mcy_mibig_db_assemblies_blastn.tsv", sample = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/assemblies/{sample}.fa",followlinks=True).sample)
+# 
+# #Ran second on February 25th, 2024
+# #Run BLASTN for cyr genes on all Kenya assemblies 
+# 
+# rule make_cyrCEBA_db:
+#     input: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa"
+#     output: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa.nin"
+#     log: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.txt"
+#     conda: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+#     resources: 
+#         cpus=1, mem_mb=5000, time_min=10000
+#     shell: 
+#         """
+#         makeblastdb -in {input} -dbtype nucl -logfile {log}
+#         """
+# 
+# rule blastn_assemblies_vs_cyr:
+#     input: 
+#         blast_db = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa",
+#         blast_db_index = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa.nin",
+#         assembly = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/assemblies/{sample}.fa"
+#     output:
+#          "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/cyr/assemblies/{sample}__cyr_mibig_db_assemblies_blastn.tsv"
+#     log:
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/cyr/assemblies/log/{sample}__cyr_mibig_db_assemblies_blastn.log"
+#     conda: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+#     resources:
+#         cpus=8, mem_mb=16000, time_min=10000
+#     shell:
+#         """
+#         blastn -db {input.blast_db} -query {input.assembly} -out {output} -outfmt '6 std qcovs stitle' -num_threads {resources.cpus} -evalue 1e-2
+#         """
+# 
+# rule run_blastn_assemblies_vs_cyr:
+#     input: 
+#         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/cyr/assemblies/{sample}__cyr_mibig_db_assemblies_blastn.tsv", sample = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/assemblies/{sample}.fa",followlinks=True).sample)
+# 
+# #Ran third on February 25th, 2024 
+# 
+# #Blast raw bins against mcy database 
+# rule blastn_raw_bins_vs_mcy:
+#     input: 
+#         blast_db = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa",
+#         blast_db_index = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa.nin",
+#         raw_bin = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{sample_binner_number}.fa"
+#     output:
+#          "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/bins/{sample_binner_number}__mcy_raw_bin_blastn.tsv"
+#     log:
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/log/{sample_binner_number}_mcy_raw_bin_blastn.log"
+#     conda: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+#     resources:
+#         cpus=16, mem_mb=16000, time_min=10000
+#     shell:
+#         """
+#         blastn -db {input.blast_db} -query {input.raw_bin} -out {output} -outfmt '6 std qcovs stitle' -num_threads {resources.cpus} -evalue 1e-2
+#         """
+# 
+# rule run_blastn_raw_bins_vs_mcy:
+#     input: 
+#         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/bins/{sample_binner_number}__mcy_raw_bin_blastn.tsv", sample_binner_number = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{raw_bin}.fa",followlinks=True).raw_bin)
+# 
+# #Ran fourth on February 25th, 2024 
+# 
+# #Blast raw bins against cyr database 
+# rule blastn_raw_bins_vs_cyr:
+#     input: 
+#         blast_db = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa",
+#         blast_db_index = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa.nin",
+#         raw_bin = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{sample_binner_number}.fa"
+#     output:
+#          "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/bins/{sample_binner_number}__cyr_raw_bin_blastn.tsv"
+#     log:
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/log/{sample_binner_number}_cyr_raw_bin_blastn.log"
+#     conda: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+#     resources:
+#         cpus=16, mem_mb=16000, time_min=10000
+#     shell:
+#         """
+#         blastn -db {input.blast_db} -query {input.raw_bin} -out {output} -outfmt '6 std qcovs stitle' -num_threads {resources.cpus} -evalue 1e-2
+#         """
+# 
+# rule run_blastn_raw_bins_vs_cyr:
+#     input: 
+#         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/bins/{sample_binner_number}__cyr_raw_bin_blastn.tsv", sample_binner_number = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{raw_bin}.fa",followlinks=True).raw_bin)
+
+# - Have to hash out code for mcy or cyr when running this because can't get it to work when I try to run both of them at the same time 
+
+#Results found here:
+#mcy: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/mcy/assemblies
+#cyr: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/cyr/assemblies
+```
+
+3. Process blast results on assemblies for mcy and cyr 
+```{r}
+#Make list of blastn result outputs
+blastn_assemblies_list <-  system("ls /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/*/assemblies/*.tsv", intern=TRUE) 
+
+#Include only files with results in list
+blastn_assemblies_list_results <- blastn_assemblies_list[file.size(blastn_assemblies_list) > 0]
+
+get_sample_name <- function(file_path) {
+  basename <- basename(file_path)
+  # Extract sample name from file name
+  sample_name <- str_extract(basename, "samp_\\d+")
+  return(sample_name)
+}
+
+# Add sample name to the first column
+blastn_assemblies_results_vroom <- blastn_assemblies_results_vroom %>%
+  mutate(qseqid = paste0(get_sample_name(blastn_assemblies_list_results), "_", qseqid)) #this adds sampleid to qseqid, might need to change to V1 but column names were already loaded in this case
+
+#Bind rows of all contig blastn results
+#blastn_assemblies_results_vroom <- vroom(blastn_assemblies_list_results, col_names = FALSE, show_col_types = FALSE, delim #= "\t")
+
+#Add column names - corresponding to blast output flag -outfmt '6 std qcovs stitle'
+colnames(blastn_assemblies_results_vroom) <- c("qseqid", "sseqid", "pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore", "qcovs", "stitle")
+
+#Column name reference: https://www.metagenomics.wiki/tools/blast/blastn-output-format-6
+#1.  qseqid      query or source (e.g., gene) sequence id
+#2.  sseqid      subject  or target (e.g., reference genome) sequence id
+#3.  pident      percentage of identical matches
+#4.  length      alignment length (sequence overlap)
+#5.  mismatch    number of mismatches
+#6.  gapopen     number of gap openings
+#7.  qstart      start of alignment in query
+#8.  qend        end of alignment in query
+#9.  sstart      start of alignment in subject
+#10. send        end of alignment in subject
+#11. evalue      expect value
+#12. bitscore    bit score
+#13. qcovs       query coverage per subject
+#14. stitle      subject title
+
+#Make column for general toxin target id, toxin gene target, and sample ids
+blastn_assemblies_results_vroom_add <- blastn_assemblies_results_vroom %>% 
+  mutate(
+    target = substr(sseqid, 1, 3),
+    gene_target = substr(sseqid, 1, 4),
+    SampleID = qseqid %>% str_extract("samp_\\d+(?=_)")
+  )
+
+#Combine BLASTN results and sample metadata from GLAMR
+#Call Sample_table from 1.) Setup, convert latitude/longitude values to numeric, add new column with sampling year
+#GLAMR_assemblies_hits <- left_join(blastn_assemblies_results_vroom_add, GLAMR_sample_table, by = "SampleID") %>%
+#  mutate(
+#    lat = as.numeric(as.character(lat)),
+#    lon = as.numeric(as.character(lon)),
+#    year = as.integer(str_remove(collection_date, "-.*"))
+#  )
+
+GLAMR_assemblies_hits = blastn_assemblies_results_vroom_add #rename vroom to be GLAMR assemblies hits so rest of code works, don't really need metadata here quite yet
+
+dim(GLAMR_assemblies_hits)
+#[1] 2547   17
+
+#Sort to get lowest e-value hit for each contig, remove contigs that match best to homolog/dummy sequences
+GLAMR_assemblies_hits_filt <- GLAMR_assemblies_hits %>%
+  arrange(qseqid, evalue) %>%                        # sort the data by 'evalue' in ascending order for each qseqid
+  group_by(qseqid) %>%
+  filter(row_number() == 1) %>%                      # keep only one row for each qseqid (lowest evalue)
+  filter(target != "dum") %>%                        # remove "dum" targets
+  ungroup()
+
+GLAMR_assemblies_hits_filt %>% distinct(SampleID)  #49 Kenya samples hits to cyr and mcy gene target(s) of interest-Feb 25, 2024
+dim(GLAMR_assemblies_hits_filt)
+#[1] 2529   17
+
+#View(GLAMR_assemblies_hits)
+
+#Split this into mcy and cyr hits so I can pull bins seperately 
+mcy_assembly_hits = GLAMR_assemblies_hits_filt %>% filter(target == "mcy" | target == "nda")
+dim(mcy_assembly_hits)
+#[1] 2470   17
+
+cyr_assembly_hits = GLAMR_assemblies_hits_filt %>% filter(target == "cyr")
+dim(cyr_assembly_hits)
+#[1] 59 17
+cyr_assembly_hits %>% distinct(SampleID)
+#49
+```
+
+
+4. Pull all raw bins belonging to assemblies with hits for mcy or cyr genes 
+```{r}
+#Call GLAMR_contig_hits from 3.) to get samples with target of interest
+
+#Make list of samples with target of interest
+GLAMR_samples_oi <- GLAMR_assemblies_hits_filt %>% distinct(SampleID)
+GLAMR_samples_oi %>% distinct(SampleID)
+#49
+#These are the same there are no differences in sample hits, so need to search all raw bins here. 
+
+#This code will only process bins from samples identified with gene target of interest through blastn 3.)
+#ls command unable to handle lists this large, replaced with find
+
+raw_bin_paths <- system("find /geomicro/data2/kiledal/GLAMR/data/omics/metagenomes/samp_*/bins/all_raw_bins/ -path *.fa", intern=TRUE) %>% 
+  tibble(bin_path = .) %>% 
+  mutate(sample = bin_path %>% str_remove(".*metagenomes/") %>% str_remove("/bins.*"),
+         bin = bin_path %>% str_remove(".*all_raw_bins/") %>% str_remove(".fa"),
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{bin}.fa")) %>%
+         filter(sample %in% GLAMR_samples_oi$SampleID)
+
+raw_bin_paths %>% distinct(sample) %>% count #49 WLE samples hits to gene target of interest in GLAMR - October 2023
+dim(raw_bin_paths)
+#[1] 60056     4
+
+#Symlink raw bins that were not processed through drep yet blast/query/raw_bins_w_sxt directory: 
+file.symlink(raw_bin_paths$bin_path, raw_bin_paths$new_path) 
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{bin}.fa
+```
+
+5. Blast all raw bins for mcy and cyr genes 
+```{r}
+#Snakefile: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/code/Snakefile
+
+#mcy: snakemake run_blastn_raw_bins_vs_mcy --profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/vondamm
+
+#cyr: snakemake run_blastn_raw_bins_vs_cyr --profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/vondamm
+
+# import os
+# import re
+# import snakemake.io
+# from glob import glob
+# 
+# #--profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/vondamm
+# 
+# #Ran first on Feb 25, 2024
+# #Run BLASTN for mcy genes on all Kenya assemblies 
+# # rule make_mcyABCDEG_db:
+# #     input: 
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa"
+# #     output: 
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa.nin"
+# #     log: 
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.txt"
+# #     conda: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+# #     resources: 
+# #         cpus=1, mem_mb=5000, time_min=10000
+# #     shell: 
+# #         """
+# #         makeblastdb -in {input} -dbtype nucl -logfile {log}
+# #         """
+# 
+# # rule blastn_assemblies_vs_mcy:
+# #     input: 
+# #         blast_db = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa",
+# #         blast_db_index = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa.nin",
+# #         assembly = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/assemblies/{sample}.fa"
+# #     output:
+# #          "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/mcy/assemblies/{sample}__mcy_mibig_db_assemblies_blastn.tsv"
+# #     log:
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/mcy/assemblies/log/{sample}__mcy_mibig_db_assemblies_blastn.log"
+# #     conda: 
+# #         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+# #     resources:
+# #         cpus=8, mem_mb=16000, time_min=10000
+# #     shell:
+# #         """
+# #         blastn -db {input.blast_db} -query {input.assembly} -out {output} -outfmt '6 std qcovs stitle' -num_threads {resources.cpus} -evalue 1e-2
+# #         """
+# 
+# # rule run_blastn_assemblies_vs_mcy:
+# #     input: 
+# #         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/mcy/assemblies/{sample}__mcy_mibig_db_assemblies_blastn.tsv", sample = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/assemblies/{sample}.fa",followlinks=True).sample)
+# 
+# #Ran second on February 25th, 2024
+# #Run BLASTN for cyr genes on all Kenya assemblies 
+# 
+# rule make_cyrCEBA_db:
+#     input: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa"
+#     output: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa.nin"
+#     log: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.txt"
+#     conda: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+#     resources: 
+#         cpus=1, mem_mb=5000, time_min=10000
+#     shell: 
+#         """
+#         makeblastdb -in {input} -dbtype nucl -logfile {log}
+#         """
+# 
+# rule blastn_assemblies_vs_cyr:
+#     input: 
+#         blast_db = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa",
+#         blast_db_index = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa.nin",
+#         assembly = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/assemblies/{sample}.fa"
+#     output:
+#          "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/cyr/assemblies/{sample}__cyr_mibig_db_assemblies_blastn.tsv"
+#     log:
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/cyr/assemblies/log/{sample}__cyr_mibig_db_assemblies_blastn.log"
+#     conda: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+#     resources:
+#         cpus=8, mem_mb=16000, time_min=10000
+#     shell:
+#         """
+#         blastn -db {input.blast_db} -query {input.assembly} -out {output} -outfmt '6 std qcovs stitle' -num_threads {resources.cpus} -evalue 1e-2
+#         """
+# 
+# rule run_blastn_assemblies_vs_cyr:
+#     input: 
+#         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_assemblies/cyr/assemblies/{sample}__cyr_mibig_db_assemblies_blastn.tsv", sample = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/assemblies/{sample}.fa",followlinks=True).sample)
+# 
+# #Ran third on February 25th, 2024 
+# 
+# #Blast raw bins against mcy database 
+# rule blastn_raw_bins_vs_mcy:
+#     input: 
+#         blast_db = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa",
+#         blast_db_index = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/mcy_mibig_db.fa.nin",
+#         raw_bin = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{sample_binner_number}.fa"
+#     output:
+#          "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/bins/{sample_binner_number}__mcy_raw_bin_blastn.tsv"
+#     log:
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/log/{sample_binner_number}_mcy_raw_bin_blastn.log"
+#     conda: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+#     resources:
+#         cpus=16, mem_mb=16000, time_min=10000
+#     shell:
+#         """
+#         blastn -db {input.blast_db} -query {input.raw_bin} -out {output} -outfmt '6 std qcovs stitle' -num_threads {resources.cpus} -evalue 1e-2
+#         """
+# 
+# rule run_blastn_raw_bins_vs_mcy:
+#     input: 
+#         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/bins/{sample_binner_number}__mcy_raw_bin_blastn.tsv", sample_binner_number = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{raw_bin}.fa",followlinks=True).raw_bin)
+# 
+# #Ran fourth on February 25th, 2024 
+# 
+# #Blast raw bins against cyr database 
+# rule blastn_raw_bins_vs_cyr:
+#     input: 
+#         blast_db = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa",
+#         blast_db_index = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/references/cyr_mibig_db.fa.nin",
+#         raw_bin = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{sample_binner_number}.fa"
+#     output:
+#          "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/bins/{sample_binner_number}__cyr_raw_bin_blastn.tsv"
+#     log:
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/log/{sample_binner_number}_cyr_raw_bin_blastn.log"
+#     conda: 
+#         "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/blast.yml"
+#     resources:
+#         cpus=16, mem_mb=16000, time_min=10000
+#     shell:
+#         """
+#         blastn -db {input.blast_db} -query {input.raw_bin} -out {output} -outfmt '6 std qcovs stitle' -num_threads {resources.cpus} -evalue 1e-2
+#         """
+# 
+# rule run_blastn_raw_bins_vs_cyr:
+#     input: 
+#         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/bins/{sample_binner_number}__cyr_raw_bin_blastn.tsv", sample_binner_number = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/{raw_bin}.fa",followlinks=True).raw_bin)
+
+#Results found: 
+
+#mcy: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/bins/{sample_binner_number}__mcy_raw_bin_blastn.tsv
+
+#cyr: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/bins/{sample_binner_number}__cyr_raw_bin_blastn.tsv
+
+```
+
+6. Process blast results on bins for mcy and cyr genes 
+```{r}
+#Make list of blastn outputs (raw bins)
+blastn_raw_bins_list_cyr <- system("find /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/bins -path *.tsv", intern=TRUE) 
+blastn_raw_bins_list_mcy <- system("find /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/bins -path *.tsv", intern=TRUE) 
+
+################cyr#############
+#Include only files with results in list-cyr
+blastn_raw_bins_list_results_cyr <- blastn_raw_bins_list_cyr[file.size(blastn_raw_bins_list_cyr) > 0] %>% 
+    tibble(read_path = .) %>% 
+    mutate(bin = read_path %>% 
+                 str_remove(".*raw_bins/") %>% 
+                 str_remove("__cyr_raw_bin_blastn.tsv") %>% 
+                 str_sub(end = -1),
+           assembler = sapply(strsplit(bin, split='_', fixed=TRUE), function(x) (x[3])))
+
+#For loop to add new rows to combine BLASTN raw bin results (tsv)
+df_raw <- data.frame()
+
+for (i in 1:length(blastn_raw_bins_list_results_cyr$read_path)) {
+  output <- read_tsv(file = blastn_raw_bins_list_results_cyr$read_path[i], col_names = FALSE, show_col_types = FALSE) %>%
+  tibble(.) %>% 
+  mutate(bin = blastn_raw_bins_list_results_cyr$bin[i],
+         assembler = blastn_raw_bins_list_results_cyr$assembler[i])
+  df_raw <- rbind(df_raw,output)
+}
+blastn_raw_bin_results_cyr <- df_raw
+
+colnames(blastn_raw_bin_results_cyr) <- c("qseqid", "sseqid", "pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore", "qcovs", "stitle", "bin", "assembler")
+
+#Column name reference: https://www.metagenomics.wiki/tools/blast/blastn-output-format-6
+#1.  qseqid      query or source (e.g., gene) sequence id
+#2.  sseqid      subject  or target (e.g., reference genome) sequence id
+#3.  pident      percentage of identical matches
+#4.  length      alignment length (sequence overlap)
+#5.  mismatch    number of mismatches
+#6.  gapopen     number of gap openings
+#7.  qstart      start of alignment in query
+#8.  qend        end of alignment in query
+#9.  sstart      start of alignment in subject
+#10. send        end of alignment in subject
+#11. evalue      expect value
+#12. bitscore    bit score
+#13. qcovs       query coverage per subject
+#14. stitle      subject title
+#project specific columns
+#15. bin
+#16. assembler
+
+blastn_raw_bin_results_add_cyr <- blastn_raw_bin_results_cyr %>% 
+                                  mutate(target = substr(sseqid, 1, 3),
+                                         gene_target = substr(sseqid, 1,4), 
+                                         SampleID = qseqid %>% str_extract("samp_.*_") %>% str_sub(end = -2))
+
+#List unique targets, check data table
+unique(blastn_raw_bin_results_add_cyr$gene_target)
+
+#Sort to get lowest e-value hit for each contig, remove contigs that match best to homolog/dummy sequences
+GLAMR_hits_raw_bin_cyr <- blastn_raw_bin_results_add_cyr %>%
+  arrange(qseqid, evalue) %>%                        # sort the data by 'evalue' in ascending order for each qseqid
+  group_by(bin, qseqid) %>%
+  filter(row_number() == 1) %>%                      # keep only one row for each qseqid (lowest evalue)
+  filter(target != "dum") %>%                        # remove "dum" targets
+  ungroup()
+
+
+View(GLAMR_hits_raw_bin_cyr)
+
+#Fix bin column 
+GLAMR_hits_raw_bin_cyr = GLAMR_hits_raw_bin_cyr %>% mutate(bin = basename(bin))
+
+#GLAMR_hits_raw_cyr provides BLASTN results for bins from samples identified as having gene targets of interest in original assembly blastn 3.).  The bins with hits next need to be sorted to determine the best/most complete bins for each sample/organism.  
+
+#############mcy#################
+#Include only files with results in list-mcy
+blastn_raw_bins_list_results_mcy <- blastn_raw_bins_list_mcy[file.size(blastn_raw_bins_list_mcy) > 0] %>% 
+    tibble(read_path = .) %>% 
+    mutate(bin = read_path %>% 
+                 str_remove(".*raw_bins/") %>% 
+                 str_remove("__mcy_raw_bin_blastn.tsv") %>% 
+                 str_sub(end = -1),
+           assembler = sapply(strsplit(bin, split='_', fixed=TRUE), function(x) (x[3])))
+
+#For loop to add new rows to combine BLASTN raw bin results (tsv)
+df_raw <- data.frame()
+
+for (i in 1:length(blastn_raw_bins_list_results_mcy$read_path)) {
+  output <- read_tsv(file = blastn_raw_bins_list_results_mcy$read_path[i], col_names = FALSE, show_col_types = FALSE) %>%
+  tibble(.) %>% 
+  mutate(bin = blastn_raw_bins_list_results_mcy$bin[i],
+         assembler = blastn_raw_bins_list_results_mcy$assembler[i])
+  df_raw <- rbind(df_raw,output)
+}
+blastn_raw_bin_results_mcy <- df_raw
+
+colnames(blastn_raw_bin_results_mcy) <- c("qseqid", "sseqid", "pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "evalue", "bitscore", "qcovs", "stitle", "bin", "assembler")
+
+#Column name reference: https://www.metagenomics.wiki/tools/blast/blastn-output-format-6
+#1.  qseqid      query or source (e.g., gene) sequence id
+#2.  sseqid      subject  or target (e.g., reference genome) sequence id
+#3.  pident      percentage of identical matches
+#4.  length      alignment length (sequence overlap)
+#5.  mismatch    number of mismatches
+#6.  gapopen     number of gap openings
+#7.  qstart      start of alignment in query
+#8.  qend        end of alignment in query
+#9.  sstart      start of alignment in subject
+#10. send        end of alignment in subject
+#11. evalue      expect value
+#12. bitscore    bit score
+#13. qcovs       query coverage per subject
+#14. stitle      subject title
+#project specific columns
+#15. bin
+#16. assembler
+
+blastn_raw_bin_results_add_mcy <- blastn_raw_bin_results_mcy %>% 
+                                  mutate(target = substr(sseqid, 1, 3),
+                                         gene_target = substr(sseqid, 1,4), 
+                                         SampleID = qseqid %>% str_extract("samp_.*_") %>% str_sub(end = -2))
+
+#List unique targets, check data table
+unique(blastn_raw_bin_results_add_mcy$gene_target)
+
+#Sort to get lowest e-value hit for each contig, remove contigs that match best to homolog/dummy sequences
+GLAMR_hits_raw_bin_mcy <- blastn_raw_bin_results_add_mcy %>%
+  arrange(qseqid, evalue) %>%                        # sort the data by 'evalue' in ascending order for each qseqid
+  group_by(bin, qseqid) %>%
+  filter(row_number() == 1) %>%                      # keep only one row for each qseqid (lowest evalue)
+  filter(target != "dum") %>%                        # remove "dum" targets
+  ungroup()
+
+View(GLAMR_hits_raw_bin_mcy)
+
+GLAMR_hits_raw_bin_mcy = GLAMR_hits_raw_bin_mcy %>% mutate(bin = basename(bin))
+
+#GLAMR_hits_raw_bin_mcy provides BLASTN results for bins from samples identified as having gene targets of interest in original assembly blastn 3.).  The bins with hits next need to be sorted to determine the best/most complete bins for each sample/organism.  
+
+```
+
+7. Assign gtdb and checkm results to bins with blast hits
+```{r}
+
+#Load postgres server running on Alpena
+pg <- DBI::dbConnect(RPostgres::Postgres(),dbname = "glamr_data", host = "localhost", port = "5432", user = "glamr_admin", password = "glamr2023")
+
+#Load GLAMR GTDBTK data
+gtdb <- tbl(pg, "GTDB") %>% 
+  collect() %>% 
+  mutate(sample = str_extract(user_genome, "samp_\\d+")) %>% 
+  relocate(user_genome, sample) 
+
+#Load GLAMR CheckM data
+checkM <- tbl(pg, "checkm") %>% 
+  collect() %>% 
+  mutate(sample = str_extract(`Bin Id`, "samp_\\d+")) %>% 
+  relocate(`Bin Id`, sample)
+
+#gtdb table loaded in first chunk
+GLAMR_GTDB_samp_oi_cyr <- gtdb %>% filter(sample %in% GLAMR_hits_raw_bin_cyr$SampleID) # filter for only sample with cyr hits
+GLAMR_GTDB_samp_oi_mcy <- gtdb %>% filter(sample %in% GLAMR_hits_raw_bin_mcy$SampleID) # filter for only sample with cyr hits
+
+
+GLAMR_hits_raw_bin_cyr %>% distinct(SampleID) %>% count #5 WLE bins of interest in GLAMR - February 2024
+GLAMR_hits_raw_bin_mcy %>% distinct(SampleID) %>% count #49 WLE bins of interest in GLAMR - February 2024
+
+GLAMR_GTDB_samp_oi_cyr %>% distinct(sample) %>% count #5 corresponding GTDBTK analyses - Feb 2024
+GLAMR_GTDB_samp_oi_mcy %>% distinct(sample) %>% count #48 corresponding GTDBTK analyses - Feb 2024 (maybe missing one)
+
+
+#checkM table loaded in first chunk
+GLAMR_checkm_samp_oi_cyr <- checkM %>% filter(sample %in% GLAMR_hits_raw_bin_cyr$SampleID) # filter for only sample with cyr hits
+
+GLAMR_checkm_samp_oi_cyr %>% distinct(sample) %>% count #5 corresponding checkM analyses - Feb 2024
+
+GLAMR_checkm_samp_oi_mcy <- checkM %>% filter(sample %in% GLAMR_hits_raw_bin_mcy$SampleID) # filter for only sample with cyr hits
+
+GLAMR_checkm_samp_oi_mcy %>% distinct(sample) %>% count #48 corresponding checkM analyses - Feb 2024
+
+#R combine GTDB and checkM results
+GTDB_checkm_GLAMR_cyr <- left_join(GLAMR_checkm_samp_oi_cyr, GLAMR_GTDB_samp_oi_cyr, by = c("Bin Id" = "user_genome")) %>%
+                              distinct(`Bin Id`, classification, Completeness, Contamination, `Strain heterogeneity`, .keep_all = TRUE)
+
+GTDB_checkm_GLAMR_mcy <- left_join(GLAMR_checkm_samp_oi_mcy, GLAMR_GTDB_samp_oi_mcy, by = c("Bin Id" = "user_genome")) %>%
+                              distinct(`Bin Id`, classification, Completeness, Contamination, `Strain heterogeneity`, .keep_all = TRUE)
+
+
+
+
+#Add to GLAMR_hits_raw_bin
+GLAMR_hits_raw_bin_GTDB_checkm_cyr <- left_join(GLAMR_hits_raw_bin_cyr, GTDB_checkm_GLAMR_cyr, by = c("bin" = "Bin Id"))
+GLAMR_hits_raw_bin_GTDB_checkm_mcy <- left_join(GLAMR_hits_raw_bin_mcy, GTDB_checkm_GLAMR_mcy, by = c("bin" = "Bin Id"))
+
+#Filter GLAMR_hits_raw_bin_GTDB_checkm for CheckM quality
+GLAMR_hits_raw_bin_passqc_cyr <- GLAMR_hits_raw_bin_GTDB_checkm_cyr %>% 
+                                filter(Completeness >= 70 & Contamination <= 200)
+GLAMR_hits_raw_bin_passqc_mcy <- GLAMR_hits_raw_bin_GTDB_checkm_mcy %>% 
+                                filter(Completeness >= 70 & Contamination <= 200)
+
+
+GLAMR_hits_raw_bin_passqc_cyr %>% distinct(bin) %>% count  #8 distinct bins
+GLAMR_hits_raw_bin_passqc_mcy %>% distinct(bin) %>% count  #419 bins 
+
+#Took a look at all species level GTDBTK and CheckM annotations. Narrowed down to a single bin to focus on for cyr
+##Potential genomes with saxitoxin biosynthesis 
+#samp_4445_VAMB_1299 - No distinct classification 
+
+#There are 2 bins with Rhaphidiopsis classification but not all hits to cyr genes (no cyrA)
+
+
+#Need to select out any bins I don't want to use from samples I don't want to use 
+dim(GLAMR_hits_raw_bin_passqc_cyr)
+#[1] 29 53
+GLAMR_hits_raw_bin_passqc_cyr = GLAMR_hits_raw_bin_passqc_cyr %>% filter(!SampleID == "samp_4327", !SampleID == "samp_4328", !SampleID == "samp_4329", !SampleID == "samp_4330", !SampleID == "samp_4455", !SampleID == "samp_4456", !SampleID == "samp_4453")
+dim(GLAMR_hits_raw_bin_passqc_cyr)
+#[1] 29 53 nothing removed
+
+dim(GLAMR_hits_raw_bin_passqc_mcy)
+#[1] 2673   53
+GLAMR_hits_raw_bin_passqc_mcy = GLAMR_hits_raw_bin_passqc_mcy %>% filter(!SampleID == "samp_4327", !SampleID == "samp_4328", !SampleID == "samp_4329", !SampleID == "samp_4330", !SampleID == "samp_4455", !SampleID == "samp_4456", !SampleID == "samp_4453")
+dim(GLAMR_hits_raw_bin_passqc_mcy)
+#[1] 2447   53 226 lines removed
+
+
+```
+
+8. Link bins from mcy and cyr hits to another folder for dereplication and conduct drep on them 
+```{r}
+#1. Linking bins to folders
+#################cyr#############
+raw_bin_paths_cyr <- system("find /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/ -path *.fa", intern=TRUE) %>% 
+  tibble(bin_path = .) %>% 
+  mutate(bin = bin_path %>% str_remove(".*all_raw_bins_mcycyr_blast/") %>% str_remove(".fa"),
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/hit_bins/{bin}.fa")) %>%
+         filter(bin %in% GLAMR_hits_raw_bin_passqc_cyr$bin)
+
+raw_bin_paths_cyr %>% distinct(bin) %>% count #8
+dim(raw_bin_paths_cyr)
+#[1] 8  3
+
+file.symlink(raw_bin_paths_cyr$bin_path, raw_bin_paths_cyr$new_path) 
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/hit_bins/{bin}.fa
+
+#################mcy#############
+raw_bin_paths_mcy <- system("find /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/all_raw_bins_mcycyr_blast/ -path *.fa", intern=TRUE) %>% 
+  tibble(bin_path = .) %>% 
+  mutate(bin = bin_path %>% str_remove(".*all_raw_bins_mcycyr_blast/") %>% str_remove(".fa"),
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/hit_bins/{bin}.fa")) %>%
+         filter(bin %in% GLAMR_hits_raw_bin_passqc_mcy$bin)
+
+raw_bin_paths_mcy %>% distinct(bin) %>% count #370
+dim(raw_bin_paths_mcy)
+#[1] 370   3
+
+file.symlink(raw_bin_paths_mcy$bin_path, raw_bin_paths_mcy$new_path) 
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/hit_bins/{bin}.fa
+
+#2. Drepping bins at multiple thresholds 
+
+#Do both at 99 percent first since I have found these genomes are all so similar from tree making in notebook 2
+
+##########cyr-99
+#conda activate drep_v4 (on cayman, works on vondamm too)
+# dRep dereplicate --S_ani 0.99 -p 24 /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/hit_bins_drep/drep99 -g /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/cyr/hit_bins/*.fa 
+
+#bins kept: 1 bin: samp_4445_concoct_1447.fa (only one kept, raphidopsis bin based on GTDB, 93% complete, only has hits to cyrE)
+
+#notes: going with 99 percent 
+
+#########mcy-99
+#conda activate drep_v4 (on cayman, works on vondamm too)
+# dRep dereplicate --S_ani 0.99 -p 24 /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/hit_bins_drep/drep99 -g /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/hit_bins/*.fa 
+
+#bins kept: 38 bins kept, can go with this 
+
+#notes: go with 99% drep for now
+
+#Read in bins kept during drep to get list of them and stats 
+drep_bins_mcy <- system("find /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/blast_bins/mcy/hit_bins_drep/drep99/dereplicated_genomes/ -path *.fa", intern=TRUE) %>% 
+  tibble(bin_path = .) %>% 
+  mutate(bin = bin_path %>% str_remove(".*dereplicated_genomes/") %>% str_remove(".fa"))
+
+#Join this with stats so I have stats for kept bins 
+drep_mcy_stats = left_join(drep_bins_mcy, GLAMR_hits_raw_bin_passqc_mcy, by = "bin")
+
+```
+
+```{r}
+#Notes on prioritizing bins for Anvio further analysis
+# CYR
+# Bin                     complete/contam     genes present     taxa annotation
+# samp_4445_maxbin_469        90/20              cyrA            Raphidiopsis --checked cyrA falling on aphan contig, not in good spot in genome
+# samp_4445_concoct_1447      93/1              cyrE             Raphidopsis-cyrE on unknown Aphan 
+# samp_4445_VAMB_1095         93/2              cyrE            Raphidopsis-not checked because VAMB contigs occur duplicate, can fix but not now
+# samp_4445_concoct_1406     70/57            cyrEABC            Bacteria-cant look at because not in das tool bc too messy
+
+#MCY
+# MCY
+# - dereplicated bins are mainly dolichospermum and different microcystis species groups 
+# Bin                      complete/contam          genes present       taxa annotation
+# samp_4315_concoct_78*      82/7                    mcyADGCEB            Microcystis panniformis_A
+# samp_4316_VAMB_262        96/22                  mcyADGCEB            Dolichospermum circinale-checked
+# samp_4442_VAMB_212        91/19                 mcyADGCEB            Microcystis panniformis_A
+# samp_4439_concoct_180     94/18               mcyADGCEB             Microcystis spp. 
+# samp_4443_VAMB_1170      85/13               mcyADGCEB              Microcystis spp. 
+# samp445_concoct_1415       88/9                mcyCA                Sphaerospermopsis kisseleviana_A-checked
+# samp_4436_concoct_82    89/9               mcyABGDE               Microcystis aeruginosa_D
+# samp_4440_concoct_565   87/7              mcyADGCEB               Microcystis panniformis         
+# samp_4448_concoct_1863* 87/4             mcyADGCEB                Microcystis aeruginosa_H
+# samp_4315_concoct_78   82/3               mcyADGCEB                  Microcystis panniformis_A
+# samp_4325_concoct_82*  81/3              mcyADGCEB                 Microcystis spp.
+#samp_4445_concoct_1450                   mcyGECAB                  Microcystis-checked
+
+#MCY PRIORITY FOR MICROCYSTIS
+# samp_4445_concoct_1450: clean bin, mcy genes there ABCEG
+# samp_4439_concoct_180
+# samp_4435_concoct_1904-clean bin, mcy ABCDEG
+# sampp_4441_concoct_736
+# samp_4317_maxbin_26 (antismash contigs for mcy)-best operon likely, clean bin (on contig samp_4317_202655)
+
+
+```
+
+
+9. Look at samples and high quality bins in Anvio 
+```{r}
+#Generally running anvio steps!
+#Anvio number 1: FIRST PRIORITY IS TRYING TO SEE IF ANYONE ELSE BUT MICROCYSTIS HAS MCY  
+
+#######full tutorial from Paul on Kenya data found: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/anvio/Kenya_cyr_notebook1.Rmd
+
+#to run anvio: instructions from paul found:
+# ---Outline---
+# 1.) Setup terminal/screen session
+# 2.) Generate Anvi'o profiles through snakemake
+# 3.) Process Anvi'o profiles - single profile
+# 4.) Process Anvi'o profiles - with secondary profiles
+
+
+# 1.) Setup terminal and screen session to run and visualize Anvi'o
+#The following direction are directly performed in terminal or VS Code
+# ssh -L 8723:localhost:8725 [UNIQNAME]@earth-gateway.earth.lsa.umich.edu
+# #ENTER PASSWORD
+# ssh -L 8723:localhost:8725 [server]
+# #ENTER PASSWORD
+# 
+# screen -S anvio
+# 
+# cd /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/anvio
+# 
+# module load anvio/7
+
+#2.) Run snakemake file to setup and generate Anvi'o sample profiles
+# snakemake samples/[SampleID]/anvio_db/profiles/.[SampleID]_done_primary --profile --profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/cayman/
+# 
+# #OPTIONAL#
+# #Create secondary anvio profiles to compliment primary profiles
+# #Secondary MAGs of interest determined from drep output analysis 
+# snakemake \
+#    samples/[SampleID - primary]/anvio_db/profiles/.[SampleID - secondary1]_done \  
+#    samples/[SampleID - primary]/anvio_db/profiles/.[SampleID - secondary2]_done \ 
+#    samples/[SampleID - primary]/anvio_db/profiles/.[SampleID - secondary3]_done \ 
+#    --profile config/snakemake_profiles/[server]/  
+# 
+# #Beta# 
+# #Run all together in one command using the prioritize flag#
+# snakemake \
+#    samples/[SampleID - primary]/anvio_db/profiles/.[SampleID - primary]_done_primary \  
+#    --prioritize \
+#    samples/[SampleID - primary]/anvio_db/profiles/.[SampleID - secondary1]_done \  
+#    samples/[SampleID - primary]/anvio_db/profiles/.[SampleID - secondary2]_done \ 
+#    samples/[SampleID - primary]/anvio_db/profiles/.[SampleID - secondary3]_done \ 
+#    --profile config/snakemake_profiles/[server]/
+
+#3.) Use Anvi'o profile, import collections, interact, visualize, and refine bins
+
+
+#no secondary_cluster compliments to merge
+
+############
+#Import bins
+############
+# mkdir samples/[SampleID - primary]/anvio_db/collections
+# 
+# cp /geomicro/data2/kiledal/GLAMR/data/omics/metagenomes/[SampleID - primary]/bins/das_tool/*.tsv \
+#     samples/[SampleID - primary]/anvio_db/collections/
+#   #imports contig assignments from the following binners: concoct, maxbin, metabat2, metadecoder, semibin, VAMB
+# 
+# anvi-import-collection \
+# samples/[SampleID - primary]/anvio_db/collections/[binner]_contigs.tsv \           #may need to be converted to .txt
+# -p samples/[SampleID - primary]/anvio_db/profiles/[SampleID - primary]_profile/PROFILE.db \
+# -c samples/[SampleID - primary]/anvio_db/contigs.db \
+# -C [binner] \
+# --contigs-mode
+
+#####################################
+#Interact, visualize, and refine bins
+#####################################
+
+#no secondary_cluster compliments
+#no need to run anvi-interactive
+
+# anvi-refine \
+# -p samples/[SampleID - primary]/anvio_db/profiles/[SampleID - primary]_profile/PROFILE.db \
+# -c samples/[SampleID - primary]/anvio_db/contigs.db \
+# -C [binner] \
+# -b [bin_name] \
+# --server-only -P 8723
+
+```
+
+10. Cyr: look at assembly hits for cyr, pull contigs into one fasta file and blast in NCBI
+```{r}
+dim(cyr_assembly_hits)
+#[1] 59 17
+
+#Filter cyr assembly hits 50% coverage or high and 
+cyr_assembly_hits_2 = cyr_assembly_hits %>% filter(qcovs >= 50) %>% filter(pident >= 90)
+dim(cyr_assembly_hits_2)
+#[1] 37 17
+
+#Create dataframe with contigs, + new header name for fasta 
+cyr_contigs = cyr_assembly_hits_2 %>% select(c(qseqid, sseqid, pident, qcovs))
+
+cyr_contigs = cyr_contigs %>% mutate(new_header = paste(qseqid, sseqid, pident, qcovs, sep = "_"))
+
+cyr_contigs = cyr_contigs %>% mutate(sample_id = str_extract(qseqid, "samp_\\d+"))
+
+cyr_contigs$qseqid <- gsub("^samp_\\d{4}_", "", cyr_contigs$qseqid)
+
+
+write.csv(cyr_contigs, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/cyr_contigs_assembly_blast.csv")
+
+#How I created fasta file for cyr contigs:
+#used /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/cyr-blastcontigs/code/extract-contigs.py to extract all contigs from assemblies with cyr hits
+
+#This made separate fasta files, to combine these: combine_fasta.py into whole fasta: cyr_qccontigs.fa
+
+#Fasta file for cyr contigs:
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/cyr_qccontigs.fa
+
+#The cyr operon did not assemble well enough to recover its taxonomic owner, so the analysis stopped here. One final readmapping was done to identify if the cyr operon or conserved genes were present at very low levels by read mapping the 4 main cyr biosynthetic genes (cyrABCE) to reads. A very low level was identified, see below for this analysis. 
+
+#A blast database was made from these 4 cylindrospermopsin genes from Cylindrospermopsis, db found here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/cyr-cylindro.fa, using this code makeblastdb -in cyr-cylindro.fa -dbtype nucl -logfile cyr-cylindro.dblog
+
+#Blast was run on samp_4445 (site 27 Bridge Island, 2023): blastn -query /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/cyr-blast-ref/reads/samp_4445_fwd.fasta -db /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/cyr-blast-ref/references/cyr-cylindro.fa -outfmt 6 -out /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/cyr-blast-ref/blast_results/cyr-cylindro.blastn
+
+#read mapping figure was made based on Yancey et al. 2023 paper and tool: https://journals.asm.org/doi/full/10.1128/aem.02464-21
+
+#comics -i omics.bullseye.final.img
+#plot-blast-frag-cov -r /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/cyr-blast-ref/references/cyr-cylindro.fa /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/mcy-cyr/cyr-blast-ref/blast_results/cyr-cylindro.blastn
+
+#This is how Figure S1 was made. 
+```
+
+
+11. Using clinkr to analyze mcy operon against standard mcy operon from Microcystis-Figure S4 (clinkr image)
+```{r}
+#Downloaded clinkr in here
+#install clinkr: https://github.com/gamcil/clinker/blob/master/README.md
+# git clone https://github.com/gamcil/clinker.git
+# cd clinker
+# pip install .
+
+#Blasted contig_177 (aka samp_4317_202655) to get best reference: Select seq OQ291092.1	Microcystis aeruginosa FACHB-1326 microcystin synthetase gene cluster, complete sequence
+
+#Reference file for mcy operon and the contig177_4317_maxbin for mcy from Lake Victoria are found here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/mcy_mauerginosa_fachb1326.fasta and contig177_4317_maxbin_26.fasta
+
+#Pulled this sequence into fasta file and uploaded:
+
+#Conda activate prokka
+#prokka --outdir dirname –prefix fileoutputname fileofyourinterest.fa –force 
+#conda activate clinker
+#clinker *.gbk -p mcy.html
+
+#Clinkr output found here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/mcy_samp4317_maxbin26.html
+```
+

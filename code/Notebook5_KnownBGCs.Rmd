@@ -1,0 +1,712 @@
+---
+title: "Notebook8_markergene_BGCs_K22-23"
+output: html_document
+date: "2024-02-27"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(dplyr)
+library(here)
+library(vroom)
+library(ggmap)
+library(googledrive)
+library(readxl)
+library(Biostrings)
+library(lubridate)
+library(ggplot2)
+library(ggpmisc)
+library(Rsamtools)
+library(ggnewscale)
+library(cowplot)
+library(furrr)
+library(RColorBrewer)
+library(pheatmap)
+library(ggfortify)
+knitr::opts_knit$set(root.dir = here::here("")) 
+```
+
+NOTEBOOK BREAKDOWN
+
+1. Link decontaminated fwd and rev reads for read mapping 
+2. Breakdown on how I built the BGC database 
+3. Run toxin bgc gene read mapping against decontaminated reads from Kenya 22-23 and read counts
+4. Process toxin marker gene read mapping results: RPKM
+5. Process toxin marker gene read mapping results to get coverage and identity statistics--carrying on with 70% coverage 
+6. Combine stats, rpkm data, and database key for 70% coverage 
+7. Calculate how much of BGC is there based on % of BGC covered by reads 
+8. Incorporate metadata to results 
+9. Visualize with 70% coverage filter-Figure 7
+
+
+1. Link decontaminated fwd and rev reads for read mapping 
+```{r}
+
+#2022 file paths
+read_paths22 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/samp_*/reads/decon_*_reads_fastp.fastq.gz",intern = TRUE) %>% 
+  data_frame(read_path = .)  %>% mutate(sample = read_path %>% str_remove(".*metagenomes/") %>% str_remove("/reads.*"),
+         read_dir = read_path %>% str_remove(".*decon_") %>% str_remove("_reads_fastp.*"),
+         read_dir_coverm = if_else(read_dir == "fwd", "fwd", "rev"),
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/decon_reads/{sample}_{read_dir_coverm}.fastq.gz"))
+
+#sym link 2022 reads
+file.symlink(read_paths22$read_path, read_paths22$new_path)
+
+#2023
+read_paths23 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/samp_*/reads/decon_*_reads_fastp.fastq.gz",intern = TRUE) %>% 
+  data_frame(read_path = .)  %>% mutate(sample = read_path %>% str_remove(".*metagenomes/") %>% str_remove("/reads.*"),
+         read_dir = read_path %>% str_remove(".*decon_") %>% str_remove("_reads_fastp.*"),
+         read_dir_coverm = if_else(read_dir == "fwd", "fwd", "rev"),
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/decon_reads/{sample}_{read_dir_coverm}.fastq.gz"))
+
+#sym link 2023 reads
+file.symlink(read_paths23$read_path, read_paths23$new_path)
+```
+
+
+2. Breakdown on how I built the BGC database 
+```{r}
+#To make the BGC database, I pulled all BGCs from MiBIG for the following genera: Planktothrix, Sphaerospermopsis, Dolichospermum, Anabaena, Aphanizomenon, Microcystis, Cylindrospermopsis, Cyanobium. I pulled the information for these BGCs using a script found here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/scripts/bgc_from_mibig_efe.py. This code is activated in the command line by typing: python bgc_from_mibig_efe.py. Then, you will be prompted for the specific search you want to make. I searched each of the genera above. This would create a new excel sheet for each genera. I combined these excel sheets manually on my local computer. 
+
+#Once a combined sheet was made, I removed any genes (whole BGCs) that were not known to be toxic to humans or organisms within the water column. I wanted to ensure I was mapping to a toxic cyanobacterial metabolite gene database. 
+
+#Once I made these edits, I made a new sheet with the genbank ID for each BGC, start and end number for each gene, and a new header name for each gene. This file is: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/db_input_genbank.csv. I am using this to pull each of the genes from genbank into one fasta file to conduct read mapping. 
+
+#From this file, I used this script: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/import_genbank_sequences.py to create a new fasta file with all of the sequences and their new header name. It created a new fasta file which I renamed to: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/geneBGC_db.fasta as the final reference database. 
+```
+
+3. Run toxin bgc gene read mapping against decontaminated reads from Kenya 22-23
+```{r}
+#Snakefile: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/code/Snakefile
+
+#Activation code: snakemake run_read_mapping_toxins_kenya --profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/vondamm
+
+# import os
+# import re
+# import snakemake.io
+# from glob import glob
+# 
+# qc_reads = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/decon_reads/{sample}_fwd.fastq.gz").sample  
+# 
+# rule read_mapping_toxinmarker_kenya:
+#     input: 
+#         f_reads = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/decon_reads/{sample}_fwd.fastq.gz",
+#         r_reads = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/decon_reads/{sample}_rev.fastq.gz",
+#         ref = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/references/geneBGC_db.fa"
+#     output: 
+#         sam = temp("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_mapped.sam"),
+#         temp_bam = temp("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_mapped_temp.bam"),
+#         unsorted_bam = temp("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_mapped_unsorted.bam"),
+#         bam = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_mapped.bam"
+#     conda: "/geomicro/data21/lnhart/Projects/Changing-bloom/usgs-metagenomes/toxin-marker-readmap/minimap2.yaml"
+#     log: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_mapped_bam.log"
+#     resources: cpus=48
+#     shell: 
+#         """
+#         minimap2 \
+#             -ax sr \
+#             -t {resources.cpus} \
+#             --secondary=no \
+#             {input.ref} \
+#             {input.f_reads} {input.r_reads} > {output.sam}
+# 
+#         samtools view -bS {output.sam} > {output.temp_bam}
+# 
+#         filterBam \
+#             --in {output.temp_bam} \
+#             --out {output.unsorted_bam} \
+#             --minCover 80 \
+#             --minId 90
+# 
+#             samtools sort -o {output.bam} -@ {resources.cpus} {output.unsorted_bam}
+#             samtools index -@ {resources.cpus} {output.bam}
+#         """
+# 
+# rule ref_read_mapping_pileup_toxins_kenya:
+#     input:
+#         bam = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_mapped.bam",
+#         ref = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/references/geneBGC_db.fa"
+#     output:
+#         pileup = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_pileup.txt"
+#     conda: "/geomicro/data21/lnhart/Projects/Changing-bloom/usgs-metagenomes/toxin-marker-readmap/minimap2.yaml"
+#     log: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_pileup.log"
+#     resources: cpus=48
+#     shell:
+#         """
+#         samtools mpileup -f {input.ref} -o {output.pileup} {input.bam}
+#         """
+# 
+# rule run_read_mapping_toxins_kenya:
+#     input:
+#         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/{sample}_toxin_pileup.txt", sample = qc_reads)
+
+#############Specifications: 80% coverage, 90% identity 
+
+#Started run on Dec 31, 2023 at 12pm, on 48 cores 
+
+```
+
+4. Process toxin marker gene read mapping results: RPKM
+```{r}
+####Preparing data for function
+#% coverage is 80% and 90% identity for this data
+
+#read in reference sequence fasta 
+toxin_MAG_ref <- Biostrings::readDNAStringSet("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/geneBGC_db.fa") %>%  # import reference fasta
+    as.character() %>%
+    data.frame(ref_base = ., seqnames = names(.)) %>%
+      mutate(mag = str_extract(seqnames, pattern),  # label MAG names
+           seq_length = nchar(ref_base))
+
+#Edit sequence names to end where there is a space 
+toxin_MAG_ref$seqnames <- sub(" .*", "", toxin_MAG_ref$seqnames)
+
+#pull sequence names into a vector 
+vector = toxin_MAG_ref$seqnames
+pattern <- paste(vector, collapse = "|")
+
+ref_mag_length <- toxin_MAG_ref %>%
+    group_by(seqnames) %>%
+      mutate(mag_length = sum(seq_length)) %>%  # get length of each MAG
+    reframe(mag = unique(seqnames),
+            mag_length = unique(mag_length))
+
+#remove seqnames from dataframe
+ref_mag_length = ref_mag_length %>% select(!seqnames)
+
+
+# function to generate mag rpkm for each sample
+ref_mag_bam_rpkm <- function(bam_path){
+  
+  # identify sample_id from bam file path
+    sample_id <- bam_path %>% str_remove(".*/readmap_results/") %>% str_remove("_toxin_mapped.bam")
+
+  # get total sequencing read counts for sample from GLAMR
+      read_count_fastp <- read_tsv(paste0("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/read_counts/",sample_id,"_read_count_fastp.tsv"))
+      read_count_decon_fwd <- read_count_fastp[1, 2]
+      read_count_decon_rev <- read_count_fastp[1, 3]
+      total_decon_sample_reads <- sum(read_count_decon_fwd, read_count_decon_rev)  # get total read count from GLAMR (all fwd and rev reads)
+
+  # read in bam file
+    bam <- Rsamtools::BamFile(file = bam_path,
+                            index = paste0(bam_path,".bai"))
+    
+  # read the BAM file and count aligned reads
+    bam_file_df <- as.data.frame(scanBam(bam))
+    aligned_read_counts <- as.data.frame(table(bam_file_df$rname))
+
+    mapped_reads_df  <-  aligned_read_counts %>% type_convert() %>% 
+                          mutate(mag = str_extract(Var1, pattern)) %>%  # label MAG names
+                         group_by(mag) %>% 
+                          mutate(mapped_reads = sum(Freq)) %>%  # calculate number of mapped reads per MAG
+                     distinct(mag,.keep_all = TRUE) %>%
+                          select(-Freq)                         # remove 'Freq' after distinct(), because not relevant for entire MAG
+  
+    rpkm <- left_join(mapped_reads_df, ref_mag_length, by = "mag") %>%
+                 mutate(total_decon_sample_reads,                # add total_decon_sample_reads determined earlier in function
+                        sample_id,                               # add sample_id determined earlier in function
+                        rpkm = (mapped_reads / (mag_length * total_decon_sample_reads)) * 1000000) %>%  # Calculate RPKM
+                  select(-Var1)                                  # remove 'Freq' after distinct(), because not relevant for entire MAG
+} 
+
+# create list of bam paths to process
+bam_paths_rpkm <- system("ls /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/*.bam", intern = TRUE) %>%
+  tibble(bam_path = .) 
+
+plan(multisession, workers = 24)
+kenya_bam_rpkm_mm2 <- future_map_dfr(bam_paths_rpkm$bam_path, ~ ref_mag_bam_rpkm(.x), .progress = TRUE) # last run: Jan 5, 2024
+plan(sequential)
+
+head(kenya_bam_rpkm_mm2)
+
+#write and read csv 
+#write_csv(kenya_bam_rpkm_mm2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_rpkm_mm2_Jan5_24.csv") 
+#kenya_bam_rpkm_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_rpkm_mm2_Jan5_24.csv")
+```
+
+
+5. Process toxin marker gene read mapping results to get coverage and identity statistics 
+```{r}
+# reference sequence import
+ref_seq <- Biostrings::readDNAStringSet("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/geneBGC_db.fa") %>%
+    as.character() %>%
+    data.frame(ref_base = ., seqnames = names(.)) %>%
+    mutate(seq_length = nchar(ref_base)) %>%
+    separate_longer_position(ref_base, width = 1) %>%
+    group_by(seqnames) %>%
+    mutate(pos = row_number()) %>%
+    ungroup() 
+
+#fix seq names 
+ref_seq$seqnames <- sub(" .*", "", ref_seq$seqnames)
+
+# function to generate bam stats - reference cover & % id
+bam_stats <- function(bam_path){
+
+  # read in bam file
+  bam <- Rsamtools::BamFile(file = bam_path,
+                            index = paste0(bam_path,".bai"))
+  
+  pileup_ref_join <- Rsamtools::pileup(bam,pileupParam = PileupParam(distinguish_strands = FALSE)) %>% 
+    full_join(ref_seq, ., by = c("seqnames", "pos"))  # join pileup file and alignment reference
+
+out_bp_depth <- pileup_ref_join %>%
+      group_by(seqnames, pos, seq_length) %>% 
+    arrange(seqnames, pos, desc(count)) %>% 
+      mutate(depth = sum(count),                          # alignment depth at each position
+             rel_abund_base = count/depth) %>%            # relative abundance of base read at position compared to all reads at position
+    group_by(seqnames) %>% 
+      mutate(bam_path = bam_path,
+             sample_id = bam_path %>% str_remove(".*bam/") %>% str_remove("_GLAMRsxtAll.*")) %>%
+    ungroup()
+
+out_percent_id <- out_bp_depth %>%
+      group_by(seqnames) %>%
+    filter(nucleotide == ref_base) %>%                    # only look at bases that match reference
+      mutate(percent_id_ref_contig = (sum(count) / sum(depth)) * 100) %>%    #all reads matching ref / total reads for sequence            
+    ungroup()
+
+out_cover <- out_bp_depth %>%
+  filter(count >= 1, na.rm = TRUE) %>%                   # keep only positions with at least 1 count
+  distinct(seqnames, pos, .keep_all = TRUE) %>%
+    group_by(seqnames) %>%
+      mutate(percent_cover = (n()/seq_length) * 100) %>%      # number of bases matching reference divided by reference sequence length 
+    ungroup()
+
+out <- left_join(out_percent_id, out_cover)  # merge %id and cover data tables
+
+}
+
+# create list of bam paths to process
+bam_paths <- system("ls /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/readmap_results/*.bam", intern = TRUE) %>%
+  tibble(bam_path = .) 
+
+# run for bam stats!
+#kenya_bam_stats_mm2 <- map_df(bam_paths$bam_path, ~ bam_stats(.x), .progress = TRUE) #RUN LAST - (date: Jan. 5, 2023)
+    #Remove rows with NA for 'percent_cover'
+#kenya_bam_stats_mm2 <-kenya_bam_stats_mm2 %>% filter(!is.na(percent_cover))
+#write_csv(kenya_bam_stats_mm2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_stats_jan524.csv")
+#kenya_bam_stats_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_stats_jan524.csv", col_names = TRUE)
+
+#Sort for hits having 80% coverage
+
+kenya_bam_stats_80_cov_mm2 <- kenya_bam_stats_mm2 %>%
+    group_by(sample_id, seqnames) %>% 
+      select(seqnames, sample_id, percent_cover, percent_id_ref_contig) %>% # skim down data table to just data for each ref
+      distinct() %>%
+    group_by(sample_id) %>%
+      mutate(gene_present = percent_cover > 80) 
+
+#Make new df with only true hits
+kept_kenya_bam_stats_80_cov_mm2 = kenya_bam_stats_80_cov_mm2 %>% filter(gene_present == TRUE)
+dim(kept_kenya_bam_stats_80_cov_mm2)
+# [1] 2104    5
+
+#Sort for hits having 70% coverage
+
+kenya_bam_stats_70_cov_mm2 <- kenya_bam_stats_mm2 %>%
+    group_by(sample_id, seqnames) %>% 
+      select(seqnames, sample_id, percent_cover, percent_id_ref_contig) %>% # skim down data table to just data for each ref
+      distinct() %>%
+    group_by(sample_id) %>%
+      mutate(gene_present = percent_cover > 70) 
+
+dim(kenya_bam_stats_70_cov_mm2)
+#[1] 5351    5
+
+#Make new df with only true hits
+kept_kenya_bam_stats_70_cov_mm2 = kenya_bam_stats_70_cov_mm2 %>% filter(gene_present == TRUE)
+dim(kept_kenya_bam_stats_70_cov_mm2)
+#[1] 2472    5
+
+##################################Carry on with 70 percent coverage (greater than or equal to 90% ID)
+
+```
+
+
+6. Combine stats, rpkm data, and database key for 70% coverage 
+```{r}
+#Read in database key 
+db_key = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/db_key.csv", header = TRUE)
+head(db_key)
+
+#Stats df
+head(kept_kenya_bam_stats_70_cov_mm2)
+
+#RPKM df
+head(kenya_bam_rpkm_mm2)
+
+#Edit column names in bam stats to be able to be merged with rpkm 
+bam_stats_k2223_70 <- kept_kenya_bam_stats_70_cov_mm2 %>% mutate(sample_id = str_extract(sample_id, "samp_.*"),  sample_id = str_remove(sample_id, "_toxin_mapped.bam"))
+
+#Keep only things in bam_statsk2223_70 from the rpkm values 
+
+#1. change mag to seqnames 
+names(kenya_bam_rpkm_mm2)[names(kenya_bam_rpkm_mm2) == "mag"] <- "seqnames"
+
+#2. merge df based on seqnames and sample ids 
+bam_stat_rpkm70 = left_join(bam_stats_k2223_70, kenya_bam_rpkm_mm2, by = c("sample_id", "seqnames"))
+dim(bam_stat_rpkm70)
+#[1] 2472    9
+
+head(bam_stat_rpkm70)
+
+#Incorporate the database key to this dataset
+
+#Make new column to have seqnames from bam file
+db_key$seqnames <- sub(" .*", "", db_key$DB_name)
+
+#Make a new column of the added lengths of the genes in the gene clusters rather than total length of the operon since mapping was done on a gene by gene basis
+head(db_key)
+db_key_ref = db_key %>% group_by(New_BGC_name) %>% mutate(tot_gene_lengths = sum(gene_length))
+
+#Make new column of # of genes in bgc 
+db_key_ref = db_key_ref %>% group_by(New_BGC_name) %>% mutate(tot_genes = max(X._in_BGC))
+
+#Merge key with file 
+bam_stat_rpkm70_key = left_join(bam_stat_rpkm70, db_key_ref, by = "seqnames")
+
+
+```
+
+7. Calculate how much of BGC is there based on % of BGC covered by reads and/or # of genes present based on 70% coverage
+```{r}
+#Calculating number of bases covered per gene 
+bam_stat_rpkm70_key_cov = bam_stat_rpkm70_key %>% mutate(bases_covered_gene = (percent_cover/100)*gene_length)
+
+#To get % of entire BGC covered, add # of bases covered for each gene in a BGC together. Divide that by total bases in the whole BGC * 100 to get percent BGC covered by gene.
+#need to ammend total_length so its actual gene length, easiest to do this in db_key likely 
+
+bam_stat_rpkm70_key_cov_whole = bam_stat_rpkm70_key_cov %>% group_by(sample_id, New_BGC_name, tot_gene_lengths, rpkm) %>% summarize(bases_covering_bgc = sum(bases_covered_gene), total_rpkm = sum(rpkm), percent_bgc_covered = (bases_covering_bgc/tot_gene_lengths)*100)
+
+#Calculate % of bgc covered in each sample 
+bam_stat_whole_70_all = bam_stat_rpkm70_key_cov_whole %>% group_by(sample_id, New_BGC_name) %>% mutate(total_bgc_covered = sum(percent_bgc_covered), summed_rpkm = sum(rpkm))
+
+#Pull distinct values for sample id and new bgc name 
+bam_whole_summary = unique(bam_stat_whole_70_all[c('sample_id', 'New_BGC_name', 'summed_rpkm', 'total_bgc_covered')])
+dim(bam_whole_summary)
+#[1] 590   4
+
+#Calculating how much of BGC is there based on # of genes 70% covered in the read mapping
+
+#bam_stat_rpkm70_key_cov_count = bam_stat_rpkm70_key_cov %>% group_by(sample_id, New_BGC_name, tot_genes, rpkm) %>% summarize(num_genes_present = sum(gene_present == TRUE), percent_genes_pres = (num_genes_present/tot_genes)*100, tot_rpkm = sum(rpkm))
+
+#Keep hits if 50% or more of gene cluster is covered 
+bam_whole_summary_50 = bam_whole_summary %>% filter(total_bgc_covered >= 50)
+dim(bam_whole_summary_50)
+#[1] 223   4
+
+#Keep hits if 70% of more of gene cluster is covered
+bam_whole_summary_70 = bam_whole_summary %>% filter(total_bgc_covered >= 70)
+dim(bam_whole_summary_70)
+#[1] 169   4
+
+#Visualize average coverage
+bam_whole_summary %>% ggplot(aes(x = New_BGC_name, y = total_bgc_covered)) + geom_boxplot() + theme(axis.text.x = element_text(hjust = 1, angle = 55))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/full_bgcs_fixedcoverage.png",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/full_bgcs_fixedcoverage.tiff",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+```
+
+8. Incorporate metadata to results 
+```{r}
+sample_table = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/lvictoria2223_metadata.csv") 
+
+#Kenya_sample_table <- sample_table %>% filter(StudyID == "set_55" | StudyID == "set_57") #include only StudyID's of interest (Kenya)
+
+Kenya_sample_table %>% distinct(SampleID) %>% count #51 WLE metagenome samples in Kenya dataset - Jan 20, 2024
+
+#Select only columns needed 
+Kenya_meta = Kenya_sample_table %>% select(c(site_name_sitenumber, SampleID, SampleName, StudyID, geo_loc_name, lat, lon, collection_date, depth, depth_at_sampling_location, pH, temp, nitrate, diss_oxygen, conduc, secchi, turbidity, part_microcyst, chlorophyl, diss_phosp, ammonia, Nitrate_Nitrite, urea, silicate, sky, Notes, total_sonde, cyano_sonde, replicate_id, orp, particulate_cyl, atmospheric_temp, salinity, ammended_site_name, env_Kenya_site, tot_nit, soluble_react_phosp, tot_phos, site_number))
+
+#Manipulate date column
+Kenya_meta = Kenya_meta %>% mutate(collection_date = ymd(collection_date),
+         year = year(collection_date),
+         month = month(collection_date, label = TRUE),
+         day = day(collection_date))
+
+Kenya_meta = Kenya_meta %>% mutate(yday = yday(collection_date), week = week(collection_date))
+
+#Align sample ID column to be able to merge 
+
+colnames(Kenya_meta)[colnames(Kenya_meta) == "SampleID"] <- "sample_id"
+
+bam_markerbgc_whole_50 = left_join(bam_whole_summary_50, Kenya_meta, by = "sample_id")
+bam_markerbgc_whole_70 = left_join(bam_whole_summary_70, Kenya_meta, by = "sample_id")
+bam_markerbgc_whole_50  = bam_markerbgc_whole_50 %>% mutate(site_number = as.numeric(site_number))
+bam_markerbgc_whole_70  = bam_markerbgc_whole_70 %>% mutate(site_number = as.numeric(site_number))
+
+#Organize data to be in correct order 
+bam_markerbgc_whole_50$site_number <- factor(bam_markerbgc_whole_50$site_number, levels = unique(sort(bam_markerbgc_whole_50$site_number)))
+
+unique(bam_markerbgc_whole_50$site_number)
+
+bam_markerbgc_whole_70$site_number <- factor(bam_markerbgc_whole_70$site_number, levels = unique(sort(bam_markerbgc_whole_70$site_number)))
+
+
+#Exclude certain samples unneeded
+bam_markerbgc_whole_50 = bam_markerbgc_whole_50 %>% filter(!site_name_sitenumber == "H12. Homa Bay Coast", !site_name_sitenumber == "N1. Lake Naivasha", !site_name_sitenumber == "SO1. Lake Sonachi")
+
+bam_markerbgc_whole_70 = bam_markerbgc_whole_70 %>% filter(!site_name_sitenumber == "H12. Homa Bay Coast", !site_name_sitenumber == "N1. Lake Naivasha", !site_name_sitenumber == "SO1. Lake Sonachi")
+
+```
+
+9. Visualize with 50% and 70% whole BGC coverage filter
+```{r}
+n <- 180
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+
+col_vector[1] <- "dodgerblue"
+col_vector[6] <- "green4"
+col_vector[7] <- "pink"
+col_vector[8] <- "green"
+col_vector[18] <- "orange"
+
+bam_markerbgc_whole_50 %>%
+  ggplot(aes(x = site_name_sitenumber, y = New_BGC_name, fill = New_BGC_name, size = summed_rpkm)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = col_vector) +
+  scale_size_continuous(range = c(2, 8)) +
+  labs(x = "Site Name Sitenumber", y = "BGC", fill = "BGC", size = "Total RPKM") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  theme(legend.position="bottom") +
+  guides(color=guide_legend(nrow=2)) + facet_grid(~year, scales = "free")
+
+bam_markerbgc_whole_70 %>%
+  ggplot(aes(x = site_name_sitenumber, y = New_BGC_name, fill = New_BGC_name, size = summed_rpkm)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = col_vector) +
+  scale_size_continuous(range = c(2, 8)) +
+  labs(x = "Site Name Sitenumber", y = "BGC", fill = "BGC", size = "Total RPKM") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  theme(legend.position="bottom") +
+  guides(color=guide_legend(nrow=2)) + facet_grid(~year, scales = "free")
+
+# #Add missing sites
+# additional_sites = c("6. Mbita West","8. Ndere Island", "11. Dunga","12. Nyando River Mouth","13. Sondu River Bridge", "14. Sondu River Shore","16. Kibuon River", "19. Bala Rawi","20. Ingra")
+# site_numbers = c("6", "8", "11", "12", "13", "14", "16", "19", "20")
+# 
+# additional_data <- expand.grid(
+#   site_name_sitenumber = additional_sites,
+#   New_BGC_name = unique(bam_markerbgc_whole_50$New_BGC_name)
+# )
+
+# bam_whole_addsites <- bind_rows(bam_markerbgc_whole_50, additional_data)
+# 
+# bam_whole_addsites$site_number <- factor(bam_whole_addsites$site_number, levels = unique(sort(bam_whole_addsites$site_number)))
+
+###############50%
+additional_sites = c("6. Mbita West","8. Ndere Island", "11. Dunga","12. Nyando River Mouth","13. Sondu River Bridge", "14. Sondu River Shore","16. Kibuon River", "19. Bala Rawi","20. Ingra")
+site_numbers = c("6", "8", "11", "12", "13", "14", "16", "19", "20")
+
+additional_data <- data.frame(
+  site_name_sitenumber = additional_sites,
+  New_BGC_name = rep(unique(bam_markerbgc_whole_50$New_BGC_name), each = length(additional_sites))
+)
+
+# Assign site numbers based on site names
+additional_data$site_number <- ifelse(grepl("Mbita West", additional_data$site_name_sitenumber), "6", site_numbers)
+
+meta_bam_summary_complete_all <- bind_rows(bam_markerbgc_whole_50, additional_data)
+
+meta_bam_summary_complete_all = meta_bam_summary_complete_all %>% filter(!site_name_sitenumber == "H12. Homa Bay Coast", !site_name_sitenumber == "N1. Lake Naivasha")
+unique(meta_bam_summary_complete_all$site_number)
+
+order_vector <- c(
+  "1. Homa Bay", "2. Homa Bay Pier", "3. Homa Bay Water Intake", "4. Soklo", "5. Mbita East",
+  "6. Mbita West", "7. Asembo Bay", "8. Ndere Island", "9. Mid Gulf", "10. Kisumu Harbor",
+  "11. Dunga","12. Nyando River Mouth","13. Sondu River Bridge", "14. Sondu River Shore","15. Sondu Miriu","16. Kibuon River", "17. Southern Mid-Gulf", "18. Awach River Mouth",
+  "19. Bala Rawi", "20. Ingra", "21. Kowuor", "22. Oluch", "23. Sikli", "24. Mirunda",
+  "25. Mbita East", "26. Mbita West", "27. Bridge Island", "28. Bondo", "29. Yala River Mouth",
+  "30. Rosinga Channel", "31. South Rosinga"
+)
+
+meta_bam_summary_complete_all$site_name_sitenumber <- factor(meta_bam_summary_complete_all$site_name_sitenumber, levels = order_vector)
+
+#order_vector_reverse <- rev(order_vector)
+
+#meta_bam_summary_complete_all$site_name_sitenumber <- factor(meta_bam_summary_complete_all$site_name_sitenumber, levels = order_vector_reverse)
+
+unique(meta_bam_summary_complete_all$site_name_sitenumber)
+
+#Add year to the samples I added
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "6. Mbita West"] <- 2022
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "8. Ndere Island"] <- 2022
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "11. Dunga"] <- 2023
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "12. Nyando River Mouth"] <- 2023
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "13. Sondu River Bridge"] <- 2023
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "14. Sondu River Shore"] <- 2023
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "16. Kibuon River"] <- 2023
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "19. Bala Rawi"] <- 2023
+meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_sitenumber == "20. Ingra"] <- 2023
+
+#Normalize 2022 samples for potential duplicates
+meta_bam22 = meta_bam_summary_complete_all %>% filter(year == 2022)
+meta_bam22 = meta_bam22 %>% group_by(site_name_sitenumber, New_BGC_name) %>% mutate(summed_rpkm = mean(summed_rpkm), total_bgc_covered = mean(total_bgc_covered))
+#103, 47
+
+meta_bam22 = unique(meta_bam22[c('site_name_sitenumber', 'New_BGC_name', 'summed_rpkm', 'total_bgc_covered')])
+dim(meta_bam22)
+#68,4
+
+meta_bam22$year <- 2022
+
+#get 2023 data 
+meta_bam23 = meta_bam_summary_complete_all %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, New_BGC_name, summed_rpkm, total_bgc_covered, year)
+
+#Combine 22 and 23 data together 
+meta_bam_50 = rbind(meta_bam22, meta_bam23)
+
+#####################70% data
+additional_sites_70 = c("6. Mbita West","8. Ndere Island","9. Mid Gulf", "11. Dunga","12. Nyando River Mouth","13. Sondu River Bridge", "14. Sondu River Shore","16. Kibuon River", "19. Bala Rawi","20. Ingra", "31. South Rosinga")
+site_numbers_70 = c("6", "8","9", "11", "12", "13", "14", "16", "19", "20", "31")
+
+additional_data_70 <- data.frame(
+  site_name_sitenumber = additional_sites_70,
+  New_BGC_name = rep(unique(bam_markerbgc_whole_70$New_BGC_name), each = length(additional_sites_70))
+)
+
+# Assign site numbers based on site names
+additional_data_70$site_number <- ifelse(grepl("Mbita West", additional_data_70$site_name_sitenumber), "6", site_numbers_70)
+
+meta_bam_summary_complete_all_70 <- bind_rows(bam_markerbgc_whole_70, additional_data_70)
+
+meta_bam_summary_complete_all_70 = meta_bam_summary_complete_all_70 %>% filter(!site_name_sitenumber == "H12. Homa Bay Coast", !site_name_sitenumber == "N1. Lake Naivasha")
+unique(meta_bam_summary_complete_all_70$site_number)
+
+order_vector <- c(
+  "1. Homa Bay", "2. Homa Bay Pier", "3. Homa Bay Water Intake", "4. Soklo", "5. Mbita East",
+  "6. Mbita West", "7. Asembo Bay", "8. Ndere Island", "9. Mid Gulf", "10. Kisumu Harbor",
+  "11. Dunga","12. Nyando River Mouth","13. Sondu River Bridge", "14. Sondu River Shore","15. Sondu Miriu","16. Kibuon River", "17. Southern Mid-Gulf", "18. Awach River Mouth",
+  "19. Bala Rawi", "20. Ingra", "21. Kowuor", "22. Oluch", "23. Sikli", "24. Mirunda",
+  "25. Mbita East", "26. Mbita West", "27. Bridge Island", "28. Bondo", "29. Yala River Mouth",
+  "30. Rosinga Channel", "31. South Rosinga"
+)
+
+#meta_bam_summary_complete_all_70$site_name_sitenumber <- factor(meta_bam_summary_complete_all_70$site_name_sitenumber, levels = order_vector)
+
+order_vector_reverse_70 <- rev(order_vector)
+
+meta_bam_summary_complete_all_70$site_name_sitenumber <- factor(meta_bam_summary_complete_all_70$site_name_sitenumber, levels = order_vector_reverse)
+
+unique(meta_bam_summary_complete_all_70$site_name_sitenumber)
+
+#Add year to the samples I added
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "6. Mbita West"] <- 2022
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "8. Ndere Island"] <- 2022
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "9. Mid Gulf"] <- 2022
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "11. Dunga"] <- 2023
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "12. Nyando River Mouth"] <- 2023
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "13. Sondu River Bridge"] <- 2023
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "14. Sondu River Shore"] <- 2023
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "16. Kibuon River"] <- 2023
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "19. Bala Rawi"] <- 2023
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "20. Ingra"] <- 2023
+meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name_sitenumber == "31. South Rosinga"] <- 2023
+
+#Normalize 2022 samples for potential duplicates
+meta_bam22_70 = meta_bam_summary_complete_all_70 %>% filter(year == 2022)
+meta_bam22_70 = meta_bam22_70 %>% group_by(site_name_sitenumber, New_BGC_name) %>% mutate(summed_rpkm = mean(summed_rpkm), total_bgc_covered = mean(total_bgc_covered))
+dim(meta_bam22_70)
+#80, 47
+
+meta_bam22_70 = unique(meta_bam22_70[c('site_name_sitenumber', 'New_BGC_name', 'summed_rpkm', 'total_bgc_covered')])
+dim(meta_bam22_70)
+#55,4
+
+meta_bam22_70$year <- 2022
+
+#get 2023 data 
+meta_bam23_70 = meta_bam_summary_complete_all_70 %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, New_BGC_name, summed_rpkm, total_bgc_covered, year)
+
+#Combine 22 and 23 data together 
+meta_bam_70 = rbind(meta_bam22_70, meta_bam23_70)
+
+dim(meta_bam_70)
+#248, 5 (metabam50 is 282 so not much less)
+
+#Add genus annotations to color circles by genus bgc, edit BGC naming
+
+#edit anacyclamide namings 
+meta_bam_50$New_BGC_name <- gsub("Anabaena", "1-Anabaena", meta_bam_50$New_BGC_name)
+meta_bam_50$New_BGC_name <- gsub("Sphaerospermopsis", "2-Sphaerospermopsis", meta_bam_50$New_BGC_name)
+meta_bam_50$New_BGC_name[meta_bam_50$New_BGC_name == "Anacyclamide-2-Sphaerospermopsis"] <- "Anacyclamide 2-Sphaerospermopsis"
+meta_bam_50$New_BGC_name[meta_bam_50$New_BGC_name == "Anacyclamide-1-Anabaena"] <- "Anacyclamide 1-Anabaena"
+
+
+bgc_parts <- strsplit(as.character(meta_bam_50$New_BGC_name), "-")
+
+# Extract the first part of each split string
+easy_bgc_name <- sapply(bgc_parts, function(x) x[[1]])
+
+# Add the easy_bgc_name column to the data frame
+meta_bam_50$easy_bgc_name <- easy_bgc_name
+
+bgc_genus <- sapply(bgc_parts, function(x) ifelse(length(x) > 1, x[[2]], NA))
+
+# Add the BGC_genus column to the data frame
+meta_bam_50$BGC_genus <- bgc_genus
+
+meta_bam_50$BGC_genus <- gsub(" .*", "", meta_bam_50$BGC_genus)
+
+######70%
+#Add genus annotations to color circles by genus bgc, edit BGC naming
+
+#edit anacyclamide namings 
+meta_bam_70$New_BGC_name <- gsub("Anabaena", "1-Anabaena", meta_bam_70$New_BGC_name)
+meta_bam_70$New_BGC_name <- gsub("Sphaerospermopsis", "2-Sphaerospermopsis", meta_bam_70$New_BGC_name)
+meta_bam_70$New_BGC_name[meta_bam_70$New_BGC_name == "Anacyclamide-2-Sphaerospermopsis"] <- "Anacyclamide 2-Sphaerospermopsis"
+meta_bam_70$New_BGC_name[meta_bam_70$New_BGC_name == "Anacyclamide-1-Anabaena"] <- "Anacyclamide 1-Anabaena"
+
+
+bgc_parts_70 <- strsplit(as.character(meta_bam_70$New_BGC_name), "-")
+
+# Extract the first part of each split string
+easy_bgc_name_70 <- sapply(bgc_parts_70, function(x) x[[1]])
+
+# Add the easy_bgc_name column to the data frame
+meta_bam_70$easy_bgc_name <- easy_bgc_name_70
+
+bgc_genus_70 <- sapply(bgc_parts_70, function(x) ifelse(length(x) > 1, x[[2]], NA))
+
+# Add the BGC_genus column to the data frame
+meta_bam_70$BGC_genus <- bgc_genus_70
+
+meta_bam_70$BGC_genus <- gsub(" .*", "", meta_bam_70$BGC_genus)
+
+
+
+#Removed cylindrospermopsin because will show in later figure 
+
+meta_bam_50_nocyr = meta_bam_50 %>% filter(!easy_bgc_name == "Cylindrospermopsin")
+#meta_bam_70_nocyr = meta_bam_70 %>% filter(!easy_bgc_name == "Cylindrospermopsin")   There are no cylindrospermopsin hits in the 70% coverage plot!
+
+
+#######70%  ----FINAL VISUALIZATION OF FIGURE 7
+n <- 180
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+
+col_vector[1] <- "#00A000"
+col_vector[2] <- "#009099"
+col_vector[3] <- "#9A8DA6"
+col_vector[4] <- "#CC5500"
+
+meta_bam_70 %>%
+  ggplot(aes(y = site_name_sitenumber, x = easy_bgc_name, fill = BGC_genus, size = summed_rpkm)) +
+  geom_point(shape = 21) +
+  scale_fill_manual(values = col_vector) +
+  scale_size_continuous(range = c(2, 6)) +
+  labs(y = "Sampling Site", x = "Biosynthetic Gene Cluster (BGC)", fill = "Genus of BGC", size = "Total RPKM") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"), axis.text.y = element_text(face = "bold"), axis.title.y = element_text(face = "bold", size = 12), axis.title.x = element_text(face = "bold", size = 12)) + guides(fill = guide_legend(override.aes = list(size = 5)))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.png",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.svg",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.tiff",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+```
+
+

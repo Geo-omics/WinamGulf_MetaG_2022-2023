@@ -1,0 +1,409 @@
+---
+title: "Notebook2_CyanoPhylo_Kenya22-23"
+output: html_document
+date: "2023-12-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rentrez)
+```
+
+Notebook breakdown:
+1. Reference all bins for drep: quality level: 30% compelete and 50% contamination
+2. Pull in GTDB and checkm results for these bins
+3. Filter cyanobacterial bins for 90% completion and 10-20% contamination 
+4. Put bins from cyanobacterial genera into different folders for gtotree 
+5. Dereplicate bins at 99% and 99.5% from each genera
+6. Build trees for publication (Figure 5)
+7. Building trees notes, reference genome selection notes
+8. Getting genome statistcs for tables in SI
+
+1. Reference all bins for drep: quality level: 
+```{r}
+#Pulling in all bins for drep are bins that got quality scores in checkM--30 completion and 50 contamination. Reference GLAMR code: https://github.com/Geo-omics/GLAMR_omics_pipelines/blob/main/code/make_das_and_drep_inputs.R
+```
+
+2. Pull in GTDB and checkm results for these bins
+```{r}
+#########READ IN TIDY CHECKM FILE FOR ALL KENYA 2022-23 SAMPLES (done on all raw bins)
+
+#2022 paths 
+checkm_paths22 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/*/tidy_checkM.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/tidy_checkM.tsv"))
+
+#2023 paths
+checkm_paths <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/*/tidy_checkM.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/tidy_checkM.tsv"))
+
+#merge file paths for 2022 and 2023 checkm data
+checkm_paths = rbind(checkm_paths22, checkm_paths)
+
+# Define a function for reading in a .tsv file and adding a column for the corresponding sample
+read_and_append_samplename <- function(path, sampleID){
+  out <- read_tsv(path) %>% 
+    mutate(sample = sampleID)
+  
+  return(out)
+}
+
+# Read in checkM results
+checkM_results <- map2_df(checkm_paths$path, checkm_paths$sample, read_and_append_samplename) %>% 
+  filter(!str_detect(`Bin Id`, "unbinned|tooShort|lowDepth")) # remove metabat outputs for unbinned contigs
+
+# Create a simplified results table for merging with results from other tools
+checkm_simp <- checkM_results %>% dplyr::select(genome = "Bin Id", completeness = "Completeness", contamination = "Contamination", strain_het = "Strain heterogeneity") %>% rename_with(.cols = -genome, .fn = ~paste0("checkm_",.x))
+
+#Make editable checkM data table to quickly visualize data
+checkm_simp2 <- checkM_results %>% 
+  dplyr::select(genome = "Bin Id", completeness = "Completeness", contamination = "Contamination", strain_het = "Strain heterogeneity", lineage = "Marker lineage", sample = "sample") %>% 
+  rename_with(.cols = -genome, .fn = ~paste0("checkm_",.x))
+
+
+######## READ IN GTDB FOR KENYA 2022-2023
+
+# Get list of GTDB outputs for bacteria & archaea 
+
+#2023 GTDB
+gtdb_paths_Kenya23 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/*/bins/GTDB/gtdbtk.*.summary.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/bins/GTDB/gtdbtk.{domain}.summary.tsv"))
+
+#2022 GTDB
+gtdb_paths_Kenya22 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/*/bins/GTDB/gtdbtk.*.summary.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/bins/GTDB/gtdbtk.{domain}.summary.tsv"))
+
+#bind 2022-2023 GTDB file paths 
+gtdb_paths_Kenya23 = rbind(gtdb_paths_Kenya22, gtdb_paths_Kenya23)
+
+# Get paths for just bacterial classifications
+bac_paths <- gtdb_paths_Kenya23 %>% 
+  filter(domain == "bac120")
+
+# Get paths for just archael classifications  
+arc_paths <- gtdb_paths_Kenya23 %>% 
+  filter(domain == "ar53")
+
+# Read in bacterial classifications
+n_col_bac <- read_tsv(bac_paths$path[1]) %>% ncol()
+
+gtdb_bac_Kenya23 <- map_df(bac_paths$path, read_tsv, col_types = paste0(rep("c",n_col_bac),collapse = "")) %>% 
+     type_convert()
+
+gtdb_bac_Kenya23 <- gtdb_bac_Kenya23 %>% filter(!str_detect(user_genome, "unbinned|tooShort|lowDepth"))
+
+# Simplify bacterial classifications
+gtdb_simp_bac_Kenya23 <- gtdb_bac_Kenya23 %>% 
+  dplyr::select(genome = "user_genome",classification, red_value) %>% 
+  rename_with(.cols = -genome, .fn = ~paste0("gtdb_",.x))
+
+# Read in archaea classifications
+n_col_arc <- read_tsv(arc_paths$path[1]) %>% ncol()
+
+gtdb_arc <- map_df(arc_paths$path, read_tsv, col_types = paste0(rep("c",n_col_arc),collapse = "")) %>% 
+     type_convert()
+
+gtdb_arc <- gtdb_arc %>% filter(!str_detect(user_genome, "unbinned|tooShort|lowDepth"))
+
+# Simplify archaeal classifications
+gtdb_simp_arc <- gtdb_arc %>% 
+  dplyr::select(genome = "user_genome",classification, red_value) %>% 
+  rename_with(.cols = -genome, .fn = ~paste0("gtdb_",.x))
+
+# combine results from bacteria and archaea
+gtdb_simp <- bind_rows(gtdb_simp_arc, gtdb_simp_bac_Kenya23)
+
+gtdb_simp = gtdb_simp %>% separate(gtdb_classification, into = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species"), sep = ";[a-z]__") %>%  mutate(Domain = str_remove(Domain, "d__"))
+
+Kenya_quality = left_join(gtdb_simp, checkm_simp2, by = "genome")
+
+
+#CAN WRITE TO CSV AND READ IN CSV TO SKIP ALL OF THE ABOVE STEPS
+
+#write.csv(Kenya_quality, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/quality_steps/checkm_gtdb_results_22-23-Dec-22-2023.csv")
+#read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/metagenomics/checkm_gtdb_results_22-23-Dec-22-2023.csv", header = TRUE)
+```
+
+3. Filter cyanobacterial bins for 90% completion and 10-20% contamination 
+```{r}
+##Exclude Samples not from Lake Victoria (samp_4327, samp_4328, samp_4329, samp_4330, samp_4455, samp_4456, samp_4453)
+quality_exc1 = Kenya_quality %>% filter(!checkm_sample == "samp_4327", !checkm_sample == "samp_4328", !checkm_sample == "samp_4329", !checkm_sample == "samp_4330", !checkm_sample == "samp_4455", !checkm_sample == "samp_4456", !checkm_sample == "samp_4453")
+dim(Kenya_quality)
+#[1] 22073    14
+dim(quality_exc1)
+#[1] 17990    14
+
+##Extract cyanobacterial bins greater than 90% completion and 10% contamination into a dataframe 
+quality_exc2 = quality_exc1 %>% filter(Phylum == "Cyanobacteria") %>% filter(checkm_completeness >= 90 & checkm_contamination <= 10)
+dim(quality_exc2)
+#[1] 275  14
+
+#Extract cyanobacterial bins greater than 90% completion and 20% contamination
+quality_exc3 = quality_exc1 %>% filter(Phylum == "Cyanobacteria") %>% filter(checkm_completeness >= 90 & checkm_contamination <= 20)
+dim(quality_exc3)
+#[1] 326  14
+
+```
+
+4. Put bins from cyanobacterial genera into different folders for gtotree 
+```{r}
+#See what cyanobacteria genera are there
+table = table(quality_exc2$Genus)
+print(table)
+#                  CAIQIA01          CAIXOZ01      Cuspidothrix         Cyanobium    Dolichospermum 
+#               17                 4                 2                 4                26               131 
+#        Elainella       Microcystis       Nodosilinea      Planktothrix     Pseudanabaena      Raphidiopsis 
+#                4                42                 1                16                 8                 2 
+#Sphaerospermopsis     Vulcanococcus 
+#               14                 4 
+
+#2023 Bins
+drep_bin_paths23 <- system("find /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/samp_*/bins/bins_for_drep/ -path *.fa", intern=TRUE) %>% tibble(bin_path = .) %>% mutate(sample = bin_path %>% str_remove(".*metagenomes/") %>% str_remove("/bins.*"), bin = bin_path %>% str_remove(".*bins_for_drep/") %>% str_remove(".fa"))
+
+
+#2022 Bins 
+drep_bin_paths22 <- system("find /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/samp_*/bins/bins_for_drep/ -path *.fa", intern=TRUE) %>% tibble(bin_path = .) %>% mutate(sample = bin_path %>% str_remove(".*metagenomes/") %>% str_remove("/bins.*"), bin = bin_path %>% str_remove(".*bins_for_drep/") %>% str_remove(".fa"))
+
+
+#Combine bin list 
+drep_bins = rbind(drep_bin_paths22, drep_bin_paths23)
+
+#Cyanobium
+
+cyanobium = quality_exc2 %>% filter(Genus == "Cyanobium")
+dim(cyanobium)
+#[1] 26 14
+
+cyanobium_bin_path = drep_bins %>% mutate(new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/cyanobium/bins/{bin}.fa")) %>% filter(bin %in% cyanobium$genome)
+
+file.symlink(cyanobium_bin_path$bin_path, cyanobium_bin_path$new_path)
+
+#Dolichospermum
+doli = quality_exc2 %>% filter(Genus == "Dolichospermum")
+dim(doli)
+#[1] 131 14
+
+doli_bin_path = drep_bins %>% mutate(new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/dolichospermum/bins/{bin}.fa")) %>% filter(bin %in% doli$genome)
+
+file.symlink(doli_bin_path$bin_path, doli_bin_path$new_path)
+
+#Microcystis 
+microcystis = quality_exc2 %>% filter(Genus == "Microcystis")
+dim(microcystis)
+#[1] 42 14
+
+micro_bin_path = drep_bins %>% mutate(new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/microcystis/bins/{bin}.fa")) %>% filter(bin %in% microcystis$genome)
+
+file.symlink(micro_bin_path$bin_path, micro_bin_path$new_path)
+
+#Planktothrix
+plankto = quality_exc2 %>% filter(Genus == "Planktothrix")
+dim(plankto)
+#[1] 16 14
+
+plankto_bin_path = drep_bins %>% mutate(new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/planktothrix/bins/{bin}.fa")) %>% filter(bin %in% plankto$genome)
+
+file.symlink(plankto_bin_path$bin_path, plankto_bin_path$new_path)
+
+#Pseudanabaena
+pseudanabaena = quality_exc2 %>% filter(Genus == "Pseudanabaena")
+dim(pseudanabaena)
+#[1] 8 14
+
+pseudanabaena_bin_path = drep_bins %>% mutate(new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/pseudanabaena/bins/{bin}.fa")) %>% filter(bin %in% pseudanabaena$genome)
+
+file.symlink(pseudanabaena_bin_path$bin_path, pseudanabaena_bin_path$new_path)
+
+#Sphaerospermopsis
+sphaerospermopsis = quality_exc2 %>% filter(Genus == "Sphaerospermopsis")
+dim(sphaerospermopsis)
+#[1] 14 14
+
+sphaerospermopsis_bin_path = drep_bins %>% mutate(new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/sphaerospermopsis/bins/{bin}.fa")) %>% filter(bin %in% sphaerospermopsis$genome)
+
+file.symlink(sphaerospermopsis_bin_path$bin_path, sphaerospermopsis_bin_path$new_path)
+
+#Vulcanococcus
+vulcanococcus = quality_exc2 %>% filter(Genus == "Vulcanococcus")
+dim(vulcanococcus)
+#[1]4 14
+
+vulcanococcus_bin_path = drep_bins %>% mutate(new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/vulcanococcus/bins/{bin}.fa")) %>% filter(bin %in% vulcanococcus$genome)
+
+file.symlink(vulcanococcus_bin_path$bin_path, vulcanococcus_bin_path$new_path)
+```
+
+
+5. Dereplicate bins at 99% and 99.5% from each genera
+```{r}
+#Dereplicated using drep 
+
+#Microcystis 
+#conda activate drep_v4 (on cayman, works on vondamm too)
+# dRep dereplicate --S_ani 0.995 -p 24 /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/microcystis/drep_995_commline -g /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/microcystis/bins/*.fa 
+
+#Dolichospermum
+# dRep dereplicate --S_ani 0.995 -p 24 /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/dolichospermum/drep_995_commline -g /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/dolichospermum/bins/*.fa
+
+#Sphaerospermopsis 
+# dRep dereplicate --S_ani 0.995 -p 24 /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/sphaerospermopsis/drep_995_commline -g /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/sphaerospermopsis/bins/*.fa
+
+#Planktothrix
+# dRep dereplicate --S_ani 0.995 -p 24 /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/planktothrix/drep_995_commline -g /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/planktothrix/bins/*.fa
+
+```
+
+6. Build trees for publication (Microcystis and dolichospermum first)
+```{r}
+#Done in Itol
+```
+
+7. Building trees notes
+```{r}
+# For sphaerospermopsis, went to NCBI and pulled 9/13 available genomes fasta files because they had checkM scores which were more than 90% complete and less than 1 percent contaminated. I also used one of Paul's final bins for Sphaerospermopsis from Lake Erie. I additionally wanted representation by samp_4445 so I looked at quality results. samp_4445_VAMB_547 is a bin that is 89.96% complete, 7.53 contamination, and labeled as Sphaerospermopsis kisseleviana_A. I put this in the folder and conducted dereplication again at 99.5%. I then made sure that this bin remained in, and if it clustered with another bin that got kept, that bin was then removed. I also used a few cylindrospermopsis genomes identified from ncbi indicated as reference genomes. 
+
+#For planktothrix,I used this paper (doi:DOI: 10.1038/srep41181 ) and took NCBI genomes from this tree + any other PCC, NIES, or NIVA-CYA culture collection strains and downladed them. I then used McKindles paper and found the most complete/least fragmented genomes (8 contigs) and picled 2 that were not in the same phylogenetic group. I downloaded these and placed them in folder for gtotree run. I ran gtotree April 18, 2024. (doi: https://doi.or g/10.1371/journal.pone.0273454). 
+	
+
+```
+
+
+8. Getting genome statistcs for tables in SI
+```{r}
+###Table 1: Include a supplemental table that has the size, GC content, taxonomic annotation, %completion, %contam, %strain redundancy, NCBI/IMG accession number (once submitted) for each MAG. (203 bins, SI)
+quality_exc4 = quality_exc2 %>% filter(Genus == "Dolichospermum" | Genus == "Microcystis" | Genus == "Sphaerospermopsis" | Genus == "Planktothrix")
+dim(quality_exc4)
+#[1] 203  14
+#Making the table into pub format 
+##1. Merge so the site name and number is there
+kenya_meta_fortable = Kenya_meta %>% select(c(site_name_sitenumber, SampleID))
+sitable_fullcyano <- left_join(quality_exc4, kenya_meta_fortable, by = c("checkm_sample" = "SampleID"))  
+sitable_fullcyano = sitable_fullcyano %>% mutate(site_name_sitenumber = str_replace(site_name_sitenumber, "H12\\. Homa Bay Coast", "H1. Homa Bay Coast"))
+#2. Rename and choose columns needed, reorder columns 
+
+sitable_fullcyano2 = sitable_fullcyano %>% select(!c(gtdb_red_value, checkm_lineage))
+head(sitable_fullcyano2)
+sitable_fullcyano2 <- sitable_fullcyano2 %>% select(genome, site_name_sitenumber, checkm_sample, checkm_completeness, checkm_contamination, checkm_strain_het, Domain, Phylum, Class, Order, Family, Genus, Species)
+head(sitable_fullcyano2)
+
+sitable_fullcyano2 = sitable_fullcyano2 %>% rename(MAG = genome, Site = site_name_sitenumber, Sample = checkm_sample, 'Completeness (%)' = checkm_completeness, 'Contamination (%)' = checkm_contamination, 'Strain Heterogeneity (%)' = checkm_strain_het)
+head(sitable_fullcyano2)
+
+
+#3 Need to add size, GC content, # of contigs, NCBI/IMG accession--asked Paul where to find the info 
+
+
+
+####Table 2: Include a table with the same information as supplemental table (but for just the representative MAGs) (17 bins, table 2 main text)
+goodmags = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/SItable_goodMAGs.csv")
+goodmags
+goodmags_qual = left_join(goodmags, Kenya_quality, by = c("genomes" = "genome"))
+goodmags_qual = left_join(goodmags_qual, kenya_meta_fortable, by = c("checkm_sample" = "SampleID"))
+goodmags_qual = goodmags_qual %>% mutate(site_name_sitenumber = str_replace(site_name_sitenumber, "H12\\. Homa Bay Coast", "H1. Homa Bay Coast"))
+
+goodmags_qual2 = goodmags_qual %>% select(!c(gtdb_red_value, checkm_lineage))
+head(goodmags_qual2)
+goodmags_qual2 <- goodmags_qual2 %>% select(genomes, site_name_sitenumber, checkm_sample, checkm_completeness, checkm_contamination, checkm_strain_het, Domain, Phylum, Class, Order, Family, Genus, Species)
+head(goodmags_qual2)
+
+goodmags_qual2 = goodmags_qual2 %>% rename(MAG = genomes, Site = site_name_sitenumber, Sample = checkm_sample, 'Completeness (%)' = checkm_completeness, 'Contamination (%)' = checkm_contamination, 'Strain Heterogeneity (%)' = checkm_strain_het)
+head(goodmags_qual2)
+
+######ISSUE: Noticed that Homa Bay coast samples were used but I did not include them in the study. I am going to have Davide add a point to 2022 for H12. Homa Bay Coast to the map and also add this to Table 1 to avoid redoing this analysis. This was added to the map, table 1, and fixed to be H1. Homa Bay Coast in the tables above. 
+
+
+###To get those statistics, have to run Bakta. 
+#conda create -n bakta -c conda-forge -c bioconda bakta=1.8.1
+
+#running for all dereplicated bins and then all good cyano bins
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/drep_98_commline_depfixed/dereplicated_genomes
+#geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/mdsp_goodbins/bins
+
+#running using: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/mdsp_goodbins/run_bakta.sh--running first on good cyano bins
+#make script executable with chmod +x run_bakta.sh and then run with ./run_bakta.sh
+#I have all flags having it not calculate any of the annotations except for summary statistics, but can remove those flags from the shell script. 
+
+#Read in bakta annotations for gc, n50, size 
+# Define the path to the parent directory containing the subdirectories
+parent_path <- "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/phylo/genera/mdsp_goodbins/output"
+
+# List all subdirectories that match the pattern samp_####_concoct_####
+subdirs <- list.dirs(parent_path, full.names = TRUE, recursive = FALSE)
+subdirs <- subdirs[grep("samp_.*_*_.*", basename(subdirs))]
+
+
+# Initialize an empty data frame to store the results
+results <- data.frame(
+  FileName = character(),
+  Length = numeric(),
+  Count = numeric(),
+  GC = numeric(),
+  N50 = numeric(),
+  stringsAsFactors = FALSE
+)
+
+# Function to extract information from a single file
+extract_info <- function(file) {
+  # Print the file being processed
+  cat("Processing file:", file, "\n")
+  
+  # Read the first 5 lines of the file
+  lines <- readLines(file, n = 5)
+  
+  # Print the lines read
+  print(lines)
+  
+  # Extract the values
+  length <- as.numeric(sub("Length: ", "", lines[2]))
+  count <- as.numeric(sub("Count: ", "", lines[3]))
+  gc <- as.numeric(sub("GC: ", "", lines[4]))
+  n50 <- as.numeric(sub("N50: ", "", lines[5]))
+  
+  # Extract the file name without the extension
+  file_name <- sub("\\.txt$", "", basename(file))
+  
+  # Create a data frame with the extracted values
+  data.frame(
+    FileName = file_name,
+    Length = length,
+    Count = count,
+    GC = gc,
+    N50 = n50,
+    stringsAsFactors = FALSE
+  )
+}
+
+# Loop over each subdirectory and find the .txt files
+for (subdir in subdirs) {
+  txt_files <- list.files(subdir, pattern = "samp_.*_*_.*\\.txt", full.names = TRUE)
+  
+  # Process each .txt file found
+  for (file in txt_files) {
+    file_info <- extract_info(file)
+    results <- bind_rows(results, file_info)
+  }
+}
+
+#Combine results with good cyano bins 
+SItable4 = left_join(sitable_fullcyano2, results, by = c("MAG" = "FileName"))
+
+table2 = left_join(goodmags_qual2, results, by = c("MAG" = "FileName"))
+
+#Adjust columns
+SItable4 = SItable4 %>% rename("Size (Mbp)" = Length, "No. of Contigs" = Count, "GC Content (%)" = GC)
+SItable4 = SItable4 %>% mutate(`Size (Mbp)` = `Size (Mbp)`/1000000)
+
+table2 = table2 %>% rename("Size (Mbp)" = Length, "No. of Contigs" = Count, "GC Content (%)" = GC)
+table2 = table2 %>% mutate(`Size (Mbp)` = `Size (Mbp)`/1000000)
+
+#Download tables 
+write.csv(SItable4, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/SITable4.csv")
+write.csv(table2, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/table2.csv")
+
+```
+
+
+

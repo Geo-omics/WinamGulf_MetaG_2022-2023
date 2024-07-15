@@ -1,0 +1,1580 @@
+---
+title: "Notebook6_Nfixation_K22-23"
+output: html_document
+date: "2024-01-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
+library(Biostrings)
+```
+
+This notebook is for mining nitrogen fixation genes and ENB from Lake Victoria, Kenya samples. 
+
+1. Create usable NFixDB: assign taxonomy, edit headers 
+2. Readmap DB to reads 
+3. Process read mapping
+4. Visualize read mapping
+5. Publication ready visualization-Figure 6
+
+
+1. Create usable NFixDB: assign taxonomy, edit headers 
+```{r}
+#NFixDB came out Mar 6, 2024: https://www.biorxiv.org/content/10.1101/2024.03.04.583350v1.full.pdf
+
+#1. Downloaded NfixDB tsv from zenodo:https://zenodo.org/records/10525001
+# downloaded tsv zips then used NFixDB tsv 
+
+#2. Downlaoded final nucleotide seed files for NifHDK on github: https://github.com/raw-lab/NFixDB/tree/main/data/seeds/final_nuc
+
+#3. Ammending header names of databases to have nifH, nifD, or nifK, ChlN, ChlB for easy parsing later 
+# according to paper should filter out results from ChlN or ChlB to get chlorophyll genes out: http://www.biomedcentral.com/1471-2164/13/162
+
+#used /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/scripts/ammend_fasta_header.py to add nifHDK names to end of gene ID, then combined files using /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/scripts/combine_fa.py
+# final output of that is /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/nifHDK_ChlNB.fasta
+
+#4. Assigning taxonomy based on NCBI Accession numbers in CSV for each gene to check for cyanobacterial representation (should be around 15%)
+# taxonomy is already in this file 
+
+#make db_key here 
+
+nif_dbkey <- read.delim("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/NFixDB-R2.tsv", header = TRUE, sep = "\t")
+head(nif_dbkey)
+
+nif_dbkey = nif_dbkey %>% select(c(GenomeID, nifH, alnLen_nifH, seqLen_nifH, nifD, alnLen_nifD, seqLen_nifD, nifK, alnLen_nifK, seqLen_nifK, GTDB_Tax, NCBI_Tax, ChlN, alnLen_ChlN, seqLen_ChlN, ChlB, alnLen_ChlB, seqLen_ChlB))
+
+#parse taxonomy so different columns for each value
+nif_dbkey = nif_dbkey %>% separate(GTDB_Tax, into = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species"), sep = ";[a-z]__") %>%  mutate(Domain = str_remove(Domain, "d__"))
+
+nif_dbkey %>% ggplot(aes(x = Phylum)) + geom_bar(stat = "count") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+nif_dbkey = nif_dbkey %>% separate(NCBI_Tax, into = c("Domain_N", "Phylum_N", "Class_N", "Order_N", "Family_N", "Genus_N", "Species_N"), sep = ";[a-z]__") %>%  mutate(Domain = str_remove(Domain, "d__")) #this separation isn't perfect due to extra X classification in NCBI
+
+#There is good representation of cyanobacteria in this dataset. Over 1000 genome representatives
+
+```
+
+2. Readmap DB to reads 
+```{r}
+#read mapping using snakefile:
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/code/Snakefile
+
+# import os
+# import re
+# import snakemake.io
+# from glob import glob
+# 
+# # --profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/cayman
+# 
+# qc_reads = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/decon_reads/{sample}_fwd.fastq.gz").sample  
+# 
+# rule read_mapping_nfix_kenya:
+#     input: 
+#         f_reads = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/decon_reads/{sample}_fwd.fastq.gz",
+#         r_reads = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/decon_reads/{sample}_rev.fastq.gz",
+#         ref = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/references/nifHDK_ChlNB.fasta"
+#     output: 
+#         sam = temp("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/{sample}_mapped.sam"),
+#         temp_bam = temp("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/{sample}_mapped_temp.bam"),
+#         unsorted_bam = temp("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/{sample}_mapped_unsorted.bam"),
+#         bam = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/{sample}_mapped.bam"
+#     conda: "/geomicro/data21/lnhart/Projects/Changing-bloom/usgs-metagenomes/toxin-marker-readmap/minimap2.yaml"
+#     log: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/log/{sample}_mapped_bam.log"
+#     resources: cpus=48
+#     shell: 
+#         """
+#         minimap2 \
+#             -ax sr \
+#             -t {resources.cpus} \
+#             --secondary=no \
+#             {input.ref} \
+#             {input.f_reads} {input.r_reads} > {output.sam}
+# 
+#         samtools view -bS {output.sam} > {output.temp_bam}
+# 
+#         filterBam \
+#             --in {output.temp_bam} \
+#             --out {output.unsorted_bam} \
+#             --minCover 90 \
+#             --minId 90
+# 
+#             samtools sort -o {output.bam} -@ {resources.cpus} {output.unsorted_bam}
+#             samtools index -@ {resources.cpus} {output.bam}
+#         """
+# 
+# rule ref_read_mapping_pileup_nfix_kenya:
+#     input:
+#         bam = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/{sample}_mapped.bam",
+#         ref = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/references/nifHDK_ChlNB.fasta"
+#     output:
+#         pileup = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/{sample}_mapped_pileup.txt"
+#     conda: "/geomicro/data21/lnhart/Projects/Changing-bloom/usgs-metagenomes/toxin-marker-readmap/minimap2.yaml"
+#     log: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/log/{sample}_mapped_pileup.log"
+#     resources: cpus=48
+#     shell:
+#         """
+#         samtools mpileup -f {input.ref} -o {output.pileup} {input.bam}
+#         """
+# 
+# rule run_read_mapping_nfix_kenya:
+#     input:
+#         expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/{sample}_mapped_pileup.txt", sample = qc_reads)
+
+#results:
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results
+```
+
+
+3. Process read mapping
+```{r}
+######1. Process toxin marker gene read mapping results: RPKM
+
+####Preparing data for function
+#% coverage is 90% and 90% identity for this data when run by minimap, can filter for whole gene
+
+#read in reference sequence fasta 
+toxin_MAG_ref <- Biostrings::readDNAStringSet("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/nifHDK_ChlNB.fasta") %>%  # import reference fasta
+    as.character() %>%
+    data.frame(ref_base = ., seqnames = names(.)) %>%
+      mutate(mag = str_extract(seqnames, pattern),  # label MAG names
+           seq_length = nchar(ref_base))
+
+#Edit sequence names to end where there is a space, not entirely sure there are spaces in these names so let it be until theres an issue 
+toxin_MAG_ref$seqnames <- sub(" .*", "", toxin_MAG_ref$seqnames)
+
+#pull sequence names into a vector 
+vector = toxin_MAG_ref$seqnames
+pattern <- paste(vector, collapse = "|")
+
+ref_mag_length <- toxin_MAG_ref %>%
+    group_by(seqnames) %>%
+      mutate(mag_length = sum(seq_length)) %>%  # get length of each MAG
+    reframe(mag = unique(seqnames),
+            mag_length = unique(mag_length))
+
+#remove seqnames from dataframe
+ref_mag_length = ref_mag_length %>% select(!seqnames)
+
+
+# function to generate mag rpkm for each sample
+ref_mag_bam_rpkm <- function(bam_path){
+  
+  # identify sample_id from bam file path
+    sample_id <- bam_path %>% str_remove(".*/readmap_results/") %>% str_remove("_mapped.bam")
+
+  # get total sequencing read counts for sample from GLAMR
+      read_count_fastp <- read_tsv(paste0("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/read_counts/",sample_id,"_read_count_fastp.tsv"))
+      read_count_decon_fwd <- read_count_fastp[1, 2]
+      read_count_decon_rev <- read_count_fastp[1, 3]
+      total_decon_sample_reads <- sum(read_count_decon_fwd, read_count_decon_rev)  # get total read count from GLAMR (all fwd and rev reads)
+
+  # read in bam file
+    bam <- Rsamtools::BamFile(file = bam_path,
+                            index = paste0(bam_path,".bai"))
+    
+  # read the BAM file and count aligned reads
+    bam_file_df <- as.data.frame(scanBam(bam))
+    aligned_read_counts <- as.data.frame(table(bam_file_df$rname))
+
+    mapped_reads_df  <-  aligned_read_counts %>% type_convert() %>% 
+                          mutate(mag = str_extract(Var1, pattern)) %>%  # label MAG names
+                         group_by(mag) %>% 
+                          mutate(mapped_reads = sum(Freq)) %>%  # calculate number of mapped reads per MAG
+                     distinct(mag,.keep_all = TRUE) %>%
+                          select(-Freq)                         # remove 'Freq' after distinct(), because not relevant for entire MAG
+  
+    rpkm <- left_join(mapped_reads_df, ref_mag_length, by = "mag") %>%
+                 mutate(total_decon_sample_reads,                # add total_decon_sample_reads determined earlier in function
+                        sample_id,                               # add sample_id determined earlier in function
+                        rpkm = (mapped_reads / (mag_length * total_decon_sample_reads)) * 1000000) %>%  # Calculate RPKM
+                  select(-Var1)                                  # remove 'Freq' after distinct(), because not relevant for entire MAG
+} 
+
+# create list of bam paths to process
+nfix_bam_paths_rpkm <- system("ls /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/*.bam", intern = TRUE) %>%
+  tibble(bam_path = .) 
+
+plan(multisession, workers = 24)
+#options(future.globals.maxSize = 8000 * 1024^2)
+nfix_kenya_bam_rpkm_mm2 <- future_map_dfr(nfix_bam_paths_rpkm$bam_path, ~ ref_mag_bam_rpkm(.x), .progress = TRUE) # last run: March 20, 2024
+plan(sequential)
+
+head(nfix_kenya_bam_rpkm_mm2)
+
+#write and read csv 
+#write_csv(nfix_kenya_bam_rpkm_mm2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_kenya_bam_rpkm_mm2_Mar202024.csv") 
+
+#nfix_kenya_bam_rpkm_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_kenya_bam_rpkm_mm2_Mar202024.csv")
+
+
+######2. Process toxin marker gene read mapping results to get coverage and identity statistics 
+
+# reference sequence import
+ref_seq <- Biostrings::readDNAStringSet("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/references/nifHDK_ChlNB.fasta") %>%
+    as.character() %>%
+    data.frame(ref_base = ., seqnames = names(.)) %>%
+    mutate(seq_length = nchar(ref_base)) %>%
+    separate_longer_position(ref_base, width = 1) %>%
+    group_by(seqnames) %>%
+    mutate(pos = row_number()) %>%
+    ungroup() 
+
+#fix seq names 
+ref_seq$seqnames <- sub(" .*", "", ref_seq$seqnames)
+
+# function to generate bam stats - reference cover & % id
+bam_stats <- function(bam_path){
+
+  # read in bam file
+  bam <- Rsamtools::BamFile(file = bam_path,
+                            index = paste0(bam_path,".bai"))
+  
+  pileup_ref_join <- Rsamtools::pileup(bam,pileupParam = PileupParam(distinguish_strands = FALSE)) %>% 
+    full_join(ref_seq, ., by = c("seqnames", "pos"))  # join pileup file and alignment reference
+
+out_bp_depth <- pileup_ref_join %>%
+      group_by(seqnames, pos, seq_length) %>% 
+    arrange(seqnames, pos, desc(count)) %>% 
+      mutate(depth = sum(count),                          # alignment depth at each position
+             rel_abund_base = count/depth) %>%            # relative abundance of base read at position compared to all reads at position
+    group_by(seqnames) %>% 
+      mutate(bam_path = bam_path,
+             sample_id = bam_path %>% str_remove(".*bam/") %>% str_remove("_GLAMRsxtAll.*")) %>%
+    ungroup()
+
+out_percent_id <- out_bp_depth %>%
+      group_by(seqnames) %>%
+    filter(nucleotide == ref_base) %>%                    # only look at bases that match reference
+      mutate(percent_id_ref_contig = (sum(count) / sum(depth)) * 100) %>%    #all reads matching ref / total reads for sequence            
+    ungroup()
+
+out_cover <- out_bp_depth %>%
+  filter(count >= 1, na.rm = TRUE) %>%                   # keep only positions with at least 1 count
+  distinct(seqnames, pos, .keep_all = TRUE) %>%
+    group_by(seqnames) %>%
+      mutate(percent_cover = (n()/seq_length) * 100) %>%      # number of bases matching reference divided by reference sequence length 
+    ungroup()
+
+out <- left_join(out_percent_id, out_cover)  # merge %id and cover data tables
+
+}
+
+# create list of bam paths to process
+bam_paths <- system("ls /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/readmap_results/*.bam", intern = TRUE) %>%
+  tibble(bam_path = .) 
+
+dim(bam_paths)
+
+#First 10
+bam_paths1 = bam_paths %>% slice(1:10)
+
+# run for bam stats!
+plan(multisession, workers = 24)
+#options(future.globals.maxSize = 8000 * 1024^2)
+nfix_bgckenya_bam_stats_mm2_1 <- map_df(bam_paths1$bam_path, ~ bam_stats(.x), .progress = TRUE) #RUN LAST - (date: Mar 21, 2024) 
+plan(sequential) #Done
+
+#write_csv(nfix_bgckenya_bam_stats_mm2_1, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_bgckenya_bam_stats_mm2_1.csv")
+
+nfix_bgckenya_bam_stats_mm2_50_cov1 <- nfix_bgckenya_bam_stats_mm2_1 %>%
+    group_by(sample_id, seqnames) %>% 
+      select(seqnames, sample_id, percent_cover, percent_id_ref_contig) %>% # skim down data table to just data for each ref
+      distinct() %>%
+    group_by(sample_id) %>%
+      mutate(gene_present = percent_cover > 50) 
+
+#Make new df with only true hits
+kept_nfix_bgckenya_bam_stats_mm2_50_1 = nfix_bgckenya_bam_stats_mm2_50_cov1 %>% filter(gene_present == TRUE)
+dim(kept_nfix_bgckenya_bam_stats_mm2_50_1)
+#[1] 799   5
+
+#Second 10
+bam_paths2 = bam_paths %>% slice(11:20)
+
+# run for bam stats!
+plan(multisession, workers = 36)
+nfix_bgckenya_bam_stats_mm2_2 <- map_df(bam_paths2$bam_path, ~ bam_stats(.x), .progress = TRUE) #RUN LAST - (date: Mar 22, 2024)
+plan(sequential)
+
+#write_csv(nfix_bgckenya_bam_stats_mm2_2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_bgckenya_bam_stats_mm2_2.csv")
+
+nfix_bgckenya_bam_stats_mm2_50_cov2 <- nfix_bgckenya_bam_stats_mm2_2 %>%
+    group_by(sample_id, seqnames) %>% 
+      select(seqnames, sample_id, percent_cover, percent_id_ref_contig) %>% # skim down data table to just data for each ref
+      distinct() %>%
+    group_by(sample_id) %>%
+      mutate(gene_present = percent_cover > 50) 
+
+#Make new df with only true hits
+kept_nfix_bgckenya_bam_stats_mm2_50_2 = nfix_bgckenya_bam_stats_mm2_50_cov2 %>% filter(gene_present == TRUE)
+dim(kept_nfix_bgckenya_bam_stats_mm2_50_2)
+
+#[1] 882   5
+
+#Third 10
+bam_paths3 = bam_paths %>% slice(21:30)
+
+# run for bam stats!
+plan(multisession, workers = 36)
+nfix_bgckenya_bam_stats_mm2_3 <- map_df(bam_paths3$bam_path, ~ bam_stats(.x), .progress = TRUE) #RUN LAST - (date: Mar 23, 2024)
+plan(sequential)
+
+
+#write_csv(nfix_bgckenya_bam_stats_mm2_3, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_bgckenya_bam_stats_mm2_3.csv")
+
+nfix_bgckenya_bam_stats_mm2_50_cov3 <- nfix_bgckenya_bam_stats_mm2_3 %>%
+    group_by(sample_id, seqnames) %>% 
+      select(seqnames, sample_id, percent_cover, percent_id_ref_contig) %>% # skim down data table to just data for each ref
+      distinct() %>%
+    group_by(sample_id) %>%
+      mutate(gene_present = percent_cover > 50) 
+
+#Make new df with only true hits
+kept_nfix_bgckenya_bam_stats_mm2_50_3 = nfix_bgckenya_bam_stats_mm2_50_cov3 %>% filter(gene_present == TRUE)
+dim(kept_nfix_bgckenya_bam_stats_mm2_50_3)
+#[1] 891   5
+
+#Fourth 10
+bam_paths4 = bam_paths %>% slice(31:40)
+
+# run for bam stats!
+plan(multisession, workers = 36)
+nfix_bgckenya_bam_stats_mm2_4 <- map_df(bam_paths4$bam_path, ~ bam_stats(.x), .progress = TRUE) #RUN LAST - (date: Mar 23, 2024)
+plan(sequential)
+
+
+#write_csv(nfix_bgckenya_bam_stats_mm2_4, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_bgckenya_bam_stats_mm2_4.csv")
+
+nfix_bgckenya_bam_stats_mm2_50_cov4 <- nfix_bgckenya_bam_stats_mm2_4 %>%
+    group_by(sample_id, seqnames) %>% 
+      select(seqnames, sample_id, percent_cover, percent_id_ref_contig) %>% # skim down data table to just data for each ref
+      distinct() %>%
+    group_by(sample_id) %>%
+      mutate(gene_present = percent_cover > 50) 
+
+#Make new df with only true hits
+kept_nfix_bgckenya_bam_stats_mm2_50_4 = nfix_bgckenya_bam_stats_mm2_50_cov4 %>% filter(gene_present == TRUE)
+dim(kept_nfix_bgckenya_bam_stats_mm2_50_4)
+
+#[1] 782   5
+
+#last set 
+dim(bam_paths)
+bam_paths5 = bam_paths %>% slice(41:51)
+
+# run for bam stats!
+plan(multisession, workers = 36)
+nfix_bgckenya_bam_stats_mm2_5 <- map_df(bam_paths5$bam_path, ~ bam_stats(.x), .progress = TRUE) #RUN LAST - (date: Mar 23, 2024)
+plan(sequential)
+
+
+#write_csv(nfix_bgckenya_bam_stats_mm2_5, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_bgckenya_bam_stats_mm2_5.csv")
+
+nfix_bgckenya_bam_stats_mm2_50_cov5 <- nfix_bgckenya_bam_stats_mm2_5 %>%
+    group_by(sample_id, seqnames) %>% 
+      select(seqnames, sample_id, percent_cover, percent_id_ref_contig) %>% # skim down data table to just data for each ref
+      distinct() %>%
+    group_by(sample_id) %>%
+      mutate(gene_present = percent_cover > 50) 
+
+#Make new df with only true hits
+kept_nfix_bgckenya_bam_stats_mm2_50_5 = nfix_bgckenya_bam_stats_mm2_50_cov5 %>% filter(gene_present == TRUE)
+dim(kept_nfix_bgckenya_bam_stats_mm2_50_5)
+#1] 817   5
+
+
+
+#Combine all DFs
+nfix_50_all = rbind(kept_nfix_bgckenya_bam_stats_mm2_50_1, kept_nfix_bgckenya_bam_stats_mm2_50_2, kept_nfix_bgckenya_bam_stats_mm2_50_3, kept_nfix_bgckenya_bam_stats_mm2_50_4, kept_nfix_bgckenya_bam_stats_mm2_50_5)
+dim(nfix_50_all)
+#[1] 4171    5
+
+#write_csv(nfix_50_all, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_50_all.csv")
+
+#Filter out al chlN and chlB
+nfix50_filt = nfix_50_all[!grepl("ChlN$|ChlB$", nfix_50_all$seqnames), ]
+dim(nfix50_filt)
+#[1] 600   5
+
+#Filter for 80% query and 95% ID
+nfix_9095 = nfix50_filt %>% filter(percent_cover >= 80) %>% filter(percent_id_ref_contig >= 95)
+dim(nfix_9095)
+#[1] 272   5
+
+#Combine with key 
+nfix_9095_2 <- nfix_9095 %>%
+  mutate(base_id = gsub("_nif[DHK]$", "", seqnames),  # Remove the _nifX part
+         nif_type = gsub(".*_(nif[DHK])$", "\\1", seqnames))
+
+nif_dbkey2 <- nif_dbkey %>%
+  pivot_longer(cols = c(nifH, nifD, nifK), names_to = "nif_type", values_to = "base_id") %>%
+  mutate(nif_type = tolower(nif_type)) 
+
+
+nfix_9095_3 <- left_join(nfix_9095_2, nif_dbkey2, by = "base_id")
+
+```
+
+
+#######Fixing names from the database to be able to plot
+```{r}
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Dolichospermum",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Dolichospermum sp014697585",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      seqnames == "RDXV01000010.1_28_nifH" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      seqnames == "RDXV01000010.1_28_nifH" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      seqnames == "RDXV01000010.1_28_nifH" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      seqnames == "RDXV01000010.1_28_nifH" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      seqnames == "RDXV01000010.1_28_nifH" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      seqnames == "RDXV01000010.1_28_nifH" ~ "RDXV01",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      seqnames == "RDXV01000010.1_28_nifH" ~ "RDXV01 sp004292695",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Anabaena",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Anabaena CRKS33 372",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Dolichospermum",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Dolichospermum planctonicum
+",
+      TRUE ~ Species
+    )
+  )
+
+
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Dolichospermum",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      seqnames == "NZ_JACJSB010000004.1_31_nifD" ~ "Dolichospermum sp014697585",
+      TRUE ~ Species
+    )
+  )
+
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Anabaena",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      seqnames == "LJOT01000111.1_5_nifD" ~ "Anabaena CRKS33 372",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Dolichospermum",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      seqnames == "NZ_BJCF01000030.1_23_nifD" ~ "Dolichospermum planctonicum
+",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_JACJSB010000004.1_23" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_JACJSB010000004.1_23" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_JACJSB010000004.1_23" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_JACJSB010000004.1_23" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_JACJSB010000004.1_23" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_JACJSB010000004.1_23" ~ "Dolichospermum",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_JACJSB010000004.1_23" ~ "Dolichospermum planctonicum",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_CP022423.1_581" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_CP022423.1_581" ~ "Pseudomonadota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_CP022423.1_581" ~ "Gammaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_CP022423.1_581" ~ "Burkholderiales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_CP022423.1_581" ~ "Burkholderiaceae_B",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_CP022423.1_581" ~ "Ideonella",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_CP022423.1_581" ~ "Ideonella filiformis",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "CAIUWU010000075.1_14" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "CAIUWU010000075.1_14" ~ "Pseudomonadota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "CAIUWU010000075.1_14" ~ "Gammaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "CAIUWU010000075.1_14" ~ "Methylococcales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "CAIUWU010000075.1_14" ~ "Methylomonadaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "CAIUWU010000075.1_14" ~ "Methylomonas",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "CAIUWU010000075.1_14" ~ "Methylomonas sp903902945",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_KI912608.1_870" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_KI912608.1_870" ~ "Desulfobacterota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_KI912608.1_870" ~ "Desulfovibrionia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_KI912608.1_870" ~ "Desulfovibrionales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_KI912608.1_870" ~ "Desulfonatronaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_KI912608.1_870" ~ "Desulfonatronum",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_KI912608.1_870" ~ "Desulfonatronum lacustre",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "RDXV01000010.1_28" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "RDXV01000010.1_28" ~ "Cyanobacteriota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "RDXV01000010.1_28" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "RDXV01000010.1_28" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "RDXV01000010.1_28" ~ "Cyanobacteriales",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "RDXV01000010.1_28" ~ "RDXV01",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "RDXV01000010.1_28" ~ "RDXV01 sp004292695",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "PWQB01000342.1_3" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "PWQB01000342.1_3" ~ "Cyanobacteriota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "PWQB01000342.1_3" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "PWQB01000342.1_3" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "PWQB01000342.1_3" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "PWQB01000342.1_3" ~ "Nostoc",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "PWQB01000342.1_3" ~ "Nostoc sp.",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_JYNO01000012.1_51" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_JYNO01000012.1_51" ~ "Desulfobacterota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_JYNO01000012.1_51" ~ "Desulfovibrionia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_JYNO01000012.1_51" ~ "Desulfovibrionales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_JYNO01000012.1_51" ~ "Desulfonatronaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_JYNO01000012.1_51" ~ "Desulfonatronum",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_JYNO01000012.1_51" ~ "Desulfonatronum thioautotrophicum",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_LUFH02000078.1_2" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_LUFH02000078.1_2" ~ "Cyanobacteriota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_LUFH02000078.1_2" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_LUFH02000078.1_2" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_LUFH02000078.1_2" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_LUFH02000078.1_2" ~ "Sphaerospermopsis_A",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_LUFH02000078.1_2" ~ "Sphaerospermopsis_A aphanizomenoides_A",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_LUFH02000075.1_9" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_LUFH02000075.1_9" ~ "Cyanobacteriota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_LUFH02000075.1_9" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_LUFH02000075.1_9" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_LUFH02000075.1_9" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_LUFH02000075.1_9" ~ "Sphaerospermopsis_A",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_LUFH02000075.1_9" ~ "Sphaerospermopsis_A aphanizomenoides_A",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "PWQB01000585.1_3" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "PWQB01000585.1_3" ~ "Cyanobacteriota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "PWQB01000585.1_3" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "PWQB01000585.1_3" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "PWQB01000585.1_3" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "PWQB01000585.1_3" ~ "Nostoc",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "PWQB01000585.1_3" ~ "Nostoc sp.",
+      TRUE ~ Species
+    )
+  )
+
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "PWVL01000125.1_7" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "PWVL01000125.1_7" ~ "Desulfobacterota_F",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "PWVL01000125.1_7" ~ "Desulfuromonadia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "PWVL01000125.1_7" ~ "Desulfuromonadales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "PWVL01000125.1_7" ~ "Syntrophotaleaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "PWVL01000125.1_7" ~ "SLLR01",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "PWVL01000125.1_7" ~ "SLLR01 sp003561875",
+      TRUE ~ Species
+    )
+  )
+
+#######FIXES FOR 80% cover, 95% ID
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "JADIYD010000010.1_7" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "JADIYD010000010.1_7" ~ "Pseudomonadota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "JADIYD010000010.1_7" ~ "Gammaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "JADIYD010000010.1_7" ~ "Burkholderiales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "JADIYD010000010.1_7" ~ "Rhodocyclaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "JADIYD010000010.1_7" ~ "Azonexus",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "JADIYD010000010.1_7" ~ "Azonexus sp016705475",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "JADIYD010000010.1_10" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "JADIYD010000010.1_10" ~ "Pseudomonadota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "JADIYD010000010.1_10" ~ "Gammaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "JADIYD010000010.1_10" ~ "Burkholderiales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "JADIYD010000010.1_10" ~ "Rhodocyclaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "JADIYD010000010.1_10" ~ "Azonexus",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "JADIYD010000010.1_10" ~ "Azonexus sp016705475",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NC_015416.1_538" ~ "Archaea",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NC_015416.1_538" ~ "Halobacteriota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NC_015416.1_538" ~ "Methanosarcinia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NC_015416.1_538" ~ "Methanotrichales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NC_015416.1_538" ~ "Methanotrichaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NC_015416.1_538" ~ "Methanothrix",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NC_015416.1_538" ~ "Methanothrix soehngenii",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NC_015416.1_542" ~ "Archaea",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NC_015416.1_542" ~ "Halobacteriota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NC_015416.1_542" ~ "Methanosarcinia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NC_015416.1_542" ~ "Methanotrichales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NC_015416.1_542" ~ "Methanotrichaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NC_015416.1_542" ~ "Methanothrix",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NC_015416.1_542" ~ "Methanothrix soehngenii",
+      TRUE ~ Species
+    )
+  )
+
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_JACJPV010000029.1_32" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_JACJPV010000029.1_32" ~ "Cyanobacteriota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_JACJPV010000029.1_32" ~ "Cyanobacteriia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_JACJPV010000029.1_32" ~ "Cyanobacteriales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_JACJPV010000029.1_32" ~ "Nostocaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_JACJPV010000029.1_32" ~ "FACHB-1237",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_JACJPV010000029.1_32" ~ "FACHB-1237",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(Genus = case_when(
+      Genus == "FACHB-1237" ~ "Anabaena",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      Species == "FACHB-1237" ~ "Anabaena FACHB-1237",
+      TRUE ~ Species
+    )
+  )
+
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_JAFFQC010000020.1_60" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_JAFFQC010000020.1_60" ~ "Desulfobacterota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_JAFFQC010000020.1_60" ~ "Desulfobulbia",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_JAFFQC010000020.1_60" ~ "Desulfobulbales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_JAFFQC010000020.1_60" ~ "Desulfobulbaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_JAFFQC010000020.1_60" ~ "Desulfobulbus",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_JAFFQC010000020.1_60" ~ "Desulfobulbus alkaliphilus",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_JAGQDE010000023.1_6" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_JAGQDE010000023.1_6" ~ "Gammaproteobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_JAGQDE010000023.1_6" ~ "Burkholderiales",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_JAGQDE010000023.1_6" ~ "Burkholderiales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_JAGQDE010000023.1_6" ~ "Burkholderiaceae_B",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_JAGQDE010000023.1_6" ~ "Ideonella",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_JAGQDE010000023.1_6" ~ "Ideonella sp018069755",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_KB455575.1_3990" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_KB455575.1_3990" ~ "Pseudomonadota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_KB455575.1_3990" ~ "Gammaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_KB455575.1_3990" ~ "Methylococcales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_KB455575.1_3990" ~ "Methylomonadaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_KB455575.1_3990" ~ "Methylotuvimicrobium",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_KB455575.1_3990" ~ "Methylotuvimicrobium buryatense",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_RBXL01000001.1_519" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_RBXL01000001.1_519" ~ "Pseudomonadota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_RBXL01000001.1_519" ~ "Gammaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_RBXL01000001.1_519" ~ "Chromatiales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_RBXL01000001.1_519" ~ "Chromatiaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_RBXL01000001.1_519" ~ "Thiocapsa",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_RBXL01000001.1_519" ~ "Thiocapsa rosea",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "NZ_SRSH01000010.1_33" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "NZ_SRSH01000010.1_33" ~ "Pseudomonadota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "NZ_SRSH01000010.1_33" ~ "Gammaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "NZ_SRSH01000010.1_33" ~ "Methylococcales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "NZ_SRSH01000010.1_33" ~ "Methylococcaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "NZ_SRSH01000010.1_33" ~ "Methylotetracoccus",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "NZ_SRSH01000010.1_33" ~ "Methylotetracoccus oryzae",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "PHCU01000090.1_1" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "PHCU01000090.1_1" ~ "Proteobacteria",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "PHCU01000090.1_1" ~ "Betaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "PHCU01000090.1_1" ~ "unclassified Betaproteobacteria",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "PHCU01000090.1_1" ~ "Betaproteobacteria bacterium",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "PHCU01000090.1_1" ~ "unclassified Betaproteobacteria",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "PHCU01000090.1_1" ~ "unclassified Betaproteobacteria",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Domain = case_when(
+      base_id == "VEPB01000023.1_3" ~ "Bacteria",
+      TRUE ~ Domain  # Keeps the original value if condition is not met
+    ),
+    Phylum = case_when(
+      base_id == "VEPB01000023.1_3" ~ "Pseudomonadota",
+      TRUE ~ Phylum
+    ),
+    Class = case_when(
+      base_id == "VEPB01000023.1_3" ~ "Gammaproteobacteria",
+      TRUE ~ Class
+    ),
+    Order = case_when(
+      base_id == "VEPB01000023.1_3" ~ "Methylococcales",
+      TRUE ~ Order
+    ),
+    Family = case_when(
+      base_id == "VEPB01000023.1_3" ~ "Methylococcaceae",
+      TRUE ~ Family
+    ),
+    Genus = case_when(
+      base_id == "VEPB01000023.1_3" ~ "VEPB01",
+      TRUE ~ Genus
+    ),
+    Species = case_when(
+      base_id == "VEPB01000023.1_3" ~ "VEPB01 sp012026715",
+      TRUE ~ Species
+    )
+  )
+
+nfix_9095_3 <- nfix_9095_3 %>%
+  mutate(
+    Phylum = case_when(
+      Phylum == "Cyanobacteriota" ~ "Cyanobacteria",
+      TRUE ~ Phylum
+    ),
+  )
+
+#####Merge rpkm with dataset
+nfix_9095_4 <- nfix_9095_3 %>%
+  mutate(sample_id = sub(".*/(samp_[0-9]+)_mapped.bam", "\\1", sample_id))
+
+nfix_9095_4 = nfix_9095_4 %>% rename(mag = seqnames)
+
+nfix_9095_5 = left_join(nfix_9095_4, nfix_kenya_bam_rpkm_mm2, by = c("sample_id", "mag"))
+dim(nfix_9095_5)
+#[1] 272  39
+
+#Issue where there is cyanobacteria and cyanobacteriota 
+```
+
+
+
+4. Prepare to visualize read mapping
+```{r}
+#Read in metadata
+sample_table = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/lvictoria2223_metadata.csv")
+
+Kenya_sample_table <- sample_table %>% filter(StudyID == "set_55" | StudyID == "set_57") #include only StudyID's of interest (Kenya)
+
+Kenya_sample_table %>% distinct(SampleID) %>% count #51 WLE metagenome samples in Kenya dataset - Jan 20, 2024
+
+#Select only columns needed 
+Kenya_meta = Kenya_sample_table %>% select(c(site_name_sitenumber, SampleID, SampleName, StudyID, geo_loc_name, lat, lon, collection_date, depth, depth_at_sampling_location, pH, temp, nitrate, diss_oxygen, conduc, secchi, turbidity, part_microcyst, chlorophyl, diss_phosp, ammonia, Nitrate_Nitrite, urea, silicate, sky, Notes, total_sonde, cyano_sonde, replicate_id, orp, particulate_cyl, atmospheric_temp, salinity, ammended_site_name, env_Kenya_site, tot_nit, soluble_react_phosp, tot_phos, site_number))
+
+#Manipulate date column
+Kenya_meta = Kenya_meta %>% mutate(collection_date = ymd(collection_date),
+         year = year(collection_date),
+         month = month(collection_date),
+         day = day(collection_date))
+
+Kenya_meta = Kenya_meta %>% mutate(yday = yday(collection_date), week = week(collection_date))
+
+#Align sample ID column to be able to merge 
+
+colnames(Kenya_meta)[colnames(Kenya_meta) == "SampleID"] <- "sample_id"
+
+nfix_9095_5_meta = left_join(nfix_9095_5, Kenya_meta, by = "sample_id")
+dim(nfix_9095_5_meta)
+#[1] 237  82
+
+nfix_9095_5_meta = nfix_9095_5_meta %>% filter(!site_name_sitenumber == "H12. Homa Bay Coast", !site_name_sitenumber == "N1. Lake Naivasha", !site_name_sitenumber == "SO1. Lake Sonachi", !site_name_sitenumber == "O1. Lake Oloidien", !site_name_sitenumber == "S1. Lake Simbi ", !site_name_sitenumber == "S2. Lake Simbi")
+dim(nfix_9095_5_meta)
+#[1] 231  82
+
+#nfix_9095_5_meta %>% ggplot(aes(x = site_name_sitenumber, fill = Order, y = rpkm)) + geom_bar(stat = "identity") + theme(axis.text.x = element_text(angle = 45, hjust = 1))  + facet_grid(~nif_type.x) + theme_bw()
+
+nfix_9095_5_meta = nfix_9095_5_meta %>% mutate(Genus = if_else(!Order == "Cyanobacteriales", "Other Bacteria or Archaea", Genus))
+
+
+
+```
+
+
+15. Publication ready visualization (Figure 6)
+```{r}
+additional_sites = c("6. Mbita West", "11. Dunga","12. Nyando River","13. Sondu River Bridge", "14. Sondu River Shore","16. Kibuon River", "19. Bala Rawi")
+site_numbers = c("6", "11", "12", "13", "14", "16", "19")
+
+additional_data <- data.frame(
+  site_name_sitenumber = additional_sites,
+  nif_type.x = rep(unique(nfix_9095_5_meta$nif_type.x), each = length(additional_sites))
+)
+
+nfix_9095_5_meta_all <- bind_rows(nfix_9095_5_meta, additional_data)
+
+order_vector <- c(
+  "1. Homa Bay", "2. Homa Bay Pier", "3. Homa Bay Water Intake", "4. Soklo", "5. Mbita East",
+  "6. Mbita West", "7. Asembo Bay", "8. Ndere Island", "9. Mid Gulf", "10. Kisumu Harbor",
+  "11. Dunga","12. Nyando River","13. Sondu River Bridge", "14. Sondu River Shore","15. Sondu Miriu","16. Kibuon River", "17. Southern Mid-Gulf", "18. Awach River Mouth",
+  "19. Bala Rawi", "20. Ingra", "21. Kowuor", "22. Oluch", "23. Sikli", "24. Mirunda",
+  "25. Mbita East", "26. Mbita West", "27. Bridge Island", "28. Bondo", "29. Yala River Mouth",
+  "30. Rosinga Channel", "31. South Rosinga"
+)
+
+#nfix_9095_5_meta_all$site_name_sitenumber <- factor(nfix_9095_5_meta_all$site_name_sitenumber, levels = order_vector)
+
+order_vector_reverse <- rev(order_vector)
+
+nfix_9095_5_meta_all$site_name_sitenumber <- factor(nfix_9095_5_meta_all$site_name_sitenumber, levels = order_vector_reverse)
+
+#Normalize 2022 samples for potential duplicates
+nfix_9095_5_meta_all_22 = nfix_9095_5_meta_all %>% filter(year == 2022)
+nfix_9095_5_meta_all_22 = nfix_9095_5_meta_all_22 %>% group_by(site_name_sitenumber, Genus, nif_type.x) %>% mutate(rpkm = mean(rpkm))
+
+nfix_9095_5_meta_all_22 = unique(nfix_9095_5_meta_all_22[c('site_name_sitenumber', 'Genus', 'rpkm', 'nif_type.x')])
+dim(nfix_9095_5_meta_all_22)
+#32, 3
+
+nfix_9095_5_meta_all_22$year <- 2022
+
+#get 2023 data 
+nfix_9095_5_meta_all_23 = nfix_9095_5_meta_all %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, Genus, rpkm, year, nif_type.x)
+dim(nfix_9095_5_meta_all_23)
+#136, 4
+
+#Combine 22 and 23 data together 
+nfix_9095_5_meta_all_2223 = rbind(nfix_9095_5_meta_all_23, nfix_9095_5_meta_all_22)
+dim(nfix_9095_5_meta_all_2223)
+#168, 4
+
+
+additional_sites = c("6. Mbita West", "11. Dunga","13. Sondu River Bridge", "14. Sondu River Shore","16. Kibuon River", "19. Bala Rawi")
+site_numbers = c("6", "11", "13", "14", "16", "19")
+
+additional_data <- data.frame(
+  site_name_sitenumber = additional_sites,
+  nif_type.x = rep(unique(nfix_9095_5_meta_all_2223$nif_type.x), each = length(additional_sites))
+)
+
+nfix_9095_5_meta_all_2223_order <- bind_rows(nfix_9095_5_meta_all_2223, additional_data)
+
+order_vector <- c(
+  "1. Homa Bay", "2. Homa Bay Pier", "3. Homa Bay Water Intake", "4. Soklo", "5. Mbita East",
+  "6. Mbita West", "7. Asembo Bay", "8. Ndere Island", "9. Mid Gulf", "10. Kisumu Harbor",
+  "11. Dunga","12. Nyando River","13. Sondu River Bridge", "14. Sondu River Shore","15. Sondu Miriu","16. Kibuon River", "17. Southern Mid-Gulf", "18. Awach River Mouth",
+  "19. Bala Rawi", "20. Ingra", "21. Kowuor", "22. Oluch", "23. Sikli", "24. Mirunda",
+  "25. Mbita East", "26. Mbita West", "27. Bridge Island", "28. Bondo", "29. Yala River Mouth",
+  "30. Rosinga Channel", "31. South Rosinga"
+)
+
+#nfix_9095_5_meta_all$site_name_sitenumber <- factor(nfix_9095_5_meta_all$site_name_sitenumber, levels = order_vector)
+
+order_vector_reverse <- rev(order_vector)
+
+nfix_9095_5_meta_all_2223_order$site_name_sitenumber <- factor(nfix_9095_5_meta_all_2223_order$site_name_sitenumber, levels = order_vector_reverse)
+
+
+##FIGURE 6-N fixation 
+
+n <- 180
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+
+col_vector[1] <- "olivedrab2"
+col_vector[2] <- "#00A000"
+col_vector[3] <- "#CC5500"
+col_vector[4] <- "dodgerblue1"
+col_vector[5] <- "deeppink"
+
+nfix_9095_5_meta_all_2223_order %>%
+  filter(!is.na(site_name_sitenumber)) %>%
+  mutate(Genus = if_else(Genus == "RDXV01", "Other Nostocales", Genus)) %>%
+  mutate(Genus = if_else(Genus == "Sphaerospermopsis_A", "Sphaerospermopsis", Genus)) %>%
+  mutate(Genus = factor(Genus, levels = c("Anabaena", "Dolichospermum", "Sphaerospermopsis", "Other Nostocales", "Other Bacteria or Archaea"))) %>%
+  ggplot(aes(y = site_name_sitenumber, fill = Genus, x = rpkm)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = col_vector) +
+  theme_bw() +
+  labs(y = "Sampling Site", x = "Total RPKM", fill = "Genus") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"), 
+        axis.text.y = element_text(face = "bold"), 
+        axis.title.y = element_text(face = "bold", size = 12), 
+        axis.title.x = element_text(face = "bold", size = 12),
+        # Making facet labels bold
+        strip.text = element_text(face = "bold"), strip.background = element_rect(fill = "white", color = "black")) +
+  guides(fill = guide_legend(override.aes = list(size = 5))) +
+  facet_grid(~factor(nif_type.x, levels = c("nifH", "nifD", "nifK")))
+
+
+ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/nfix/nfix_FINAL.svg",width = 4, height =3, dpi=200, scale =2, limitsize = FALSE)
+ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/nfix/nfix_FINAL.png",width = 4, height =3, dpi=200, scale =2, limitsize = FALSE)
+ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/nfix/nfix_FINAL.tiff",width = 4, height =3, dpi=200, scale =2, limitsize = FALSE)
+
+
+```
+
+

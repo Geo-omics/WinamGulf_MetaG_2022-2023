@@ -1,0 +1,1729 @@
+---
+title: "Rel_Abundance_Kenya22-23"
+output: html_document
+date: "2023-12-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(vegan)
+library(ggstar)
+library(Hmisc)
+library(gplots)
+library(heatmaply)
+library(reshape2)
+library(dendextend)
+```
+
+Notebook Breakdown: 
+################################################################################################MAKING FIGURE 3
+1. Link all decontaminated reads from Kenya 2022-2023 to folder  
+2. Make a folder of sym-linked bins_for_drep bins for mapping 
+2.5. Read in checkM and only keep bins that are 50% complete 
+3. Dereplicate bins at 98% 
+4. Run mag coverage on these reads to get coverage 
+5. Run GTDB and checkm on these bins
+6. Read in GTDB, checkm, and metadata data
+7. Read in coverm data and combine with above 
+7.5. Check 2022 replicate samples are similar (Figure S5)
+8. Visualize final figure for 2022-2023 Kenya relative abundance figure (Figure 3)
+8.5. Conduct statistics on significantly different bacterial taxa between samples/sample types
+################################################################################################END FIGURE 3
+################################################################################################MAKING FIGURE 4AB
+9. Conduct PCOA on cyano comm comp
+10. Conduct PCOA on entire comm comp
+################################################################################################END FIGURE 4AB
+################################################################################################BEGINNING OF MAIN TABLE, SI TABLE CREATION, NCBI Submission
+11.Pull together publication ready table for all dereplicated bins-SITable2
+12. Make gtdb taxonomy and ncbi taxonomy available  
+13. Updating SI table 2 with NCBI accession and year of sample
+14. Updating SI Table 4 with NCBI accession 
+################################################################################################END MAIN TABLE, SI TABLE CREATION, NCBI Submission
+
+
+
+1. Link all decontaminated reads from Kenya 2022-2023 to folder  
+```{r}
+#Sym link 2022 reads
+
+#2022
+read_paths22 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/samp_*/reads/decon_*_reads_fastp.fastq.gz",intern = TRUE) %>% 
+  data_frame(read_path = .)  %>% mutate(sample = read_path %>% str_remove(".*metagenomes/") %>% str_remove("/reads.*"),
+         read_dir = read_path %>% str_remove(".*decon_") %>% str_remove("_reads_fastp.*"),
+         read_dir_coverm = if_else(read_dir == "fwd", "fwd", "rev"),
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/decon_reads/{sample}_{read_dir_coverm}.fastq.gz"))
+
+#sym link 2022 reads
+file.symlink(read_paths22$read_path, read_paths22$new_path)
+
+#Sym link 2023 reads
+#2023
+read_paths23 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/samp_*/reads/decon_*_reads_fastp.fastq.gz",intern = TRUE) %>% 
+  data_frame(read_path = .)  %>% mutate(sample = read_path %>% str_remove(".*metagenomes/") %>% str_remove("/reads.*"),
+         read_dir = read_path %>% str_remove(".*decon_") %>% str_remove("_reads_fastp.*"),
+         read_dir_coverm = if_else(read_dir == "fwd", "fwd", "rev"),
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/decon_reads/{sample}_{read_dir_coverm}.fastq.gz"))
+
+#sym link 2023 reads
+file.symlink(read_paths23$read_path, read_paths23$new_path)
+```
+
+
+2. Make a folder of sym-linked bins_for_drep bins for mapping 
+```{r}
+#Bins from 2022 samples
+#2022
+bin_paths_22 <- system("find /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/samp_*/bins/bins_for_drep/ -path *.fa", intern=TRUE) %>% tibble(bin_path = .) %>% mutate(sample = bin_path %>% str_remove(".*metagenomes/") %>% str_remove("/bins.*"), bin = bin_path %>% str_remove(".*bins_for_drep/") %>% str_remove(".fa"),new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/all_bins_for_drep/{bin}.fa"))
+
+#Bins from 2023 samples
+#2023
+bin_paths_23 <- system("find /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/samp_*/bins/bins_for_drep/ -path *.fa", intern=TRUE) %>% tibble(bin_path = .) %>% mutate(sample = bin_path %>% str_remove(".*metagenomes/") %>% str_remove("/bins.*"), bin = bin_path %>% str_remove(".*bins_for_drep/") %>% str_remove(".fa"),new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/all_bins_for_drep/{bin}.fa"))
+
+#Combine list of bins to sym link
+bin_paths = rbind(bin_paths_22, bin_paths_23)
+
+#Sym link bins_for_drep
+file.symlink(bin_paths$bin_path, bin_paths$new_path)
+
+```
+
+
+2.5. Read in checkM and only keep bins that are 50% complete and less than 50% contaminated 
+```{r}
+#Read in tidied checkM file output from GLAMR (https://github.com/Geo-omics/GLAMR_omics_pipelines/blob/main/Snakefile) for 2022 and 2023 samples
+
+#2022 paths 
+checkm_paths22 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/*/tidy_checkM.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/tidy_checkM.tsv"))
+
+#2023 paths
+checkm_paths <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/*/tidy_checkM.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/tidy_checkM.tsv"))
+
+#merge file paths for 2022 and 2023 checkm data
+checkm_paths = rbind(checkm_paths22, checkm_paths)
+
+# Define a function for reading in a .tsv file and adding a column for the corresponding sample
+read_and_append_samplename <- function(path, sampleID){
+  out <- read_tsv(path) %>% 
+    mutate(sample = sampleID)
+  
+  return(out)
+}
+
+# Read in checkM results
+checkM_results <- map2_df(checkm_paths$path, checkm_paths$sample, read_and_append_samplename) %>% 
+  filter(!str_detect(`Bin Id`, "unbinned|tooShort|lowDepth")) # remove metabat outputs for unbinned contigs
+
+# Create a simplified results table for merging with results from other tools
+checkm_simp <- checkM_results %>% dplyr::select(genome = "Bin Id", completeness = "Completeness", contamination = "Contamination", strain_het = "Strain heterogeneity") %>% rename_with(.cols = -genome, .fn = ~paste0("checkm_",.x))
+
+#Make editable checkM data table to quickly visualize data
+checkm_simp2 <- checkM_results %>% 
+  dplyr::select(genome = "Bin Id", completeness = "Completeness", contamination = "Contamination", strain_het = "Strain heterogeneity", lineage = "Marker lineage", sample = "sample") %>% 
+  rename_with(.cols = -genome, .fn = ~paste0("checkm_",.x))
+
+##Filter genomes that are at least 50% complete and at most 50% contaminated 
+
+completeness = checkM_results %>% filter(Completeness == 50 | Completeness > 50) %>% filter(Contamination == 50 | Contamination < 50) %>% mutate(genome = `Bin Id`)
+dim(completeness)
+#[1] 15037    19
+
+###Pull out bins that are at least 50 percent complete 
+
+#2022
+complete_bin_paths22 <- system("find /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/samp_*/bins/all_raw_bins/ -path *.fa", intern=TRUE) %>% tibble(bin_path = .) %>% mutate(sample = bin_path %>% str_remove(".*metagenomes/") %>% str_remove("/bins.*"), bin = bin_path %>% str_remove(".*all_raw_bins/") %>% str_remove(".fa"),new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/cleaned_bins/{bin}.fa")) %>% filter(bin %in% completeness$genome)
+#7750 bins
+
+#2023
+complete_bin_paths23 <- system("find /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/samp_*/bins/all_raw_bins/ -path *.fa", intern=TRUE) %>% tibble(bin_path = .) %>% mutate(sample = bin_path %>% str_remove(".*metagenomes/") %>% str_remove("/bins.*"), bin = bin_path %>% str_remove(".*all_raw_bins/") %>% str_remove(".fa"),new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/cleaned_bins/{bin}.fa")) %>% filter(bin %in% completeness$genome)
+#7287 bins
+
+#combine list for 2022 and 2023
+bin_paths_50 = rbind(complete_bin_paths22, complete_bin_paths23)
+
+#sym link bins to use 
+file.symlink(bin_paths_50$bin_path, bin_paths_50$new_path)
+
+#manually deleted bins from samples that are not lake victoria (but in this dataset folder from other opportunistic sampling expeditions while in Kenya) from the cleaned bins folder (samp_4327, samp_4328, samp_4329, samp_4330, samp_4455, samp_4456, samp_4453)
+```
+
+
+3. Dereplicate bins that are at least 50% complete and at most 50% contaminated at 98% dereplication
+```{r}
+#Code to dereplicate: 
+
+#Install drep using conda install drep: https://github.com/MrOlm/drep, make sure to use dRep check_dependencies to check that the dependencies are all there. There are often problems with fastANI getting in there, conda install --force-reinstall fastani has worked for me before. 
+
+#For all cleaned bins for read mapping/comm composition: conda activate drep_v4
+# dRep dereplicate --S_ani 0.98 -p 60 /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/drep_98_commline_depfixed -g /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/cleaned_bins/*.fa
+
+#Results: 
+# /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/drep_98_commline_depfixed/dereplicated_genomes
+```
+
+
+
+4. Run mag coverage on these reads to get relative abundance of community  
+```{r}
+#Snakemake code used to run this: 
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/coverm_magcoverage/code/Snakefile
+
+#import os
+#import re
+#import snakemake.io
+#from glob import glob
+
+#read_list = glob_wildcards("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/decon_reads/{read}_fwd.fastq.gz").read
+
+#rule run_all:
+#    input: expand("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/coverm_magcoverage/results/{read}_coverage.tsv", read=read_list)
+
+#rule mag_coverage:
+ #   input:
+ #       fwd_reads = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/decon_reads/{read}_fwd.fastq.gz",
+  #      rev_reads = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/decon_reads/{read}_rev.fastq.gz",
+   #     bins = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/drep_98_commline_depfixed/dereplicated_genomes"
+#    output: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/coverm_magcoverage/results/{read}_coverage.tsv"
+ #   log: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/coverm_magcoverage/results/{read}.log"
+  #  conda: "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/config/coverm.yaml"
+   # resources: cpus=60, mem_mb=250000, time_min=2880
+    #shell:
+     #   """
+      #  coverm genome \
+       #     -t {resources.cpus} \
+        #    -m relative_abundance mean covered_bases variance length \
+         #   --min-covered-fraction 0 \
+          #  -1 {input.fwd_reads} \
+           # -2 {input.rev_reads} \
+    #        --genome-fasta-files {input.bins}/*.fa \
+     #       -o {output}
+      #  """
+
+#Conda environment: 
+#channels:
+#    - bioconda
+#    - conda-forge
+#    - defaults
+
+#dependencies:
+#    - coverm=0.6.1
+
+#Activation code: 
+#snakemake run_all --profile /geomicro/data21/lnhart/CSP22_data/config/snakemake_profiles/cayman
+```
+
+5. Run GTDB and checkm on these bins --already run through GLAMR
+```{r}
+#CheckM: run in GLAMR
+#checkm lineage_wf --tab_table -f {output.results} -x fa -t {resources.cpus} {input} {output.dir}
+
+
+##GTDB: was run for bins_for_drep in GLAMR
+
+#GTDBTK_DATA_PATH={input.refs}
+#gtdbtk classify_wf --extension fa --genome_dir {input.bins} --out_dir {output} --cpus {resources.cpus}
+```
+
+
+6. Read in checkM, GTDB, and metadata for these results
+```{r}
+#########READ IN TIDY CHECKM FILE FOR ALL KENYA 2022-23 SAMPLES (done on all raw bins)
+
+#2022 paths 
+checkm_paths22 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/*/tidy_checkM.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/tidy_checkM.tsv"))
+
+#2023 paths
+checkm_paths <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/*/tidy_checkM.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/tidy_checkM.tsv"))
+
+#merge file paths for 2022 and 2023 checkm data
+checkm_paths = rbind(checkm_paths22, checkm_paths)
+
+# Define a function for reading in a .tsv file and adding a column for the corresponding sample
+read_and_append_samplename <- function(path, sampleID){
+  out <- read_tsv(path) %>% 
+    mutate(sample = sampleID)
+  
+  return(out)
+}
+
+# Read in checkM results
+checkM_results <- map2_df(checkm_paths$path, checkm_paths$sample, read_and_append_samplename) %>% 
+  filter(!str_detect(`Bin Id`, "unbinned|tooShort|lowDepth")) # remove metabat outputs for unbinned contigs
+
+# Create a simplified results table for merging with results from other tools
+checkm_simp <- checkM_results %>% dplyr::select(genome = "Bin Id", completeness = "Completeness", contamination = "Contamination", strain_het = "Strain heterogeneity") %>% rename_with(.cols = -genome, .fn = ~paste0("checkm_",.x))
+
+#Make editable checkM data table to quickly visualize data
+checkm_simp2 <- checkM_results %>% 
+  dplyr::select(genome = "Bin Id", completeness = "Completeness", contamination = "Contamination", strain_het = "Strain heterogeneity", lineage = "Marker lineage", sample = "sample") %>% 
+  rename_with(.cols = -genome, .fn = ~paste0("checkm_",.x))
+
+
+######## READ IN GTDB FOR KENYA 2022-2023
+
+# Get list of GTDB outputs for bacteria & archaea 
+
+#2023 GTDB
+gtdb_paths_Kenya23 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/*/bins/GTDB/gtdbtk.*.summary.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/bins/GTDB/gtdbtk.{domain}.summary.tsv"))
+
+#2022 GTDB
+gtdb_paths_Kenya22 <- system("ls /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/*/bins/GTDB/gtdbtk.*.summary.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% 
+  bind_cols(unglue::unglue_data(.$path, "/geomicro/data2/kiledal/GLAMR/data/projects/{project}/metagenomes/{sample}/bins/GTDB/gtdbtk.{domain}.summary.tsv"))
+
+#bind 2022-2023 GTDB file paths 
+gtdb_paths_Kenya23 = rbind(gtdb_paths_Kenya22, gtdb_paths_Kenya23)
+
+# Get paths for just bacterial classifications
+bac_paths <- gtdb_paths_Kenya23 %>% 
+  filter(domain == "bac120")
+
+# Get paths for just archael classifications  
+arc_paths <- gtdb_paths_Kenya23 %>% 
+  filter(domain == "ar53")
+
+# Read in bacterial classifications
+n_col_bac <- read_tsv(bac_paths$path[1]) %>% ncol()
+
+gtdb_bac_Kenya23 <- map_df(bac_paths$path, read_tsv, col_types = paste0(rep("c",n_col_bac),collapse = "")) %>% 
+     type_convert()
+
+gtdb_bac_Kenya23 <- gtdb_bac_Kenya23 %>% filter(!str_detect(user_genome, "unbinned|tooShort|lowDepth"))
+
+# Simplify bacterial classifications
+gtdb_simp_bac_Kenya23 <- gtdb_bac_Kenya23 %>% 
+  dplyr::select(genome = "user_genome",classification, red_value) %>% 
+  rename_with(.cols = -genome, .fn = ~paste0("gtdb_",.x))
+
+# Read in archaea classifications
+n_col_arc <- read_tsv(arc_paths$path[1]) %>% ncol()
+
+gtdb_arc <- map_df(arc_paths$path, read_tsv, col_types = paste0(rep("c",n_col_arc),collapse = "")) %>% 
+     type_convert()
+
+gtdb_arc <- gtdb_arc %>% filter(!str_detect(user_genome, "unbinned|tooShort|lowDepth"))
+
+# Simplify archaeal classifications
+gtdb_simp_arc <- gtdb_arc %>% 
+  dplyr::select(genome = "user_genome",classification, red_value) %>% 
+  rename_with(.cols = -genome, .fn = ~paste0("gtdb_",.x))
+
+# combine results from bacteria and archaea
+gtdb_simp <- bind_rows(gtdb_simp_arc, gtdb_simp_bac_Kenya23)
+
+gtdb_simp = gtdb_simp %>% separate(gtdb_classification, into = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species"), sep = ";[a-z]__") %>%  mutate(Domain = str_remove(Domain, "d__"))
+
+Kenya_quality = left_join(gtdb_simp, checkm_simp2, by = "genome")
+
+#Metadata incorporation to one metadata piece
+
+Kenya_sample_table = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/GLOD_LH_Mar52024.csv")
+Kenya_sample_table = Kenya_sample_table %>% select(!X)
+Kenya_sample_table %>% distinct(SampleID) %>% count #51 metagenome samples in Kenya dataset
+
+#Select only columns needed--columns needed added March 6, 2024  
+Kenya_meta = Kenya_sample_table %>% select(c(site_name_sitenumber, SampleID, SampleName, StudyID, geo_loc_name, lat, lon, collection_date, depth, depth_at_sampling_location, pH, temp, nitrate, diss_oxygen, conduc, secchi, turbidity, part_microcyst, chlorophyl, diss_phosp, ammonia, Nitrate_Nitrite, urea, silicate, sky, Notes, total_sonde, cyano_sonde, replicate_id, orp, particulate_cyl, atmospheric_temp, salinity, ammended_site_name, env_Kenya_site, tot_nit, soluble_react_phosp, tot_phos, site_number, station_description, type, LH_classifier))
+
+#Manipulate date column
+Kenya_meta = Kenya_meta %>% mutate(collection_date = mdy(collection_date),
+         year = year(collection_date),
+         month = month(collection_date),
+         day = day(collection_date))
+
+Kenya_meta = Kenya_meta %>% mutate(yday = yday(collection_date), week = week(collection_date))
+
+#Align sample ID column to be able to merge 
+
+colnames(Kenya_quality)[colnames(Kenya_quality) == "checkm_sample"] <- "SampleID"
+
+#Merge dataframes 
+dim(Kenya_quality)
+#[1] 22073    14
+dim(Kenya_meta)
+#[1] 51 45
+kenya_full = left_join(Kenya_quality, Kenya_meta, by = "SampleID")
+
+dim(kenya_full)
+#[1] 22073    58
+```
+
+
+7. Read in coverm data and combine with checkM, gtdb, and metadata
+```{r}
+#########READ IN READ MAPPING FOR COMMUNITY COMPOSITION MAKEUP-22-23
+
+# Get list of coverm outputs
+coverm_paths <- system("ls /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/coverm_magcoverage/results/samp_*_coverage.tsv", intern= TRUE) %>% 
+  data.frame(path = .) %>% bind_cols(unglue::unglue_data(.$path, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/coverm_magcoverage/results/{sample}_coverage.tsv"))
+
+read_and_append_samplename <- function(path, sampleID){
+  out <- read_tsv(path) %>% 
+    mutate(sample = sampleID)
+  
+  return(out)
+}
+
+# Clean up coverm results 
+coverm_results <- map2_df(coverm_paths$path, coverm_paths$sample, read_and_append_samplename) %>% 
+  dplyr::rename(genome = "Genome", binning_sample = "sample") %>% # make names consistent with other tables
+  filter(!str_detect(genome, "unbinned|tooShort|lowDepth")) %>% # filter out metabat2 extra unbinned contigs
+  pivot_longer(-c(genome,binning_sample), names_to = "sample_and_metric", values_to = "value",values_transform = as.character) %>% # make a long data frame
+  mutate(reads_sample = str_remove(sample_and_metric, "_R1.fastq.gz.*"), # get name of reads mapped from old column names
+         metric = str_remove(sample_and_metric, ".*fastq.gz "), # get coverage metric from old column names
+         metric = str_remove(metric, "\\.\\.\\..*"), # clean up metric names, removing ...# from the column headers
+         metric = case_when(metric == "Length" ~ "length", # clean up metric names
+                            metric == "Variance" ~ "variance",
+                            metric == "Covered Bases" ~ "covered_bases",
+                            metric == "Mean" ~ "mean_coverage",
+                            metric == "Relative Abundance (%)" ~ "rel_abund",
+                            .default = metric)) %>% 
+  select(-sample_and_metric) %>% # remove original column names
+  filter(!is.na(value)) %>% # remove NAs
+  distinct() # for some reason things were duplicated, removing duplicates
+
+coverm_wide <- coverm_results %>% group_by(genome) %>% 
+  pivot_wider(names_from = metric, values_from = value) %>% # convert to semi-wide with columns for genome and sample
+  type_convert() %>% ungroup() %>% select(!reads_sample)
+
+coverm_wide_relabund = coverm_wide %>% select(c(genome, binning_sample, rel_abund)) %>% drop_na() %>% mutate(genome = ifelse(genome == "unmapped", paste0("unmapped_", binning_sample), genome))
+
+coverm_wide_mean = coverm_wide %>% select(c(genome, binning_sample, mean_coverage)) %>% drop_na() 
+#%>% select(!binning_sample)
+
+coverm_wide_covered = coverm_wide %>% select(c(genome, binning_sample, covered_bases))  
+#%>% drop_na()%>% select(!binning_sample)
+
+coverm_wide_var = coverm_wide %>% select(c(genome, binning_sample, variance)) %>% drop_na() 
+#%>% select(!binning_sample)
+
+coverm_wide_length = coverm_wide %>% select(c(genome, binning_sample, length)) %>% drop_na()
+#%>% select(!binning_sample)
+
+coverm_condense = left_join(coverm_wide_relabund, coverm_wide_mean, by = c("genome", "binning_sample"))
+coverm_condense = left_join(coverm_condense, coverm_wide_covered, by = c("genome", "binning_sample"))
+coverm_condense = left_join(coverm_condense, coverm_wide_var, by = c("genome", "binning_sample"))
+coverm_condense = left_join(coverm_condense, coverm_wide_length, by = c("genome", "binning_sample"))
+
+coverm_condense = coverm_condense  %>% mutate(percent_bin_bases_covered =  covered_bases / length * 100)
+# make sure columns have the right format, making this variable to filter our spurrious hits
+
+#Merge these data with metadata (going to have to merge metadata with binning sample and gtdb/checkm with genome)
+
+colnames(coverm_condense)[colnames(coverm_condense) == "binning_sample"] <- "SampleID"
+
+coverm_meta = left_join(Kenya_meta, coverm_condense, by = "SampleID")
+
+
+coverm_meta = left_join(coverm_meta, Kenya_quality, by = "genome")
+
+#Make domain unmapped for unmapped samples 
+
+coverm_meta <- coverm_meta %>% mutate(Domain = ifelse(grepl("unmapped", genome), "unmapped", Domain))
+
+#Exclude all samples that are not Lake Victoria and diatom samples
+coverm_meta = coverm_meta %>% filter(!SampleID.x == "samp_4327", !SampleID.x == "samp_4328", !SampleID.x == "samp_4329", !SampleID.x == "samp_4330", !SampleID.x == "samp_4455", !SampleID.x == "samp_4456", !SampleID.x == "samp_4453", !SampleID.x == "samp_4315", !SampleID.x == "samp_4316")
+
+#Rename or take out samples from 2022 being used or not:
+
+#Exclude bloom gradient boat since it is just basically homa bay sample
+
+coverm_meta = coverm_meta %>% filter(!SampleID.x == "samp_4325", !SampleID.x == "samp_4326")
+
+#Change samp_4323 and samp_4324 to Homa Bay water intake for ammended site name
+
+coverm_meta = coverm_meta %>%   mutate(ammended_site_name = ifelse(SampleID.x %in% c("samp_4323", "samp_4324"), "Homa Bay Water Intake", ammended_site_name))
+
+#Change samp_4321 and samp_4322 to Homa Bay Pier for ammended site name
+coverm_meta = coverm_meta %>%   mutate(ammended_site_name = ifelse(SampleID.x %in% c("samp_4321", "samp_4322"), "Homa Bay Pier", ammended_site_name))
+
+
+#################Write csv of main file 
+write.csv(coverm_meta, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/coverm_gtdb_checkm_metaMar62024.csv")
+
+#################Read csv of main file 
+coverm_meta = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/coverm_gtdb_checkm_metaMar62024.csv")
+dim(coverm_meta)
+#[1] 158840     66
+
+#Normalize results from samples that have replicates (2022)
+
+#1. Pull all 2022 samples 
+coverm_22 = coverm_meta %>% filter(year == "2022")
+dim(coverm_22)
+#1] 79420    59
+
+coverm_23 = coverm_meta %>% filter(year == "2023")
+dim(coverm_23)
+#[1] 87362    59
+
+#2. Group by ammended_sitename then genome, take average for each genome 
+coverm_comm_22 = coverm_22 %>% filter(!Domain == "unmapped") %>% group_by(SampleName) %>% mutate(rel_abund_norm = (rel_abund/sum(rel_abund)*50))
+dim(coverm_comm_22)
+#[1] 79400    60
+
+coverm_cyano_22 = coverm_22 %>% filter(Phylum == "Cyanobacteria") %>% filter(!Domain == "unmapped") %>% group_by(SampleName) %>% mutate(rel_abund_norm = (rel_abund/sum(rel_abund)*50))
+
+coverm_comm_23 = coverm_23 %>% filter(!Domain == "unmapped") %>% group_by(SampleName) %>% mutate(rel_abund_norm = (rel_abund/sum(rel_abund)*100))
+dim(coverm_comm_23)
+#[1] 87340    60
+
+coverm_cyano_23 = coverm_23 %>% filter(Phylum == "Cyanobacteria") %>% filter(!Domain == "unmapped") %>% group_by(SampleName) %>% mutate(rel_abund_norm = (rel_abund/sum(rel_abund)*100))
+
+
+#For Community: Exclude unmapped reads and normalize to 100% + add coverm_22 to coverm_23
+coverm_comm = rbind(coverm_comm_22, coverm_comm_23)
+dim(coverm_comm)
+#[1] 158800     64
+
+
+#For Cyanobacteria: Exclude unmapped reads and normalize to 100%
+coverm_cyano = rbind(coverm_cyano_22, coverm_cyano_23)
+dim(coverm_cyano)
+#[1] 17000    64
+
+#Order Samples to appear in geographically correct order in plot 
+
+#community-by hand
+#coverm_comm$ammended_site_name <- factor(coverm_comm$ammended_site_name, levels = c("Homa Bay Pier","Homa Bay Water Intake", "Homa Bay", "Soklo", "Mbita east", "Mbita west", "Asembo Bay", "Ndere Island", "Mid Gulf", "Kisumu Harbor", "Dunga","Nyando River","Sondu River Bridge", "Sondu River Shore", "Sondu Miriu", "Kibuon River", "Southern Mid-Gulf", "Awach River mouth", "Ingra", "Kowuor", "Oluch", "Sikli", "Mirunda", "Mbita East", "Mbita West", "Bridge Island", "Bondo", "Yala River Mouth", "Rosinga Channel", "South Rosinga"))
+
+#Community using site number
+coverm_comm$site_number <- factor(coverm_comm$site_number, levels = unique(sort(as.numeric(levels(coverm_comm$site_number)))))
+
+#Cyanobacteria-ordering by hand
+#coverm_cyano$ammended_site_name <- factor(coverm_cyano$ammended_site_name, levels = c("Homa Bay Pier","Homa Bay Water Intake", "Homa Bay", "Soklo", "Mbita east", "Mbita west", "Asembo Bay", "Ndere Island", "Mid Gulf", "Kisumu Harbor", "Dunga","Nyando River","Sondu River Bridge", "Sondu River Shore", "Sondu Miriu", "Kibuon River", "Southern Mid-Gulf", "Awach River mouth", "Ingra", "Kowuor", "Oluch", "Sikli", "Mirunda", "Mbita East", "Mbita West", "Bridge Island", "Bondo", "Yala River Mouth", "Rosinga Channel", "South Rosinga"))
+
+#Cyanobacteria by site number
+site_numbers = Kenya_meta %>% select(c("site_number", "SampleID")) %>% mutate(SampleID.x = SampleID)
+coverm_cyano2 = left_join(coverm_cyano, site_numbers, by = "SampleID.x")
+dim(coverm_cyano2)
+
+coverm_cyano2$site_number.x <- as.numeric(coverm_cyano2$site_number.x)
+coverm_cyano2$site_number.x <- factor(coverm_cyano2$site_number.x, levels = unique(sort(coverm_cyano2$site_number.x)))
+coverm_cyano = coverm_cyano2
+                                         
+#Reordering within facets: 
+
+#community
+coverm_comm2 <- coverm_comm %>%
+  group_by(year, SampleID.x, genome, Phylum, ammended_site_name, site_name_sitenumber, site_number) %>%
+  mutate(Phylum = if_else(rel_abund < 0.1, "Other (Less than 1%)", Phylum)) %>%
+  summarise(rel_abund_norm = sum(rel_abund_norm))
+
+#Making a community df without other
+coverm_comm_noother <- coverm_comm %>%
+  group_by(year, SampleID.x, genome, Phylum, ammended_site_name, site_name_sitenumber, site_number) %>%
+  summarise(rel_abund_norm = sum(rel_abund_norm))
+
+#Community by hand
+#coverm_comm2$ammended_site_name <- factor(coverm_comm2$ammended_site_name, levels = c("Homa Bay Pier","Homa Bay Water Intake", "Homa Bay", "Soklo", "Mbita east", "Mibita west", "Asembo Bay", "Ndere Island", "Mid Gulf", "Kisumu Harbor", "Dunga","Nyando River","Sondu River Bridge", "Sondu River Shore", "Sondu Miriu", "Kibuon River", "Southern Mid-Gulf", "Awach River mouth", "Bala Rawi", "Ingra", "Kowuor", "Oluch", "Sikli", "Mirunda", "Mbita East", "Mbita West", "Bridge Island", "Bondo", "Yala River Mouth", "Rosinga Channel", "South Rosinga"))
+
+#Community ordering by site number
+coverm_comm2$site_number <- factor(coverm_comm2$site_number, levels = unique(sort(as.numeric(levels(coverm_comm2$site_number)))))
+
+
+#cyanobacteria
+coverm_cyano2 <- coverm_cyano %>%
+  group_by(year, SampleID.x, genome, Genus, ammended_site_name, site_name_sitenumber, site_number.x) %>%
+  summarise(rel_abund_norm = sum(rel_abund_norm))
+
+#Cyanobacteria reordering by hand
+#coverm_cyano2$ammended_site_name <- factor(coverm_cyano2$ammended_site_name, levels = c("Homa Bay Pier","Homa Bay Water Intake", "Homa Bay", "Soklo", "Mbita east", "Mibita west", "Asembo Bay", "Ndere Island", "Mid Gulf", "Kisumu Harbor", "Dunga","Nyando River","Sondu River Bridge", "Sondu River Shore", "Sondu Miriu", "Kibuon River", "Southern Mid-Gulf", "Awach River mouth", "Bala Rawi", "Ingra", "Kowuor", "Oluch", "Sikli", "Mirunda", "Mbita East", "Mbita West", "Bridge Island", "Bondo", "Yala River Mouth", "Rosinga Channel", "South Rosinga"))
+
+#Cyanobacteria by site number
+coverm_cyano2$site_number.x <- factor(coverm_cyano2$site_number.x, levels = unique(sort(coverm_cyano2$site_number.x)))
+
+#Rename any phyla for community level to ensure clarity from GTDB annotations
+coverm_comm3 = coverm_comm2 %>% mutate(Phylum = ifelse(Phylum == "Myxococcota_A", "Myxococcota", Phylum))
+
+
+#Sum genus and phyla values so they appear as 1 observation per sample/phyla or genus 
+
+#Comm
+coverm_comm_exp <- coverm_comm3 %>% select(!genome) %>% group_by(ammended_site_name, Phylum, year, site_name_sitenumber, site_number, ) %>% summarize(sum_rel_abund_norm = sum(rel_abund_norm))
+
+coverm_comm_noother = coverm_comm_noother %>% select(!genome) %>% group_by(ammended_site_name, Phylum, year, site_name_sitenumber, site_number, ) %>% summarize(sum_rel_abund_norm = sum(rel_abund_norm))
+
+#Cyano
+coverm_cyano_exp <- coverm_cyano2 %>% select(!genome) %>% group_by(ammended_site_name, Genus, year, site_name_sitenumber, site_number.x) %>% summarize(sum_rel_abund_norm = sum(rel_abund_norm))
+
+```
+
+7.5. Check 2022 replicate samples are similar
+```{r}
+#Group by ammended_sitename then genome, take average for each genome 
+coverm_comm_22 = coverm_22 %>% filter(!Domain == "unmapped") %>% group_by(SampleName) %>% mutate(rel_abund_norm = (rel_abund/sum(rel_abund)*100))
+dim(coverm_comm_22)
+#[1] 79400    60
+
+coverm_cyano_22 = coverm_22 %>% filter(Phylum == "Cyanobacteria") %>% filter(!Domain == "unmapped") %>% group_by(SampleName) %>% mutate(rel_abund_norm = (rel_abund/sum(rel_abund)*100))
+
+#Ordering samples
+coverm_comm_22$site_number <- factor(coverm_comm_22$site_number, levels = unique(sort(as.numeric(levels(coverm_comm_22$site_number)))))
+
+#Cyanobacteria by site number
+coverm_cyano_222 = left_join(coverm_cyano_22, site_numbers, by = "SampleID.x")
+dim(coverm_cyano_222)
+
+coverm_cyano_222$site_number.x <- as.numeric(coverm_cyano_222$site_number.x)
+coverm_cyano_222$site_number.x <- factor(coverm_cyano_222$site_number.x, levels = unique(sort(coverm_cyano_222$site_number.x)))
+coverm_cyano = coverm_cyano_222
+                                         
+
+#Reordering within facets: 
+
+#community
+coverm_comm222 <- coverm_comm_22 %>%
+  group_by(year, SampleID.x, genome, Phylum, ammended_site_name, site_name_sitenumber, site_number) %>%
+  mutate(Phylum = if_else(rel_abund < 0.1, "Other (Less than 1%)", Phylum)) %>%
+  summarise(rel_abund_norm = sum(rel_abund_norm))
+
+
+#Community ordering by site number
+coverm_comm222$site_number <- factor(coverm_comm222$site_number, levels = unique(sort(as.numeric(levels(coverm_comm222$site_number)))))
+
+
+#cyanobacteria
+coverm_cyano2222 <- coverm_cyano %>%
+  group_by(year, SampleID.x, genome, Genus, ammended_site_name, site_name_sitenumber, site_number.x) %>%
+  summarise(rel_abund_norm = sum(rel_abund_norm))
+
+#Cyanobacteria by site number
+coverm_cyano2222$site_number.x <- factor(coverm_cyano2222$site_number.x, levels = unique(sort(coverm_cyano2222$site_number.x)))
+
+#Rename any phyla for community level to ensure clarity from GTDB annotations
+coverm_comm2222 = coverm_comm222 %>% mutate(Phylum = ifelse(Phylum == "Myxococcota_A", "Myxococcota", Phylum))
+
+
+#Sum genus and phyla values so they appear as 1 observation per sample/phyla or genus 
+
+#Comm
+coverm_comm_exp22 <- coverm_comm2222 %>% select(!genome) %>% group_by(SampleID.x, Phylum, year, site_name_sitenumber, site_number, ammended_site_name) %>% summarize(sum_rel_abund_norm = sum(rel_abund_norm))
+
+#Cyano
+coverm_cyano_exp22 <- coverm_cyano2222 %>% select(!genome) %>% group_by(SampleID.x, Genus, year, site_name_sitenumber, site_number.x, ammended_site_name) %>% summarize(sum_rel_abund_norm = sum(rel_abund_norm))
+
+###PLOT COMMUNITY 
+n <- 180
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+col_vector[17] <- "lightpink"
+col_vector[3] <- "green4"
+col_vector[9] <- "lightgreen"
+col_vector[2] <- "skyblue"
+col_vector[4] <- "salmon"
+col_vector[1] <- "gray"
+col_vector[6] <- "lavender"
+
+#Add 2023-Rivers to year column to separate correctly 
+coverm_comm_exp22$year <- ifelse(coverm_comm_exp22$site_name_sitenumber %in% c("12. Nyando River","13. Sondu River Bride","14. Sondu River Shore", "16. Kibuon River"), paste0(coverm_comm_exp22$year, "-Rivers"), coverm_comm_exp22$year)
+
+
+#Final figure: 
+
+ ggplot(coverm_comm_exp22, aes(SampleID.x, sum_rel_abund_norm, fill = fct_reorder(Phylum, -sum_rel_abund_norm))) +
+  geom_bar(stat = "identity", width = 0.93) +
+  labs(y = "Relative Abundance (%)", x = "Sampling Site") +
+  scale_x_discrete(guide = guide_axis(angle = 90)) +
+  scale_fill_manual(values = col_vector) +
+  scale_y_continuous(expand=c(0,0)) + #fixes expansion issue but changes axis value on y axis, need it back to 0 to 100
+  theme_bw() +
+  guides(fill = guide_legend(title = "Phyla")) +
+  ggtitle("Winam Gulf: Total Bac/Archaea") +  
+  facet_grid(~year, scales = "free_x", space = "free_x") + guides(fill = guide_legend(title = "Phyla")) + 
+  theme(axis.text.x = element_text(size = 8, vjust = 1.2, face = "bold"), axis.text.y = element_text(size = 8, face = "bold"), strip.text = element_text(size = 10), axis.title.y = element_text(face = "bold"), axis.title.x = element_text(face = "bold"))  + facet_wrap(~ammended_site_name, scales = "free")
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/comm22.png",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/comm22.tiff",width = 12, height =10, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/comm22.svg",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+
+###PLOT CYANOBACTERIA
+
+#make 1% other value
+coverm_cyano_exp222 = coverm_cyano_exp22 %>% mutate(Genus = if_else(sum_rel_abund_norm < 1, "Other (Less than 1%)", Genus))
+
+#Rename any problemmatic genera/missing genera
+coverm_cyano_exp222 = coverm_cyano_exp22  %>% mutate(
+    #Genus = if_else(is.na(Genus) | Genus == "", "Unclassified Cyanobacteria", Genus),
+    Genus = if_else(Genus == "NIES-981", "Cyanobium", Genus),
+    Genus = if_else(Genus == "LMEP-6097", "Caenarcaniphilales", Genus),
+    Genus = if_else(Genus == "UBA5018", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CAIQIA01", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CAIXOZ01", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CBW1002", "Synechococcus", Genus),
+    Genus = if_else(is.na(Genus) | Genus == "", "Unclassified Cyanobacterial Genera", Genus),
+  )
+
+coverm_cyano_exp2222 <- coverm_cyano_exp222 %>% group_by(SampleID.x, ammended_site_name, Genus, year, site_number.x, site_name_sitenumber) %>% summarize(sum_rel_abund_norm = sum(sum_rel_abund_norm))
+n <- 180
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+
+col_vector[1] <- "#9A8DA6"
+col_vector[2] <- "red"
+col_vector[3] <- "blue"
+col_vector[4] <- "yellow"
+col_vector[5] <- "yellow3"
+col_vector[6] <- "#CC5500"
+col_vector[7] <- "lightpink"
+col_vector[8] <- "deeppink"
+col_vector[9] <- "limegreen"
+col_vector[10] <- "lightblue"
+col_vector[11] <- "orange"
+col_vector[12] <- "gray3"
+col_vector[13] <- "#009099"
+col_vector[14] <- "salmon"
+col_vector[15] <- "#8B8000"
+col_vector[16] <- "#00A000"
+
+
+
+#Add 2023-Rivers to year column to separate correctly 
+coverm_cyano_exp2222$year <- ifelse(coverm_cyano_exp2222$site_name_sitenumber %in% c("12. Nyando River","13. Sondu River Bride","14. Sondu River Shore", "16. Kibuon River"), paste0(coverm_cyano_exp2222$year, "-Rivers"), coverm_cyano_exp2222$year)
+
+#Final figure:
+ggplot(coverm_cyano_exp2222, aes(SampleID.x, sum_rel_abund_norm, fill = fct_reorder(Genus, sum_rel_abund_norm))) +
+  geom_bar(stat = "identity", width = 0.93) +
+  labs(y = "Relative Abundance (%)", x = "Sampling Site") +
+  scale_x_discrete(guide = guide_axis(angle = 90)) +
+  scale_fill_manual(values = col_vector) +
+  scale_y_continuous(expand=c(0,0)) + #fixes expansion issue but changes axis value on y axis, need it back to 0 to 100
+  theme_bw() +
+  guides(fill = guide_legend(title = "Genera")) +
+  ggtitle("Winam Gulf: Total Cyanobacteria") +  
+  facet_grid(~year, scales = "free_x", space = "free_x") + guides(fill = guide_legend(title = "Genera")) + 
+  theme(axis.text.x = element_text(size = 8, vjust = 1.2, face = "bold"), axis.text.y = element_text(size = 8, face = "bold"), strip.text = element_text(size = 10), axis.title.y = element_text(face = "bold"), axis.title.x = element_text(face = "bold")) + facet_wrap(~ammended_site_name, scales = "free")
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/cyano22.png",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/cyano22.tiff",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/cyano22.svg",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+```
+
+
+8. Visualize final figure for 2022-2023 Kenya relative abundance figure: Community (Figure 3, First gray panel)
+```{r}
+n <- 180
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+col_vector[17] <- "lightpink"
+col_vector[3] <- "green4"
+col_vector[9] <- "lightgreen"
+col_vector[2] <- "skyblue"
+col_vector[4] <- "salmon"
+col_vector[1] <- "gray"
+col_vector[6] <- "lavender"
+
+#Add 2023-Rivers to year column to separate correctly 
+coverm_comm_exp$year <- ifelse(coverm_comm_exp$site_name_sitenumber %in% c("12. Nyando River","13. Sondu River Bride","14. Sondu River Shore", "16. Kibuon River"), paste0(coverm_comm_exp$year, "-Rivers"), coverm_comm_exp$year)
+
+
+#Final figure: 
+
+ ggplot(coverm_comm_exp, aes(site_name_sitenumber, sum_rel_abund_norm, fill = fct_reorder(Phylum, -sum_rel_abund_norm))) +
+  geom_bar(stat = "identity", width = 0.93) +
+  labs(y = "Relative Abundance (%)", x = "Sampling Site") +
+  scale_x_discrete(guide = guide_axis(angle = 90)) +
+  scale_fill_manual(values = col_vector) +
+  scale_y_continuous(expand=c(0,0)) + #fixes expansion issue but changes axis value on y axis, need it back to 0 to 100
+  theme_bw() +
+  guides(fill = guide_legend(title = "Phyla")) +
+  ggtitle("Winam Gulf: Total Bac/Archaea") +  
+  facet_grid(~year, scales = "free_x", space = "free_x") + guides(fill = guide_legend(title = "Phyla")) + 
+  theme(axis.text.x = element_text(size = 8, vjust = 1.2, face = "bold"), axis.text.y = element_text(size = 8, face = "bold"), strip.text = element_text(size = 10), axis.title.y = element_text(face = "bold"), axis.title.x = element_text(face = "bold")) 
+ 
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_comm_comp_30524.png",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_comm_comp_30524.tiff",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_comm_comp_30524.svg",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+ 
+```
+
+
+8. Visualize final figure for 2022-2023 Kenya relative abundance figure: Cyanobacteria (Second, green panel)
+```{r}
+#List cyanobacterial genera that have a relative abundance of less than 1% in a sample
+low_abund_genera <- coverm_cyano_exp %>%
+  filter(sum_rel_abund_norm < 1) %>%
+  select(Genus, sum_rel_abund_norm)
+
+#make 1% other value
+coverm_cyano_exp2 = coverm_cyano_exp %>% mutate(Genus = if_else(sum_rel_abund_norm < 1, "Other (Less than 1%)", Genus))
+
+#Rename any problemmatic genera/missing genera
+coverm_cyano_exp2 = coverm_cyano_exp2  %>% mutate(
+    #Genus = if_else(is.na(Genus) | Genus == "", "Unclassified Cyanobacteria", Genus),
+    Genus = if_else(Genus == "NIES-981", "Cyanobium", Genus),
+    Genus = if_else(Genus == "LMEP-6097", "Caenarcaniphilales", Genus),
+    Genus = if_else(Genus == "UBA5018", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CAIQIA01", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CAIXOZ01", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CBW1002", "Synechococcus", Genus),
+    Genus = if_else(is.na(Genus) | Genus == "", "Unclassified Cyanobacterial Genera", Genus),
+  )
+
+coverm_cyano_exp3 <- coverm_cyano_exp2 %>% group_by(ammended_site_name, Genus, year, site_number.x, site_name_sitenumber) %>% summarize(sum_rel_abund_norm = sum(sum_rel_abund_norm))
+n <- 180
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+
+col_vector[1] <- "lightpink"
+col_vector[2] <- "#FFDAB9"
+col_vector[3] <- "yellow3"
+col_vector[4] <- "lightblue"
+col_vector[5] <- "deeppink"
+col_vector[6] <- "orange"
+col_vector[7] <- "#8B4513"
+col_vector[8] <- "gray"
+col_vector[9] <- "#CC5500"
+col_vector[10] <- "gray3"
+col_vector[11] <- "#9A8DA6"
+col_vector[12] <- "#009099"
+col_vector[13] <- "#8B8000"
+col_vector[14] <- "salmon"
+col_vector[15] <- "#00A000"
+
+#Add 2023-Rivers to year column to separate correctly 
+coverm_cyano_exp3$year <- ifelse(coverm_cyano_exp3$site_name_sitenumber %in% c("12. Nyando River","13. Sondu River Bride","14. Sondu River Shore", "16. Kibuon River"), paste0(coverm_cyano_exp3$year, "-Rivers"), coverm_cyano_exp3$year)
+
+#Final figure:
+ggplot(coverm_cyano_exp3, aes(site_name_sitenumber, sum_rel_abund_norm, fill = fct_reorder(Genus, sum_rel_abund_norm))) +
+  geom_bar(stat = "identity", width = 0.93) +
+  labs(y = "Relative Abundance (%)", x = "Sampling Site") +
+  scale_x_discrete(guide = guide_axis(angle = 90)) +
+  scale_fill_manual(values = col_vector) +
+  scale_y_continuous(expand=c(0,0)) + #fixes expansion issue but changes axis value on y axis, need it back to 0 to 100
+  theme_bw() +
+  guides(fill = guide_legend(title = "Genera")) +
+  ggtitle("Winam Gulf: Total Cyanobacteria") +  
+  facet_grid(~year, scales = "free_x", space = "free_x") + guides(fill = guide_legend(title = "Genera")) + 
+  theme(axis.text.x = element_text(size = 8, vjust = 1.2, face = "bold"), axis.text.y = element_text(size = 8, face = "bold"), strip.text = element_text(size = 10), axis.title.y = element_text(face = "bold"), axis.title.x = element_text(face = "bold")) 
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_comp_30524.png",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_comp_30524.tiff",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_comp_30524.svg",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+```
+
+
+8.5. Conduct statistics on significantly different bacterial taxa between samples/sample types
+```{r}
+###COMMUNITY COMPOSTION 
+coverm_comm_exp
+coverm_comm_noother$year <- ifelse(coverm_comm_noother$site_name_sitenumber %in% c("12. Nyando River","13. Sondu River Bride","14. Sondu River Shore", "16. Kibuon River"), paste0(coverm_comm_noother$year, "-Rivers"), coverm_comm_noother$year)
+
+#filter any NAs
+coverm_comm_exp_test <- coverm_comm_exp %>% filter(!is.na(sum_rel_abund_norm))
+
+#Run anova
+anova_result <- aov(sum_rel_abund_norm ~ Phylum * ammended_site_name, data = coverm_comm_exp_test)
+
+#Summary of results
+summary(anova_result)
+anova_result
+
+#Test for cyanobacteria and bacteriodoita 
+coverm_comm_exp_test_filt <- coverm_comm_exp_test %>%
+  filter(Phylum %in% c("Cyanobacteria", "Bacteroidota")) %>%
+  select(ammended_site_name, Phylum, sum_rel_abund_norm)
+
+coverm_comm_nootherfilt <- coverm_comm_noother %>%
+  filter(Phylum %in% c("Cyanobacteria", "Bacteroidota")) %>%
+  select(ammended_site_name, Phylum, sum_rel_abund_norm)
+
+# Perform ANOVA for Cyanobacteria-issue because such small amount
+anova_cyanobacteria <- aov(sum_rel_abund_norm ~ year, 
+                           data = filter(coverm_comm_nootherfilt, Phylum == "Cyanobacteria"))
+
+summary(anova_cyanobacteria)
+anova_cyanobacteria
+
+tukey_cyano <- TukeyHSD(anova_cyanobacteria, "year")
+tukey_cyano
+
+#                        diff       lwr       upr     p adj
+# 2023-2022         -1.036905 -21.41759 19.343785 0.9913039
+# 2023-Rivers-2022 -24.393183 -54.39275  5.606379 0.1279302
+# 2023-Rivers-2023 -23.356279 -50.95186  4.239305 0.1092659
+
+# Perform ANOVA for Bacteroidota
+anova_bacteroidota <- aov(sum_rel_abund_norm ~ year, 
+                          data = filter(coverm_comm_exp_test_filt, Phylum == "Bacteroidota"))
+
+summary(anova_bacteroidota)
+anova_bacteroidota
+#             Df Sum Sq Mean Sq F value   Pr(>F)    
+# year         2  689.4   344.7    15.8 3.23e-05 ***
+# Residuals   26  567.2    21.8                     
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+# Perform Tukey's HSD test
+tukey_bacteroidota <- TukeyHSD(anova_bacteroidota, "year")
+tukey_bacteroidota
+
+# View the results
+# tukey_bacteroidota
+#   Tukey multiple comparisons of means
+#     95% family-wise confidence level
+# 
+# Fit: aov(formula = sum_rel_abund_norm ~ year, data = filter(coverm_comm_exp_test_filt, Phylum == "Bacteroidota"))
+# 
+# $year
+#                       diff       lwr       upr     p adj
+# 2023-2022         2.544741 -2.387029  7.476511 0.4175815
+# 2023-Rivers-2022 17.349960  9.492393 25.207526 0.0000271
+# 2023-Rivers-2023 14.805219  7.567360 22.043078 0.0000780
+```
+
+##############################################################################END FIGURE 3#####################################################################################
+
+################################################### BEGIN FIGURE 4AB ##########################################
+```{r}
+########Set up data frame so I have abundances for all cyanobcterial genera and all phyla rather than using other category
+
+#######Phyla
+#comm
+coverm_comm_ord <- coverm_comm %>%
+  group_by(year, SampleID.x, genome, Phylum, ammended_site_name, site_name_sitenumber, site_number) %>%
+  summarise(rel_abund_norm = sum(rel_abund_norm))
+
+coverm_comm_ord$year <- ifelse(coverm_comm_ord$site_name_sitenumber %in% c("12. Nyando River","13. Sondu River Bride","14. Sondu River Shore", "16. Kibuon River"), paste0(coverm_comm_ord$year, "-Rivers"), coverm_comm_ord$year)
+
+# coverm_comm2$site_number <- factor(coverm_comm2$site_number, levels = unique(sort(as.numeric(levels(coverm_comm2$site_number)))))
+# unique(coverm_comm2$site_number)
+dim(coverm_comm_ord)
+
+coverm_comm_ord2 <- coverm_comm_ord %>% select(!genome) %>% group_by(ammended_site_name, Phylum, year, site_name_sitenumber, site_number) %>% summarize(sum_rel_abund_norm = sum(rel_abund_norm))
+
+dim(coverm_comm_ord2)
+
+######Genera
+#cyano
+coverm_cyano_ord <- coverm_cyano %>%
+  group_by(year, SampleID.x, genome, Genus, ammended_site_name, site_name_sitenumber, site_number.x) %>%
+  summarise(rel_abund_norm = sum(rel_abund_norm))
+
+
+# coverm_cyano2$site_number.x <- factor(coverm_cyano2$site_number.x, levels = unique(sort(coverm_cyano2$site_number.x)))
+# unique(coverm_cyano2$site_number.x)
+
+#Rename any problemmatic phyla for comm
+#coverm_cyano_ord = coverm_cyano_ord %>% mutate(Phylum = ifelse(Phylum == "Myxococcota_A", "Myxococcota", Phylum))-no phylum in df by now
+
+coverm_cyano_ord$year <- ifelse(coverm_cyano_ord$site_name_sitenumber %in% c("12. Nyando River","13. Sondu River Bride","14. Sondu River Shore", "16. Kibuon River"), paste0(coverm_cyano_ord$year, "-Rivers"), coverm_cyano_ord$year)
+
+#give blank genera unknown genera name 
+coverm_cyano_ord$Genus <- ifelse(coverm_cyano_ord$Genus == "", "unclassified", coverm_cyano_ord$Genus)
+coverm_cyano_ord = coverm_cyano_ord %>% mutate(Genus = if_else(Genus == "NIES-981", "Cyanobium", Genus))
+
+
+coverm_cyano_ord2 <- coverm_cyano_ord %>% select(!genome) %>% group_by(ammended_site_name, Genus, year, site_name_sitenumber) %>% summarize(sum_rel_abund_norm = sum(rel_abund_norm))
+
+dim(coverm_cyano_ord)
+dim(coverm_cyano_ord2)
+
+
+```
+
+
+VISUALIZING NMDS OF CYANOBACTERIAL COMPOSITION NORMALIZED TO 100% ABUNDANCE
+```{r}
+#MAKING CYANOBACTERIAL GENERA NMDS PLOT 
+
+#SETTING UP DATA FOR PLOT
+genus_data <- coverm_cyano_ord2 %>% ungroup() %>% select(c(Genus, site_name_sitenumber, sum_rel_abund_norm))
+genus_data = genus_data %>% pivot_wider(names_from = Genus, values_from = sum_rel_abund_norm)
+genus_data <- replace(genus_data, is.na(genus_data), 0)
+genus_data2 <- genus_data[, -1]
+rownames(genus_data2) <- genus_data$site_name_sitenumber
+
+set.seed(59)
+nmds_all = metaMDS(genus_data2, distance = "bray")
+nmds_all
+NMDS_scores_all = as.data.frame(scores(nmds_all)$sites)
+
+#SETTING UP METADATA
+complete_kenya = Kenya_meta %>% filter(!SampleID == "samp_4318",  !SampleID == "samp_4322",  !SampleID == "samp_4324",  !SampleID == "samp_4332",  !SampleID == "samp_4314",  !SampleID == "samp_4315",  !SampleID == "samp_4316" , !SampleID == "samp_4320" , !SampleID == "samp_4308" , !SampleID == "samp_4312", !SampleID == "samp_4310")
+
+dim(complete_kenya)
+#[1] 40 45
+
+complete_kenya = complete_kenya %>% filter(!SampleID == "samp_4327", !SampleID == "samp_4328", !SampleID == "samp_4329", !SampleID == "samp_4330", !SampleID == "samp_4455", !SampleID == "samp_4456", !SampleID == "samp_4453", !SampleID == "samp_4325", !SampleID == "samp_4326")
+
+dim(complete_kenya)
+#[1] 31 45
+
+
+
+complete_kenya = complete_kenya %>% mutate(year2 = as.factor(year))
+
+complete_kenya2 <- complete_kenya %>%
+  mutate(nitrate = as.character(nitrate)) %>%  # Convert to character type
+  mutate(nitrate = if_else(nitrate == "ND", "0", nitrate))
+
+complete_kenya2 <- complete_kenya2 %>%
+  mutate(nitrate = as.numeric(nitrate),  # Convert to numeric
+         diss_phosp = as.numeric(diss_phosp),  # Convert to numeric
+         diss_np = nitrate / diss_phosp,  # Calculate diss_np
+         diss_category = case_when(
+           diss_np < 0.99 ~ "Low",
+           diss_np >= 1 & diss_np <= 2.9 ~ "Medium",
+           diss_np >= 3 & diss_np <= 5 ~ "High",
+           diss_np > 5 & diss_np <= 10 ~ "Higher",
+           diss_np > 10.1 ~ "Very High",
+           TRUE ~ NA_character_  # Default case if none of the conditions are met
+         ))
+
+complete_kenya_envfit = complete_kenya2 %>% select(c(site_name_sitenumber, depth, pH, temp, diss_oxygen, conduc, secchi, turbidity, diss_phosp, ammonia, nitrate, cyano_sonde, total_sonde, year, diss_np, LH_classifier))
+
+complete_kenya_envfit2 = complete_kenya_envfit %>% mutate(ammonia = as.character(ammonia)) %>%  # Convert to character type
+  mutate(ammonia = if_else(ammonia == "ND", "0", ammonia))
+
+complete_kenya_envfit3 = complete_kenya_envfit2 %>% mutate(depth = as.numeric(depth)) %>% mutate(pH = as.numeric(pH)) %>% mutate(temperature = as.numeric(temp)) %>% select(!temp)  %>% mutate(DO = as.numeric(diss_oxygen)) %>% select(!diss_oxygen)  %>% mutate(conductivity = as.numeric(conduc)) %>% select(!conduc) %>% mutate(turbidity = as.numeric(turbidity)) %>% mutate(ammonia = as.numeric(ammonia)) %>% mutate('dissolved N:P' = diss_np) %>% mutate(cyanos = cyano_sonde) %>% mutate(chlorophyll = total_sonde) %>% mutate('dissolved p' = diss_phosp) %>% select(!c(diss_phosp, total_sonde, cyano_sonde, diss_np))
+
+# create df with only environmental data 
+set.seed(59)
+vf <- envfit(nmds_all,complete_kenya_envfit3, add = TRUE, na.rm = TRUE)
+#vf <- envfit(nmds_all ~ ., data = complete_kenya, na.rm = TRUE)
+
+vf
+
+NMDS_vectors <- as.data.frame(scores(vf, display = "vectors"))
+NMDS_vectors <- cbind (NMDS_vectors, var = rownames(NMDS_vectors))
+
+
+NMDS_scores_all$site_name_sitenumber = complete_kenya_envfit2$site_name_sitenumber
+NMDS_scores_all$LH_classifier = complete_kenya_envfit2$LH_classifier
+
+NMDS_scores_all$year = complete_kenya_envfit2$year
+NMDS_scores_all2 = NMDS_scores_all %>% mutate(year = as.factor(year))
+
+#Add site number 
+NMDS_scores_all2$site_number <- as.numeric(gsub("\\D+", "", NMDS_scores_all2$site_name_sitenumber))
+
+
+
+
+###PLOTTING
+
+shape_assignments <- c(11, 1, 13, 15)
+
+NMDS_scores_all2$LH_classifier <- factor(NMDS_scores_all2$LH_classifier, 
+                                         levels = c("Nearshore", "Offshore", "River", "Near/Outside Rosinga Channel"))
+
+ggplot(NMDS_scores_all2) +
+  geom_star(mapping = aes(x = NMDS1, y = NMDS2, starshape = LH_classifier, fill = year), size = 4.5, alpha = 0.8) +
+  coord_fixed() + ## need aspect ratio of 1!
+  geom_segment(data = NMDS_vectors,
+               aes(x = 0, xend = NMDS1, y = 0, yend = NMDS2),
+               arrow = arrow(length = unit(0.25, "cm")), color = "dark grey") +
+  geom_text(data = NMDS_vectors, aes(x = NMDS1, y = NMDS2, label = var), size = 3) +
+  geom_text(data = NMDS_scores_all2, aes(x = NMDS1, y = NMDS2, label = site_number), size = 2) +
+  scale_shape_manual(values = c(11,1,13,15)) + 
+  scale_fill_manual(values = c("2022" = "orange", "2023" = "dodgerblue")) + theme_bw() + 
+  theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_blank(),
+        panel.grid.major = element_line(color = 'light grey'),
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        axis.text.x = element_text(color = "black", size = 12),
+        axis.text.y = element_text(color = "black", size = 12),
+        axis.title.x = element_text(color = "black", size = 15),
+        axis.title.y = element_text(color = "black", size = 15),
+        legend.text =element_text(size = 12),
+        legend.key = element_rect(fill = NA),
+        legend.title = element_text(size = 15)) + 
+   labs(starshape = "Station Location", fill = "Year")
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_nmds_allgenera_stat_names.png",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_nmds_allgenera_stat_names.svg",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_nmds_allgenera_stat_names.tiff",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+
+#PLOTTING WITHOUT STATION NUMBERS
+#shape_assignments <- c(11, 1, 13, 15)
+
+ggplot(NMDS_scores_all2) +
+  geom_star(mapping = aes(x = NMDS1, y = NMDS2, starshape = LH_classifier, fill = year), size = 4.5, alpha = 0.8) +
+  coord_fixed() + ## need aspect ratio of 1!
+  geom_segment(data = NMDS_vectors,
+               aes(x = 0, xend = NMDS1, y = 0, yend = NMDS2),
+               arrow = arrow(length = unit(0.25, "cm")), color = "dark grey") +
+  geom_text(data = NMDS_vectors, aes(x = NMDS1, y = NMDS2, label = var), size = 3) +
+  scale_shape_manual(values = c(11,1,13,15)) + 
+  scale_fill_manual(values = c("2022" = "orange", "2023" = "dodgerblue")) + theme_bw() + 
+  theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_blank(),
+        panel.grid.major = element_line(color = 'light grey'),
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        axis.text.x = element_text(color = "black", size = 12),
+        axis.text.y = element_text(color = "black", size = 12),
+        axis.title.x = element_text(color = "black", size = 15),
+        axis.title.y = element_text(color = "black", size = 15),
+        legend.text =element_text(size = 12),
+        legend.key = element_rect(fill = NA),
+        legend.title = element_text(size = 15)) + 
+   labs(starshape = "Station Location", fill = "Year")
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_nmds_allgenera_nostat_names.png",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_nmds_allgenera_nostat_names.svg",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/k22-23_cyano_nmds_allgenera_nostat_names.tiff",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+
+#PLOTTING WITHOUT GRID LINES OR STATION NUMBERS
+
+ggplot(NMDS_scores_all2) +
+  geom_star(mapping = aes(x = NMDS1, y = NMDS2, starshape = LH_classifier, fill = year), size = 4.5, alpha = 0.8) +
+  coord_fixed() +  # Need aspect ratio of 1!
+  geom_segment(data = NMDS_vectors,
+               aes(x = 0, xend = NMDS1, y = 0, yend = NMDS2),
+               arrow = arrow(length = unit(0.25, "cm")), color = "dark grey") +
+  geom_text(data = NMDS_vectors, aes(x = NMDS1, y = NMDS2, label = var), size = 3) +
+  scale_shape_manual(values = c(11, 1, 13, 15)) + 
+  scale_fill_manual(values = c("2022" = "orange", "2023" = "dodgerblue")) + 
+  theme_bw() + 
+  theme(panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_blank(),  # Remove major grid lines
+        panel.grid.minor = element_blank(),  # Remove minor grid lines
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        axis.text.x = element_text(color = "black", size = 12),
+        axis.text.y = element_text(color = "black", size = 12),
+        axis.title.x = element_text(color = "black", size = 15),
+        axis.title.y = element_text(color = "black", size = 15),
+        legend.text = element_text(size = 12),
+        legend.key = element_rect(fill = NA),
+        legend.title = element_text(size = 15)) + 
+   labs(starshape = "Station Location", fill = "Year")
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/nmds_cyano_nogrid.png",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/nmds_cyano_nogrid.svg",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/nmds_cyano_nogrid.tiff",width = , height =5, dpi=300, scale =2, limitsize = FALSE))
+
+```
+
+
+MAKING FIGURE 4A, NON-NORMALIZED CYANOBACTERIAL GENERA COMPOSITION MAKEUP
+```{r}
+####Get data ready 
+coverm_meta
+
+
+#Normalize results from samples that have replicates
+
+#1. Pull all 2022 samples 
+coverm_22 = coverm_meta %>% filter(year == "2022")
+dim(coverm_22)
+#1] 79420    59
+
+#2. Group by ammended_sitename then genome, take average for each genome 
+coverm_cyano_22_nonorm = coverm_22 %>% filter(Phylum == "Cyanobacteria") %>% filter(!Domain == "unmapped") %>% group_by(SampleName) %>% mutate(rel_abund = (rel_abund/sum(rel_abund)))
+dim(coverm_cyano_22_nonorm)
+# [1] 7650   65
+coverm_cyano_22_nonorm2 = coverm_cyano_22_nonorm %>% group_by(site_name_sitenumber, genome) %>% distinct()
+dim(coverm_cyano_22_nonorm2)
+#[1] 3060   65
+
+coverm_comm_23_nonorm = coverm_23 %>% filter(!Domain == "unmapped") %>% filter(Phylum == "Cyanobacteria")
+dim(coverm_comm_23_nonorm)
+#[1] 9350   65
+
+coverm_cyano_nonorm = rbind(coverm_cyano_22_nonorm2, coverm_comm_23_nonorm)
+dim(coverm_cyano_nonorm)
+#[1] 12410    65
+
+coverm_cyano_nonorm = coverm_cyano_nonorm  %>% mutate(
+    #Genus = if_else(is.na(Genus) | Genus == "", "Unclassified Cyanobacteria", Genus),
+    Genus = if_else(Genus == "NIES-981", "Cyanobium", Genus),
+    Genus = if_else(Genus == "LMEP-6097", "Caenarcaniphilales", Genus),
+    Genus = if_else(Genus == "UBA5018", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CAIQIA01", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CAIXOZ01", "Unclassified Cyanobacterial Genera", Genus),
+    Genus = if_else(Genus == "CBW1002", "Synechococcus", Genus),
+    Genus = if_else(is.na(Genus) | Genus == "", "Unclassified Cyanobacterial Genera", Genus),
+  )
+
+##get columns together to look like coverm_cyano_ord2
+coverm_cyano_nonorm_ord = coverm_cyano_nonorm %>% ungroup() %>% select(c(site_name_sitenumber, Genus, year, rel_abund))
+coverm_cyano_nonorm_ord2 <- coverm_cyano_nonorm_ord %>% 
+  group_by(site_name_sitenumber, Genus) %>% 
+  mutate(sum_rel_abund = sum(rel_abund))
+
+# Step 2: Remove duplicates
+coverm_cyano_nonorm_ord3 <- coverm_cyano_nonorm_ord2 %>% 
+  distinct(site_name_sitenumber, Genus, sum_rel_abund, .keep_all = TRUE)
+
+
+###Make this into Matrix for NMDS and PCA 
+
+##NMDS
+#Make df for genus data
+genus_data_nonorm <- coverm_cyano_nonorm_ord3 %>% ungroup() %>% select(c(Genus, site_name_sitenumber, sum_rel_abund))
+genus_data_nonorm = genus_data_nonorm %>% pivot_wider(names_from = Genus, values_from = sum_rel_abund)
+genus_data_nonorm <- replace(genus_data_nonorm, is.na(genus_data_nonorm), 0)
+genus_data_nonorm2 <- genus_data_nonorm[, -1]
+rownames(genus_data_nonorm2) <- genus_data_nonorm$site_name_sitenumber
+
+#Run NMDS to get points 
+set.seed(59)
+nmds_all = metaMDS(genus_data_nonorm2, distance = "bray")
+nmds_all
+NMDS_scores_all = as.data.frame(scores(nmds_all)$sites)
+
+#Print stress values
+stress_value <- nmds_all$stress
+print(paste("Stress value:", stress_value))
+# "Stress value: 0.0739954562057901"
+
+#Make stress plot
+stressplot_result <- stressplot(nmds_all)
+R2_value <- stressplot_result$R2
+print(paste("R² value:", R2_value))
+
+#Create dataframe to use for 
+complete_kenya_envfit = complete_kenya2 %>% select(c(site_name_sitenumber, depth, pH, temp, diss_oxygen, conduc, secchi, turbidity, diss_phosp, ammonia, nitrate, cyano_sonde, total_sonde, year, diss_np, LH_classifier))
+
+complete_kenya_envfit2 = complete_kenya_envfit %>% mutate(ammonia = as.character(ammonia)) %>%  # Convert to character type
+  mutate(ammonia = if_else(ammonia == "ND", "0", ammonia))
+
+complete_kenya_envfit3 = complete_kenya_envfit2 %>% mutate(depth = as.numeric(depth)) %>% mutate(pH = as.numeric(pH)) %>% mutate(temperature = as.numeric(temp)) %>% select(!temp)  %>% mutate(DO = as.numeric(diss_oxygen)) %>% select(!diss_oxygen)  %>% mutate(conductivity = as.numeric(conduc)) %>% select(!conduc) %>% mutate(turbidity = as.numeric(turbidity)) %>% mutate(ammonia = as.numeric(ammonia)) %>% mutate('dissolved N:P' = diss_np) %>% mutate(cyanos = cyano_sonde) %>% mutate(chlorophyll = total_sonde) %>% mutate('dissolved p' = diss_phosp) %>% mutate(year = as.character(year)) %>% select(!c(diss_phosp, total_sonde, cyano_sonde, diss_np))
+
+str(complete_kenya_envfit3)
+
+#Add main cyano genera rel abundance values to df: microcystis, dolichospermum, planktothrix, cyanobium, vulcanococcus, sphaerospermopsis
+rel_abund_cyano = coverm_cyano_nonorm_ord3 %>% ungroup() %>% select(c(Genus, site_name_sitenumber, sum_rel_abund))
+rel_abund_cyano = rel_abund_cyano %>% pivot_wider(names_from = Genus, values_from = sum_rel_abund)
+rel_abund_cyano = rel_abund_cyano %>% select(c(site_name_sitenumber, Dolichospermum, Microcystis, Planktothrix, Sphaerospermopsis, Cyanobium, Vulcanococcus))
+#rel_abund_cyano2 = rel_abund_cyano %>% mutate('Dolichospermum*' = Dolichospermum) %>% mutate('Microcystis*' = Microcystis) %>% mutate('Planktothrix*' = Planktothrix) %>% mutate('Sphaerospermopsis*' = Sphaerospermopsis) %>% mutate('Cyanobium*' = Cyanobium) %>% mutate('Vulcanococcus*' = Vulcanococcus)
+
+#Merge with env data set
+complete_kenya_envfit_cyano = left_join(complete_kenya_envfit3, rel_abund_cyano, by = "site_name_sitenumber")
+
+# create df with only environmental data 
+set.seed(59)
+vf <- envfit(nmds_all,complete_kenya_envfit_cyano, add = TRUE, na.rm = TRUE)
+
+vf
+
+NMDS_vectors <- as.data.frame(scores(vf, display = "vectors"))
+NMDS_vectors <- cbind (NMDS_vectors, var = rownames(NMDS_vectors))
+
+
+NMDS_scores_all$site_name_sitenumber = complete_kenya_envfit_cyano$site_name_sitenumber
+NMDS_scores_all$LH_classifier = complete_kenya_envfit_cyano$LH_classifier
+
+NMDS_scores_all$year = complete_kenya_envfit_cyano$year
+NMDS_scores_all2 = NMDS_scores_all %>% mutate(year = as.factor(year))
+
+#Add site number 
+NMDS_scores_all2$site_number <- as.numeric(gsub("\\D+", "", NMDS_scores_all2$site_name_sitenumber))
+
+
+#Plotting with station numbers-PLOTTING FIGURE 4A
+shape_assignments <- c(11, 1, 13, 15)
+
+NMDS_scores_all2$LH_classifier <- factor(NMDS_scores_all2$LH_classifier, 
+                                         levels = c("Nearshore", "Offshore", "River", "Near/Outside Rosinga Channel"))
+
+plot = ggplot(NMDS_scores_all2) +
+  geom_star(mapping = aes(x = NMDS1, y = NMDS2, starshape = LH_classifier, fill = year), size = 7, alpha = 0.8) +
+  coord_fixed() + ## need aspect ratio of 1!
+  geom_segment(data = NMDS_vectors,
+               aes(x = 0, xend = NMDS1, y = 0, yend = NMDS2),
+               arrow = arrow(length = unit(0.25, "cm")), color = "dark grey") +
+  geom_text(data = NMDS_vectors, aes(x = NMDS1, y = NMDS2, label = var), size = 5) +
+  geom_text(data = NMDS_scores_all2, aes(x = NMDS1, y = NMDS2, label = site_number), size = 3) +
+  scale_shape_manual(values = c(11,1,13,15)) + 
+  scale_fill_manual(values = c("2022" = "orange", "2023" = "cyan3")) + theme_bw() + 
+  theme(panel.background = element_rect(fill = "white"),
+        panel.grid = element_blank(),
+        panel.grid.major = element_blank(),  # Remove major grid lines
+        panel.grid.minor = element_blank(),
+        panel.border = element_rect(color = "black", fill = NA, size = 1),
+        axis.text.x = element_text(color = "black", size = 12, face = "bold"),
+        axis.text.y = element_text(color = "black", size = 12, face = "bold"),
+        axis.title.x = element_text(color = "black", size = 15, face = "bold"),
+        axis.title.y = element_text(color = "black", size = 15, face = "bold"),
+        legend.text =element_text(size = 12, face = "bold"),
+        legend.key = element_rect(fill = NA),
+        legend.title = element_text(size = 15, face = "bold")) + 
+   labs(starshape = "Station Location", fill = "Year")
+
+plot
+
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/NMDS_CYANO_NOLINE.png",plot, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/NMDS_CYANO_NOLINE.svg",plot, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/NMDS_CYANO_NOLINE.tiff",plot, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+
+
+```
+
+
+Creating Figure 4B: Heatmap
+PUBLICATION READY CORRELATION ANALYSIS OF MAIN CYANO GENERA 
+```{r}
+#Prep data to be used 
+
+complete_kenya_envfit = complete_kenya2 %>% select(c(site_name_sitenumber, depth, pH, temp, diss_oxygen, conduc, secchi, turbidity, diss_phosp, ammonia, nitrate, cyano_sonde, total_sonde, year, diss_np, LH_classifier))
+
+complete_kenya_envfit2 = complete_kenya_envfit %>% mutate(ammonia = as.character(ammonia)) %>%  # Convert to character type
+  mutate(ammonia = if_else(ammonia == "ND", "0", ammonia))
+
+complete_kenya_envfit3 = complete_kenya_envfit2 %>% mutate(depth = as.numeric(depth)) %>% mutate(pH = as.numeric(pH)) %>% mutate(temperature = as.numeric(temp)) %>% select(!temp)  %>% mutate(DO = as.numeric(diss_oxygen)) %>% select(!diss_oxygen)  %>% mutate(conductivity = as.numeric(conduc)) %>% select(!conduc) %>% mutate(turbidity = as.numeric(turbidity)) %>% mutate(ammonia = as.numeric(ammonia)) %>% mutate('dissolved N:P' = diss_np) %>% mutate(cyanos = cyano_sonde) %>% mutate(chlorophyll = total_sonde) %>% mutate('dissolved p' = diss_phosp) %>% select(!c(diss_phosp, total_sonde, cyano_sonde, diss_np))
+
+#Add main cyano genera rel abundance values to df: microcystis, dolichospermum, planktothrix, cyanobium, vulcanococcus, sphaerospermopsis 
+rel_abund_cyano = coverm_cyano_ord2 %>% ungroup() %>% select(c(Genus, site_name_sitenumber, sum_rel_abund_norm))
+rel_abund_cyano = rel_abund_cyano %>% pivot_wider(names_from = Genus, values_from = sum_rel_abund_norm)
+rel_abund_cyano = rel_abund_cyano %>% select(c(site_name_sitenumber, Dolichospermum, Microcystis, Planktothrix, Sphaerospermopsis, Cyanobium, Vulcanococcus))
+
+#Merge with env data set 
+complete_kenya_envfit_cyano = left_join(complete_kenya_envfit3, rel_abund_cyano, by = "site_name_sitenumber")
+
+#Run correlation
+cyano_genera = complete_kenya_envfit_cyano %>% select(c(Dolichospermum, Microcystis, Planktothrix, Sphaerospermopsis, Cyanobium, Vulcanococcus))
+env_data = complete_kenya_envfit_cyano %>% select(c(2:16))
+env_data = env_data %>% mutate(secchi = as.numeric(secchi))
+env_data$LH_classifier <- ifelse(env_data$LH_classifier == "Nearshore", 0.01,
+                                  ifelse(env_data$LH_classifier == "Offshore", 0.12,
+                                  ifelse(env_data$LH_classifier == "River", 0.013,
+                                  ifelse(env_data$LH_classifier == "Near/Outside Rosinga Channel", 0.014,
+                                  NA))))
+
+env_data2 = env_data %>% select(!LH_classifier)
+
+env_data_cor = complete_kenya_envfit_cyano %>% select(c(2:22))
+env_data_cor = env_data_cor %>% mutate(secchi = as.numeric(secchi))
+env_data_cor = env_data_cor %>% select(!LH_classifier)
+
+
+str(env_data)
+
+# genera_cor = cor(cyano_genera, env_data2,  method = "spearman", use = "complete.obs")
+# rcorr(genera_cor)
+
+genera_cor = cor(env_data_cor, method = "spearman", use = "complete.obs")
+sig_genera = rcorr(genera_cor)$P
+
+
+#Make dataset so columns are cyano genera 
+genera_cordf = as.data.frame(genera_cor) %>% select(c(Dolichospermum, Microcystis, Planktothrix, Sphaerospermopsis, Cyanobium, Vulcanococcus))
+genera_cordf <- genera_cordf[!(rownames(genera_cordf) == "year"), ]
+genera_cor_mat = as.matrix(genera_cordf)
+
+genera_cor_mat_t = t(genera_cor_mat)
+
+
+##PUBLICATION FIGURE 
+
+my_palette <- colorRampPalette(c("royalblue1", "white", "red3"))(100)
+
+# Create a pheatmap object with rotated x-axis labels and blue-white-red color scale
+heatmap_cyano = pheatmap(genera_cor_mat_t, 
+         clustering_distance_rows = "correlation",
+         clustering_distance_cols = "correlation",
+         angle_col = 45,
+         color = my_palette, fontsize = 15)  # Set the color scale
+
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/heatmap/2223_cyanoheat.png",heatmap_cyano, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/heatmap/2223_cyanoheat.svg",heatmap_cyano, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/heatmap/2223_cyanoheat.tiff",heatmap_cyano, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+
+#Remove genera from horizontal axis of the heatmap
+#Make dataset so columns are cyano genera 
+genera_cordf = as.data.frame(genera_cor) %>% select(c(Dolichospermum, Microcystis, Planktothrix, Sphaerospermopsis, Cyanobium, Vulcanococcus))
+genera_cordf <- genera_cordf[!(rownames(genera_cordf) == "year"), ]
+rows_to_remove <- c("Microcystis", "Dolichospermum", "Planktothrix", "Cyanobium", "Vulcanococcus", "Sphaerospermopsis")
+genera_cordf_edit <- subset(genera_cordf, !(rownames(genera_cordf) %in% rows_to_remove))
+genera_cor_mat_edit = as.matrix(genera_cordf_edit)
+
+genera_cor_mat_t = t(genera_cor_mat_edit)
+
+
+
+##PUBLICATION FIGURE 4B
+
+my_palette <- colorRampPalette(c("royalblue1", "white", "red3"))(100)
+
+# Create a pheatmap object with rotated x-axis labels and blue-white-red color scale
+heatmap_cyano_edit = pheatmap(genera_cor_mat_t, 
+         clustering_distance_rows = "correlation",
+         clustering_distance_cols = "correlation",
+         angle_col = 45,
+         color = my_palette, fontsize = 15)  # Set the color scale
+
+heatmap_cyano_edit
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/heatmap/2223_cyanoheat_nogen.png",heatmap_cyano_edit, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/heatmap/2223_cyanoheat_nogen.svg",heatmap_cyano_edit, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+
+(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/comm_comp/heatmap/2223_cyanoheat_nogen.tiff",heatmap_cyano_edit, width = 6, height =4, dpi=300, scale =2, limitsize = FALSE))
+
+#Read table for publication--SI Table 3
+genera_cor = as.data.frame(genera_cor_mat_t)
+write.csv(genera_cor, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/tables/genera_core_tableSI.csv")
+
+
+##Calculate p values of these correlations
+genera_cor = cor(env_data_cor, method = "spearman", use = "complete.obs")
+sig_genera = rcorr(genera_cor)$P
+
+```
+
+
+##################################################################BEGINNING OF MAIN TABLE, SI TABLE CREATION, NCBI Submission#################################################
+##################################################################BEGINNING OF MAIN TABLE, SI TABLE CREATION, NCBI Submission#################################################
+##################################################################BEGINNING OF MAIN TABLE, SI TABLE CREATION, NCBI Submission#################################################
+##################################################################BEGINNING OF MAIN TABLE, SI TABLE CREATION, NCBI Submission#################################################
+
+
+11. Pull together publication ready table for all dereplicated bins-SITable2
+```{r}
+#Format table of drep bins to have all the stats
+read_paths <- system("ls /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/22-23_reads/drep_98_commline_depfixed/dereplicated_genomes/*.fa", intern = TRUE) %>% 
+  data_frame(read_path = .)  %>% mutate(sample = read_path %>% str_remove(".*dereplicated_genomes/") %>% str_remove(".fa"))
+
+dim(read_paths)
+#[1] 794   2
+
+drep_bins = read_paths %>% select(sample)
+drep_bins = drep_bins %>% mutate(SampleID = str_extract(sample, "samp_\\d+"))
+kenya_meta_fortable = Kenya_meta %>% select(c(site_name_sitenumber, SampleID))
+drep_bins_meta <- left_join(drep_bins, kenya_meta_fortable, by = "SampleID")
+drep_bins_meta = drep_bins_meta %>% mutate(site_name_sitenumber = str_replace(site_name_sitenumber, "H12\\. Homa Bay Coast", "H1. Homa Bay Coast"))
+
+drep_bins_meta = drep_bins_meta %>% rename(MAG = sample)
+drep_bins_meta = drep_bins_meta %>% rename(Site = site_name_sitenumber)
+Kenya_quality_forSI = Kenya_quality %>% select(c(genome, Domain, Phylum, Class, Order, Family, Genus, Species, checkm_completeness, checkm_contamination, checkm_strain_het))
+
+drep_bins_meta2 = left_join(drep_bins_meta, Kenya_quality_forSI, by = c("MAG" = "genome"))
+drep_bins_meta3 = drep_bins_meta2 %>% rename('Completeness (%)' = checkm_completeness, 'Contamination (%)' = checkm_contamination, 'Strain Heterogeneity (%)' = checkm_strain_het)
+head(drep_bins_meta3)
+dim(drep_bins_meta3)
+#[1] 794  13
+
+#Pull together bakta statistics 
+parent_path <- "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bakta/output"
+
+# List all subdirectories that match the pattern samp_####_concoct_####
+subdirs <- list.dirs(parent_path, full.names = TRUE, recursive = FALSE)
+subdirs <- subdirs[grep("samp_.*_*_.*", basename(subdirs))]
+
+
+# Initialize an empty data frame to store the results
+results <- data.frame(
+  FileName = character(),
+  Length = numeric(),
+  Count = numeric(),
+  GC = numeric(),
+  N50 = numeric(),
+  stringsAsFactors = FALSE
+)
+
+# Function to extract information from a single file
+extract_info <- function(file) {
+  # Print the file being processed
+  cat("Processing file:", file, "\n")
+  
+  # Read the first 5 lines of the file
+  lines <- readLines(file, n = 5)
+  
+  # Print the lines read
+  print(lines)
+  
+  # Extract the values
+  length <- as.numeric(sub("Length: ", "", lines[2]))
+  count <- as.numeric(sub("Count: ", "", lines[3]))
+  gc <- as.numeric(sub("GC: ", "", lines[4]))
+  n50 <- as.numeric(sub("N50: ", "", lines[5]))
+  
+  # Extract the file name without the extension
+  file_name <- sub("\\.txt$", "", basename(file))
+  
+  # Create a data frame with the extracted values
+  data.frame(
+    FileName = file_name,
+    Length = length,
+    Count = count,
+    GC = gc,
+    N50 = n50,
+    stringsAsFactors = FALSE
+  )
+}
+
+# Loop over each subdirectory and find the .txt files
+for (subdir in subdirs) {
+  txt_files <- list.files(subdir, pattern = "samp_.*_*_.*\\.txt", full.names = TRUE)
+  
+  # Process each .txt file found
+  for (file in txt_files) {
+    file_info <- extract_info(file)
+    results <- bind_rows(results, file_info)
+  }
+}
+
+#Edit table
+SItable2 = left_join(drep_bins_meta3, results, by = c("MAG" = "FileName"))
+SItable2 = SItable2 %>% rename("Size (Mbp)" = Length, "No. of Contigs" = Count, "GC Content (%)" = GC)
+SItable2 = SItable2 %>% mutate(`Size (Mbp)` = `Size (Mbp)`/1000000)
+dim(SItable2)
+#Download 
+write.csv(SItable2, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/SITable2.csv")
+
+#Add accession # to table and year
+
+SItable2 = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/SITable2.csv")
+SItable2 = SItable2 %>% select(!X)
+
+#Adding year 
+yeark = Kenya_meta %>% select(c(year, SampleID))
+
+SItable2 = left_join(SItable2, yeark, by = "SampleID")
+
+```
+
+
+12. Make gtdb taxonomy and ncbi taxonomy available    
+```{r}
+#########1. Sym link all gtdb folders with sample names into my directory 
+#set_55
+read_paths <- system("ls -d /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/samp_*/bins/GTDB", intern = TRUE) %>% 
+  data_frame(original_path = .) %>%
+  filter(str_detect(original_path, "^/geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/samp_\\d+/bins/GTDB")) %>%
+  mutate(sample = original_path %>% str_extract("samp_\\d+"),   
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/NCBI_mag_sub/sym_link_55_57/{sample}_GTDB"))
+
+file.symlink(read_paths$original_path, read_paths$new_path)
+
+#set_57
+read_paths <- system("ls -d /geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/samp_*/bins/GTDB", intern = TRUE) %>% 
+  data_frame(original_path = .) %>%
+  filter(str_detect(original_path, "^/geomicro/data2/kiledal/GLAMR/data/projects/set_57/metagenomes/samp_\\d+/bins/GTDB")) %>%
+  mutate(sample = original_path %>% str_extract("samp_\\d+"),   
+         new_path = str_glue("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/NCBI_mag_sub/sym_link_55_57/{sample}_GTDB"))
+
+file.symlink(read_paths$original_path, read_paths$new_path)
+
+########2. Run python conversion script, pulled from GTDB Github: https://github.com/Ecogenomics/GTDBTk/blob/ce3ead34182f4adef16e96aa4ade5cc2de5e05b3/scripts/gtdb_to_ncbi_majority_vote.py#L4
+
+#To run a single file: python gtdb_to_ncbi_majority_vote.py --gtdbtk_output_dir /geomicro/data2/kiledal/GLAMR/data/projects/set_55/metagenomes/samp_4307/bins/GTDB --output_file test_tax_ncbi.tsv --bac120_metadata_file /geomicro/data21/lnhart/references/gtdbtk/bac120_metadata.tsv.gz
+
+#To run all files: looped bash script
+ #lnhart@cayman:/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/NCBI_mag_sub$ python run_gtdb_to_ncbi.py 
+
+#####3. Read in the data files 
+# Define the pattern to match the TSV files
+file_pattern <- "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/NCBI_mag_sub/sym_link_55_57/samp_*_GTDB/samp_*_ncbi_tax.tsv"
+
+# List all the files matching the pattern
+tsv_files <- Sys.glob(file_pattern)
+
+# Function to read a single TSV file
+read_tsv_file <- function(file) {
+  read_tsv(file, col_types = cols())
+}
+
+# Read all the TSV files and combine them into a single data frame
+combined_df <- tsv_files %>%
+  map_df(read_tsv_file)
+
+#Filter for genomes only needed in file dataframe, should be 991
+ncbi_mag_tax = left_join(mags_sites_samplename23, combined_df, by = c("MAG" = "Genome ID"))
+dim(ncbi_mag_tax)
+#[1] 991 130
+
+###4. Separate NCBI classification column by the orders and such and create column with highest level of classification 
+ncbi_mag_tax = ncbi_mag_tax %>% separate(`Majority vote NCBI classification`, into = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species"), sep = ";[a-z]__") %>%  mutate(Domain = str_remove(Domain, "d__"))
+
+##5. Make organism new and most specific tax name 
+#Make sample name
+ncbi_mag_tax <- ncbi_mag_tax %>%
+  mutate_at(vars(Species, Genus, Family, Order, Class, Phylum), ~na_if(., ""))
+
+ncbi_mag_tax <- ncbi_mag_tax %>%
+  mutate(
+    sample_name_ncbi = case_when(
+      !is.na(Species) ~ Species,
+      !is.na(Genus) ~ paste(Genus, "sp."),
+      !is.na(Family) ~ paste(Family, "bacterium"),
+      !is.na(Order) ~ paste(Order, "bacterium"),
+      !is.na(Class) & is.na(Order) ~ paste(Class, "bacterium"),
+      !is.na(Phylum) & is.na(Class) & is.na(Order) ~ paste(Phylum, "bacterium"),
+      TRUE ~ paste("Unknown", Phylum)
+    )) %>% unite(sample_name_ncbi_full, sample_name_ncbi, seqid, Site.x, year, sep = "_", remove = FALSE)
+
+dim(ncbi_mag_tax)
+
+#add numbering to full sample name to prevent duplicates
+ncbi_mag_tax$sample_name_ncbi_full <- make.unique(ncbi_mag_tax$sample_name_ncbi_full, sep = "_")
+
+#Write csv 
+write.csv(ncbi_mag_tax, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/updated_ncbi_tax.csv")
+
+
+###6. Read in csv needing to be updated (note from NCBI about problematic taxa naming)
+need_update = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/Taxonomy_for_SUB14509980.csv")
+head(need_update)
+dim(need_update)
+#[1] 567   4
+
+##7. Select what is needed from other df and join dfs
+ncbi_mag_tax_select = ncbi_mag_tax %>% select(c(sample_name, sample_name_ncbi))
+
+update = left_join(need_update, ncbi_mag_tax_select, by = "sample_name")
+dim(update)
+#[1] 567   5
+
+#write csv 
+write.csv(update, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/updated_ncbi_tax2.csv")
+
+```
+
+13. Updating SI Table 2 with accession and year
+```{r}
+table2 = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/SITable2.csv", header = TRUE) 
+table2 = table2 %>% select(!X)
+dim(table2)
+#[1] 794  17
+
+##ADD NCBI ANNOTATIONS, organism name, and sample name 
+ncbi_mag_tax_filter = ncbi_mag_tax %>% select(c(MAG, sample_name, Domain, Phylum, Class, Order, Family, Genus, Species, sample_name_ncbi))
+table2_add = left_join(table2, ncbi_mag_tax_filter, by = "MAG")
+dim(table2_add)
+#[1] 794  26
+
+str(table2_add)
+
+#EDIT COLUMNS
+names(table2_add)[names(table2_add) == "Domain.x"] <- "Domain_GTDB"
+names(table2_add)[names(table2_add) == "Phylum.x"] <- "Phylum_GTDB"
+names(table2_add)[names(table2_add) == "Class.x"] <- "Class_GTDB"
+names(table2_add)[names(table2_add) == "Order.x"] <- "Order_GTDB"
+names(table2_add)[names(table2_add) == "Family.x"] <- "Family_GTDB"
+names(table2_add)[names(table2_add) == "Genus.x"] <- "Genus_GTDB"
+names(table2_add)[names(table2_add) == "Species.x"] <- "Species_GTDB"
+names(table2_add)[names(table2_add) == "Completeness...."] <- "Completeness (%)"
+names(table2_add)[names(table2_add) == "Contamination...."] <- "Contamination (%)"
+names(table2_add)[names(table2_add) == "Strain.Heterogeneity...."] <- "Strain Heterogeneity (%)"
+names(table2_add)[names(table2_add) == "Size..Mbp."] <- "Size (Mbp)"
+names(table2_add)[names(table2_add) == "No..of.Contigs"] <- "No. Of Contigs"
+names(table2_add)[names(table2_add) == "GC.Content...."] <- "GC Content (%)"
+names(table2_add)[names(table2_add) == "sample_name"] <- "NCBI_Sample_Name"
+names(table2_add)[names(table2_add) == "Domain.y"] <- "Domain_NCBI"
+names(table2_add)[names(table2_add) == "Phylum.y"] <- "Phylum_NCBI"
+names(table2_add)[names(table2_add) == "Class.y"] <- "Class_NCBI"
+names(table2_add)[names(table2_add) == "Order.y"] <- "Order_NCBI"
+names(table2_add)[names(table2_add) == "Family.y"] <- "Family_NCBI"
+names(table2_add)[names(table2_add) == "Genus.y"] <- "Genus_NCBI"
+names(table2_add)[names(table2_add) == "Species.y"] <- "Species_NCBI"
+names(table2_add)[names(table2_add) == "sample_name_ncbi"] <- "NCBI_Organism"
+
+##ADD NCBI BIOPROJECT (PRJNA1119566) 
+table2_add$BioProject <- "PRJNA1119566"
+dim(table2_add)
+#[1] 794  27
+
+##ADD NCBI ACCESSION #s
+# read in attributes 
+biosamples = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/attributes.csv", header = TRUE)
+biosamples2 = biosamples %>% select(c(sample_name, accession))
+
+#merge 
+table2_access = left_join(table2_add, biosamples2, by = c("NCBI_Sample_Name" = "sample_name"))
+dim(table2_access)
+#[1] 794  28
+
+#ADD YEAR
+yeark = Kenya_meta %>% select(c(year, SampleID))
+
+SItable2_edited = left_join(table2_accesssss, yeark, by = "SampleID")
+
+#Write table to server 
+write.csv(SItable2_edited, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/SITable2_update.csv")
+
+```
+
+14. Updating table 4 with accession
+```{r}
+##UPDATING TABLE 4
+table4 = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/SITable4.csv", header = TRUE)
+table4 = table4 %>% select(!X)
+dim(table4)
+#[1] 203  17
+
+##ADD NCBI ANNOTATIONS, organism name, and sample name 
+ncbi_mag_tax_filter = ncbi_mag_tax %>% select(c(MAG, sample_name, Domain, Phylum, Class, Order, Family, Genus, Species, sample_name_ncbi))
+table4_add = left_join(table4, ncbi_mag_tax_filter, by = "MAG")
+dim(table4_add)
+#[1] 203  26
+
+str(table4_add)
+
+#EDIT COLUMNS
+names(table4_add)[names(table4_add) == "Domain.x"] <- "Domain_GTDB"
+names(table4_add)[names(table4_add) == "Phylum.x"] <- "Phylum_GTDB"
+names(table4_add)[names(table4_add) == "Class.x"] <- "Class_GTDB"
+names(table4_add)[names(table4_add) == "Order.x"] <- "Order_GTDB"
+names(table4_add)[names(table4_add) == "Family.x"] <- "Family_GTDB"
+names(table4_add)[names(table4_add) == "Genus.x"] <- "Genus_GTDB"
+names(table4_add)[names(table4_add) == "Species.x"] <- "Species_GTDB"
+names(table4_add)[names(table4_add) == "Completeness...."] <- "Completeness (%)"
+names(table4_add)[names(table4_add) == "Contamination...."] <- "Contamination (%)"
+names(table4_add)[names(table4_add) == "Strain.Heterogeneity...."] <- "Strain Heterogeneity (%)"
+names(table4_add)[names(table4_add) == "Size..Mbp."] <- "Size (Mbp)"
+names(table4_add)[names(table4_add) == "No..of.Contigs"] <- "No. Of Contigs"
+names(table4_add)[names(table4_add) == "GC.Content...."] <- "GC Content (%)"
+names(table4_add)[names(table4_add) == "sample_name"] <- "NCBI_Sample_Name"
+names(table4_add)[names(table4_add) == "Domain.y"] <- "Domain_NCBI"
+names(table4_add)[names(table4_add) == "Phylum.y"] <- "Phylum_NCBI"
+names(table4_add)[names(table4_add) == "Class.y"] <- "Class_NCBI"
+names(table4_add)[names(table4_add) == "Order.y"] <- "Order_NCBI"
+names(table4_add)[names(table4_add) == "Family.y"] <- "Family_NCBI"
+names(table4_add)[names(table4_add) == "Genus.y"] <- "Genus_NCBI"
+names(table4_add)[names(table4_add) == "Species.y"] <- "Species_NCBI"
+names(table4_add)[names(table4_add) == "sample_name_ncbi"] <- "NCBI_Organism"
+
+##ADD NCBI BIOPROJECT (PRJNA1119566) 
+table4_add$BioProject <- "PRJNA1119566"
+dim(table4_add)
+#[1] 203  27
+
+##ADD NCBI ACCESSION #s
+# read in attributes 
+biosamples = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/attributes.csv", header = TRUE)
+biosamples2 = biosamples %>% select(c(sample_name, accession))
+
+#merge 
+table4_access = left_join(table4_add, biosamples2, by = c("NCBI_Sample_Name" = "sample_name"))
+dim(table4_access)
+#[1] 203  28
+
+#Write table to server 
+write.csv(table4_access, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/SITable4_update.csv")
+
+t4 = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/SITable4_update.csv")
+```
+
