@@ -1,0 +1,308 @@
+genome,...1,Domain,Phylum,Class,Order,Family,Genus,Species,gtdb_red_value,checkm_completeness,checkm_contamination,checkm_strain_het,checkm_lineage,checkm_sample
+samp_4307_semibin_116,476,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959758318581989,97.44,1.52,77.78,p__Cyanobacteria (UID2189),samp_4307
+samp_4307_semibin_116,476,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959758318581989,97.44,1.52,77.78,p__Cyanobacteria (UID2189),samp_4307
+samp_4308_VAMB_457,547,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959831331289735,99,4.26,79.31,p__Cyanobacteria (UID2189),samp_4308
+samp_4308_VAMB_457,547,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959831331289735,99,4.26,79.31,p__Cyanobacteria (UID2189),samp_4308
+samp_4310_metabat2_90,1788,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,NA,NA,0.8328361848126826,77.22,3.31,37.5,p__Cyanobacteria (UID2143),samp_4310
+samp_4311_concoct_412,2204,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959686368735168,99,1.41,42.86,p__Cyanobacteria (UID2189),samp_4311
+samp_4311_concoct_412,2204,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959686368735168,99,1.41,42.86,p__Cyanobacteria (UID2189),samp_4311
+samp_4312_concoct_454,2739,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959762196671063,99.44,1.07,50,p__Cyanobacteria (UID2189),samp_4312
+samp_4312_concoct_454,2739,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959762196671063,99.44,1.07,50,p__Cyanobacteria (UID2189),samp_4312
+samp_4313_concoct_735,3297,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,Vulcanococcus sp016882485,N/A,87.31,7.56,68.57,p__Cyanobacteria (UID2143),samp_4313
+samp_4313_concoct_735,3297,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,Vulcanococcus sp016882485,N/A,87.31,7.56,68.57,p__Cyanobacteria (UID2143),samp_4313
+samp_4313_maxbin_367,3359,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,Vulcanococcus sp016882485,N/A,87.77,9.19,60.42,p__Cyanobacteria (UID2143),samp_4313
+samp_4313_maxbin_378,3368,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8959954613597888,79.96,26.11,30.37,p__Cyanobacteria (UID2143),samp_4313
+samp_4315_VAMB_280,4403,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,92.91,5.74,60,p__Cyanobacteria (UID2192),samp_4315
+samp_4317_concoct_68,4557,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959699941140017,97.77,2.3,33.33,p__Cyanobacteria (UID2189),samp_4317
+samp_4317_concoct_68,4557,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959699941140017,97.77,2.3,33.33,p__Cyanobacteria (UID2189),samp_4317
+samp_4317_concoct_68,4557,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959699941140017,97.77,2.3,33.33,p__Cyanobacteria (UID2189),samp_4317
+samp_4317_concoct_68,4557,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959699941140017,97.77,2.3,33.33,p__Cyanobacteria (UID2189),samp_4317
+samp_4317_concoct_68,4557,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959699941140017,97.77,2.3,33.33,p__Cyanobacteria (UID2189),samp_4317
+samp_4317_concoct_68,4557,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959699941140017,97.77,2.3,33.33,p__Cyanobacteria (UID2189),samp_4317
+samp_4317_maxbin_26,4571,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,95.72,1.02,28.57,p__Cyanobacteria (UID2192),samp_4317
+samp_4317_maxbin_26,4571,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,95.72,1.02,28.57,p__Cyanobacteria (UID2192),samp_4317
+samp_4317_maxbin_26,4571,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,95.72,1.02,28.57,p__Cyanobacteria (UID2192),samp_4317
+samp_4317_maxbin_26,4571,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,95.72,1.02,28.57,p__Cyanobacteria (UID2192),samp_4317
+samp_4317_maxbin_26,4571,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,95.72,1.02,28.57,p__Cyanobacteria (UID2192),samp_4317
+samp_4317_maxbin_26,4571,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,95.72,1.02,28.57,p__Cyanobacteria (UID2192),samp_4317
+samp_4318_metabat2_38,4754,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.38,1.02,66.67,p__Cyanobacteria (UID2192),samp_4318
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_VAMB_955,5036,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,98.19,8.41,90,p__Cyanobacteria (UID2192),samp_4319
+samp_4319_concoct_522,5072,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.995982399035177,99,5.53,73.53,p__Cyanobacteria (UID2189),samp_4319
+samp_4319_maxbin_413,5209,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959793252510282,96.56,1.63,60,p__Cyanobacteria (UID2189),samp_4319
+samp_4319_maxbin_413,5209,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959793252510282,96.56,1.63,60,p__Cyanobacteria (UID2189),samp_4319
+samp_4320_concoct_456,5831,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.995971404097024,99.44,5.31,63.33,p__Cyanobacteria (UID2189),samp_4320
+samp_4320_metadecoder_628,6054,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,90.57,1.61,75,p__Cyanobacteria (UID2192),samp_4320
+samp_4320_metadecoder_628,6054,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,90.57,1.61,75,p__Cyanobacteria (UID2192),samp_4320
+samp_4320_metadecoder_628,6054,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,90.57,1.61,75,p__Cyanobacteria (UID2192),samp_4320
+samp_4320_metadecoder_628,6054,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,90.57,1.61,75,p__Cyanobacteria (UID2192),samp_4320
+samp_4320_metadecoder_628,6054,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,90.57,1.61,75,p__Cyanobacteria (UID2192),samp_4320
+samp_4320_metadecoder_702,6102,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.994620955810191,93.1,1.11,83.33,p__Cyanobacteria (UID2189),samp_4320
+samp_4320_metadecoder_702,6102,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.994620955810191,93.1,1.11,83.33,p__Cyanobacteria (UID2189),samp_4320
+samp_4320_semibin_145,6128,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,94.63,2.34,58.33,p__Cyanobacteria (UID2192),samp_4320
+samp_4321_concoct_295,6334,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,99.89,2.67,75,p__Cyanobacteria (UID2192),samp_4321
+samp_4321_concoct_295,6334,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,99.89,2.67,75,p__Cyanobacteria (UID2192),samp_4321
+samp_4321_concoct_295,6334,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,99.89,2.67,75,p__Cyanobacteria (UID2192),samp_4321
+samp_4321_concoct_295,6334,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,99.89,2.67,75,p__Cyanobacteria (UID2192),samp_4321
+samp_4321_concoct_295,6334,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,99.89,2.67,75,p__Cyanobacteria (UID2192),samp_4321
+samp_4321_concoct_295,6334,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,99.89,2.67,75,p__Cyanobacteria (UID2192),samp_4321
+samp_4321_maxbin_137,6423,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9945645938662421,86.56,0.74,25,p__Cyanobacteria (UID2189),samp_4321
+samp_4321_maxbin_137,6423,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9945645938662421,86.56,0.74,25,p__Cyanobacteria (UID2189),samp_4321
+samp_4321_maxbin_137,6423,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9945645938662421,86.56,0.74,25,p__Cyanobacteria (UID2189),samp_4321
+samp_4321_metadecoder_473,6501,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959799643956331,95.14,1.34,71.43,p__Cyanobacteria (UID2189),samp_4321
+samp_4322_concoct_184,6700,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960634183290575,98.89,1.3,71.43,p__Cyanobacteria (UID2189),samp_4322
+samp_4322_concoct_184,6700,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960634183290575,98.89,1.3,71.43,p__Cyanobacteria (UID2189),samp_4322
+samp_4322_concoct_184,6700,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960634183290575,98.89,1.3,71.43,p__Cyanobacteria (UID2189),samp_4322
+samp_4322_concoct_184,6700,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960634183290575,98.89,1.3,71.43,p__Cyanobacteria (UID2189),samp_4322
+samp_4322_concoct_184,6700,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960634183290575,98.89,1.3,71.43,p__Cyanobacteria (UID2189),samp_4322
+samp_4322_concoct_184,6700,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960634183290575,98.89,1.3,71.43,p__Cyanobacteria (UID2189),samp_4322
+samp_4322_metabat2_24,6736,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.16,1.02,42.86,p__Cyanobacteria (UID2192),samp_4322
+samp_4322_metabat2_24,6736,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.16,1.02,42.86,p__Cyanobacteria (UID2192),samp_4322
+samp_4322_metabat2_24,6736,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.16,1.02,42.86,p__Cyanobacteria (UID2192),samp_4322
+samp_4322_metabat2_24,6736,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.16,1.02,42.86,p__Cyanobacteria (UID2192),samp_4322
+samp_4323_metabat2_108,6991,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960426986147137,95.69,0.85,57.14,p__Cyanobacteria (UID2189),samp_4323
+samp_4323_semibin_61,7086,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959798088591081,75.43,0,0,p__Cyanobacteria (UID2189),samp_4323
+samp_4323_semibin_61,7086,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959798088591081,75.43,0,0,p__Cyanobacteria (UID2189),samp_4323
+samp_4324_maxbin_53,7211,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960293435539802,98.11,0.74,50,p__Cyanobacteria (UID2189),samp_4324
+samp_4324_maxbin_53,7211,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960293435539802,98.11,0.74,50,p__Cyanobacteria (UID2189),samp_4324
+samp_4324_maxbin_53,7211,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960293435539802,98.11,0.74,50,p__Cyanobacteria (UID2189),samp_4324
+samp_4324_maxbin_53,7211,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960293435539802,98.11,0.74,50,p__Cyanobacteria (UID2189),samp_4324
+samp_4324_maxbin_53,7211,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960293435539802,98.11,0.74,50,p__Cyanobacteria (UID2189),samp_4324
+samp_4324_maxbin_57,7215,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.71,3.23,52.38,p__Cyanobacteria (UID2192),samp_4324
+samp_4324_maxbin_57,7215,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.71,3.23,52.38,p__Cyanobacteria (UID2192),samp_4324
+samp_4324_maxbin_57,7215,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.71,3.23,52.38,p__Cyanobacteria (UID2192),samp_4324
+samp_4324_maxbin_57,7215,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.71,3.23,52.38,p__Cyanobacteria (UID2192),samp_4324
+samp_4324_maxbin_57,7215,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.71,3.23,52.38,p__Cyanobacteria (UID2192),samp_4324
+samp_4324_maxbin_57,7215,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis panniformis_A,N/A,96.71,3.23,52.38,p__Cyanobacteria (UID2192),samp_4324
+samp_4325_concoct_153,7391,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959759526838614,99.11,1.63,75,p__Cyanobacteria (UID2189),samp_4325
+samp_4325_concoct_153,7391,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959759526838614,99.11,1.63,75,p__Cyanobacteria (UID2189),samp_4325
+samp_4326_metabat2_21,7561,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960415250508214,97.63,0.63,50,p__Cyanobacteria (UID2189),samp_4326
+samp_4326_metabat2_21,7561,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960415250508214,97.63,0.63,50,p__Cyanobacteria (UID2189),samp_4326
+samp_4331_metabat2_120,10501,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,NA,0.9391943324677394,89.09,12.11,37.5,p__Cyanobacteria (UID2143),samp_4331
+samp_4331_metabat2_120,10501,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,NA,0.9391943324677394,89.09,12.11,37.5,p__Cyanobacteria (UID2143),samp_4331
+samp_4332_VAMB_1153,10875,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,CAIXOZ01,NA,0.9260998842650128,80.85,0.82,60,p__Cyanobacteria (UID2143),samp_4332
+samp_4332_VAMB_1153,10875,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,CAIXOZ01,NA,0.9260998842650128,80.85,0.82,60,p__Cyanobacteria (UID2143),samp_4332
+samp_4432_VAMB_631,11606,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,NA,0.9986459519531639,74.57,10.08,43.75,p__Cyanobacteria (UID2192),samp_4432
+samp_4434_VAMB_405,12281,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959792953172213,99.56,6.95,43.48,p__Cyanobacteria (UID2189),samp_4434
+samp_4434_VAMB_405,12281,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959792953172213,99.56,6.95,43.48,p__Cyanobacteria (UID2189),samp_4434
+samp_4434_VAMB_405,12281,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959792953172213,99.56,6.95,43.48,p__Cyanobacteria (UID2189),samp_4434
+samp_4434_VAMB_405,12281,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959792953172213,99.56,6.95,43.48,p__Cyanobacteria (UID2189),samp_4434
+samp_4434_VAMB_405,12281,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959792953172213,99.56,6.95,43.48,p__Cyanobacteria (UID2189),samp_4434
+samp_4434_metabat2_58,12473,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,NA,0.9986780121373597,70.37,9.08,88.24,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_metabat2_58,12473,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,NA,0.9986780121373597,70.37,9.08,88.24,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_metabat2_58,12473,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,NA,0.9986780121373597,70.37,9.08,88.24,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_metabat2_58,12473,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,NA,0.9986780121373597,70.37,9.08,88.24,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_metabat2_58,12473,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,NA,0.9986780121373597,70.37,9.08,88.24,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_metabat2_58,12473,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,NA,0.9986780121373597,70.37,9.08,88.24,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_metabat2_58,12473,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,NA,0.9986780121373597,70.37,9.08,88.24,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_semibin_67,12523,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305380596997539,93.44,0.51,100,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_semibin_67,12523,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305380596997539,93.44,0.51,100,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_semibin_67,12523,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305380596997539,93.44,0.51,100,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_semibin_67,12523,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305380596997539,93.44,0.51,100,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_semibin_67,12523,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305380596997539,93.44,0.51,100,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_semibin_67,12523,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305380596997539,93.44,0.51,100,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_semibin_67,12523,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305380596997539,93.44,0.51,100,p__Cyanobacteria (UID2192),samp_4434
+samp_4434_semibin_67,12523,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305380596997539,93.44,0.51,100,p__Cyanobacteria (UID2192),samp_4434
+samp_4435_VAMB_805,12684,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,NA,0.9377273785893983,79.66,9.31,50,p__Cyanobacteria (UID2143),samp_4435
+samp_4435_VAMB_805,12684,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,NA,0.9377273785893983,79.66,9.31,50,p__Cyanobacteria (UID2143),samp_4435
+samp_4435_VAMB_805,12684,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,NA,0.9377273785893983,79.66,9.31,50,p__Cyanobacteria (UID2143),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_concoct_1904,12807,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_D,N/A,95.21,28.2,86.1,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_maxbin_422,12888,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305783218250374,98.69,1.91,58.33,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_maxbin_422,12888,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305783218250374,98.69,1.91,58.33,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_maxbin_422,12888,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305783218250374,98.69,1.91,58.33,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_maxbin_422,12888,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305783218250374,98.69,1.91,58.33,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_maxbin_422,12888,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305783218250374,98.69,1.91,58.33,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_maxbin_422,12888,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcoleaceae,Planktothrix,NA,0.9305783218250374,98.69,1.91,58.33,p__Cyanobacteria (UID2192),samp_4435
+samp_4435_maxbin_440,12902,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8723172659336912,83.4,9.6,15.56,p__Cyanobacteria (UID2143),samp_4435
+samp_4435_maxbin_440,12902,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8723172659336912,83.4,9.6,15.56,p__Cyanobacteria (UID2143),samp_4435
+samp_4435_maxbin_440,12902,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8723172659336912,83.4,9.6,15.56,p__Cyanobacteria (UID2143),samp_4435
+samp_4435_maxbin_440,12902,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8723172659336912,83.4,9.6,15.56,p__Cyanobacteria (UID2143),samp_4435
+samp_4435_semibin_217,13220,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8729267658165549,81.17,3.8,38.89,p__Cyanobacteria (UID2143),samp_4435
+samp_4435_semibin_217,13220,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8729267658165549,81.17,3.8,38.89,p__Cyanobacteria (UID2143),samp_4435
+samp_4439_concoct_171,13703,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959997548974338,99.22,0.96,60,p__Cyanobacteria (UID2189),samp_4439
+samp_4439_concoct_171,13703,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959997548974338,99.22,0.96,60,p__Cyanobacteria (UID2189),samp_4439
+samp_4441_concoct_710,14013,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959904579857757,99.33,2.52,61.54,p__Cyanobacteria (UID2189),samp_4441
+samp_4441_maxbin_669,14039,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960089066501058,97.67,1.52,37.5,p__Cyanobacteria (UID2189),samp_4441
+samp_4441_maxbin_669,14039,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960089066501058,97.67,1.52,37.5,p__Cyanobacteria (UID2189),samp_4441
+samp_4441_maxbin_669,14039,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960089066501058,97.67,1.52,37.5,p__Cyanobacteria (UID2189),samp_4441
+samp_4443_VAMB_1051,14248,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9322461103619732,86.55,1.45,16.67,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_VAMB_823,14391,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9959083223953645,98.67,7.56,57.78,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_VAMB_834,14395,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97.22,7.85,76.6,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_VAMB_834,14395,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97.22,7.85,76.6,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_VAMB_834,14395,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97.22,7.85,76.6,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_concoct_2141,14592,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,Vulcanococcus sp016882485,N/A,87.59,7.1,55.88,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_maxbin_242,14626,Bacteria,Cyanobacteria,Cyanobacteriia,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,NA,0.9845340053200007,86.86,12.78,4.69,p__Cyanobacteria (UID2182),samp_4443
+samp_4443_maxbin_277,14654,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.965367486071677,98.1,21.21,87.5,k__Bacteria (UID203),samp_4443
+samp_4443_maxbin_277,14654,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.965367486071677,98.1,21.21,87.5,k__Bacteria (UID203),samp_4443
+samp_4443_maxbin_277,14654,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.965367486071677,98.1,21.21,87.5,k__Bacteria (UID203),samp_4443
+samp_4443_metabat2_120,14741,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9357447722927933,94.83,11.36,57.89,k__Bacteria (UID203),samp_4443
+samp_4443_metabat2_120,14741,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9357447722927933,94.83,11.36,57.89,k__Bacteria (UID203),samp_4443
+samp_4443_metabat2_135,14753,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9298445436913623,93.74,14.72,35.21,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_metabat2_135,14753,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9298445436913623,93.74,14.72,35.21,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_metabat2_135,14753,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9298445436913623,93.74,14.72,35.21,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_metabat2_135,14753,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9298445436913623,93.74,14.72,35.21,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_metadecoder_774,14988,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9228223570596267,86.82,4.68,39.29,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_semibin_319,15009,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,92.11,1.11,50,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_semibin_319,15009,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,92.11,1.11,50,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_semibin_319,15009,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,92.11,1.11,50,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_semibin_319,15009,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,92.11,1.11,50,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_semibin_319,15009,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,92.11,1.11,50,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_semibin_319,15009,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,92.11,1.11,50,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_semibin_319,15009,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,92.11,1.11,50,p__Cyanobacteria (UID2189),samp_4443
+samp_4443_semibin_379,15051,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,NIES-981,NA,0.9781165858348865,75.83,5.98,48.15,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_semibin_379,15051,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,NIES-981,NA,0.9781165858348865,75.83,5.98,48.15,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_semibin_400,15069,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.933563731205526,98.82,6.8,35.29,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_semibin_466,15110,Bacteria,Cyanobacteria,Cyanobacteriia,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,NA,0.9941544745930999,80.88,0.71,33.33,p__Cyanobacteria (UID2182),samp_4443
+samp_4443_semibin_466,15110,Bacteria,Cyanobacteria,Cyanobacteriia,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,NA,0.9941544745930999,80.88,0.71,33.33,p__Cyanobacteria (UID2182),samp_4443
+samp_4443_semibin_480,15119,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9127949657500567,75.53,5.25,44,p__Cyanobacteria (UID2143),samp_4443
+samp_4443_semibin_480,15119,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9127949657500567,75.53,5.25,44,p__Cyanobacteria (UID2143),samp_4443
+samp_4444_maxbin_831,15658,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8810816176711543,84.65,11.44,51.72,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_maxbin_831,15658,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8810816176711543,84.65,11.44,51.72,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_114,15703,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9348760479665196,98.32,10.69,33.33,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_168,15747,Bacteria,Cyanobacteria,Cyanobacteriia,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,NA,0.9854681746133735,90.92,2.08,50,p__Cyanobacteria (UID2182),samp_4444
+samp_4444_metabat2_171,15750,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,NIES-981,NA,0.9790414727628377,82.56,10.11,39.53,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_185,15761,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9659787676739614,93.5,17.34,85.88,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_185,15761,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9659787676739614,93.5,17.34,85.88,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_185,15761,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9659787676739614,93.5,17.34,85.88,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_185,15761,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9659787676739614,93.5,17.34,85.88,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_185,15761,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9659787676739614,93.5,17.34,85.88,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_75,15816,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae_A,Snowella,Snowella sp003249095,N/A,73.76,4.7,62.96,p__Cyanobacteria (UID2192),samp_4444
+samp_4444_metabat2_75,15816,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae_A,Snowella,Snowella sp003249095,N/A,73.76,4.7,62.96,p__Cyanobacteria (UID2192),samp_4444
+samp_4444_metabat2_75,15816,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae_A,Snowella,Snowella sp003249095,N/A,73.76,4.7,62.96,p__Cyanobacteria (UID2192),samp_4444
+samp_4444_metabat2_75,15816,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae_A,Snowella,Snowella sp003249095,N/A,73.76,4.7,62.96,p__Cyanobacteria (UID2192),samp_4444
+samp_4444_metabat2_78,15819,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,CBW1002,NA,0.9010077682886698,88.57,8.66,26.92,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metabat2_78,15819,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,CBW1002,NA,0.9010077682886698,88.57,8.66,26.92,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metadecoder_351,15919,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9268388092814771,73.31,1.18,50,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_metadecoder_351,15919,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9268388092814771,73.31,1.18,50,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_semibin_481,15989,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,Vulcanococcus sp016882415,N/A,80.24,7.29,46.88,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_semibin_482,15990,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9097640730158939,80.62,5.42,50,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_semibin_482,15990,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9097640730158939,80.62,5.42,50,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_semibin_496,16001,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,CAIQIA01,NA,0.9560783601047828,79.83,2.34,80,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_semibin_500,16004,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,UBA5018,NA,0.9361437555799687,77.93,3.36,43.75,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_semibin_567,16045,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9654542068907686,74.43,5.22,56,p__Cyanobacteria (UID2143),samp_4444
+samp_4444_semibin_569,16046,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960617813535689,95.44,2.32,42.86,p__Cyanobacteria (UID2189),samp_4444
+samp_4444_semibin_569,16046,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960617813535689,95.44,2.32,42.86,p__Cyanobacteria (UID2189),samp_4444
+samp_4444_semibin_569,16046,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960617813535689,95.44,2.32,42.86,p__Cyanobacteria (UID2189),samp_4444
+samp_4444_semibin_569,16046,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960617813535689,95.44,2.32,42.86,p__Cyanobacteria (UID2189),samp_4444
+samp_4445_VAMB_1115,16157,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,Vulcanococcus sp016882415,N/A,80.23,17.66,35.96,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_VAMB_519,16220,Bacteria,Cyanobacteria,Vampirovibrionia,Vampirovibrionales,NA,NA,NA,0.6072342189584343,90.17,0.95,0,k__Bacteria (UID1453),samp_4445
+samp_4445_VAMB_519,16220,Bacteria,Cyanobacteria,Vampirovibrionia,Vampirovibrionales,NA,NA,NA,0.6072342189584343,90.17,0.95,0,k__Bacteria (UID1453),samp_4445
+samp_4445_VAMB_546,16242,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.8604795816729056,74.49,7.65,36.11,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_VAMB_590,16274,Bacteria,Cyanobacteria,Cyanobacteriia,CAIUCS01,CAIUCS01,CAIUCS01,CAIUCS01 sp903897715,N/A,78.41,0.71,0,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_VAMB_590,16274,Bacteria,Cyanobacteria,Cyanobacteriia,CAIUCS01,CAIUCS01,CAIUCS01,CAIUCS01 sp903897715,N/A,78.41,0.71,0,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_VAMB_917,16318,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_H,N/A,98.36,24.38,82.04,p__Cyanobacteria (UID2192),samp_4445
+samp_4445_VAMB_917,16318,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_H,N/A,98.36,24.38,82.04,p__Cyanobacteria (UID2192),samp_4445
+samp_4445_concoct_1415,16354,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,81.56,3.73,81.48,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_concoct_1415,16354,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,81.56,3.73,81.48,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_concoct_1415,16354,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,81.56,3.73,81.48,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_concoct_1447,16367,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Raphidiopsis,Raphidiopsis raciborskii,N/A,93.43,1.67,40,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_concoct_1447,16367,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Raphidiopsis,Raphidiopsis raciborskii,N/A,93.43,1.67,40,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_concoct_1447,16367,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Raphidiopsis,Raphidiopsis raciborskii,N/A,93.43,1.67,40,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_concoct_1447,16367,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Raphidiopsis,Raphidiopsis raciborskii,N/A,93.43,1.67,40,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_concoct_1532,16419,Bacteria,Cyanobacteria,Cyanobacteriia,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,NA,0.9848088471246504,92.92,1.3,57.14,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_concoct_1532,16419,Bacteria,Cyanobacteria,Cyanobacteriia,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,NA,0.9848088471246504,92.92,1.3,57.14,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_concoct_1532,16419,Bacteria,Cyanobacteria,Cyanobacteriia,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,NA,0.9848088471246504,92.92,1.3,57.14,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_maxbin_221,16482,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9028484920145567,88.38,26,21.64,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_maxbin_221,16482,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9028484920145567,88.38,26,21.64,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_maxbin_504,16544,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9499593184971037,74.63,25.68,49.3,k__Bacteria (UID203),samp_4445
+samp_4445_metabat2_158,16603,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9273921337046128,91.85,6.66,31.82,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_158,16603,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9273921337046128,91.85,6.66,31.82,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_158,16603,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9273921337046128,91.85,6.66,31.82,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_158,16603,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9273921337046128,91.85,6.66,31.82,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_158,16603,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9273921337046128,91.85,6.66,31.82,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_158,16603,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9273921337046128,91.85,6.66,31.82,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_158,16603,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9273921337046128,91.85,6.66,31.82,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_36,16633,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9177459476210932,91.11,9.75,44.9,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_36,16633,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9177459476210932,91.11,9.75,44.9,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_46,16641,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,UBA5018,NA,0.9410183666078016,80.84,9.17,29.17,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_46,16641,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,UBA5018,NA,0.9410183666078016,80.84,9.17,29.17,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_46,16641,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,UBA5018,NA,0.9410183666078016,80.84,9.17,29.17,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_metabat2_59,16650,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,NA,0.9277254644223443,70.57,3.53,60,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_semibin_342,16863,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9845694290139316,77.6,1.49,20,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_semibin_342,16863,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9845694290139316,77.6,1.49,20,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_semibin_342,16863,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9845694290139316,77.6,1.49,20,p__Cyanobacteria (UID2143),samp_4445
+samp_4445_semibin_366,16879,Bacteria,Cyanobacteria,Vampirovibrionia,Caenarcaniphilales,LMEP-6097,LMEP-6097,NA,0.979341767957735,84.76,0.77,100,k__Bacteria (UID1453),samp_4445
+samp_4445_semibin_366,16879,Bacteria,Cyanobacteria,Vampirovibrionia,Caenarcaniphilales,LMEP-6097,LMEP-6097,NA,0.979341767957735,84.76,0.77,100,k__Bacteria (UID1453),samp_4445
+samp_4445_semibin_379,16887,Bacteria,Cyanobacteria,Cyanobacteriia,Elainellales,Elainellaceae,Elainella,NA,0.9465761701195639,85.53,3.54,68.75,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_semibin_379,16887,Bacteria,Cyanobacteria,Cyanobacteriia,Elainellales,Elainellaceae,Elainella,NA,0.9465761701195639,85.53,3.54,68.75,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_semibin_379,16887,Bacteria,Cyanobacteria,Cyanobacteriia,Elainellales,Elainellaceae,Elainella,NA,0.9465761701195639,85.53,3.54,68.75,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_semibin_379,16887,Bacteria,Cyanobacteria,Cyanobacteriia,Elainellales,Elainellaceae,Elainella,NA,0.9465761701195639,85.53,3.54,68.75,p__Cyanobacteria (UID2182),samp_4445
+samp_4445_semibin_421,16905,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9872256412311321,93.24,0.89,25,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_semibin_421,16905,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9872256412311321,93.24,0.89,25,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_semibin_421,16905,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9872256412311321,93.24,0.89,25,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_semibin_421,16905,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9872256412311321,93.24,0.89,25,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_semibin_421,16905,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9872256412311321,93.24,0.89,25,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_semibin_421,16905,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9872256412311321,93.24,0.89,25,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_semibin_421,16905,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9872256412311321,93.24,0.89,25,p__Cyanobacteria (UID2189),samp_4445
+samp_4445_semibin_421,16905,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9872256412311321,93.24,0.89,25,p__Cyanobacteria (UID2189),samp_4445
+samp_4446_VAMB_171,16959,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,Vulcanococcus sp016882415,N/A,73.44,4.48,85.71,p__Cyanobacteria (UID2143),samp_4446
+samp_4446_VAMB_96,17068,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9677028075330854,88.51,13.99,83.08,p__Cyanobacteria (UID2143),samp_4446
+samp_4446_VAMB_96,17068,Bacteria,Cyanobacteria,Cyanobacteriia,Phormidesmiales,Phormidesmiaceae,Nodosilinea,NA,0.9677028075330854,88.51,13.99,83.08,p__Cyanobacteria (UID2143),samp_4446
+samp_4446_VAMB_97,17069,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960817506075462,94.81,12.64,52.78,p__Cyanobacteria (UID2189),samp_4446
+samp_4446_VAMB_97,17069,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960817506075462,94.81,12.64,52.78,p__Cyanobacteria (UID2189),samp_4446
+samp_4446_VAMB_97,17069,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960817506075462,94.81,12.64,52.78,p__Cyanobacteria (UID2189),samp_4446
+samp_4446_metadecoder_636,17246,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960529541935503,85.07,6.64,54.29,p__Cyanobacteria (UID2189),samp_4446
+samp_4446_metadecoder_636,17246,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960529541935503,85.07,6.64,54.29,p__Cyanobacteria (UID2189),samp_4446
+samp_4446_metadecoder_636,17246,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960529541935503,85.07,6.64,54.29,p__Cyanobacteria (UID2189),samp_4446
+samp_4446_metadecoder_636,17246,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9960529541935503,85.07,6.64,54.29,p__Cyanobacteria (UID2189),samp_4446
+samp_4447_VAMB_291,17315,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9889040288936478,89.61,2.93,52.94,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_VAMB_322,17330,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae_A,NA,NA,0.90011515825182,95.56,7.95,71.11,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_VAMB_322,17330,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae_A,NA,NA,0.90011515825182,95.56,7.95,71.11,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_VAMB_322,17330,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae_A,NA,NA,0.90011515825182,95.56,7.95,71.11,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_VAMB_322,17330,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae_A,NA,NA,0.90011515825182,95.56,7.95,71.11,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_VAMB_472,17381,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9885991969988787,91.83,5.75,40,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_VAMB_472,17381,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9885991969988787,91.83,5.75,40,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_VAMB_472,17381,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9885991969988787,91.83,5.75,40,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_VAMB_472,17381,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9885991969988787,91.83,5.75,40,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_VAMB_472,17381,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9885991969988787,91.83,5.75,40,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_VAMB_472,17381,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9885991969988787,91.83,5.75,40,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_VAMB_472,17381,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9885991969988787,91.83,5.75,40,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_VAMB_472,17381,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9885991969988787,91.83,5.75,40,p__Cyanobacteria (UID2189),samp_4447
+samp_4447_concoct_1018,17501,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_H,N/A,95.71,11.4,78.26,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_concoct_1018,17501,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_H,N/A,95.71,11.4,78.26,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_concoct_1018,17501,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_H,N/A,95.71,11.4,78.26,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_concoct_1018,17501,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_H,N/A,95.71,11.4,78.26,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_concoct_1018,17501,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_H,N/A,95.71,11.4,78.26,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_concoct_1018,17501,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Microcystaceae,Microcystis,Microcystis aeruginosa_H,N/A,95.71,11.4,78.26,p__Cyanobacteria (UID2192),samp_4447
+samp_4447_maxbin_94,17619,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9865669313454645,87.46,18.18,70.37,k__Bacteria (UID203),samp_4447
+samp_4447_maxbin_94,17619,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Cuspidothrix,NA,0.9865669313454645,87.46,18.18,70.37,k__Bacteria (UID203),samp_4447
+samp_4447_metabat2_48,17649,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9962813778171926,94.83,15.91,72.73,k__Bacteria (UID203),samp_4447
+samp_4447_metabat2_48,17649,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9962813778171926,94.83,15.91,72.73,k__Bacteria (UID203),samp_4447
+samp_4447_metabat2_48,17649,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9962813778171926,94.83,15.91,72.73,k__Bacteria (UID203),samp_4447
+samp_4447_metabat2_80,17673,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,NIES-981,NA,0.9792117851739585,83.43,6.85,55.56,p__Cyanobacteria (UID2143),samp_4447
+samp_4448_VAMB_839,18003,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97,7.46,80.39,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_VAMB_839,18003,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97,7.46,80.39,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_VAMB_839,18003,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97,7.46,80.39,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_VAMB_839,18003,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97,7.46,80.39,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_VAMB_839,18003,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97,7.46,80.39,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_VAMB_839,18003,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97,7.46,80.39,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_VAMB_839,18003,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97,7.46,80.39,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_VAMB_839,18003,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Sphaerospermopsis,Sphaerospermopsis kisseleviana_A,N/A,97,7.46,80.39,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_VAMB_889,18030,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Cyanobium,NA,0.9214024573124897,70.13,1.81,77.78,p__Cyanobacteria (UID2143),samp_4448
+samp_4448_concoct_1792,18084,Bacteria,Cyanobacteria,Cyanobacteriia,Elainellales,Elainellaceae,Elainella,NA,0.9453824353778194,70.18,2.4,75,p__Cyanobacteria (UID2182),samp_4448
+samp_4448_concoct_1792,18084,Bacteria,Cyanobacteria,Cyanobacteriia,Elainellales,Elainellaceae,Elainella,NA,0.9453824353778194,70.18,2.4,75,p__Cyanobacteria (UID2182),samp_4448
+samp_4448_metabat2_83,18405,Bacteria,Cyanobacteria,Cyanobacteriia,PCC-6307,Cyanobiaceae,Vulcanococcus,Vulcanococcus sp016882415,N/A,76.07,6.07,50,p__Cyanobacteria (UID2143),samp_4448
+samp_4448_metadecoder_579,18450,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9961091943328555,95.63,1.67,62.5,p__Cyanobacteria (UID2189),samp_4448
+samp_4448_metadecoder_579,18450,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9961091943328555,95.63,1.67,62.5,p__Cyanobacteria (UID2189),samp_4448
+samp_4449_metabat2_97,19124,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9961667410093917,89.85,0.52,50,p__Cyanobacteria (UID2189),samp_4449
+samp_4449_metabat2_97,19124,Bacteria,Cyanobacteria,Cyanobacteriia,Cyanobacteriales,Nostocaceae,Dolichospermum,NA,0.9961667410093917,89.85,0.52,50,p__Cyanobacteria (UID2189),samp_4449

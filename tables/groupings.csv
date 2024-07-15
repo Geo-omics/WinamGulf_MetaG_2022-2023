@@ -1,0 +1,45 @@
+grouping,high_level_grouping
+Aeruginosin-like,NRPS
+Anacyclamide-like,Cyanobactins
+Cyanobactin,Cyanobactins
+Cyanobactin-Terpene,Hybrids
+Cyanopeptolin-like,NRPS
+Ectoine,Others
+Heterocyst,Heterocyst Glycolipids
+LAP,Lanthipeptides
+Lanthipeptide-class-ii,Lanthipeptides
+Lanthipeptide-class-v,Lanthipeptides
+Lassopeptide,Others
+Merocyclophane-like,PKS-NRPS Hybrids
+Microcystin,PKS-NRPS Hybrids
+Microviridin-like,RiPPs
+NRPS,NRPS
+NRPS-T1PKS,PKS-NRPS Hybrids
+NRPS-like,NRPS
+NRPS-like-T1PKS,PKS-NRPS Hybrids
+Piricyclamide-like,Cyanobactins
+RRE-Containing,Others
+RiPP-like,RiPPs
+Spliceotide,RiPPs
+Splideotide,RiPPs
+T1PKS,PKS
+T1PKS-Terpene,Hybrids
+Terpene,Terpene
+Terpene-NRPS-like,Hybrids
+hglE-KS,Heterocyst Glycolipids
+hglE-KS-PUFA,Heterocyst Glycolipids
+Crocagin,Others
+T1PKS-NRPS-Prodigiosin,Hybrids
+NRPS-like-NRPS,NRPS
+NRPS-RRE-Containing,Hybrids
+T3PKS,PKS
+#VALUE!,none
+Anabaenopeptin-like,NRPS
+Arylprolene,Others
+Mycosporine-like,Others
+Nocuolin,Others
+RRE-Containing-Lassopeptide,Hybrids
+Spumigin-like,NRPS
+T1PKS-hglE-KS,Hybrids
+Terpene-Oligosaccharide,Hybrids
+Thioamitide,Others

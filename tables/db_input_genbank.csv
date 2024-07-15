@@ -1,0 +1,383 @@
+﻿genbank_id,start,end,db_name
+GU174493.1,745,7333,ACZ55945.1_aptA1_Anabaena sp. 90_anabaenopeptin
+GU174493.1,7422,13947,ACZ55942.1_aptA2_Anabaena sp. 90_anabaenopeptin
+GU174493.1,14004,17214,ACZ55943.1_aptB_Anabaena sp. 90_anabaenopeptin
+GU174493.1,17408,25106,ACZ55944.1_aptC_Anabaena sp. 90_anabaenopeptin
+GU174493.1,25102,29314,ACZ55946.1_aptD_Anabaena sp. 90_anabaenopeptin
+GU174493.1,29356,30535,ACZ55947.1_aptE_Anabaena sp. 90_anabaenopeptin
+GU174493.1,30943,33241,ACZ55948.1_aptF_Anabaena sp. 90_anabaenopeptin
+FJ461733.2,113,1562,ADA00385.1_ADA00385.1_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,1611,1800,ADA00386.1_acyC_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,1814,2018,ADA00387.1_acyB_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,2248,4225,ACK37888.2_acyA_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,4931,5081,ADA00388.1_acyE_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,5114,5879,ADA00389.1_ADA00389.1_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,5912,6803,ADA00390.1_acyF_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,7008,7404,ADA00391.1_ADA00391.1_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,7497,8181,ADA00392.1_ADA00392.1_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,8826,9432,ADA00393.1_ADA00393.1_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,9474,9810,ADA00394.1_ADA00394.1_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,10265,12398,ADA00395.1_acyG_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,12915,13176,ADA00396.1_ADA00396.1_Anabaena sp. 90_anacyclamide A10
+FJ461733.2,13183,13570,ADA00397.1_ADA00397.1_Anabaena sp. 90_anacyclamide A10
+AY212249.1,174,567,AAO62577.1_AAO62577.1_Anabaena sp. 90_microcystin
+AY212249.1,972,1329,AAO62578.1_AAO62578.1_Anabaena sp. 90_microcystin
+AY212249.1,1301,3080,AAO62579.1_mcyH_Anabaena sp. 90_microcystin
+AY212249.1,3374,4388,AAO62580.1_mcyI_Anabaena sp. 90_microcystin
+AY212249.1,4438,5197,AAO62581.1_mcyF_Anabaena sp. 90_microcystin
+AY212249.1,5238,15687,AAO62582.1_mcyE_Anabaena sp. 90_microcystin
+AY212249.1,15723,16656,AAO62583.1_mcyJ_Anabaena sp. 90_microcystin
+AY212249.1,16714,28324,AAO62584.1_mcyD_Anabaena sp. 90_microcystin
+AY212249.1,28417,36325,AAO62585.1_mcyG_Anabaena sp. 90_microcystin
+AY212249.1,37522,45889,AAO62586.1_mcyA_Anabaena sp. 90_microcystin
+AY212249.1,45906,52308,AAO62587.1_mcyB_Anabaena sp. 90_microcystin
+AY212249.1,52304,56159,AAO62588.1_mcyC_Anabaena sp. 90_microcystin
+AY212249.1,56675,57818,AAO62589.1_atn1_Anabaena sp. 90_microcystin
+KY767986.1,171,1068,ATX68106.1_ATX68106.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,1081,2014,ATX68107.1_ATX68107.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,2066,3443,ATX68108.1_scpG_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,3609,27483,ATX68109.1_scpF_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,27546,58560,ATX68110.1_scpE_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,58626,73749,ATX68111.1_scpD_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,73959,88782,ATX68112.1_scpC_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,89385,94077,ATX68113.1_ATX68113.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,94550,97763,ATX68114.1_ATX68114.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,97764,103566,ATX68115.1_ATX68115.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,103441,110251,ATX68116.1_ATX68116.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,110384,111344,ATX68117.1_ATX68117.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,111358,113146,ATX68118.1_ATX68118.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,113761,114826,ATX68119.1_scpA_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,114929,115802,ATX68120.1_scpB_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,115928,117191,ATX68121.1_ATX68121.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,118181,118493,ATX68122.1_ATX68122.1_Anabaena sp. UHCC 0451_scytophycin
+KY767986.1,119044,120019,ATX68123.1_ATX68123.1_Anabaena sp. UHCC 0451_scytophycin
+MH325199.1,1,8566,"AXN93592.1_puwA_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,8948,10961,"AXN93593.1_orf2_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,12331,14422,"AXN93594.1_orf3_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,15059,17168,"AXN93595.1_puwI_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,17182,18466,"AXN93596.1_puwJ_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,18505,26119,"AXN93597.1_puwB_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,26115,27885,"AXN93598.1_puwc_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,27945,28224,"AXN93599.1_puwD_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,28248,29646,"AXN93600.1_puwK_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,29696,39035,"AXN93601.1_puwE_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,39031,56647,"AXN93602.1_puwF-G_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,56696,60062,"AXN93603.1_puwH_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325199.1,60312,62244,"AXN93604.1_orf1_Anabaena minutissima UTEX B 1613_minutissamide A, minutissamide C, minutissamide D"
+MH325200.1,1,8566,"AXN93605.1_puwA_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,8971,10903,"AXN93606.1_orf2_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,12352,14443,"AXN93607.1_orf3_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,14989,17134,"AXN93608.1_puwI_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,17136,18420,"AXN93609.1_puwJ_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,18459,26109,"AXN93610.1_puwB_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,26420,27899,"AXN93611.1_puwc_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,27975,28257,"AXN93612.1_puwD_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,28358,37658,"AXN93613.1_puwE_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,37654,46309,"AXN93614.1_puwF_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,46346,55274,"AXN93615.1_puwG_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,55344,58710,"AXN93616.1_puwH_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+MH325200.1,58970,60902,"AXN93617.1_orf1_Anabaena sp. UHCC-0399_minutissamide A, minutissamide B, minutissamide C, minutissamide D, puwainaphycin F"
+GQ385959.1,1,998,ADF88260.1_cyrC_Aphanizomenon sp. 10E9_cylindrospermopsin
+GQ385959.1,1549,2725,ADF88261.1_cyrA_Aphanizomenon sp. 10E9_cylindrospermopsin
+GQ385959.1,2739,6922,ADF88262.1_cyrB_Aphanizomenon sp. 10E9_cylindrospermopsin
+GQ385960.1,1,998,ADF88263.1_cyrC_Aphanizomenon sp. 22D11_cylindrospermopsin
+GQ385960.1,1549,2725,ADF88264.1_cyrA_Aphanizomenon sp. 22D11_cylindrospermopsin
+GQ385960.1,2739,6922,ADF88265.1_cyrB_Aphanizomenon sp. 22D11_cylindrospermopsin
+GQ385961.1,190,1093,ADF88266.1_ADF88266.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,1374,3618,ADF88267.1_ADF88267.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,4170,5811,ADF88268.1_ADF88268.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,6213,6537,ADF88269.1_ADF88269.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,7145,7931,ADF88270.1_cyrJ_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,8933,10364,ADF88271.1_cyrH_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,10809,12249,ADF88272.1_cyrK_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,13364,14195,ADF88273.1_cyrI_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,14248,15685,ADF88274.1_cyrG_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,15903,19977,ADF88275.1_cyrF_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,20032,25588,ADF88276.1_cyrD_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,25587,30591,ADF88277.1_cyrC_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,31142,32318,ADF88278.1_cyrA_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,32332,41086,ADF88279.1_cyrB_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,41090,46757,ADF88280.1_cyrE_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,47180,47624,ADF88281.1_ADF88281.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,47667,48066,ADF88282.1_ADF88282.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,49222,49600,ADF88283.1_ADF88283.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,49808,50168,ADF88284.1_ADF88284.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,50265,50613,ADF88285.1_ADF88285.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,50678,51080,ADF88286.1_ADF88286.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,51719,52796,ADF88287.1_ADF88287.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,53153,54659,ADF88288.1_ADF88288.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,54745,55252,ADF88289.1_ADF88289.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+GQ385961.1,55715,56915,ADF88290.1_ADF88290.1_Aphanizomenon sp. 10E6_cylindrospermopsin
+DQ787200.1,1,1321,"ABI75088.1_ABI75088.1_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,1625,2384,"ABI75089.1_sxtD_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,2621,3017,"ABI75090.1_ABI75090.1_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,2955,3315,"ABI75091.1_ABI75091.1_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,3647,4001,"ABI75092.1_sxtC_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,4030,4987,"ABI75093.1_sxtB_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,5047,8785,"ABI75094.1_sxtA_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,9140,9527,"ABI75095.1_sxtE_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,9686,11102,"ABI75096.1_sxtF_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,11112,12246,"ABI75097.1_sxtG_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,12314,13319,"ABI75098.1_sxtH_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,13476,15315,"ABI75099.1_sxtI_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,15318,15762,"ABI75100.1_sxtJ_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,15761,15926,"ABI75101.1_sxtK_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,15937,17236,"ABI75102.1_sxtL_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,17323,18772,"ABI75103.1_sxtM_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,19119,19950,"ABI75104.1_sxtN_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,20238,21012,"ABI75105.1_sxtX_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,21175,21502,"ABI75106.1_sxtW_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,21542,23195,"ABI75107.1_sxtV_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,23199,23949,"ABI75108.1_sxtU_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,24091,25096,"ABI75109.1_sxtT_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,25173,25899,"ABI75110.1_sxtS_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,25974,26550,"ABI75111.1_ABI75111.1_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,26605,27382,"ABI75112.1_sxtR_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,27392,28169,"ABI75113.1_sxtQ_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,28281,29508,"ABI75114.1_sxtP_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,29667,30270,"ABI75115.1_sxtO_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,30612,31962,"ABI75116.1_ABI75116.1_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,32612,33278,"ABI75117.1_sxtY_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,33325,34678,"ABI75118.1_sxtZ_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,35029,35848,"ABI75119.1_ABI75119.1_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,35972,36746,"ABI75120.1_ABI75120.1_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+DQ787200.1,37060,37456,"ABI75121.1_ABI75121.1_Cylindrospermopsis raciborskii T3_decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, neosaxitoxin, saxitoxin"
+EU140798.1,444,6075,ABX60152.1_cyrD_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,6130,10204,ABX60153.1_cyrF_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,10251,11688,ABX60154.1_cyrG_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,11741,12572,ABX60155.1_cyrI_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,12568,13966,ABX60156.1_cyrK_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,14037,14787,ABX60157.1_cyrL_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,14886,16317,ABX60158.1_cyrH_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,16893,17673,ABX60159.1_cyrJ_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,18113,19289,ABX60160.1_cyrA_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,19303,28057,ABX60161.1_cyrB_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,28061,33728,ABX60162.1_cyrE_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,34299,39303,ABX60163.1_cyrC_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,39793,40393,ABX60164.1_cyrN_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+EU140798.1,40501,42049,ABX60165.1_cyrO_Cylindrospermopsis raciborskii AWT205_cylindrospermopsin
+DQ787201.1,1817,2795,"ABI75122.1_sxtB_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,2800,6505,"ABI75123.1_sxtA_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,6750,7227,"ABI75124.1_sxtE_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,7741,8500,"ABI75125.1_sxtD_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,8576,10025,"ABI75126.1_sxtP_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,10049,10826,"ABI75127.1_ABI75127.1_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,10836,11640,"ABI75128.1_sxtR_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,14474,15362,"ABI75129.1_ABI75129.1_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,15960,16917,"ABI75130.1_ABI75130.1_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,17125,17752,"ABI75131.1_ABI75131.1_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,18030,18756,"ABI75132.1_sxtS_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,18851,19871,"ABI75133.1_sxtT_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,20019,20769,"ABI75134.1_sxtU_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,20821,21691,"ABI75135.1_sxtN_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,21809,22943,"ABI75136.1_sxtG_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,23005,24025,"ABI75137.1_sxtH_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,24071,25529,"ABI75138.1_sxtM_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,25516,27355,"ABI75139.1_sxtI_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,27397,27802,"ABI75140.1_sxtJ_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,27801,27966,"ABI75141.1_sxtK_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,27976,29257,"ABI75142.1_sxtL_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,29274,29844,"ABI75143.1_sxtO_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+DQ787201.1,30059,30992,"ABI75144.1_ABI75144.1_Dolichospermum circinale AWQC131C_decarbamoylgonyautoxin 2, decarbamoylgonyautoxin 3, decarbamoylsaxitoxin, gonyautoxin 2, gonyautoxin 3, gonyautoxin 5, saxitoxin, toxin C2, toxin C3"
+FJ609416.1,106,4366,"ACM68682.1_aerA_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,4610,6488,"ACM68683.1_aerJ_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,6611,11396,"ACM68684.1_aerB_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,11435,12479,"ACM68685.1_aerK_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,12472,13105,"ACM68686.1_aerD_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,13201,13828,"ACM68687.1_aerE_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,13876,14677,"ACM68688.1_aerF_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,14715,15660,"ACM68689.1_aerL_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,15751,19030,"ACM68690.1_aerG1_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,19068,20805,"ACM68691.1_aerG2_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,20865,21642,"ACM68692.1_ACM68692.1_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,21722,22235,"_aerM__Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,22314,22923,"ACM68693.1_ACM68693.1_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+FJ609416.1,23096,25091,"ACM68694.1_aerN_Microcystis aeruginosa NIES-98_aeruginosin 98-A, aeruginosin 98-B, aeruginosin 98-C"
+DQ075244.1,85,1255,AAZ03548.1_mcnG_Microcystis sp. NIVA-CYA 172/5_cyanopeptolin
+DQ075244.1,1316,3386,AAZ03549.1_mcnF_Microcystis sp. NIVA-CYA 172/5_cyanopeptolin
+DQ075244.1,3953,7250,AAZ03550.1_mcnA_Microcystis sp. NIVA-CYA 172/5_cyanopeptolin
+DQ075244.1,7252,10570,AAZ03551.1_mcnB_Microcystis sp. NIVA-CYA 172/5_cyanopeptolin
+DQ075244.1,10566,24732,AAZ03552.1_mcnC_Microcystis sp. NIVA-CYA 172/5_cyanopeptolin
+DQ075244.1,24728,26606,AAZ03553.1_mcnD_Microcystis sp. NIVA-CYA 172/5_cyanopeptolin
+DQ075244.1,26602,30859,AAZ03554.1_mcnE_Microcystis sp. NIVA-CYA 172/5_cyanopeptolin
+AM774406.1,868,2842,CAO82081.1_mcaA_Microcystis aeruginosa NIES-298_microcyclamide
+AM774406.1,2944,3196,CAO82082.1_mcaB_Microcystis aeruginosa NIES-298_microcyclamide
+AM774406.1,3246,3489,CAO82083.1_mcaC_Microcystis aeruginosa NIES-298_microcyclamide
+AM774406.1,3550,5881,CAO82084.1_mcaD_Microcystis aeruginosa NIES-298_microcyclamide
+AM774406.1,5997,6222,CAO82085.1_mcaE_Microcystis aeruginosa NIES-298_microcyclamide
+AM774406.1,6516,7482,CAO82086.1_mcaF_Microcystis aeruginosa NIES-298_microcyclamide
+AM774406.1,7534,8338,CAO82087.1_CAO82087.1_Microcystis aeruginosa NIES-298_microcyclamide
+AM774406.1,8426,8774,CAO82088.1_CAO82088.1_Microcystis aeruginosa NIES-298_microcyclamide
+AM774406.1,9166,13222,CAO82089.1_mcaG_Microcystis aeruginosa NIES-298_microcyclamide
+AM931579.1,74,2048,CAP64335.1_mcaA_Microcystis aeruginosa PCC 7806_microcyclamide
+AM931579.1,2153,2405,CAP64336.1_mcaB_Microcystis aeruginosa PCC 7806_microcyclamide
+AM931579.1,2455,2698,CAP64337.1_mcaC_Microcystis aeruginosa PCC 7806_microcyclamide
+AM931579.1,2756,5087,CAP64338.1_mcaD_Microcystis aeruginosa PCC 7806_microcyclamide
+AM931579.1,5203,5512,CAP64339.1_mcaE_Microcystis aeruginosa PCC 7806_microcyclamide
+AM931579.1,5806,6772,CAP74572.1_mcaF_Microcystis aeruginosa PCC 7806_microcyclamide
+AM931579.1,6824,7628,CAP64340.1_CAP64340.1_Microcystis aeruginosa PCC 7806_microcyclamide
+AM931579.1,7716,8064,CAP64341.1_CAP64341.1_Microcystis aeruginosa PCC 7806_microcyclamide
+AM931579.1,8567,12509,CAP64342.1_mcaG_Microcystis aeruginosa PCC 7806_microcyclamide
+CAIH01000183.1,1303,5224,"CCH92964.1_MICCA_2630002_Microcystis aeruginosa PCC 9432_aeruginosamide B, aeruginosamide C"
+CAIH01000183.1,5348,6323,"CCH92965.1_tenF_Microcystis aeruginosa PCC 9432_aeruginosamide B, aeruginosamide C"
+CAIH01000183.1,6399,8115,"CCH92966.1_MICCA_2630004_Microcystis aeruginosa PCC 9432_aeruginosamide B, aeruginosamide C"
+CAIH01000183.1,8736,11064,"CCH92967.1_MICCA_2630005_Microcystis aeruginosa PCC 9432_aeruginosamide B, aeruginosamide C"
+CAIH01000183.1,11394,11646,"CCH92968.1_mcaB_Microcystis aeruginosa PCC 9432_aeruginosamide B, aeruginosamide C"
+CAIH01000183.1,11751,13725,"CCH92969.1_MICCA_2630007_Microcystis aeruginosa PCC 9432_aeruginosamide B, aeruginosamide C"
+AM943877.1,3422,3575,CAQ16116.1_mdnA_Microcystis aeruginosa NIES-298_microviridin B
+AM943877.1,3850,4828,CAQ16117.1_mdnB_Microcystis aeruginosa NIES-298_microviridin B
+AM943877.1,5283,6258,CAQ16118.1_mdnC_Microcystis aeruginosa NIES-298_microviridin B
+AM943877.1,6460,6994,CAQ16119.1_mdnD_Microcystis aeruginosa NIES-298_microviridin B
+AM943877.1,7147,9211,CAQ16120.1_mdnE_Microcystis aeruginosa NIES-298_microviridin B
+AM943878.1,242,392,CAQ16121.1_mdnA_Microcystis aeruginosa MRC_microviridin J
+AM943878.1,668,1649,CAQ16122.1_mdnB_Microcystis aeruginosa MRC_microviridin J
+AM943878.1,1704,2679,CAQ16123.1_mdnC_Microcystis aeruginosa MRC_microviridin J
+AF183408.1,1,423,AAF00953.1_dnaN_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,992,1829,AAF00954.1_mcyJ_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,2004,3018,AAF00955.1_mcyI_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,3056,4673,AAF00956.1_mcyH_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,4896,12792,AAF00957.1_mcyG_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,12923,13679,AAF00963.1_mcyF_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,13710,24174,AAF00958.1_mcyE_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,24340,36061,AAF00959.1_mcyD_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,36793,45181,AAF00960.1_mcyA_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,45196,51577,AAF00961.1_mcyB_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,51573,55449,AAF00962.1_mcyC_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,55541,57593,AAF00964.1_uma1_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,57836,58400,AAF00965.1_uma2_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,58446,59973,AAF00966.1_uma3_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,60057,61272,AAF00967.1_uma4_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,62180,62615,AAF00968.1_uma5_Microcystis aeruginosa PCC 7806_microcystin LR
+AF183408.1,62656,63627,AAF00969.1_uma6_Microcystis aeruginosa PCC 7806_microcystin LR
+AB481215.1,162,2232,BAH22761.1_mcnF_Microcystis aeruginosa K-139_micropeptin K139
+AB481215.1,2804,6143,BAH22762.1_mcnA_Microcystis aeruginosa K-139_micropeptin K139
+AB481215.1,6145,9463,BAH22763.1_mcnB_Microcystis aeruginosa K-139_micropeptin K139
+AB481215.1,9459,23658,BAH22764.1_mcnC_Microcystis aeruginosa K-139_micropeptin K139
+AB481215.1,23920,28081,BAH22765.1_mcnE_Microcystis aeruginosa K-139_micropeptin K139
+AB481215.1,28304,28838,BAH22766.1_BAH22766.1_Microcystis aeruginosa K-139_micropeptin K139
+AB481215.1,29850,30639,BAH22767.1_BAH22767.1_Microcystis aeruginosa K-139_micropeptin K139
+AB481215.1,30796,31531,BAH22768.1_BAH22768.1_Microcystis aeruginosa K-139_micropeptin K139
+JQ951924.1,1,139,"AFK79987.1_pirE2_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,387,543,"AFK79988.1_pirE3_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,792,1683,"AFK79989.1_pirF_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,1694,2153,"AFK79990.1_AFK79990.1_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,2208,2787,"AFK79991.1_AFK79991.1_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,2805,3489,"AFK79992.1_AFK79992.1_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,3494,5432,"AFK79993.1_pirA_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,5560,5770,"AFK79994.1_pirB_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,5816,6038,"AFK79995.1_pirC_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,6159,6315,"AFK79996.1_pirE4_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,6396,7188,"AFK79997.1_AFK79997.1_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+JQ951924.1,7255,9325,"AFK79998.1_pirG_Microcystis aeruginosa PCC 7005_piricyclamide 7005E1, piricyclamide 7005E2, piricyclamide 7005E3, piricyclamide 7005E4"
+LC160291.1,1,199,BAW32331.1_ORFM1_Microcystis aeruginosa NIES-87_kasumigamide
+LC160291.1,1285,5338,BAW32332.1_makasA_Microcystis aeruginosa NIES-87_kasumigamide
+LC160291.1,5348,11732,BAW32333.1_makasB_Microcystis aeruginosa NIES-87_kasumigamide
+LC160291.1,11728,24076,BAW32334.1_makasC_Microcystis aeruginosa NIES-87_kasumigamide
+LC160291.1,24134,25736,BAW32335.1_makasD_Microcystis aeruginosa NIES-87_kasumigamide
+LC160291.1,25908,26238,BAW32336.1_ORFM2_Microcystis aeruginosa NIES-87_kasumigamide
+JXYX01000010.1,99832,101851,KXS89937.1_kgpG_Microcystis aeruginosa NIES-88_kawaguchipeptin A
+JXYX01000010.1,101937,102810,KXS89935.1_kgpF_Microcystis aeruginosa NIES-88_kawaguchipeptin A
+JXYX01000010.1,103552,103816,KXS89845.1_kgpE_Microcystis aeruginosa NIES-88_kawaguchipeptin A
+JXYX01000010.1,104121,104322,KXS89846.1_OA58_19050_Microcystis aeruginosa NIES-88_kawaguchipeptin A
+JXYX01000010.1,104318,104477,KXS89936.1_kgpC_Microcystis aeruginosa NIES-88_kawaguchipeptin A
+JXYX01000010.1,104565,104802,KXS89847.1_kgpB_Microcystis aeruginosa NIES-88_kawaguchipeptin A
+SRLN01000012.1,511794,512337,KAB0239817.1_EZJ55_03500_Microcystis aeruginosa EAWAG127a_microviridin 1777
+SRLN01000012.1,512780,512933,KAB0239818.1_EZJ55_03505_Microcystis aeruginosa EAWAG127a_microviridin 1777
+SRLN01000012.1,513209,514190,KAB0239819.1_EZJ55_03510_Microcystis aeruginosa EAWAG127a_microviridin 1777
+SRLN01000012.1,514244,515219,KAB0239820.1_EZJ55_03515_Microcystis aeruginosa EAWAG127a_microviridin 1777
+SRLN01000012.1,515444,516434,_EZJ55_03520_Microcystis aeruginosa EAWAG127a_microviridin 1777
+SRLN01000012.1,516641,516800,KAB0239821.1_EZJ55_03525_Microcystis aeruginosa EAWAG127a_microviridin 1777
+JADEXY010000051.1,1533,3276,MBE8994627.1_IQ234_09865_Microcystis aeruginosa LEGE 91341_microginin
+JADEXY010000051.1,3424,3691,MBE8994628.1_IQ234_09870_Microcystis aeruginosa LEGE 91341_microginin
+JADEXY010000051.1,3932,5330,MBE8994629.1_IQ234_09875_Microcystis aeruginosa LEGE 91341_microginin
+JADEXY010000051.1,5366,13565,MBE8994630.1_IQ234_09880_Microcystis aeruginosa LEGE 91341_microginin
+JADEXY010000051.1,13561,16999,MBE8994631.1_IQ234_09885_Microcystis aeruginosa LEGE 91341_microginin
+JADEXY010000051.1,17002,24481,MBE8994632.1_IQ234_09890_Microcystis aeruginosa LEGE 91341_microginin
+JADEXY010000051.1,24543,26544,MBE8994633.1_IQ234_09895_Microcystis aeruginosa LEGE 91341_microginin
+AM071396.2,1264,2011,"CAM59600.1_ORF2_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,2649,6900,"CAM59601.1_aerA_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,7116,11913,"CAJ21198.2_aerB_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,11949,12816,"CAM59602.1_ORF3_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,12856,15067,"CAJ21199.2_aerC_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,15167,15776,"CAM59603.1_aerD_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,15822,16464,"CAM59604.1_aerE_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,16492,17287,"CAM59605.1_aerF_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,17416,22285,"CAM59606.1_aerG_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,22651,23383,"CAM59607.1_aerH_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,23429,24686,"CAM59608.1_aerI_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,24913,25603,"CAM59609.1_ORF4_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,26387,26900,"CAM59610.1_ORF5_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,26844,28131,"CAM59611.1_ORF6_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,28548,29247,"CAM59612.1_ORF7_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,29310,30471,"CAM59613.1_ORF8_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+AM071396.2,30626,31427,"CAM59614.1_ORF9_Planktothrix agardhii NIVA-CYA 126_aeruginoside 126A, aeruginoside 126B"
+EF672686.1,1,6502,"ABV79985.1_apnA_Planktothrix agardhii NIVA-CYA 126/8_anabaenopeptin 908, anabaenopeptin 915"
+EF672686.1,6507,9744,"ABV79986.1_apnB_Planktothrix agardhii NIVA-CYA 126/8_anabaenopeptin 908, anabaenopeptin 915"
+EF672686.1,9882,17607,"ABV79987.1_apnC_Planktothrix agardhii NIVA-CYA 126/8_anabaenopeptin 908, anabaenopeptin 915"
+EF672686.1,17603,21866,"ABV79988.1_apnD_Planktothrix agardhii NIVA-CYA 126/8_anabaenopeptin 908, anabaenopeptin 915"
+EF672686.1,21913,23950,"ABV79989.1_apnE_Planktothrix agardhii NIVA-CYA 126/8_anabaenopeptin 908, anabaenopeptin 915"
+DQ837301.1,1,2065,ABI26076.1_ociD_Planktothrix agardhii NIVA-CYA 116_cyanopeptolin
+DQ837301.1,2349,12783,ABI26077.1_ociA_Planktothrix agardhii NIVA-CYA 116_cyanopeptolin
+DQ837301.1,12779,26966,ABI26078.1_ociB_Planktothrix agardhii NIVA-CYA 116_cyanopeptolin
+DQ837301.1,26962,31216,ABI26079.1_ociC_Planktothrix agardhii NIVA-CYA 116_cyanopeptolin
+HQ655154.1,1,199,"AED99424.1_pagC_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,246,456,"AED99425.1_pagB_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,522,2490,"AED99426.1_pagA_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,2608,2998,"AED99427.1_AED99427.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,3295,3874,"AED99428.1_AED99428.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,3873,4776,"AED99429.1_pagF_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,4806,5622,"AED99430.1_AED99430.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,5655,5808,"AED99431.1_pagE7_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,6095,6242,"AED99432.1_pagE6_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,6405,6552,"AED99433.1_pagE5_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,6835,7033,"AED99434.1_pagE4_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,7209,7536,"AED99435.1_AED99435.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,7532,7790,"AED99436.1_AED99436.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,8087,8315,"AED99437.1_AED99437.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,8314,8590,"AED99438.1_AED99438.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,8603,8690,"AED99439.1_pagE3_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,8831,9065,"AED99440.1_AED99440.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,9075,9363,"AED99441.1_AED99441.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,9369,9654,"AED99442.1_AED99442.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,9616,9853,"AED99443.1_pagE2_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,10031,10616,"AED99444.1_AED99444.1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,11007,11163,"AED99445.1_pagE1_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+HQ655154.1,11350,13423,"AED99446.1_pagG_Planktothrix agardhii NIES-596_prenylagaramide B, prenylagaramide C"
+EU438895.1,1,799,ACC54546.1_ACC54546.1_Planktothrix agardhii NIVA-CYA 126/8_microviridin K
+EU438895.1,842,2636,ACC54547.1_mvdA_Planktothrix agardhii NIVA-CYA 126/8_microviridin K
+EU438895.1,2731,3271,ACC54548.1_mvdB_Planktothrix agardhii NIVA-CYA 126/8_microviridin K
+EU438895.1,3337,4312,ACC54549.1_mvdC_Planktothrix agardhii NIVA-CYA 126/8_microviridin K
+EU438895.1,4347,5340,ACC54550.1_mvdD_Planktothrix agardhii NIVA-CYA 126/8_microviridin K
+EU438895.1,5456,5603,ACC54551.1_mvdE_Planktothrix agardhii NIVA-CYA 126/8_microviridin K
+EU438895.1,5795,5948,ACC54552.1_mvdF_Planktothrix agardhii NIVA-CYA 126/8_microviridin K
+EU438895.1,6075,6813,ACC54553.1_ACC54553.1_Planktothrix agardhii NIVA-CYA 126/8_microviridin K
+AJ441056.1,449,1241,CAD29792.1_mcyT_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+AJ441056.1,1400,13121,CAD29793.1_mcyD_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+AJ441056.1,13178,23645,CAD29794.1_mcyE_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+AJ441056.1,23901,31824,CAD29795.1_mcyG_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+AJ441056.1,31924,33679,CAD29796.1_mcyH_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+AJ441056.1,33731,42182,CAD29797.1_mcyA_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+AJ441056.1,42195,48630,CAD29798.1_mcyB_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+AJ441056.1,48704,52601,CAD29799.1_mcyC_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+AJ441056.1,52795,53626,CAD29800.2_mcyJ_Planktothrix agardhii NIVA-CYA 126/8_microcystin
+MF140698.1,1,190,"AVD53608.1_sphC_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,204,408,"AVD53609.1_sphB_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,531,2535,"AVD53610.1_sphA_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,3299,3443,"AVD53611.1_sphE_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,3476,4268,"AVG44180.1_AVG44180.1_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,4283,5156,"AVD53612.1_sphF_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,5885,6569,"AXU44625.1_AXU44625.1_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,6561,7245,"AVD53613.1_AVD53613.1_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,7317,7653,"AVG44181.1_AVG44181.1_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+MF140698.1,8087,10280,"AVG44182.1_sphG_Sphaerospermopsis sp. LEGE 00249_anacyclamide D8P, sphaerocyclamide"
+CP080598.1,3534866,3535616,QYX30480.1_gntJ_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3535878,3536682,QYX30481.1_gntA_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3536705,3537662,QYX30482.1_gntB_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3537813,3538926,QYX30483.1_gntC_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3538922,3539966,QYX30484.1_gntD_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3539980,3541291,QYX30485.1_gntE_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3541494,3542319,QYX30486.1_gntF_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3542324,3543359,QYX30487.1_gntG_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3543550,3544792,QYX30488.1_gntH_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3544854,3545772,QYX30489.1_gntI_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin
+CP080598.1,3546079,3547438,QYX30490.1_gntT_Sphaerospermopsis torques-reginae ITEP-024_guanitoxin

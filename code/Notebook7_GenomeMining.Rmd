@@ -238,13 +238,11 @@ write_csv(multimash_parse, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship
 #Carrying no with 95% ID and 90% coverage clustered DB and running in Antismash online: extractedbgcs_95_90_rep_seq.fasta
 
 #Ran in antismash online, version 7.1.0, Feb-16-2024 
-
-#Uploaded all downloaded results here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/antismash_drep_BGCs
 ```
 
 6. Run bigscape on new antismash results
 ```{r}
-#Bigscape was run on all antismash results after all antismash results were put into one folder with the snakefile found here and code below: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/quality_bins/drep_99/antismash_bins99/antismash_drep_BGCs/Snakefile
+##Bigscape was run on all antismash results (downloaded from the online antismash submission) with the snakefile found here and code below: 
 
 # import os
 # import re
@@ -282,7 +280,7 @@ write_csv(multimash_parse, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship
 #         """
 
 
-#Results found here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/antismash_drep_BGCs/bigscape2
+#Results found here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/bigscape2
 
 #This folder was then downloaded onto my local computer. Htmls can visualize the output online. I gathered all the network files within output --> networks --> BGCname --> *.network file and dragged and dropped them into cytoscape. I then deleted all mibig singletons (BGC****). I then went to tools --> merge --> networks and merged all these networks together to get them into one. Next, I gathered the network_annotation_full.tsv and have added a genus column to it so i can visualize the genus of each bgc we have found based on bin annotation. Below I am getting the genera of the bins together to add to that list and then i will upload this as a table to the cytoscape merged network.
 
@@ -307,7 +305,7 @@ write_csv(genomes_qual, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_ma
 #To do this, I used this script:
 #/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/scripts/parsing_gbks.py to parse the overall antismash gbk file found here:
 
-#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/antismash_drep_BGCs/extractedbgcs/extractedbgcs_95_90_rep_seq/extractedbgcs_95_90_rep_seq.gbk 
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/antismash_drep_BGCs_9590/extractedbgcs_95_90_rep_seq/extractedbgcs_95_90_rep_seq.gbk 
 
 #This outputted a csv file: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/drep95_antismash.csv
 

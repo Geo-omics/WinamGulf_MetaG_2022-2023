@@ -1,0 +1,308 @@
+AntiSMASH_RegionID,Region_ID,Pathway,Length,Manual_Annotated_Descriptor,Extracted_BGC_start_nuc,Extracted_BGC_end_nuc
+286,samp_4313_maxbin_367_contig_143_T1PKS,T1PKS,"9,649",1-heptadecene-like 1,2738,8005
+32,samp_4317_concoct_68_contig_312_NRPS,NRPS,"52,073",Aeruginosin-like 1,18821,43020
+147,samp_4435_maxbin_422_contig_111_NRPS-like,NRPS-like,"9,281",Aeruginosin-like 2,3300,9211
+59,samp_4319_VAMB_955_contig_421_NRPS,"NRPS,NRPS-like","39,125",Aeruginosin-like 3,1783,26466
+282,samp_4322_metabat2_24_contig_109_NRPS-like,"NRPS-like,NRPS","24,156",Aeruginosin-like 4,2,11716
+231,samp_4445_concoct_1415_contig_72_NRPS,"NRPS,betalactone,microviridin","39,273",Anabaenopeptin-like 1,2063,31577
+50,samp_4321_maxbin_137_contig_1_cyanobactin,cyanobactin,"7,410",Anacyclamide-like 1,41,6983
+110,samp_4311_concoct_412_contig_314_cyanobactin,cyanobactin,"16,985",Anacyclamide-like 4,10002,16941
+125,samp_4447_metabat2_48_contig_296_cyanobactin,cyanobactin,"11,671",Anacyclamide-like 5,2,5627
+130,samp_4307_semibin_116_contig_228_cyanobactin,cyanobactin,"14,564",Anacyclamide-like 6,6036,14222
+239,samp_4322_concoct_184_contig_61_cyanobactin,cyanobactin,"12,726",Anacyclamide-like 7,6036,11975
+307,samp_4439_concoct_171_contig_184_cyanobactin,cyanobactin,"19,842",Anacyclamide-like 8,10002,19843
+81,samp_4445_concoct_1447_contig_530_arylpolyene,arylpolyene,"7,501",Arylprolene 1,31,6029
+139,samp_4446_VAMB_96_contig_914_arylpolyene,arylpolyene,"6,570",Arylprolene 2,2230,6095
+107,samp_4434_semibin_67_contig_284_crocagin,crocagin,"16,312",Crocagin 1,1124,1593
+277,samp_4444_metabat2_185_contig_143_crocagin,crocagin,"11,426",Crocagin 2,54,10914
+14.1,samp_4435_concoct_1904_contig_427_cyanobactin,cyanobactin,"6,030",Cyanobactin 1,2376,6029
+16.1,samp_4435_concoct_1904_contig_665_cyanobactin,cyanobactin,"9,016",Cyanobactin 2,2,1582
+76,samp_4434_VAMB_405_contig_1902_cyanobactin,cyanobactin,"11,968",Cyanobactin 3,2,2388
+85,samp_4446_metadecoder_636_contig_262_cyanobactin,cyanobactin,"13,091",Cyanobactin 4,238,3520
+92,samp_4319_maxbin_413_contig_252_cyanobactin,cyanobactin,"12,310",Cyanobactin 5,197,6688
+89,samp_4446_VAMB_97_contig_192_cyanobactin,"cyanobactin,terpene","15,102",Cyanobactin-Terpene 1,5383,15009
+180,samp_4434_metabat2_58_contig_120_NRPS-like,NRPS,"9,595",Cyanopeptolin-like 1,3,9595
+210,samp_4447_concoct_1018_contig_252_NRPS,NRPS,"11,577",Cyanopeptolin-like 2,2,11424
+184,samp_4434_metabat2_58_contig_530_NRPS-like,"NRPS-like,NRPS","7,931",Cyanopeptolin-like 3,3,7932
+88,samp_4446_VAMB_97_contig_68_ectoine,ectoine,"8,340",Ectoine 1,3,7589
+3,samp_4325_concoct_153_contig_525_hglE-KS,hglE-KS,"41,480",Heterocyst Glycolipids 1,12604,40311
+145,samp_4315_VAMB_280_contig_117_PUFA,"PUFA,hglE-KS","23,844",Heterocyst Glycolipids 10,6950,23845
+175,samp_4324_maxbin_53_contig_213_T1PKS,"T1PKS,hglE-KS","27,185",Heterocyst Glycolipids 11,16683,26592
+31,samp_4317_concoct_68_contig_274_hglE-KS,hglE-KS,"35,844",Heterocyst Glycolipids 2,10938,23244
+41,samp_4447_VAMB_472_contig_107_hglE-KS,hglE-KS,"43,153",Heterocyst Glycolipids 3,16996,30197
+64,samp_4441_maxbin_669_contig_29_hglE-KS,hglE-KS,"30,794",Heterocyst Glycolipids 4,5888,18194
+83,samp_4446_metadecoder_636_contig_129_hglE-KS,hglE-KS,"32,272",Heterocyst Glycolipids 5,3,26463
+86,samp_4312_concoct_454_contig_57_hglE-KS,hglE-KS,"35,194",Heterocyst Glycolipids 6,8159,34594
+119,samp_4448_VAMB_839_contig_2366_hglE-KS,hglE-KS,"13,897",Heterocyst Glycolipids 7,2789,11716
+255,samp_4443_semibin_319_contig_514_hglE-KS,hglE-KS,"26,767",Heterocyst Glycolipids 8,3658,20242
+98,samp_4324_maxbin_57_contig_260_PUFA,"PUFA,hglE-KS","25,891",Heterocyst Glycolipids 9,7964,25219
+169,samp_4443_semibin_480_contig_250_hglE-KS,hglE-KS,"13,416",hglE-KS 1,3,12147
+173,samp_4324_maxbin_53_contig_124_hglE-KS,hglE-KS,"35,259",hglE-KS 2,1770,33031
+262,samp_4449_metabat2_97_contig_255_hglE-KS,hglE-KS,"20,928",hglE-KS 3,3431,8572
+58,samp_4319_VAMB_955_contig_274_PUFA,"hglE-KS,PUFA","21,390",hglE-KS-PUFA 1,5712,20718
+4,samp_4319_concoct_522_contig_1241_lanthipeptide-class-ii,lanthipeptide-class-ii,"5,637",Lanthipeptide-class-ii 1,95,4232
+191,samp_4321_concoct_295_contig_693_lanthipeptide-class-ii,lanthipeptide-class-ii,"20,973",Lanthipeptide-class-ii 2,7627,10974
+215,samp_4445_metabat2_158_contig_277_lanthipeptide-class-ii,lanthipeptide-class-ii,"15,548",Lanthipeptide-class-ii 3,9658,13080
+264,samp_4320_concoct_456_contig_168_lanthipeptide-class-ii,lanthipeptide-class-ii,"5,002",Lanthipeptide-class-ii 4,515,3868
+265,samp_4443_metabat2_135_contig_62_lanthipeptide-class-ii,lanthipeptide-class-ii,"10,677",Lanthipeptide-class-ii 5,5738,9160
+294,samp_4443_VAMB_834_contig_1768_lanthipeptide-class-ii,lanthipeptide-class-ii,"5,429",Lanthipeptide-class-ii 6,265,3561
+297,samp_4445_semibin_421_contig_114_lanthipeptide-class-ii,lanthipeptide-class-ii,"13,458",Lanthipeptide-class-ii 7,10002,13184
+5,samp_4447_maxbin_94_contig_103_lanthipeptide-class-v,lanthipeptide-class-v,"7,430",Lanthipeptide-class-v 1,1400,7429
+251,samp_4443_semibin_319_contig_215_lanthipeptide-class-v,lanthipeptide-class-v,"11,116",Lanthipeptide-class-v 10,7965,10351
+254,samp_4443_semibin_319_contig_425_lanthipeptide-class-v,lanthipeptide-class-v,"30,784",Lanthipeptide-class-v 11,13345,15775
+267,samp_4443_metabat2_135_contig_457_lanthipeptide-class-v,lanthipeptide-class-v,"15,031",Lanthipeptide-class-v 12,2167,3953
+295,samp_4445_semibin_421_contig_72_lanthipeptide-class-v,lanthipeptide-class-v,"23,974",Lanthipeptide-class-v 13,19857,22339
+11,samp_4435_concoct_1904_contig_96_lanthipeptide-class-v,lanthipeptide-class-v,"6,277",Lanthipeptide-class-v 2,3718,6015
+33,samp_4317_concoct_68_contig_348_lanthipeptide-class-v,lanthipeptide-class-v,"35,821",Lanthipeptide-class-v 3,13423,14584
+40,samp_4447_VAMB_472_contig_97_lanthipeptide-class-v,lanthipeptide-class-v,"12,847",Lanthipeptide-class-v 4,9022,11499
+75,samp_4434_VAMB_405_contig_1469_lanthipeptide-class-v,lanthipeptide-class-v,"29,320",Lanthipeptide-class-v 5,6922,9321
+113,samp_4448_VAMB_839_contig_384_lanthipeptide-class-v,lanthipeptide-class-v,"28,727",Lanthipeptide-class-v 6,6298,8728
+115,samp_4448_VAMB_839_contig_614_lanthipeptide-class-v,lanthipeptide-class-v,"15,379",Lanthipeptide-class-v 7,767,3386
+202,samp_4444_semibin_569_contig_43_lanthipeptide-class-v,lanthipeptide-class-v,"29,238",Lanthipeptide-class-v 8,12887,15286
+246,samp_4326_metabat2_21_contig_28_lanthipeptide-class-v,lanthipeptide-class-v,"35,285",Lanthipeptide-class-v 9,12887,15286
+270,samp_4317_maxbin_26_contig_153_LAP,LAP,"10,015",LAP 1,231,2528
+57,samp_4319_VAMB_955_contig_191_lassopeptide,lassopeptide,"17,103",Lassopeptide 1,10002,14367
+193,samp_4441_concoct_710_contig_258_lassopeptide,lassopeptide,"5,836",Lassopeptide 2,2082,4679
+133,samp_4447_VAMB_322_contig_258_lassopeptide,"lassopeptide,RRE-containing","6,530",Lassopeptide 3,732,5305
+189,samp_4321_concoct_295_contig_230_T1PKS,"T1PKS,NRPS-like,T3PKS","39,886",Merocyclophane-like 1,6828,24205
+62,samp_4319_VAMB_955_contig_842_T1PKS,"T1PKS,T3PKS,NRPS-like","36,987",Merocyclophane-like 2,10274,27651
+55,samp_4319_VAMB_955_contig_178_NRPS,"NRPS,T1PKS,NRPS-like","76,737",Microcystin 1,2284,61400
+271,samp_4317_maxbin_26_contig_177_NRPS,"NRPS,T1PKS,NRPS-like","79,169",Microcystin 2,10968,70981
+15,samp_4435_concoct_1904_contig_477_microviridin,microviridin,"6,000",Microviridin-like 1,995,5360
+21,samp_4435_concoct_1904_contig_1372_microviridin,microviridin,"6,540",Microviridin-like 2,197,2243
+28,samp_4444_metabat2_75_contig_746_microviridin,microviridin,"5,407",Microviridin-like 3,3,5094
+101,samp_4434_semibin_67_contig_107_microviridin,microviridin,"10,330",Microviridin-like 4,856,4129
+150,samp_4435_maxbin_422_contig_185_microviridin,microviridin,"10,750",Microviridin-like 5,611,2905
+269,samp_4317_maxbin_26_contig_19_microviridin,microviridin,"4,999",Microviridin-like 6,856,3347
+292,samp_4443_VAMB_834_contig_202_microviridin,microviridin,"7,634",Microviridin-like 7,1,7635
+308,samp_4434_semibin_67_contig_9_microviridin,microviridin,"10,365",Microviridin-like 8,7841,10142
+118,samp_4448_VAMB_839_contig_2328_mycosporine-like,mycosporine-like,"20,029",Mycosporine-like 1,190,12468
+253,samp_4443_semibin_319_contig_369_T1PKS,"T1PKS,NRPS,NRPS-like","43,243",Nocuolin 1,1,43069
+13.1,samp_4435_concoct_1904_contig_197_NRPS,NRPS,"6,471",NRPS 1,2,6472
+303,samp_4321_metadecoder_473_contig_307_NRPS,NRPS,"42,552",NRPS 10,525,24094
+24.1,samp_4435_concoct_1904_contig_2230_NRPS,NRPS,"7,761",NRPS 2,1,7761
+151,samp_4435_maxbin_422_contig_336_NRPS,NRPS,"9,638",NRPS 3,2,9483
+156,samp_4435_maxbin_440_contig_738_NRPS,NRPS,"15,411",NRPS 4,1,15412
+157,samp_4445_VAMB_917_contig_2786_NRPS,NRPS,"7,328",NRPS 5,3,7329
+158,samp_4445_VAMB_917_contig_7332_NRPS,NRPS,"19,778",NRPS 6,3737,17544
+174,samp_4324_maxbin_53_contig_182_NRPS,NRPS,"42,852",NRPS 7,2093,35976
+181,samp_4434_metabat2_58_contig_186_NRPS-like,NRPS,"8,426",NRPS 8,2,8425
+243,samp_4322_concoct_184_contig_432_NRPS,NRPS,"53,470",NRPS 9,17553,41122
+2,samp_4325_concoct_153_contig_28_NRPS-like,NRPS-like,"23,373",NRPS-like 1,636,16795
+82,samp_4446_metadecoder_636_contig_120_NRPS-like,NRPS-like,"11,598",NRPS-like 10,1495,11599
+87,samp_4312_concoct_454_contig_249_NRPS-like,NRPS-like,"38,008",NRPS-like 11,2254,35887
+106,samp_4434_semibin_67_contig_203_NRPS-like,NRPS-like,"13,035",NRPS-like 12,2430,8722
+111,samp_4311_concoct_412_contig_530_NRPS-like,NRPS-like,"37,709",NRPS-like 13,550,31687
+123,samp_4443_VAMB_823_contig_1189_NRPS-like,NRPS-like,"20,262",NRPS-like 14,8304,20262
+129,samp_4448_metadecoder_579_contig_113_NRPS-like,NRPS-like,"37,929",NRPS-like 15,129,29411
+149,samp_4435_maxbin_422_contig_182_NRPS-like,NRPS-like,"13,486",NRPS-like 16,97,6389
+159,samp_4323_semibin_61_contig_74_NRPS-like,NRPS-like,"30,352",NRPS-like 17,12576,27698
+160,samp_4323_semibin_61_contig_81_NRPS-like,NRPS-like,"44,251",NRPS-like 18,10503,43704
+165,samp_4320_metadecoder_702_contig_55_NRPS-like,NRPS-like,"30,034",NRPS-like 19,11356,23292
+6,samp_4447_maxbin_94_contig_134_NRPS-like,NRPS-like,"9,572",NRPS-like 2,6808,9462
+177,samp_4324_maxbin_53_contig_388_NRPS-like,NRPS-like,"23,563",NRPS-like 20,826,17036
+205,samp_4444_semibin_569_contig_375_NRPS-like,NRPS-like,"12,862",NRPS-like 21,40,11746
+238,samp_4322_concoct_184_contig_1_NRPS-like,NRPS-like,"42,007",NRPS-like 22,8615,41528
+242,samp_4322_concoct_184_contig_336_NRPS-like,NRPS-like,"29,014",NRPS-like 23,2446,27080
+290,samp_4448_concoct_1792_contig_649_NRPS-like,NRPS-like,"16,566",NRPS-like 24,2178,16105
+47.1,samp_4445_maxbin_221_contig_353_NRPS-like,"NRPS-like,NRPS","11,957",NRPS-like 25,2688,10543
+275,samp_4320_semibin_145_contig_392_NRPS,"NRPS,microviridin","30,358",NRPS-like 26,6864,25371
+8,samp_4435_semibin_217_contig_357_NRPS-like,NRPS-like,"14,645",NRPS-like 3,2,2585
+30,samp_4317_concoct_68_contig_195_NRPS-like,NRPS-like,"42,981",NRPS-like 4,1914,39348
+45,samp_4447_VAMB_472_contig_513_NRPS-like,NRPS-like,"34,068",NRPS-like 5,127,31982
+65,samp_4441_maxbin_669_contig_134_NRPS-like,NRPS-like,"44,251",NRPS-like 6,3019,41270
+73,samp_4434_VAMB_405_contig_1043_NRPS-like,NRPS-like,"42,738",NRPS-like 7,11313,42739
+77,samp_4434_VAMB_405_contig_2570_NRPS-like,NRPS-like,"41,091",NRPS-like 8,8475,40470
+80,samp_4445_concoct_1447_contig_373_NRPS-like,NRPS-like,"9,478",NRPS-like 9,4432,9479
+7,samp_4435_semibin_217_contig_325_NRPS-like,"NRPS,NRPS-like","10,812",NRPS-like-NRPS Hybrid 1,3,10813
+1,samp_4444_semibin_567_contig_259_T1PKS,"T1PKS,NRPS-like","27,405",NRPS-like-T1PKS 1,15798,22205
+219,samp_4445_metabat2_158_contig_347_T1PKS,"NRPS-like,T1PKS","48,621",NRPS-like-T1PKS 10,8036,37332
+273,samp_4317_maxbin_26_contig_563_NRPS-like,"NRPS-like,T1PKS","18,054",NRPS-like-T1PKS 11,3656,15831
+90,samp_4446_VAMB_97_contig_859_NRPS-like,"T1PKS,NRPS-like","10,111",NRPS-like-T1PKS 2,268,10111
+187,samp_4321_concoct_295_contig_143_NRPS-like,"T1PKS,NRPS-like","17,701",NRPS-like-T1PKS 3,4291,16462
+211,samp_4447_concoct_1018_contig_313_T1PKS,"T1PKS,NRPS-like","20,620",NRPS-like-T1PKS 4,2,14444
+296,samp_4445_semibin_421_contig_112_T1PKS,"T1PKS,NRPS-like,lanthipeptide-class-ii,proteusin","31,052",NRPS-like-T1PKS 5,18399,31053
+105,samp_4434_semibin_67_contig_183_T1PKS,"T1PKS,transAT-PKS-like,NRPS-like","32,853",NRPS-like-T1PKS 6,3455,32623
+19,samp_4435_concoct_1904_contig_1012_NRPS-like,"NRPS-like,T1PKS","17,586",NRPS-like-T1PKS 7,5829,17585
+69,samp_4445_semibin_342_contig_369_T1PKS,"NRPS-like,T1PKS","16,133",NRPS-like-T1PKS 8,1042,11439
+194,samp_4320_metadecoder_628_contig_90_NRPS-like,"NRPS-like,T1PKS","23,217",NRPS-like-T1PKS 9,472,20998
+182,samp_4434_metabat2_58_contig_297_NRPS,"NRPS,RRE-containing","19,972",NRPS-RRE-Containing 1,2074,19647
+18,samp_4435_concoct_1904_contig_899_T1PKS,"NRPS,T1PKS","19,856",NRPS-T1PKS 1,2908,19532
+63,samp_4319_VAMB_955_contig_876_cyanobactin,cyanobactin,"13,696",Piricyclamide-like 1,1490,13697
+97,samp_4324_maxbin_57_contig_142_cyanobactin,cyanobactin,"7,630",Piricyclamide-like 2,103,3594
+99,samp_4324_maxbin_57_contig_424_cyanobactin,cyanobactin,"14,175",Piricyclamide-like 3,245,5491
+135,samp_4447_VAMB_322_contig_935_cyanobactin,cyanobactin,"10,753",Piricyclamide-like 4,3439,10716
+190,samp_4321_concoct_295_contig_676_cyanobactin,cyanobactin,"11,922",Piricyclamide-like 5,2071,11124
+196,samp_4320_metadecoder_628_contig_277_cyanobactin,cyanobactin,"10,866",Piricyclamide-like 6,3,8325
+17,samp_4435_concoct_1904_contig_753_RiPP-like,RiPP-like,"5,343",RiPP-like 1,2,4876
+304,samp_4445_semibin_366_contig_44_RiPP-like,RiPP-like,"6,633",RiPP-like 10,1019,6171
+136,samp_4445_VAMB_519_contig_64_RiPP-like,RiPP-like,"10,150",RiPP-like 2,2925,6033
+153,samp_4435_maxbin_440_contig_82_RiPP-like,RiPP-like,"7,495",RiPP-like 3,644,7496
+172,samp_4443_maxbin_277_contig_222_RiPP-like,RiPP-like,"12,659",RiPP-like 4,4499,12659
+221,samp_4445_metabat2_158_contig_426_RiPP-like,RiPP-like,"5,844",RiPP-like 5,458,4603
+229,samp_4445_metabat2_46_contig_296_RiPP-like,RiPP-like,"6,450",RiPP-like 6,2537,4664
+240,samp_4322_concoct_184_contig_235_RiPP-like,RiPP-like,"6,580",RiPP-like 7,261,4684
+259,samp_4444_metadecoder_351_contig_165_RiPP-like,RiPP-like,"9,640",RiPP-like 8,3493,9155
+278,samp_4444_metabat2_185_contig_184_RiPP-like,RiPP-like,"8,597",RiPP-like 9,1058,6345
+233,samp_4445_concoct_1415_contig_928_proteusin,"proteusin,RiPP-like","13,963",RiPP-like-Proteusin,433,11882
+27,samp_4444_metabat2_75_contig_553_RRE-containing,RRE-containing,"8,650",RRE-Containing 1,396,8156
+281,samp_4444_metabat2_185_contig_588_RRE-containing,RRE-containing,"7,935",RRE-Containing 10,584,7804
+300,samp_4445_semibin_421_contig_290_RRE-containing,RRE-containing,"13,918",RRE-Containing 11,6548,13809
+306,samp_4439_concoct_171_contig_155_RRE-containing,RRE-containing,"20,449",RRE-Containing 12,3489,12101
+29,samp_4317_concoct_68_contig_97_RRE-containing,RRE-containing,"15,272",RRE-Containing 2,3564,15012
+49,samp_4323_metabat2_108_contig_203_RRE-containing,RRE-containing,"6,879",RRE-Containing 3,1324,6279
+66,samp_4441_maxbin_669_contig_191_RRE-containing,RRE-containing,"14,104",RRE-Containing 4,709,12149
+84,samp_4446_metadecoder_636_contig_230_RRE-containing,RRE-containing,"12,601",RRE-Containing 5,4060,12149
+91,samp_4319_maxbin_413_contig_136_RRE-containing,RRE-containing,"9,906",RRE-Containing 6,2891,9599
+126,samp_4447_metabat2_48_contig_396_RRE-containing,RRE-containing,"9,920",RRE-Containing 7,1138,7798
+204,samp_4444_semibin_569_contig_329_RRE-containing,RRE-containing,"11,369",RRE-Containing 8,679,11006
+235,samp_4445_semibin_379_contig_460_RRE-containing,RRE-containing,"15,237",RRE-Containing 9,4921,11350
+171,samp_4443_maxbin_277_contig_110_RRE-containing,"RRE-containing,lassopeptide","10,487",RRE-Containing-Lassopeptide 1,1027,10123
+188,samp_4321_concoct_295_contig_156_spliceotide,spliceotide,"16,462",Spliceotide 1,370,15938
+141,samp_4308_VAMB_457_contig_1077_spliceotide,"spliceotide,RRE-containing","13,000",Spliceotide 3,2,12451
+247,samp_4326_metabat2_21_contig_315_spliceotide,"spliceotide,RRE-containing","6,320",Spliceotide 4,742,6321
+285,samp_4322_metabat2_24_contig_394_spliceotide,spliceotide,"13,571",Splideotide 2,32,13170
+232,samp_4445_concoct_1415_contig_907_NRPS-like,NRPS-like,"7,289",Spumigin-like 1,1500,7289
+61,samp_4319_VAMB_955_contig_507_T1PKS,T1PKS,"24,287",T1PKS 1,4557,22260
+284,samp_4322_metabat2_24_contig_185_T1PKS,T1PKS,"25,243",T1PKS 10,3217,20824
+120,samp_4435_VAMB_805_contig_117_T1PKS,T1PKS,"13,791",T1PKS 2,698,12892
+128,samp_4448_metadecoder_579_contig_38_T1PKS,T1PKS,"32,899",T1PKS 3,3707,13687
+140,samp_4308_VAMB_457_contig_88_T1PKS,T1PKS,"30,254",T1PKS 4,20002,29978
+213,samp_4447_concoct_1018_contig_1216_T1PKS,T1PKS,"15,490",T1PKS 5,409,14577
+263,samp_4449_metabat2_97_contig_277_T1PKS,T1PKS,"8,484",T1PKS 6,1525,8385
+268,samp_4443_metabat2_135_contig_520_T1PKS,T1PKS,"26,563",T1PKS 7,5625,23185
+274,samp_4317_maxbin_26_contig_612_T1PKS,T1PKS,"21,481",T1PKS 8,1854,21481
+279,samp_4444_metabat2_185_contig_246_T1PKS,T1PKS,"14,674",T1PKS 9,1327,14673
+234,samp_4445_semibin_379_contig_282_T1PKS,"PUFA,T1PKS,hglE-KS","20,440",T1PKS-hglE-KS 1,2,14732
+208,samp_4443_metadecoder_774_contig_17_T1PKS,"T1PKS,prodigiosin,NRPS","59,771",T1PKS-NRPS-Prodigiosin 1,4139,58628
+183,samp_4434_metabat2_58_contig_508_T1PKS,"T1PKS,terpene","17,306",T1PKS-Terpene 1,76,15578
+179,samp_4434_metabat2_58_contig_50_T3PKS,T3PKS,"11,732",T3PKS 1,3,11731
+200,samp_4445_VAMB_546_contig_53_T3PKS,T3PKS,"6,818",T3PKS 2,1,6817
+257,samp_4443_semibin_466_contig_286_T3PKS,T3PKS,"9,489",T3PKS 3,3,8405
+9,samp_4444_semibin_482_contig_165_terpene,terpene,"10,855",Terpene 1,2,"10,857"
+43,samp_4447_VAMB_472_contig_346_terpene,terpene,"11,178",Terpene 10,1,"11,179"
+46,samp_4448_VAMB_889_contig_147_terpene,terpene,"12,591",Terpene 11,1,"12,592"
+48,samp_4445_maxbin_221_contig_370_terpene,terpene,"10,028",Terpene 12,1,"10,029"
+51,samp_4321_maxbin_137_contig_210_terpene,terpene,"20,932",Terpene 13,2,"20,934"
+52,samp_4321_maxbin_137_contig_261_terpene,terpene,"20,830",Terpene 14,2,"20,832"
+53,samp_4332_VAMB_1153_contig_44_terpene,terpene,"11,172",Terpene 15,2,"11,174"
+54,samp_4332_VAMB_1153_contig_99_terpene,terpene,"17,780",Terpene 16,1,"17,781"
+56,samp_4319_VAMB_955_contig_178_terpene,terpene,"17,463",Terpene 17,2,"17,465"
+60,samp_4319_VAMB_955_contig_444_terpene,terpene,"11,734",Terpene 18,1,"11,735"
+68,samp_4445_semibin_342_contig_168_terpene,terpene,"20,970",Terpene 19,1,"20,971"
+10,samp_4444_semibin_482_contig_216_terpene,terpene,"14,292",Terpene 2,2,"14,294"
+70,samp_4443_metabat2_120_contig_75_terpene,terpene,"11,682",Terpene 20,1,"11,683"
+71,samp_4443_metabat2_120_contig_110_terpene,terpene,"14,552",Terpene 21,1,"14,553"
+72,samp_4443_semibin_400_contig_169_terpene,terpene,"9,348",Terpene 22,1,"9,349"
+78,samp_4445_concoct_1447_contig_111_terpene,terpene,"6,821",Terpene 23,1,"6,822"
+79,samp_4445_concoct_1447_contig_277_terpene,terpene,"7,390",Terpene 24,1,"7,391"
+93,samp_4445_metabat2_36_contig_20_terpene,terpene,"20,923",Terpene 25,2,"20,925"
+94,samp_4445_metabat2_36_contig_61_terpene,terpene,"21,286",Terpene 26,2,"21,288"
+95,samp_4445_VAMB_1115_contig_244_terpene,terpene,"16,729",Terpene 27,1,"16,730"
+96,samp_4324_maxbin_57_contig_128_terpene,terpene,"11,706",Terpene 28,1,"11,707"
+100,samp_4324_maxbin_57_contig_447_terpene,terpene,"9,786",Terpene 29,1,"9,787"
+12,samp_4435_concoct_1904_contig_173_terpene,terpene,"7,382",Terpene 3,1,"7,383"
+103,samp_4434_semibin_67_contig_168_terpene,terpene,"15,546",Terpene 30,2,"15,548"
+104,samp_4434_semibin_67_contig_175_terpene,terpene,"15,682",Terpene 31,1,"15,683"
+108,samp_4445_metabat2_59_contig_300_terpene,terpene,"8,368",Terpene 32,1,"8,369"
+109,samp_4324_maxbin_57_contig_776_terpene,terpene,"13,276",Terpene 33,2,"13,278"
+117,samp_4448_VAMB_839_contig_1804_terpene,terpene,"15,472",Terpene 34,2,"15,474"
+121,samp_4435_VAMB_805_contig_126_terpene,terpene,"10,169",Terpene 35,1,"10,170"
+127,samp_4444_semibin_481_contig_179_terpene,terpene,"6,019",Terpene 36,1,"6,020"
+132,samp_4447_VAMB_322_contig_31_terpene,terpene,"8,457",Terpene 37,1,"8,458"
+134,samp_4447_VAMB_322_contig_532_terpene,terpene,"9,555",Terpene 38,1,"9,556"
+138,samp_4446_VAMB_96_contig_306_terpene,terpene,"10,930",Terpene 39,1,"10,931"
+23,samp_4435_concoct_1904_contig_2065_terpene,terpene,"10,868",Terpene 4,1,"10,869"
+142,samp_4443_VAMB_1051_contig_58_terpene,terpene,"15,297",Terpene 40,2,"15,299"
+143,samp_4331_metabat2_120_contig_60_terpene,terpene,"14,576",Terpene 41,2,"14,578"
+144,samp_4331_metabat2_120_contig_210_terpene,terpene,"21,259",Terpene 42,2,"21,261"
+148,samp_4435_maxbin_422_contig_157_terpene,terpene,"11,041",Terpene 43,1,"11,042"
+152,samp_4435_maxbin_422_contig_364_terpene,terpene,"11,115",Terpene 44,1,"11,116"
+154,samp_4435_maxbin_440_contig_357_terpene,terpene,"7,278",Terpene 45,1,"7,279"
+155,samp_4435_maxbin_440_contig_634_terpene,terpene,"8,376",Terpene 46,1,"8,377"
+163,samp_4446_VAMB_171_contig_132_terpene,terpene,"10,302",Terpene 47,1,"10,303"
+166,samp_4444_metabat2_78_contig_58_terpene,terpene,"6,249",Terpene 48,1,"6,250"
+167,samp_4444_metabat2_78_contig_113_terpene,terpene,"13,323",Terpene 49,2,"13,325"
+26,samp_4444_metabat2_75_contig_469_terpene,terpene,"6,225",Terpene 5,1,"6,226"
+168,samp_4443_semibin_480_contig_163_terpene,terpene,"8,920",Terpene 50,1,"8,921"
+170,samp_4443_maxbin_277_contig_38_terpene,terpene,"12,666",Terpene 51,1,"12,667"
+176,samp_4324_maxbin_53_contig_286_terpene,terpene,"13,693",Terpene 52,1,"13,694"
+186,samp_4321_concoct_295_contig_35_terpene,terpene,"7,718",Terpene 53,1,"7,719"
+192,samp_4444_metabat2_114_contig_228_terpene,terpene,"20,935",Terpene 54,2,"20,937"
+195,samp_4320_metadecoder_628_contig_198_terpene,terpene,"12,243",Terpene 55,1,"12,244"
+197,samp_4443_semibin_379_contig_6_terpene,terpene,"14,240",Terpene 56,1,"14,241"
+201,samp_4448_metabat2_83_contig_176_terpene,terpene,"10,645",Terpene 57,1,"10,646"
+203,samp_4444_semibin_569_contig_138_terpene,terpene,"21,084",Terpene 58,2,"21,086"
+207,samp_4443_concoct_2141_contig_81_terpene,terpene,"14,258",Terpene 59,1,"14,259"
+34,samp_4317_concoct_68_contig_406_terpene,terpene,"19,770",Terpene 6,2,"19,772"
+212,samp_4447_concoct_1018_contig_976_terpene,terpene,"7,197",Terpene 60,1,"7,198"
+218,samp_4445_metabat2_158_contig_342_terpene,terpene,"15,839",Terpene 61,1,"15,840"
+220,samp_4445_metabat2_158_contig_419_terpene,terpene,"14,948",Terpene 62,1,"14,949"
+223,samp_4445_concoct_1532_contig_132_terpene,terpene,"14,195",Terpene 63,1,"14,196"
+225,samp_4445_maxbin_504_contig_64_terpene,terpene,"10,733",Terpene 64,1,"10,734"
+226,samp_4444_semibin_500_contig_4_terpene,terpene,"11,034",Terpene 65,1,"11,035"
+228,samp_4445_metabat2_46_contig_72_terpene,terpene,"12,144",Terpene 66,2,"12,146"
+230,samp_4445_metabat2_46_contig_482_terpene,terpene,"8,898",Terpene 67,1,"8,899"
+236,samp_4445_semibin_379_contig_677_terpene,terpene,"8,790",Terpene 68,1,"8,791"
+241,samp_4322_concoct_184_contig_278_terpene,terpene,"16,515",Terpene 69,1,"16,516"
+35,samp_4444_metabat2_171_contig_181_terpene,terpene,"10,534",Terpene 7,1,"10,535"
+248,samp_4447_metabat2_80_contig_110_terpene,terpene,"7,517",Terpene 70,1,"7,518"
+249,samp_4443_semibin_319_contig_86_terpene,terpene,"12,545",Terpene 71,1,"12,546"
+256,samp_4443_semibin_466_contig_149_terpene,terpene,"8,115",Terpene 72,1,"8,116"
+258,samp_4444_metadecoder_351_contig_152_terpene,terpene,"16,755",Terpene 73,1,"16,756"
+260,samp_4313_concoct_735_contig_94_terpene,terpene,"16,518",Terpene 74,1,"16,519"
+261,samp_4313_concoct_735_contig_188_terpene,terpene,"10,786",Terpene 75,2,"10,788"
+276,samp_4318_metabat2_38_contig_498_terpene,terpene,"14,796",Terpene 76,1,"14,797"
+280,samp_4444_metabat2_185_contig_418_terpene,terpene,"10,535",Terpene 77,1,"10,536"
+283,samp_4322_metabat2_24_contig_181_terpene,terpene,"12,648",Terpene 78,1,"12,649"
+289,samp_4444_metabat2_168_contig_614_terpene,terpene,"12,027",Terpene 79,2,"12,029"
+36,samp_4444_maxbin_831_contig_107_terpene,terpene,"20,950",Terpene 8,2,"20,952"
+291,samp_4448_concoct_1792_contig_692_terpene,terpene,"12,948",Terpene 80,1,"12,949"
+299,samp_4445_semibin_421_contig_279_terpene,terpene,"13,507",Terpene 81,1,"13,508"
+301,samp_4445_semibin_421_contig_292_terpene,terpene,"20,830",Terpene 82,2,"20,832"
+305,samp_4445_semibin_366_contig_76_terpene,terpene,"20,836",Terpene 83,2,"20,838"
+39,samp_4447_VAMB_472_contig_32_terpene,terpene,"21,166",Terpene 9,1,"21,167"
+164,samp_4320_metadecoder_702_contig_50_terpene,"terpene,NRPS-like","63,705",Terpene-NRPS-like 1,2,"63,707"
+112,samp_4448_VAMB_839_contig_142_terpene,"terpene,oligosaccharide","29,354",Terpene-Oligosaccharide 1,2,"29,356"
+206,samp_4447_VAMB_291_contig_134_thioamitides,thioamitides,"13,466",Thioamitide 1,1,"13,467"
+217,samp_4445_metabat2_158_contig_330_thioamitides,thioamitides,"15,513",Thioamitide 2,1,"15,514"
+25,samp_4444_metabat2_75_contig_361_cyanobactin,cyanobactin,"5,267",exclude,,
+74,samp_4434_VAMB_405_contig_1049_cyanobactin,cyanobactin,"5,175",exclude,,
+245,samp_4320_metadecoder_628_contig_358_cyanobactin,cyanobactin,"6,687",exclude,,
+252,samp_4443_semibin_319_contig_227_cyanobactin,cyanobactin,"10,344",exclude,,
+44,samp_4447_VAMB_472_contig_481_hglE-KS,hglE-KS,"26,605",exclude,,
+114,samp_4448_VAMB_839_contig_499_hglE-KS,"hglE-KS,T1PKS","37,753",exclude,,
+124,samp_4447_metabat2_48_contig_115_hglE-KS,"hglE-KS,T1PKS","38,609",exclude,,
+131,samp_4307_semibin_116_contig_302_hglE-KS,"hglE-KS,T1PKS","52,343",exclude,,
+250,samp_4443_semibin_319_contig_133_hglE-KS,"hglE-KS,T1PKS","27,530",exclude,,
+298,samp_4445_semibin_421_contig_253_hglE-KS,"hglE-KS,T1PKS","29,346",exclude,,
+22,samp_4435_concoct_1904_contig_1418_NRPS,NRPS,"5,607",exclude,,
+102,samp_4434_semibin_67_contig_123_NRPS,NRPS,"6,545",exclude,,
+116,samp_4448_VAMB_839_contig_698_NRPS,NRPS,"6,830",exclude,,
+209,samp_4447_concoct_1018_contig_5_NRPS,NRPS,"5,534",exclude,,
+214,samp_4447_concoct_1018_contig_1849_NRPS,NRPS,"5,149",exclude,,
+222,samp_4445_concoct_1532_contig_113_NRPS,NRPS,"6,032",exclude,,
+293,samp_4443_VAMB_834_contig_1087_NRPS,NRPS,"5,498",exclude,,
+198,samp_4443_semibin_379_contig_293_NRPS-like,NRPS-like,"6,000",exclude,,
+199,samp_4443_maxbin_242_contig_585_NRPS-like,NRPS-like,"5,279",exclude,,
+42,samp_4447_VAMB_472_contig_184_lanthipeptide-class-ii,"NRPS-like,lanthipeptide-class-ii","6,661",exclude,,
+224,samp_4445_concoct_1532_contig_461_T1PKS,"NRPS-like,T1PKS","7,255",exclude,,
+137,samp_4445_VAMB_519_contig_172_RiPP-like,RiPP-like,"6,178",exclude,,
+266,samp_4443_metabat2_135_contig_128_RiPP-like,RiPP-like,"6,083",exclude,,
+287,samp_4313_maxbin_378_contig_31_RRE-containing,RRE-containing,"5,563",exclude,,
+20,samp_4435_concoct_1904_contig_1274_T1PKS,T1PKS,"5,481",exclude,,
+38,samp_4447_VAMB_472_contig_5_T1PKS,T1PKS,"5,978",exclude,,
+185,samp_4434_metabat2_58_contig_545_T1PKS,T1PKS,"18,078",exclude,,
+216,samp_4445_metabat2_158_contig_286_T1PKS,T1PKS,"6,599",exclude,,
+237,samp_4445_semibin_379_contig_755_T1PKS,T1PKS,"6,999",exclude,,
+244,samp_4320_metadecoder_628_contig_317_T1PKS,T1PKS,"11,888",exclude,,
+272,samp_4317_maxbin_26_contig_199_T1PKS,T1PKS,"14,829",exclude,,
+37,samp_4444_maxbin_831_contig_286_terpene,terpene,"5,138",exclude,,
+67,samp_4445_semibin_342_contig_154_terpene,terpene,"5,588",exclude,,
+122,samp_4435_VAMB_805_contig_137_terpene,terpene,"5,981",exclude,,
+146,samp_4310_metabat2_90_contig_134_terpene,terpene,"5,955",exclude,,
+161,samp_4445_VAMB_590_contig_249_terpene,terpene,"5,032",exclude,,
+162,samp_4445_VAMB_590_contig_323_terpene,terpene,"5,819",exclude,,
+227,samp_4444_semibin_496_contig_283_terpene,terpene,"5,923",exclude,,
+288,samp_4432_VAMB_631_contig_1968_cyanobactin,cyanobactin,"5,158",exclude,,
+302,samp_4445_semibin_421_contig_328_cyanobactin,cyanobactin,"5,859",exclude,,

@@ -1,0 +1,32 @@
+BGC Locus,BGC Definition,Start,End,Length,Product,Locus Tag,Note,Gene Functions,Description,Gene Ontologies,Gene Kind
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,0,132,132,,ctg128_1,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,208,916,708,,ctg128_2,,transport (smcogs) SMCOG1000:ABC transporter ATP-binding protein (Score: 200.5; E-value: 5.2e-61),,,transport
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,946,2116,1170,,ctg128_3,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,2342,3653,1311,,ctg128_4,,transport (smcogs) SMCOG1029:RND family efflux transporter MFP subunit (Score: 177; E-value: 8.8e-54),,,transport
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,3706,5263,1557,,ctg128_5,,biosynthetic-additional (smcogs) SMCOG1222:dehydrogenase (Score: 235.6; E-value: 2.1e-71),,,biosynthetic-additional
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,5458,8494,3036,,ctg128_6,,biosynthetic-additional (smcogs) SMCOG1001:short-chain dehydrogenase/reductase SDR (Score: 57.1; E-value: 3.3e-17),,,biosynthetic-additional
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,8510,9878,1368,,ctg128_7,,biosynthetic-additional (rule-based-clusters) Aminotran_1_2;biosynthetic-additional (rule-based-clusters) Aminotran_5;biosynthetic-additional (smcogs) SMCOG1109:8-amino-7-oxononanoate synthase (Score: 550.1; E-value: 4.9e-167),,,biosynthetic-additional
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,9907,10609,702,,ctg128_8,,biosynthetic-additional (rule-based-clusters) PP-binding,,,biosynthetic-additional
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,10644,12900,2256,,ctg128_9,,biosynthetic (rule-based-clusters) T1PKS: PKS_AT;biosynthetic (rule-based-clusters) T1PKS: ene_KS;biosynthetic-additional (smcogs) SMCOG1021:malonyl CoA-acyl carrier protein transacylase (Score: 153; E-value: 2.1e-46),,,biosynthetic
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,12943,13687,744,,ctg128_10,,biosynthetic-additional (rule-based-clusters) ene_KS;biosynthetic-additional (smcogs) SMCOG1022:Beta-ketoacyl synthase (Score: 58.2; E-value: 1.2e-17),,,biosynthetic-additional
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,13864,14401,537,,ctg128_11,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,14675,15419,744,,ctg128_12,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,15485,16271,786,,ctg128_13,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,16412,17459,1047,,ctg128_14,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,17642,17765,123,,ctg128_15,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,17853,18930,1077,,ctg128_16,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,19178,19337,159,,ctg128_17,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,19550,20348,798,,ctg128_18,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,20420,21338,918,,ctg128_19,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,21399,21921,522,,ctg128_20,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,21976,23428,1452,,ctg128_21,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,23689,25447,1758,,ctg128_22,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,25680,25803,123,,ctg128_23,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,25892,26063,171,,ctg128_24,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,26161,26848,687,,ctg128_25,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,26825,27926,1101,,ctg128_26,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,28124,28736,612,,ctg128_27,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,28893,30372,1479,,ctg128_28,,other (smcogs) SMCOG1261:hypothetical protein (Score: 373.9; E-value: 1.8e-113),,,other
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,30778,30880,102,,ctg128_29,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,31297,31915,618,,ctg128_30,,,,,
+samp_4448_metadecoder_579_contig_38_T1PKS,samp_4448_metadecoder_579_contig_38_T1PKS,32472,32898,426,,ctg128_31,,,,,

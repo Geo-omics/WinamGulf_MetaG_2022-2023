@@ -1,0 +1,1104 @@
+start,end,file,record_id,region,product,KCB_hit,new_header
+0,10053,samp_4332_semibin_254,contig_3,1,terpene,NA,samp_4332_semibin_254_contig_3_terpene
+0,12161,samp_4332_semibin_254,contig_70,1,terpene,NA,samp_4332_semibin_254_contig_70_terpene
+0,7411,samp_4321_maxbin_137,contig_1,1,cyanobactin,anacyclamide A10,samp_4321_maxbin_137_contig_1_cyanobactin
+0,13431,samp_4321_maxbin_137,contig_145,1,NRPS-like,NA,samp_4321_maxbin_137_contig_145_NRPS-like
+0,20507,samp_4321_maxbin_137,contig_176,1,lanthipeptide-class-v,hassallidin C,samp_4321_maxbin_137_contig_176_lanthipeptide-class-v
+2186,23119,samp_4321_maxbin_137,contig_210,1,terpene,NA,samp_4321_maxbin_137_contig_210_terpene
+0,33306,samp_4321_maxbin_137,contig_243,1,NRPS-like,NA,samp_4321_maxbin_137_contig_243_NRPS-like
+0,25196,samp_4321_maxbin_137,contig_250,1,hglE-KS,heterocyst glycolipids,samp_4321_maxbin_137_contig_250_hglE-KS
+6041,26872,samp_4321_maxbin_137,contig_261,1,terpene,NA,samp_4321_maxbin_137_contig_261_terpene
+0,38444,samp_4321_maxbin_137,contig_262,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4321_maxbin_137_contig_262_hglE-KS / T1PKS
+0,13694,samp_4321_maxbin_137,contig_270,1,terpene,NA,samp_4321_maxbin_137_contig_270_terpene
+17889,29062,samp_4332_VAMB_1153,contig_44,1,terpene,NA,samp_4332_VAMB_1153_contig_44_terpene
+0,17781,samp_4332_VAMB_1153,contig_99,1,terpene,NA,samp_4332_VAMB_1153_contig_99_terpene
+0,76738,samp_4319_VAMB_955,contig_178,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4319_VAMB_955_contig_178_NRPS / T1PKS / NRPS-like
+83254,100718,samp_4319_VAMB_955,contig_178,2,terpene,NA,samp_4319_VAMB_955_contig_178_terpene
+1504,18608,samp_4319_VAMB_955,contig_191,1,lassopeptide,NA,samp_4319_VAMB_955_contig_191_lassopeptide
+0,16816,samp_4319_VAMB_955,contig_226,1,NRPS-like / T1PKS,desmamide A/desmamide B/desmamide C,samp_4319_VAMB_955_contig_226_NRPS-like / T1PKS
+0,21391,samp_4319_VAMB_955,contig_274,1,PUFA / hglE-KS,NA,samp_4319_VAMB_955_contig_274_PUFA / hglE-KS
+0,6054,samp_4319_VAMB_955,contig_362,1,cyanobactin,NA,samp_4319_VAMB_955_contig_362_cyanobactin
+0,26315,samp_4319_VAMB_955,contig_371,1,NRPS / microviridin,anachelin,samp_4319_VAMB_955_contig_371_NRPS / microviridin
+0,39126,samp_4319_VAMB_955,contig_421,1,NRPS / NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4319_VAMB_955_contig_421_NRPS / NRPS-like
+0,11735,samp_4319_VAMB_955,contig_444,1,terpene,NA,samp_4319_VAMB_955_contig_444_terpene
+0,24288,samp_4319_VAMB_955,contig_507,1,T1PKS,aeruginoside 126B/aeruginoside 126A,samp_4319_VAMB_955_contig_507_T1PKS
+0,9278,samp_4319_VAMB_955,contig_514,1,LAP,NA,samp_4319_VAMB_955_contig_514_LAP
+0,7033,samp_4319_VAMB_955,contig_639,1,spliceotide,NA,samp_4319_VAMB_955_contig_639_spliceotide
+0,12431,samp_4319_VAMB_955,contig_816,1,terpene,NA,samp_4319_VAMB_955_contig_816_terpene
+0,36988,samp_4319_VAMB_955,contig_842,1,T1PKS / T3PKS / NRPS-like,merocyclophane C/merocyclophane D,samp_4319_VAMB_955_contig_842_T1PKS / T3PKS / NRPS-like
+0,13697,samp_4319_VAMB_955,contig_876,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4319_VAMB_955_contig_876_cyanobactin
+0,24643,samp_4441_maxbin_669,contig_8,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4441_maxbin_669_contig_8_NRPS-like
+0,12653,samp_4441_maxbin_669,contig_10,1,cyanobactin,anacyclamide A10,samp_4441_maxbin_669_contig_10_cyanobactin
+0,30795,samp_4441_maxbin_669,contig_29,1,hglE-KS,heterocyst glycolipids,samp_4441_maxbin_669_contig_29_hglE-KS
+0,36947,samp_4441_maxbin_669,contig_80,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4441_maxbin_669_contig_80_NRPS
+3923,48175,samp_4441_maxbin_669,contig_134,1,NRPS-like,NA,samp_4441_maxbin_669_contig_134_NRPS-like
+4617,25550,samp_4441_maxbin_669,contig_159,1,terpene,NA,samp_4441_maxbin_669_contig_159_terpene
+0,10332,samp_4441_maxbin_669,contig_162,1,NRPS-like,NA,samp_4441_maxbin_669_contig_162_NRPS-like
+4514,24689,samp_4441_maxbin_669,contig_172,1,terpene,NA,samp_4441_maxbin_669_contig_172_terpene
+0,7513,samp_4441_maxbin_669,contig_178,1,T1PKS,NA,samp_4441_maxbin_669_contig_178_T1PKS
+15735,29840,samp_4441_maxbin_669,contig_191,1,RRE-containing,NA,samp_4441_maxbin_669_contig_191_RRE-containing
+0,35286,samp_4441_maxbin_669,contig_193,1,lanthipeptide-class-v,hassallidin C,samp_4441_maxbin_669_contig_193_lanthipeptide-class-v
+0,34754,samp_4441_maxbin_669,contig_268,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4441_maxbin_669_contig_268_hglE-KS / T1PKS
+871,12951,samp_4441_maxbin_669,contig_275,1,cyanobactin,NA,samp_4441_maxbin_669_contig_275_cyanobactin
+0,18195,samp_4441_maxbin_669,contig_300,1,terpene,NA,samp_4441_maxbin_669_contig_300_terpene
+0,7437,samp_4311_metadecoder_616,contig_51,1,terpene,NA,samp_4311_metadecoder_616_contig_51_terpene
+0,9747,samp_4311_metadecoder_616,contig_174,1,terpene,NA,samp_4311_metadecoder_616_contig_174_terpene
+0,5589,samp_4445_semibin_342,contig_154,1,terpene,NA,samp_4445_semibin_342_contig_154_terpene
+0,20971,samp_4445_semibin_342,contig_168,1,terpene,NA,samp_4445_semibin_342_contig_168_terpene
+0,16134,samp_4445_semibin_342,contig_369,1,T1PKS / NRPS-like,puwainaphycin F/minutissamide A,samp_4445_semibin_342_contig_369_T1PKS / NRPS-like
+0,9906,samp_4444_VAMB_1057,contig_103,1,terpene,NA,samp_4444_VAMB_1057_contig_103_terpene
+0,12108,samp_4444_VAMB_1057,contig_138,1,terpene,NA,samp_4444_VAMB_1057_contig_138_terpene
+0,11683,samp_4443_metabat2_120,contig_75,1,terpene,NA,samp_4443_metabat2_120_contig_75_terpene
+0,14553,samp_4443_metabat2_120,contig_110,1,terpene,NA,samp_4443_metabat2_120_contig_110_terpene
+0,11683,samp_4443_semibin_400,contig_61,1,terpene,NA,samp_4443_semibin_400_contig_61_terpene
+0,14553,samp_4443_semibin_400,contig_91,1,terpene,NA,samp_4443_semibin_400_contig_91_terpene
+0,9349,samp_4443_semibin_400,contig_169,1,terpene,NA,samp_4443_semibin_400_contig_169_terpene
+0,20735,samp_4434_VAMB_405,contig_491,1,hglE-KS,heterocyst glycolipids,samp_4434_VAMB_405_contig_491_hglE-KS
+0,20524,samp_4434_VAMB_405,contig_661,1,terpene,NA,samp_4434_VAMB_405_contig_661_terpene
+279,22190,samp_4434_VAMB_405,contig_868,1,terpene,NA,samp_4434_VAMB_405_contig_868_terpene
+8507,51246,samp_4434_VAMB_405,contig_1043,1,NRPS-like,NA,samp_4434_VAMB_405_contig_1043_NRPS-like
+0,5176,samp_4434_VAMB_405,contig_1049,1,cyanobactin,anacyclamide A10,samp_4434_VAMB_405_contig_1049_cyanobactin
+2099,28119,samp_4434_VAMB_405,contig_1459,1,T1PKS,dynemicin A,samp_4434_VAMB_405_contig_1459_T1PKS
+0,29321,samp_4434_VAMB_405,contig_1469,1,lanthipeptide-class-v,hassallidin C,samp_4434_VAMB_405_contig_1469_lanthipeptide-class-v
+0,11969,samp_4434_VAMB_405,contig_1902,1,cyanobactin,anacyclamide A10,samp_4434_VAMB_405_contig_1902_cyanobactin
+0,6846,samp_4434_VAMB_405,contig_2003,1,RRE-containing,NA,samp_4434_VAMB_405_contig_2003_RRE-containing
+0,39740,samp_4434_VAMB_405,contig_2095,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4434_VAMB_405_contig_2095_hglE-KS / T1PKS
+0,41092,samp_4434_VAMB_405,contig_2570,1,NRPS-like,NA,samp_4434_VAMB_405_contig_2570_NRPS-like
+21573,34134,samp_4434_VAMB_405,contig_2624,1,cyanobactin,NA,samp_4434_VAMB_405_contig_2624_cyanobactin
+2522,15456,samp_4434_VAMB_405,contig_2705,1,terpene,NA,samp_4434_VAMB_405_contig_2705_terpene
+0,6822,samp_4445_concoct_1447,contig_111,1,terpene,NA,samp_4445_concoct_1447_contig_111_terpene
+0,7391,samp_4445_concoct_1447,contig_277,1,terpene,NA,samp_4445_concoct_1447_contig_277_terpene
+0,9479,samp_4445_concoct_1447,contig_373,1,NRPS-like,NA,samp_4445_concoct_1447_contig_373_NRPS-like
+0,7502,samp_4445_concoct_1447,contig_530,1,arylpolyene,NA,samp_4445_concoct_1447_contig_530_arylpolyene
+0,37889,samp_4446_metadecoder_636,contig_86,1,NRPS-like,NA,samp_4446_metadecoder_636_contig_86_NRPS-like
+0,11599,samp_4446_metadecoder_636,contig_120,1,NRPS-like,NA,samp_4446_metadecoder_636_contig_120_NRPS-like
+0,32273,samp_4446_metadecoder_636,contig_129,1,hglE-KS,heterocyst glycolipids,samp_4446_metadecoder_636_contig_129_hglE-KS
+0,26560,samp_4446_metadecoder_636,contig_132,1,lanthipeptide-class-v,hassallidin C,samp_4446_metadecoder_636_contig_132_lanthipeptide-class-v
+0,31332,samp_4446_metadecoder_636,contig_186,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4446_metadecoder_636_contig_186_hglE-KS / T1PKS
+3513,16115,samp_4446_metadecoder_636,contig_230,1,RRE-containing,NA,samp_4446_metadecoder_636_contig_230_RRE-containing
+1594,13651,samp_4446_metadecoder_636,contig_231,1,terpene,NA,samp_4446_metadecoder_636_contig_231_terpene
+0,13092,samp_4446_metadecoder_636,contig_262,1,cyanobactin,anacyclamide A10,samp_4446_metadecoder_636_contig_262_cyanobactin
+0,16797,samp_4446_metadecoder_636,contig_333,1,terpene,NA,samp_4446_metadecoder_636_contig_333_terpene
+0,12069,samp_4446_metadecoder_636,contig_347,1,terpene,NA,samp_4446_metadecoder_636_contig_347_terpene
+4435,23900,samp_4312_concoct_454,contig_56,1,terpene,NA,samp_4312_concoct_454_contig_56_terpene
+0,35195,samp_4312_concoct_454,contig_57,1,hglE-KS,heterocyst glycolipids,samp_4312_concoct_454_contig_57_hglE-KS
+0,14279,samp_4312_concoct_454,contig_70,1,cyanobactin,anacyclamide A10,samp_4312_concoct_454_contig_70_cyanobactin
+0,25452,samp_4312_concoct_454,contig_134,1,hglE-KS,ambiguine P,samp_4312_concoct_454_contig_134_hglE-KS
+0,30035,samp_4312_concoct_454,contig_171,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4312_concoct_454_contig_171_NRPS-like
+0,38009,samp_4312_concoct_454,contig_249,1,NRPS-like,NA,samp_4312_concoct_454_contig_249_NRPS-like
+0,6643,samp_4312_concoct_454,contig_315,1,cyanobactin,anacyclamide A10,samp_4312_concoct_454_contig_315_cyanobactin
+0,31493,samp_4312_concoct_454,contig_423,1,lanthipeptide-class-v,hassallidin C,samp_4312_concoct_454_contig_423_lanthipeptide-class-v
+0,23308,samp_4312_concoct_454,contig_425,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4312_concoct_454_contig_425_NRPS
+0,36347,samp_4312_concoct_454,contig_497,1,NRPS-like,NA,samp_4312_concoct_454_contig_497_NRPS-like
+0,12975,samp_4312_concoct_454,contig_514,1,T1PKS,NA,samp_4312_concoct_454_contig_514_T1PKS
+0,26905,samp_4312_concoct_454,contig_575,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4312_concoct_454_contig_575_T1PKS / hglE-KS
+2991,23924,samp_4312_concoct_454,contig_623,1,terpene,NA,samp_4312_concoct_454_contig_623_terpene
+20216,39918,samp_4312_concoct_454,contig_624,1,terpene,NA,samp_4312_concoct_454_contig_624_terpene
+0,8341,samp_4446_VAMB_97,contig_68,1,ectoine,NA,samp_4446_VAMB_97_contig_68_ectoine
+0,16797,samp_4446_VAMB_97,contig_95,1,terpene,NA,samp_4446_VAMB_97_contig_95_terpene
+0,16387,samp_4446_VAMB_97,contig_183,1,NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4446_VAMB_97_contig_183_NRPS
+0,15103,samp_4446_VAMB_97,contig_192,1,cyanobactin / terpene,anacyclamide A10,samp_4446_VAMB_97_contig_192_cyanobactin / terpene
+0,11599,samp_4446_VAMB_97,contig_347,1,NRPS-like,NA,samp_4446_VAMB_97_contig_347_NRPS-like
+1594,13651,samp_4446_VAMB_97,contig_394,1,terpene,NA,samp_4446_VAMB_97_contig_394_terpene
+0,31332,samp_4446_VAMB_97,contig_415,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4446_VAMB_97_contig_415_hglE-KS / T1PKS
+0,32273,samp_4446_VAMB_97,contig_561,1,hglE-KS,heterocyst glycolipids,samp_4446_VAMB_97_contig_561_hglE-KS
+3513,16115,samp_4446_VAMB_97,contig_684,1,RRE-containing,NA,samp_4446_VAMB_97_contig_684_RRE-containing
+0,12069,samp_4446_VAMB_97,contig_742,1,terpene,NA,samp_4446_VAMB_97_contig_742_terpene
+0,26560,samp_4446_VAMB_97,contig_777,1,lanthipeptide-class-v,hassallidin C,samp_4446_VAMB_97_contig_777_lanthipeptide-class-v
+0,37889,samp_4446_VAMB_97,contig_819,1,NRPS-like,NA,samp_4446_VAMB_97_contig_819_NRPS-like
+0,10112,samp_4446_VAMB_97,contig_859,1,NRPS-like,NA,samp_4446_VAMB_97_contig_859_NRPS-like
+0,13092,samp_4446_VAMB_97,contig_939,1,cyanobactin,anacyclamide A10,samp_4446_VAMB_97_contig_939_cyanobactin
+10724,41252,samp_4319_maxbin_413,contig_11,1,NRPS-like,NA,samp_4319_maxbin_413_contig_11_NRPS-like
+0,26425,samp_4319_maxbin_413,contig_49,1,lanthipeptide-class-v,hassallidin C,samp_4319_maxbin_413_contig_49_lanthipeptide-class-v
+26300,75594,samp_4319_maxbin_413,contig_65,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4319_maxbin_413_contig_65_T1PKS / hglE-KS
+8494,29427,samp_4319_maxbin_413,contig_81,1,terpene,NA,samp_4319_maxbin_413_contig_81_terpene
+0,36055,samp_4319_maxbin_413,contig_127,1,NRPS-like,NA,samp_4319_maxbin_413_contig_127_NRPS-like
+0,23048,samp_4319_maxbin_413,contig_134,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4319_maxbin_413_contig_134_NRPS
+0,9907,samp_4319_maxbin_413,contig_136,1,RRE-containing,NA,samp_4319_maxbin_413_contig_136_RRE-containing
+0,7513,samp_4319_maxbin_413,contig_144,1,T1PKS,NA,samp_4319_maxbin_413_contig_144_T1PKS
+0,9298,samp_4319_maxbin_413,contig_190,1,terpene,NA,samp_4319_maxbin_413_contig_190_terpene
+6265,40416,samp_4319_maxbin_413,contig_236,1,hglE-KS,heterocyst glycolipids,samp_4319_maxbin_413_contig_236_hglE-KS
+0,12311,samp_4319_maxbin_413,contig_252,1,cyanobactin,NA,samp_4319_maxbin_413_contig_252_cyanobactin
+4614,20488,samp_4319_maxbin_413,contig_334,1,terpene,NA,samp_4319_maxbin_413_contig_334_terpene
+17826,38750,samp_4445_metabat2_36,contig_20,1,terpene,NA,samp_4445_metabat2_36_contig_20_terpene
+13751,35038,samp_4445_metabat2_36,contig_61,1,terpene,NA,samp_4445_metabat2_36_contig_61_terpene
+0,5135,samp_4448_metabat2_45,contig_171,1,terpene,NA,samp_4448_metabat2_45_contig_171_terpene
+0,15834,samp_4448_metabat2_45,contig_247,1,terpene,NA,samp_4448_metabat2_45_contig_247_terpene
+0,16730,samp_4445_VAMB_1115,contig_244,1,terpene,NA,samp_4445_VAMB_1115_contig_244_terpene
+0,10312,samp_4324_maxbin_57,contig_17,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4324_maxbin_57_contig_17_T1PKS
+0,17395,samp_4324_maxbin_57,contig_34,1,NRPS / microviridin,anachelin,samp_4324_maxbin_57_contig_34_NRPS / microviridin
+0,11707,samp_4324_maxbin_57,contig_128,1,terpene,NA,samp_4324_maxbin_57_contig_128_terpene
+0,36460,samp_4324_maxbin_57,contig_134,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4324_maxbin_57_contig_134_T1PKS / NRPS-like / T3PKS
+0,7631,samp_4324_maxbin_57,contig_142,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4324_maxbin_57_contig_142_cyanobactin
+0,20686,samp_4324_maxbin_57,contig_145,1,T1PKS,NA,samp_4324_maxbin_57_contig_145_T1PKS
+0,26824,samp_4324_maxbin_57,contig_174,1,NRPS / NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4324_maxbin_57_contig_174_NRPS / NRPS-like
+0,10100,samp_4324_maxbin_57,contig_183,1,spliceotide,NA,samp_4324_maxbin_57_contig_183_spliceotide
+0,6007,samp_4324_maxbin_57,contig_241,1,terpene,geosmin,samp_4324_maxbin_57_contig_241_terpene
+0,25892,samp_4324_maxbin_57,contig_260,1,PUFA / hglE-KS,zeamine/zeamine I/zeamine II/prezeamine/prezeamine I,samp_4324_maxbin_57_contig_260_PUFA / hglE-KS
+0,14798,samp_4324_maxbin_57,contig_362,1,NRPS-like / T1PKS,desmamide A/desmamide B/desmamide C,samp_4324_maxbin_57_contig_362_NRPS-like / T1PKS
+0,14176,samp_4324_maxbin_57,contig_424,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4324_maxbin_57_contig_424_cyanobactin
+0,9787,samp_4324_maxbin_57,contig_447,1,terpene,NA,samp_4324_maxbin_57_contig_447_terpene
+0,69891,samp_4324_maxbin_57,contig_490,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4324_maxbin_57_contig_490_NRPS / T1PKS / NRPS-like
+0,9267,samp_4324_maxbin_57,contig_748,1,LAP,NA,samp_4324_maxbin_57_contig_748_LAP
+0,8159,samp_4324_maxbin_57,contig_772,1,terpene,NA,samp_4324_maxbin_57_contig_772_terpene
+1553,14830,samp_4324_maxbin_57,contig_776,1,terpene,NA,samp_4324_maxbin_57_contig_776_terpene
+0,26897,samp_4311_concoct_412,contig_41,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4311_concoct_412_contig_41_T1PKS / hglE-KS
+3002,26448,samp_4311_concoct_412,contig_90,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4311_concoct_412_contig_90_NRPS-like
+0,19508,samp_4311_concoct_412,contig_164,1,terpene,NA,samp_4311_concoct_412_contig_164_terpene
+4179,29602,samp_4311_concoct_412,contig_180,1,hglE-KS,ambiguine P,samp_4311_concoct_412_contig_180_hglE-KS
+0,31493,samp_4311_concoct_412,contig_198,1,lanthipeptide-class-v,hassallidin C,samp_4311_concoct_412_contig_198_lanthipeptide-class-v
+0,23308,samp_4311_concoct_412,contig_202,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4311_concoct_412_contig_202_NRPS
+115,20290,samp_4311_concoct_412,contig_226,1,terpene,NA,samp_4311_concoct_412_contig_226_terpene
+2004,14657,samp_4311_concoct_412,contig_234,1,cyanobactin,anacyclamide A10,samp_4311_concoct_412_contig_234_cyanobactin
+4348,21334,samp_4311_concoct_412,contig_314,1,cyanobactin,anacyclamide A10,samp_4311_concoct_412_contig_314_cyanobactin
+0,13002,samp_4311_concoct_412,contig_337,1,T1PKS,NA,samp_4311_concoct_412_contig_337_T1PKS
+0,12924,samp_4311_concoct_412,contig_492,1,terpene,NA,samp_4311_concoct_412_contig_492_terpene
+0,37710,samp_4311_concoct_412,contig_530,1,NRPS-like,NA,samp_4311_concoct_412_contig_530_NRPS-like
+0,27507,samp_4311_concoct_412,contig_532,1,hglE-KS,heterocyst glycolipids,samp_4311_concoct_412_contig_532_hglE-KS
+0,20478,samp_4311_concoct_412,contig_559,1,NRPS-like,NA,samp_4311_concoct_412_contig_559_NRPS-like
+6555,35910,samp_4448_VAMB_839,contig_142,1,terpene / oligosaccharide,NA,samp_4448_VAMB_839_contig_142_terpene / oligosaccharide
+0,28728,samp_4448_VAMB_839,contig_384,1,lanthipeptide-class-v,NA,samp_4448_VAMB_839_contig_384_lanthipeptide-class-v
+0,37754,samp_4448_VAMB_839,contig_499,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4448_VAMB_839_contig_499_hglE-KS / T1PKS
+0,42993,samp_4448_VAMB_839,contig_609,1,T1PKS / NRPS / NRPS-like,nocuolin A,samp_4448_VAMB_839_contig_609_T1PKS / NRPS / NRPS-like
+0,15380,samp_4448_VAMB_839,contig_614,1,lanthipeptide-class-v,NA,samp_4448_VAMB_839_contig_614_lanthipeptide-class-v
+0,6831,samp_4448_VAMB_839,contig_698,1,NRPS,NA,samp_4448_VAMB_839_contig_698_NRPS
+0,8585,samp_4448_VAMB_839,contig_841,1,betalactone / NRPS,anabaenopeptin,samp_4448_VAMB_839_contig_841_betalactone / NRPS
+0,6903,samp_4448_VAMB_839,contig_1133,1,cyanobactin,NA,samp_4448_VAMB_839_contig_1133_cyanobactin
+505,15978,samp_4448_VAMB_839,contig_1804,1,terpene,NA,samp_4448_VAMB_839_contig_1804_terpene
+0,5481,samp_4448_VAMB_839,contig_2041,1,NRPS,NA,samp_4448_VAMB_839_contig_2041_NRPS
+0,20030,samp_4448_VAMB_839,contig_2328,1,mycosporine-like,hexose-palythine-serine/hexose-shinorine,samp_4448_VAMB_839_contig_2328_mycosporine-like
+0,13898,samp_4448_VAMB_839,contig_2366,1,hglE-KS,heterocyst glycolipids,samp_4448_VAMB_839_contig_2366_hglE-KS
+0,13792,samp_4435_VAMB_805,contig_117,1,T1PKS,1-heptadecene,samp_4435_VAMB_805_contig_117_T1PKS
+0,10170,samp_4435_VAMB_805,contig_126,1,terpene,NA,samp_4435_VAMB_805_contig_126_terpene
+0,5982,samp_4435_VAMB_805,contig_137,1,terpene,NA,samp_4435_VAMB_805_contig_137_terpene
+0,29826,samp_4443_VAMB_823,contig_241,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4443_VAMB_823_contig_241_T1PKS / hglE-KS
+0,13617,samp_4443_VAMB_823,contig_367,1,T1PKS,NA,samp_4443_VAMB_823_contig_367_T1PKS
+0,16325,samp_4443_VAMB_823,contig_602,1,terpene,NA,samp_4443_VAMB_823_contig_602_terpene
+0,11636,samp_4443_VAMB_823,contig_639,1,terpene,NA,samp_4443_VAMB_823_contig_639_terpene
+0,10142,samp_4443_VAMB_823,contig_1080,1,NRPS / NRPS-like,pseudospumigin A/pseudospumigin B/pseudospumigin C/pseudospumigin D/pseudospumigin E/pseudospumigin F,samp_4443_VAMB_823_contig_1080_NRPS / NRPS-like
+0,20248,samp_4443_VAMB_823,contig_1147,1,hglE-KS,heterocyst glycolipids,samp_4443_VAMB_823_contig_1147_hglE-KS
+0,20263,samp_4443_VAMB_823,contig_1189,1,NRPS-like,NA,samp_4443_VAMB_823_contig_1189_NRPS-like
+0,11783,samp_4443_VAMB_823,contig_1326,1,terpene,NA,samp_4443_VAMB_823_contig_1326_terpene
+0,5505,samp_4443_VAMB_823,contig_1663,1,NRPS,NA,samp_4443_VAMB_823_contig_1663_NRPS
+0,24638,samp_4443_VAMB_823,contig_1855,1,lanthipeptide-class-v,hassallidin C,samp_4443_VAMB_823_contig_1855_lanthipeptide-class-v
+0,10754,samp_4443_VAMB_823,contig_1888,1,NRPS-like,NA,samp_4443_VAMB_823_contig_1888_NRPS-like
+0,38724,samp_4447_metabat2_48,contig_115,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4447_metabat2_48_contig_115_hglE-KS / T1PKS
+0,12311,samp_4447_metabat2_48,contig_162,1,cyanobactin,NA,samp_4447_metabat2_48_contig_162_cyanobactin
+0,20139,samp_4447_metabat2_48,contig_168,1,terpene,NA,samp_4447_metabat2_48_contig_168_terpene
+0,8644,samp_4447_metabat2_48,contig_183,1,NRPS-like,NA,samp_4447_metabat2_48_contig_183_NRPS-like
+0,20104,samp_4447_metabat2_48,contig_185,1,hglE-KS,heterocyst glycolipids,samp_4447_metabat2_48_contig_185_hglE-KS
+0,14020,samp_4447_metabat2_48,contig_194,1,T1PKS,NA,samp_4447_metabat2_48_contig_194_T1PKS
+0,13095,samp_4447_metabat2_48,contig_207,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4447_metabat2_48_contig_207_NRPS-like
+6211,23093,samp_4447_metabat2_48,contig_266,1,terpene,NA,samp_4447_metabat2_48_contig_266_terpene
+0,16901,samp_4447_metabat2_48,contig_275,1,NRPS-like,bovienimide A,samp_4447_metabat2_48_contig_275_NRPS-like
+0,11672,samp_4447_metabat2_48,contig_296,1,cyanobactin,anacyclamide A10,samp_4447_metabat2_48_contig_296_cyanobactin
+0,9921,samp_4447_metabat2_48,contig_396,1,RRE-containing,NA,samp_4447_metabat2_48_contig_396_RRE-containing
+0,16689,samp_4447_metabat2_48,contig_492,1,NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4447_metabat2_48_contig_492_NRPS
+1111,16915,samp_4447_metabat2_48,contig_535,1,terpene,NA,samp_4447_metabat2_48_contig_535_terpene
+0,26299,samp_4447_metabat2_48,contig_536,1,lanthipeptide-class-v,hassallidin C,samp_4447_metabat2_48_contig_536_lanthipeptide-class-v
+0,6020,samp_4444_semibin_481,contig_179,1,terpene,NA,samp_4444_semibin_481_contig_179_terpene
+7367,43475,samp_4448_metadecoder_579,contig_3,1,hglE-KS,heterocyst glycolipids,samp_4448_metadecoder_579_contig_3_hglE-KS
+21471,41584,samp_4448_metadecoder_579,contig_5,1,terpene,NA,samp_4448_metadecoder_579_contig_5_terpene
+0,23796,samp_4448_metadecoder_579,contig_7,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4448_metadecoder_579_contig_7_NRPS-like
+2987,41997,samp_4448_metadecoder_579,contig_26,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4448_metadecoder_579_contig_26_hglE-KS / T1PKS
+0,18251,samp_4448_metadecoder_579,contig_36,1,NRPS-like,NA,samp_4448_metadecoder_579_contig_36_NRPS-like
+0,32900,samp_4448_metadecoder_579,contig_38,1,T1PKS,bartoloside 2/bartoloside 3/bartoloside 4,samp_4448_metadecoder_579_contig_38_T1PKS
+0,37930,samp_4448_metadecoder_579,contig_113,1,NRPS-like,NA,samp_4448_metadecoder_579_contig_113_NRPS-like
+0,26425,samp_4448_metadecoder_579,contig_141,1,lanthipeptide-class-v,hassallidin C,samp_4448_metadecoder_579_contig_141_lanthipeptide-class-v
+2076,23009,samp_4448_metadecoder_579,contig_229,1,terpene,NA,samp_4448_metadecoder_579_contig_229_terpene
+0,16786,samp_4448_metadecoder_579,contig_232,1,terpene,NA,samp_4448_metadecoder_579_contig_232_terpene
+0,18067,samp_4307_semibin_116,contig_4,1,terpene,NA,samp_4307_semibin_116_contig_4_terpene
+0,15039,samp_4307_semibin_116,contig_58,1,cyanobactin,anacyclamide A10,samp_4307_semibin_116_contig_58_cyanobactin
+0,26393,samp_4307_semibin_116,contig_114,1,lanthipeptide-class-v,hassallidin C,samp_4307_semibin_116_contig_114_lanthipeptide-class-v
+150,20303,samp_4307_semibin_116,contig_189,1,terpene,NA,samp_4307_semibin_116_contig_189_terpene
+0,5074,samp_4307_semibin_116,contig_225,1,NRPS-like,NA,samp_4307_semibin_116_contig_225_NRPS-like
+1845,16410,samp_4307_semibin_116,contig_228,1,cyanobactin,anacyclamide A10,samp_4307_semibin_116_contig_228_cyanobactin
+0,33008,samp_4307_semibin_116,contig_243,1,hglE-KS,heterocyst glycolipids,samp_4307_semibin_116_contig_243_hglE-KS
+0,22278,samp_4307_semibin_116,contig_290,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4307_semibin_116_contig_290_NRPS-like
+4179,56523,samp_4307_semibin_116,contig_302,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4307_semibin_116_contig_302_hglE-KS / T1PKS
+0,19751,samp_4307_semibin_116,contig_317,1,NRPS-like / NRPS,varlaxin 1046A/varlaxin 1022A,samp_4307_semibin_116_contig_317_NRPS-like / NRPS
+0,24047,samp_4307_semibin_116,contig_320,1,NRPS-like,NA,samp_4307_semibin_116_contig_320_NRPS-like
+0,12962,samp_4307_semibin_116,contig_355,1,terpene,NA,samp_4307_semibin_116_contig_355_terpene
+0,13414,samp_4307_semibin_116,contig_375,1,T1PKS,NA,samp_4307_semibin_116_contig_375_T1PKS
+0,8458,samp_4447_VAMB_322,contig_31,1,terpene,NA,samp_4447_VAMB_322_contig_31_terpene
+0,6531,samp_4447_VAMB_322,contig_258,1,lassopeptide / RRE-containing,NA,samp_4447_VAMB_322_contig_258_lassopeptide / RRE-containing
+0,9556,samp_4447_VAMB_322,contig_532,1,terpene,NA,samp_4447_VAMB_322_contig_532_terpene
+0,10754,samp_4447_VAMB_322,contig_935,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4447_VAMB_322_contig_935_cyanobactin
+0,10151,samp_4445_VAMB_519,contig_64,1,RiPP-like,NA,samp_4445_VAMB_519_contig_64_RiPP-like
+49482,55661,samp_4445_VAMB_519,contig_172,1,RiPP-like,NA,samp_4445_VAMB_519_contig_172_RiPP-like
+0,10931,samp_4446_VAMB_96,contig_306,1,terpene,NA,samp_4446_VAMB_96_contig_306_terpene
+0,6571,samp_4446_VAMB_96,contig_914,1,arylpolyene,NA,samp_4446_VAMB_96_contig_914_arylpolyene
+0,6516,samp_4446_VAMB_96,contig_962,1,T1PKS,NA,samp_4446_VAMB_96_contig_962_T1PKS
+16813,47068,samp_4308_VAMB_457,contig_88,1,T1PKS,NA,samp_4308_VAMB_457_contig_88_T1PKS
+0,25406,samp_4308_VAMB_457,contig_175,1,hglE-KS,ambiguine P,samp_4308_VAMB_457_contig_175_hglE-KS
+4539,21421,samp_4308_VAMB_457,contig_322,1,terpene,NA,samp_4308_VAMB_457_contig_322_terpene
+0,25048,samp_4308_VAMB_457,contig_403,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4308_VAMB_457_contig_403_NRPS-like
+274,13542,samp_4308_VAMB_457,contig_476,1,cyanobactin,anacyclamide A10,samp_4308_VAMB_457_contig_476_cyanobactin
+0,26393,samp_4308_VAMB_457,contig_566,1,lanthipeptide-class-v,hassallidin C,samp_4308_VAMB_457_contig_566_lanthipeptide-class-v
+0,20176,samp_4308_VAMB_457,contig_626,1,terpene,NA,samp_4308_VAMB_457_contig_626_terpene
+0,29894,samp_4308_VAMB_457,contig_641,1,hglE-KS,heterocyst glycolipids,samp_4308_VAMB_457_contig_641_hglE-KS
+0,26896,samp_4308_VAMB_457,contig_828,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4308_VAMB_457_contig_828_T1PKS / hglE-KS
+0,22736,samp_4308_VAMB_457,contig_949,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4308_VAMB_457_contig_949_NRPS
+4617,25550,samp_4308_VAMB_457,contig_963,1,terpene,NA,samp_4308_VAMB_457_contig_963_terpene
+7666,20667,samp_4308_VAMB_457,contig_1077,1,spliceotide / RRE-containing,NA,samp_4308_VAMB_457_contig_1077_spliceotide / RRE-containing
+0,11069,samp_4308_VAMB_457,contig_1079,1,NRPS-like,NA,samp_4308_VAMB_457_contig_1079_NRPS-like
+24844,35768,samp_4308_VAMB_457,contig_1082,1,RRE-containing,NA,samp_4308_VAMB_457_contig_1082_RRE-containing
+0,40863,samp_4308_VAMB_457,contig_1143,1,NRPS-like,NA,samp_4308_VAMB_457_contig_1143_NRPS-like
+0,11517,samp_4308_VAMB_457,contig_1403,1,cyanobactin,NA,samp_4308_VAMB_457_contig_1403_cyanobactin
+7603,22901,samp_4443_VAMB_1051,contig_58,1,terpene,NA,samp_4443_VAMB_1051_contig_58_terpene
+0,35089,samp_4443_VAMB_1051,contig_72,1,NRPS-like / T1PKS,1-heptadecene,samp_4443_VAMB_1051_contig_72_NRPS-like / T1PKS
+0,13318,samp_4443_VAMB_1051,contig_103,1,thioamitides,NA,samp_4443_VAMB_1051_contig_103_thioamitides
+76,14653,samp_4331_metabat2_120,contig_60,1,terpene,NA,samp_4331_metabat2_120_contig_60_terpene
+5350,26610,samp_4331_metabat2_120,contig_210,1,terpene,NA,samp_4331_metabat2_120_contig_210_terpene
+0,23845,samp_4315_VAMB_280,contig_117,1,PUFA / hglE-KS,zeamine/zeamine I/zeamine II/prezeamine/prezeamine I,samp_4315_VAMB_280_contig_117_PUFA / hglE-KS
+0,5407,samp_4315_VAMB_280,contig_1834,1,microviridin,NA,samp_4315_VAMB_280_contig_1834_microviridin
+0,6563,samp_4315_VAMB_280,contig_2081,1,T3PKS,merocyclophane C/merocyclophane D,samp_4315_VAMB_280_contig_2081_T3PKS
+0,5956,samp_4310_metabat2_90,contig_134,1,terpene,NA,samp_4310_metabat2_90_contig_134_terpene
+0,30199,samp_4435_maxbin_422,contig_38,1,T1PKS / transAT-PKS-like / NRPS-like,aranazole A/aranazole B/aranazole C/aranazole D,samp_4435_maxbin_422_contig_38_T1PKS / transAT-PKS-like / NRPS-like
+0,9282,samp_4435_maxbin_422,contig_111,1,NRPS-like,aeruginoside 126B/aeruginoside 126A,samp_4435_maxbin_422_contig_111_NRPS-like
+0,11042,samp_4435_maxbin_422,contig_157,1,terpene,NA,samp_4435_maxbin_422_contig_157_terpene
+0,13487,samp_4435_maxbin_422,contig_182,1,NRPS-like,NA,samp_4435_maxbin_422_contig_182_NRPS-like
+0,10751,samp_4435_maxbin_422,contig_185,1,microviridin,microviridin 1688/microviridin 1739/microviridin 1748,samp_4435_maxbin_422_contig_185_microviridin
+17029,33316,samp_4435_maxbin_422,contig_314,1,crocagin,NA,samp_4435_maxbin_422_contig_314_crocagin
+0,9639,samp_4435_maxbin_422,contig_336,1,NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4435_maxbin_422_contig_336_NRPS
+0,11116,samp_4435_maxbin_422,contig_364,1,terpene,NA,samp_4435_maxbin_422_contig_364_terpene
+0,12783,samp_4435_maxbin_422,contig_437,1,terpene,NA,samp_4435_maxbin_422_contig_437_terpene
+15090,22586,samp_4435_maxbin_440,contig_82,1,RiPP-like,NA,samp_4435_maxbin_440_contig_82_RiPP-like
+0,7279,samp_4435_maxbin_440,contig_357,1,terpene,NA,samp_4435_maxbin_440_contig_357_terpene
+0,8377,samp_4435_maxbin_440,contig_634,1,terpene,NA,samp_4435_maxbin_440_contig_634_terpene
+0,15412,samp_4435_maxbin_440,contig_738,1,NRPS,NA,samp_4435_maxbin_440_contig_738_NRPS
+0,7329,samp_4445_VAMB_917,contig_2786,1,NRPS,rhizomide A/rhizomide B/rhizomide C,samp_4445_VAMB_917_contig_2786_NRPS
+0,6980,samp_4445_VAMB_917,contig_3512,1,NRPS,NA,samp_4445_VAMB_917_contig_3512_NRPS
+0,7452,samp_4445_VAMB_917,contig_4164,1,NRPS-like,rhizomide A/rhizomide B/rhizomide C,samp_4445_VAMB_917_contig_4164_NRPS-like
+0,5940,samp_4445_VAMB_917,contig_6556,1,T1PKS,1-heptadecene,samp_4445_VAMB_917_contig_6556_T1PKS
+0,19779,samp_4445_VAMB_917,contig_7332,1,NRPS,anachelin,samp_4445_VAMB_917_contig_7332_NRPS
+0,23668,samp_4323_semibin_61,contig_12,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4323_semibin_61_contig_12_NRPS-like
+0,25196,samp_4323_semibin_61,contig_59,1,hglE-KS,heterocyst glycolipids,samp_4323_semibin_61_contig_59_hglE-KS
+2282,32635,samp_4323_semibin_61,contig_74,1,NRPS-like,NA,samp_4323_semibin_61_contig_74_NRPS-like
+2068,46320,samp_4323_semibin_61,contig_81,1,NRPS-like,NA,samp_4323_semibin_61_contig_81_NRPS-like
+0,12247,samp_4323_semibin_61,contig_107,1,terpene,NA,samp_4323_semibin_61_contig_107_terpene
+0,26393,samp_4323_semibin_61,contig_128,1,lanthipeptide-class-v,hassallidin C,samp_4323_semibin_61_contig_128_lanthipeptide-class-v
+0,6580,samp_4323_semibin_61,contig_162,1,terpene,NA,samp_4323_semibin_61_contig_162_terpene
+0,39642,samp_4323_semibin_61,contig_199,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4323_semibin_61_contig_199_hglE-KS / T1PKS
+0,20340,samp_4323_semibin_61,contig_207,1,terpene,NA,samp_4323_semibin_61_contig_207_terpene
+0,5033,samp_4445_VAMB_590,contig_249,1,terpene,NA,samp_4445_VAMB_590_contig_249_terpene
+0,5820,samp_4445_VAMB_590,contig_323,1,terpene,NA,samp_4445_VAMB_590_contig_323_terpene
+0,10303,samp_4446_VAMB_171,contig_132,1,terpene,NA,samp_4446_VAMB_171_contig_132_terpene
+0,16788,samp_4320_metadecoder_702,contig_3,1,NRPS-like,NA,samp_4320_metadecoder_702_contig_3_NRPS-like
+19753,40003,samp_4320_metadecoder_702,contig_44,1,terpene,NA,samp_4320_metadecoder_702_contig_44_terpene
+6322,70028,samp_4320_metadecoder_702,contig_50,1,terpene / NRPS-like,NA,samp_4320_metadecoder_702_contig_50_terpene / NRPS-like
+350,30385,samp_4320_metadecoder_702,contig_55,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4320_metadecoder_702_contig_55_NRPS-like
+0,34890,samp_4320_metadecoder_702,contig_135,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4320_metadecoder_702_contig_135_NRPS
+0,12311,samp_4320_metadecoder_702,contig_139,1,cyanobactin,NA,samp_4320_metadecoder_702_contig_139_cyanobactin
+3103,45517,samp_4320_metadecoder_702,contig_164,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4320_metadecoder_702_contig_164_hglE-KS / T1PKS
+0,8147,samp_4320_metadecoder_702,contig_252,1,T1PKS,NA,samp_4320_metadecoder_702_contig_252_T1PKS
+0,31458,samp_4320_metadecoder_702,contig_256,1,hglE-KS,heterocyst glycolipids,samp_4320_metadecoder_702_contig_256_hglE-KS
+6113,27046,samp_4320_metadecoder_702,contig_264,1,terpene,NA,samp_4320_metadecoder_702_contig_264_terpene
+0,26425,samp_4320_metadecoder_702,contig_268,1,lanthipeptide-class-v,hassallidin C,samp_4320_metadecoder_702_contig_268_lanthipeptide-class-v
+0,37889,samp_4446_maxbin_542,contig_91,1,NRPS-like,NA,samp_4446_maxbin_542_contig_91_NRPS-like
+0,11599,samp_4446_maxbin_542,contig_128,1,NRPS-like,NA,samp_4446_maxbin_542_contig_128_NRPS-like
+0,26560,samp_4446_maxbin_542,contig_143,1,lanthipeptide-class-v,hassallidin C,samp_4446_maxbin_542_contig_143_lanthipeptide-class-v
+0,31332,samp_4446_maxbin_542,contig_204,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4446_maxbin_542_contig_204_hglE-KS / T1PKS
+3513,16115,samp_4446_maxbin_542,contig_250,1,RRE-containing,NA,samp_4446_maxbin_542_contig_250_RRE-containing
+0,16797,samp_4446_maxbin_542,contig_360,1,terpene,NA,samp_4446_maxbin_542_contig_360_terpene
+0,12069,samp_4446_maxbin_542,contig_377,1,terpene,NA,samp_4446_maxbin_542_contig_377_terpene
+0,6250,samp_4444_metabat2_78,contig_58,1,terpene,NA,samp_4444_metabat2_78_contig_58_terpene
+2487,15811,samp_4444_metabat2_78,contig_113,1,terpene,NA,samp_4444_metabat2_78_contig_113_terpene
+0,8921,samp_4443_semibin_480,contig_163,1,terpene,NA,samp_4443_semibin_480_contig_163_terpene
+0,13417,samp_4443_semibin_480,contig_250,1,hglE-KS,NA,samp_4443_semibin_480_contig_250_hglE-KS
+0,12667,samp_4443_maxbin_277,contig_38,1,terpene,NA,samp_4443_maxbin_277_contig_38_terpene
+0,10488,samp_4443_maxbin_277,contig_110,1,RRE-containing / lassopeptide,NA,samp_4443_maxbin_277_contig_110_RRE-containing / lassopeptide
+0,12660,samp_4443_maxbin_277,contig_222,1,RiPP-like,NA,samp_4443_maxbin_277_contig_222_RiPP-like
+0,6543,samp_4443_maxbin_277,contig_728,1,arylpolyene,NA,samp_4443_maxbin_277_contig_728_arylpolyene
+0,6870,samp_4324_maxbin_53,contig_90,1,RRE-containing,NA,samp_4324_maxbin_53_contig_90_RRE-containing
+0,28509,samp_4324_maxbin_53,contig_98,1,hglE-KS,heterocyst glycolipids,samp_4324_maxbin_53_contig_98_hglE-KS
+17693,53067,samp_4324_maxbin_53,contig_124,1,hglE-KS,ambiguine P,samp_4324_maxbin_53_contig_124_hglE-KS
+0,42853,samp_4324_maxbin_53,contig_182,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4324_maxbin_53_contig_182_NRPS
+2440,29626,samp_4324_maxbin_53,contig_213,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4324_maxbin_53_contig_213_T1PKS / hglE-KS
+31103,49311,samp_4324_maxbin_53,contig_228,1,terpene,NA,samp_4324_maxbin_53_contig_228_terpene
+7715,21808,samp_4324_maxbin_53,contig_271,1,terpene,NA,samp_4324_maxbin_53_contig_271_terpene
+0,35003,samp_4324_maxbin_53,contig_280,1,lanthipeptide-class-v,hassallidin C,samp_4324_maxbin_53_contig_280_lanthipeptide-class-v
+0,13694,samp_4324_maxbin_53,contig_286,1,terpene,NA,samp_4324_maxbin_53_contig_286_terpene
+0,23820,samp_4324_maxbin_53,contig_361,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4324_maxbin_53_contig_361_NRPS-like
+0,36400,samp_4324_maxbin_53,contig_371,1,NRPS-like,NA,samp_4324_maxbin_53_contig_371_NRPS-like
+0,23564,samp_4324_maxbin_53,contig_388,1,NRPS-like,NA,samp_4324_maxbin_53_contig_388_NRPS-like
+0,6988,samp_4324_maxbin_53,contig_420,1,cyanobactin,anacyclamide A10,samp_4324_maxbin_53_contig_420_cyanobactin
+10823,32122,samp_4332_VAMB_1155,contig_65,1,terpene,NA,samp_4332_VAMB_1155_contig_65_terpene
+2601,14180,samp_4332_VAMB_1155,contig_85,1,terpene,NA,samp_4332_VAMB_1155_contig_85_terpene
+4435,23900,samp_4312_maxbin_178,contig_24,1,terpene,NA,samp_4312_maxbin_178_contig_24_terpene
+0,35195,samp_4312_maxbin_178,contig_25,1,hglE-KS,heterocyst glycolipids,samp_4312_maxbin_178_contig_25_hglE-KS
+0,14279,samp_4312_maxbin_178,contig_32,1,cyanobactin,anacyclamide A10,samp_4312_maxbin_178_contig_32_cyanobactin
+0,25452,samp_4312_maxbin_178,contig_58,1,hglE-KS,ambiguine P,samp_4312_maxbin_178_contig_58_hglE-KS
+0,30035,samp_4312_maxbin_178,contig_74,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4312_maxbin_178_contig_74_NRPS-like
+0,38009,samp_4312_maxbin_178,contig_100,1,NRPS-like,NA,samp_4312_maxbin_178_contig_100_NRPS-like
+0,6643,samp_4312_maxbin_178,contig_132,1,cyanobactin,anacyclamide A10,samp_4312_maxbin_178_contig_132_cyanobactin
+0,31493,samp_4312_maxbin_178,contig_182,1,lanthipeptide-class-v,hassallidin C,samp_4312_maxbin_178_contig_182_lanthipeptide-class-v
+0,36347,samp_4312_maxbin_178,contig_209,1,NRPS-like,NA,samp_4312_maxbin_178_contig_209_NRPS-like
+0,12975,samp_4312_maxbin_178,contig_220,1,T1PKS,NA,samp_4312_maxbin_178_contig_220_T1PKS
+0,26905,samp_4312_maxbin_178,contig_236,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4312_maxbin_178_contig_236_T1PKS / hglE-KS
+2991,23924,samp_4312_maxbin_178,contig_258,1,terpene,NA,samp_4312_maxbin_178_contig_258_terpene
+20216,39918,samp_4312_maxbin_178,contig_259,1,terpene,NA,samp_4312_maxbin_178_contig_259_terpene
+0,11733,samp_4434_metabat2_58,contig_50,1,T3PKS,NA,samp_4434_metabat2_58_contig_50_T3PKS
+0,8783,samp_4434_metabat2_58,contig_96,1,NRPS,cyanopeptolin,samp_4434_metabat2_58_contig_96_NRPS
+0,9596,samp_4434_metabat2_58,contig_120,1,NRPS-like,rhizomide A/rhizomide B/rhizomide C,samp_4434_metabat2_58_contig_120_NRPS-like
+0,8427,samp_4434_metabat2_58,contig_186,1,NRPS-like,anabaenopeptin NZ857/nostamide A,samp_4434_metabat2_58_contig_186_NRPS-like
+0,19973,samp_4434_metabat2_58,contig_297,1,NRPS / RRE-containing,NA,samp_4434_metabat2_58_contig_297_NRPS / RRE-containing
+0,20593,samp_4434_metabat2_58,contig_447,1,T3PKS / T1PKS / NRPS-like,merocyclophane C/merocyclophane D,samp_4434_metabat2_58_contig_447_T3PKS / T1PKS / NRPS-like
+0,17307,samp_4434_metabat2_58,contig_508,1,T1PKS / terpene,calicheamicin,samp_4434_metabat2_58_contig_508_T1PKS / terpene
+0,7932,samp_4434_metabat2_58,contig_530,1,NRPS-like / NRPS,scytocyclamide A/scytocyclamide B/scytocyclamide B3/scytocyclamide C/scytocyclamide A2/scytocyclamide B2,samp_4434_metabat2_58_contig_530_NRPS-like / NRPS
+0,18079,samp_4434_metabat2_58,contig_545,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4434_metabat2_58_contig_545_T1PKS
+0,20030,samp_4448_metabat2_49,contig_62,1,mycosporine-like,hexose-palythine-serine/hexose-shinorine,samp_4448_metabat2_49_contig_62_mycosporine-like
+6555,35910,samp_4448_metabat2_49,contig_137,1,terpene / oligosaccharide,NA,samp_4448_metabat2_49_contig_137_terpene / oligosaccharide
+505,15978,samp_4448_metabat2_49,contig_190,1,terpene,NA,samp_4448_metabat2_49_contig_190_terpene
+0,13898,samp_4448_metabat2_49,contig_202,1,hglE-KS,heterocyst glycolipids,samp_4448_metabat2_49_contig_202_hglE-KS
+0,42993,samp_4448_metabat2_49,contig_277,1,T1PKS / NRPS / NRPS-like,nocuolin A,samp_4448_metabat2_49_contig_277_T1PKS / NRPS / NRPS-like
+0,37754,samp_4448_metabat2_49,contig_338,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4448_metabat2_49_contig_338_hglE-KS / T1PKS
+0,28728,samp_4448_metabat2_49,contig_477,1,lanthipeptide-class-v,NA,samp_4448_metabat2_49_contig_477_lanthipeptide-class-v
+0,6903,samp_4448_metabat2_49,contig_527,1,cyanobactin,NA,samp_4448_metabat2_49_contig_527_cyanobactin
+0,15380,samp_4448_metabat2_49,contig_607,1,lanthipeptide-class-v,NA,samp_4448_metabat2_49_contig_607_lanthipeptide-class-v
+0,7719,samp_4321_concoct_295,contig_35,1,terpene,NA,samp_4321_concoct_295_contig_35_terpene
+0,8597,samp_4321_concoct_295,contig_125,1,terpene,NA,samp_4321_concoct_295_contig_125_terpene
+0,17702,samp_4321_concoct_295,contig_143,1,NRPS-like / T1PKS,desmamide A/desmamide B/desmamide C,samp_4321_concoct_295_contig_143_NRPS-like / T1PKS
+0,16463,samp_4321_concoct_295,contig_156,1,spliceotide,NA,samp_4321_concoct_295_contig_156_spliceotide
+0,39887,samp_4321_concoct_295,contig_230,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4321_concoct_295_contig_230_T1PKS / NRPS-like / T3PKS
+0,65434,samp_4321_concoct_295,contig_244,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4321_concoct_295_contig_244_NRPS / T1PKS / NRPS-like
+0,7749,samp_4321_concoct_295,contig_258,1,terpene,NA,samp_4321_concoct_295_contig_258_terpene
+0,17789,samp_4321_concoct_295,contig_272,1,NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4321_concoct_295_contig_272_NRPS
+0,9353,samp_4321_concoct_295,contig_291,1,NRPS-like,NA,samp_4321_concoct_295_contig_291_NRPS-like
+0,10262,samp_4321_concoct_295,contig_305,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4321_concoct_295_contig_305_T1PKS
+0,30179,samp_4321_concoct_295,contig_341,1,NRPS / microviridin,anachelin,samp_4321_concoct_295_contig_341_NRPS / microviridin
+0,9492,samp_4321_concoct_295,contig_514,1,LAP,NA,samp_4321_concoct_295_contig_514_LAP
+0,11923,samp_4321_concoct_295,contig_676,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4321_concoct_295_contig_676_cyanobactin
+0,20974,samp_4321_concoct_295,contig_693,1,lanthipeptide-class-ii,nostolysamide A/nostolysamide B,samp_4321_concoct_295_contig_693_lanthipeptide-class-ii
+0,20531,samp_4321_concoct_295,contig_701,1,T1PKS,NA,samp_4321_concoct_295_contig_701_T1PKS
+0,24280,samp_4321_concoct_295,contig_722,1,hglE-KS / PUFA,zeamine/zeamine I/zeamine II/prezeamine/prezeamine I,samp_4321_concoct_295_contig_722_hglE-KS / PUFA
+0,12129,samp_4321_concoct_295,contig_806,1,terpene,NA,samp_4321_concoct_295_contig_806_terpene
+0,11882,samp_4444_metabat2_114,contig_83,1,terpene,NA,samp_4444_metabat2_114_contig_83_terpene
+7386,28322,samp_4444_metabat2_114,contig_228,1,terpene,NA,samp_4444_metabat2_114_contig_228_terpene
+0,24643,samp_4441_concoct_710,contig_10,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4441_concoct_710_contig_10_NRPS-like
+0,12653,samp_4441_concoct_710,contig_13,1,cyanobactin,anacyclamide A10,samp_4441_concoct_710_contig_13_cyanobactin
+0,30795,samp_4441_concoct_710,contig_31,1,hglE-KS,heterocyst glycolipids,samp_4441_concoct_710_contig_31_hglE-KS
+0,36947,samp_4441_concoct_710,contig_118,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4441_concoct_710_contig_118_NRPS
+3923,48175,samp_4441_concoct_710,contig_204,1,NRPS-like,NA,samp_4441_concoct_710_contig_204_NRPS-like
+4617,25550,samp_4441_concoct_710,contig_246,1,terpene,NA,samp_4441_concoct_710_contig_246_terpene
+0,10332,samp_4441_concoct_710,contig_250,1,NRPS-like,NA,samp_4441_concoct_710_contig_250_NRPS-like
+0,5837,samp_4441_concoct_710,contig_258,1,lassopeptide,NA,samp_4441_concoct_710_contig_258_lassopeptide
+4514,24689,samp_4441_concoct_710,contig_263,1,terpene,NA,samp_4441_concoct_710_contig_263_terpene
+0,7513,samp_4441_concoct_710,contig_273,1,T1PKS,NA,samp_4441_concoct_710_contig_273_T1PKS
+15735,29840,samp_4441_concoct_710,contig_295,1,RRE-containing,NA,samp_4441_concoct_710_contig_295_RRE-containing
+0,35286,samp_4441_concoct_710,contig_297,1,lanthipeptide-class-v,hassallidin C,samp_4441_concoct_710_contig_297_lanthipeptide-class-v
+0,34754,samp_4441_concoct_710,contig_412,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4441_concoct_710_contig_412_hglE-KS / T1PKS
+871,12951,samp_4441_concoct_710,contig_422,1,cyanobactin,NA,samp_4441_concoct_710_contig_422_cyanobactin
+0,18195,samp_4441_concoct_710,contig_465,1,terpene,NA,samp_4441_concoct_710_contig_465_terpene
+0,8596,samp_4320_metadecoder_628,contig_5,1,terpene,NA,samp_4320_metadecoder_628_contig_5_terpene
+0,27136,samp_4320_metadecoder_628,contig_50,1,NRPS / NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4320_metadecoder_628_contig_50_NRPS / NRPS-like
+0,7916,samp_4320_metadecoder_628,contig_63,1,terpene,NA,samp_4320_metadecoder_628_contig_63_terpene
+0,23218,samp_4320_metadecoder_628,contig_90,1,NRPS-like / T1PKS,cylindrospermopsin,samp_4320_metadecoder_628_contig_90_NRPS-like / T1PKS
+0,7995,samp_4320_metadecoder_628,contig_154,1,terpene,NA,samp_4320_metadecoder_628_contig_154_terpene
+0,34695,samp_4320_metadecoder_628,contig_161,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4320_metadecoder_628_contig_161_T1PKS / NRPS-like / T3PKS
+0,12244,samp_4320_metadecoder_628,contig_198,1,terpene,NA,samp_4320_metadecoder_628_contig_198_terpene
+0,9268,samp_4320_metadecoder_628,contig_274,1,LAP,NA,samp_4320_metadecoder_628_contig_274_LAP
+0,10867,samp_4320_metadecoder_628,contig_277,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4320_metadecoder_628_contig_277_cyanobactin
+0,11889,samp_4320_metadecoder_628,contig_317,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4320_metadecoder_628_contig_317_T1PKS
+0,6688,samp_4320_metadecoder_628,contig_358,1,cyanobactin,NA,samp_4320_metadecoder_628_contig_358_cyanobactin
+0,70554,samp_4320_metadecoder_628,contig_363,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4320_metadecoder_628_contig_363_NRPS / T1PKS / NRPS-like
+41110,58192,samp_4331_metabat2_125,contig_135,1,terpene,NA,samp_4331_metabat2_125_contig_135_terpene
+0,15900,samp_4331_metabat2_125,contig_178,1,terpene,NA,samp_4331_metabat2_125_contig_178_terpene
+0,6140,samp_4326_metabat2_21,contig_5,1,hglE-KS,NA,samp_4326_metabat2_21_contig_5_hglE-KS
+0,35286,samp_4326_metabat2_21,contig_28,1,lanthipeptide-class-v,hassallidin C,samp_4326_metabat2_21_contig_28_lanthipeptide-class-v
+0,11256,samp_4326_metabat2_21,contig_58,1,cyanobactin,anacyclamide A10,samp_4326_metabat2_21_contig_58_cyanobactin
+0,21561,samp_4326_metabat2_21,contig_81,1,hglE-KS,heterocyst glycolipids,samp_4326_metabat2_21_contig_81_hglE-KS
+3371,20297,samp_4326_metabat2_21,contig_87,1,terpene,NA,samp_4326_metabat2_21_contig_87_terpene
+0,9247,samp_4326_metabat2_21,contig_122,1,T1PKS,NA,samp_4326_metabat2_21_contig_122_T1PKS
+0,5665,samp_4326_metabat2_21,contig_143,1,NRPS-like,NA,samp_4326_metabat2_21_contig_143_NRPS-like
+19551,32414,samp_4326_metabat2_21,contig_144,1,terpene,NA,samp_4326_metabat2_21_contig_144_terpene
+0,6321,samp_4326_metabat2_21,contig_315,1,spliceotide / RRE-containing,NA,samp_4326_metabat2_21_contig_315_spliceotide / RRE-containing
+0,23048,samp_4326_metabat2_21,contig_316,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4326_metabat2_21_contig_316_NRPS
+0,13532,samp_4326_metabat2_21,contig_331,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4326_metabat2_21_contig_331_hglE-KS / T1PKS
+4324,16685,samp_4326_metabat2_21,contig_356,1,cyanobactin,NA,samp_4326_metabat2_21_contig_356_cyanobactin
+161,20336,samp_4326_metabat2_21,contig_380,1,terpene,NA,samp_4326_metabat2_21_contig_380_terpene
+0,30035,samp_4326_metabat2_21,contig_391,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4326_metabat2_21_contig_391_NRPS-like
+0,5274,samp_4448_semibin_255,contig_280,1,terpene,NA,samp_4448_semibin_255_contig_280_terpene
+0,7518,samp_4447_metabat2_80,contig_110,1,terpene,NA,samp_4447_metabat2_80_contig_110_terpene
+384,11109,samp_4447_metabat2_80,contig_169,1,terpene,NA,samp_4447_metabat2_80_contig_169_terpene
+0,12546,samp_4443_semibin_319,contig_86,1,terpene,NA,samp_4443_semibin_319_contig_86_terpene
+0,18702,samp_4443_semibin_319,contig_94,1,mycosporine-like,hexose-palythine-serine/hexose-shinorine,samp_4443_semibin_319_contig_94_mycosporine-like
+0,8995,samp_4443_semibin_319,contig_111,1,terpene,NA,samp_4443_semibin_319_contig_111_terpene
+0,27531,samp_4443_semibin_319,contig_133,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4443_semibin_319_contig_133_hglE-KS / T1PKS
+0,11117,samp_4443_semibin_319,contig_215,1,lanthipeptide-class-v,NA,samp_4443_semibin_319_contig_215_lanthipeptide-class-v
+301,10646,samp_4443_semibin_319,contig_227,1,cyanobactin,NA,samp_4443_semibin_319_contig_227_cyanobactin
+9507,38862,samp_4443_semibin_319,contig_318,1,terpene / oligosaccharide,NA,samp_4443_semibin_319_contig_318_terpene / oligosaccharide
+0,43244,samp_4443_semibin_319,contig_369,1,T1PKS / NRPS / NRPS-like,nocuolin A,samp_4443_semibin_319_contig_369_T1PKS / NRPS / NRPS-like
+0,30785,samp_4443_semibin_319,contig_425,1,lanthipeptide-class-v,NA,samp_4443_semibin_319_contig_425_lanthipeptide-class-v
+0,26768,samp_4443_semibin_319,contig_514,1,hglE-KS,heterocyst glycolipids,samp_4443_semibin_319_contig_514_hglE-KS
+0,11683,samp_4443_metadecoder_775,contig_34,1,terpene,NA,samp_4443_metadecoder_775_contig_34_terpene
+0,14553,samp_4443_metadecoder_775,contig_55,1,terpene,NA,samp_4443_metadecoder_775_contig_55_terpene
+0,9349,samp_4443_metadecoder_775,contig_101,1,terpene,NA,samp_4443_metadecoder_775_contig_101_terpene
+0,8116,samp_4443_semibin_466,contig_149,1,terpene,NA,samp_4443_semibin_466_contig_149_terpene
+0,9490,samp_4443_semibin_466,contig_286,1,T3PKS,NA,samp_4443_semibin_466_contig_286_T3PKS
+0,5956,samp_4310_VAMB_891,contig_239,1,terpene,NA,samp_4310_VAMB_891_contig_239_terpene
+0,16756,samp_4444_metadecoder_351,contig_152,1,terpene,NA,samp_4444_metadecoder_351_contig_152_terpene
+10872,20513,samp_4444_metadecoder_351,contig_165,1,RiPP-like,NA,samp_4444_metadecoder_351_contig_165_RiPP-like
+9291,21645,samp_4445_VAMB_548,contig_176,1,terpene,NA,samp_4445_VAMB_548_contig_176_terpene
+0,16519,samp_4313_concoct_735,contig_94,1,terpene,NA,samp_4313_concoct_735_contig_94_terpene
+5364,16151,samp_4313_concoct_735,contig_188,1,terpene,NA,samp_4313_concoct_735_contig_188_terpene
+0,7512,samp_4440_concoct_571,contig_289,1,terpene,NA,samp_4440_concoct_571_contig_289_terpene
+0,9123,samp_4440_concoct_571,contig_1103,1,terpene,NA,samp_4440_concoct_571_contig_1103_terpene
+0,5960,samp_4449_metabat2_97,contig_5,1,NRPS-like,NA,samp_4449_metabat2_97_contig_5_NRPS-like
+0,5621,samp_4449_metabat2_97,contig_16,1,NRPS-like,NA,samp_4449_metabat2_97_contig_16_NRPS-like
+0,20929,samp_4449_metabat2_97,contig_255,1,hglE-KS,NA,samp_4449_metabat2_97_contig_255_hglE-KS
+0,10524,samp_4449_metabat2_97,contig_260,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4449_metabat2_97_contig_260_hglE-KS / T1PKS
+0,8485,samp_4449_metabat2_97,contig_277,1,T1PKS,NA,samp_4449_metabat2_97_contig_277_T1PKS
+0,8377,samp_4449_metabat2_97,contig_291,1,terpene,NA,samp_4449_metabat2_97_contig_291_terpene
+0,12157,samp_4449_metabat2_97,contig_292,1,terpene,NA,samp_4449_metabat2_97_contig_292_terpene
+0,10626,samp_4449_metabat2_97,contig_357,1,terpene,NA,samp_4449_metabat2_97_contig_357_terpene
+2369,14922,samp_4449_metabat2_97,contig_545,1,cyanobactin,NA,samp_4449_metabat2_97_contig_545_cyanobactin
+0,17927,samp_4449_metabat2_97,contig_562,1,hglE-KS,heterocyst glycolipids,samp_4449_metabat2_97_contig_562_hglE-KS
+0,16788,samp_4320_concoct_456,contig_10,1,NRPS-like,NA,samp_4320_concoct_456_contig_10_NRPS-like
+19753,40003,samp_4320_concoct_456,contig_163,1,terpene,NA,samp_4320_concoct_456_contig_163_terpene
+0,5003,samp_4320_concoct_456,contig_168,1,lanthipeptide-class-ii,NA,samp_4320_concoct_456_contig_168_lanthipeptide-class-ii
+6322,70028,samp_4320_concoct_456,contig_174,1,terpene / NRPS-like,NA,samp_4320_concoct_456_contig_174_terpene / NRPS-like
+350,30385,samp_4320_concoct_456,contig_184,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4320_concoct_456_contig_184_NRPS-like
+0,34890,samp_4320_concoct_456,contig_554,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4320_concoct_456_contig_554_NRPS
+0,12311,samp_4320_concoct_456,contig_574,1,cyanobactin,NA,samp_4320_concoct_456_contig_574_cyanobactin
+3103,45517,samp_4320_concoct_456,contig_681,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4320_concoct_456_contig_681_hglE-KS / T1PKS
+0,8147,samp_4320_concoct_456,contig_1120,1,T1PKS,NA,samp_4320_concoct_456_contig_1120_T1PKS
+0,5852,samp_4320_concoct_456,contig_1127,1,RRE-containing,NA,samp_4320_concoct_456_contig_1127_RRE-containing
+0,31458,samp_4320_concoct_456,contig_1153,1,hglE-KS,heterocyst glycolipids,samp_4320_concoct_456_contig_1153_hglE-KS
+0,5570,samp_4320_concoct_456,contig_1209,1,terpene,geosmin,samp_4320_concoct_456_contig_1209_terpene
+6113,27046,samp_4320_concoct_456,contig_1226,1,terpene,NA,samp_4320_concoct_456_contig_1226_terpene
+0,26425,samp_4320_concoct_456,contig_1267,1,lanthipeptide-class-v,hassallidin C,samp_4320_concoct_456_contig_1267_lanthipeptide-class-v
+0,10678,samp_4443_metabat2_135,contig_62,1,lanthipeptide-class-ii,NA,samp_4443_metabat2_135_contig_62_lanthipeptide-class-ii
+0,6084,samp_4443_metabat2_135,contig_128,1,RiPP-like,NA,samp_4443_metabat2_135_contig_128_RiPP-like
+0,12021,samp_4443_metabat2_135,contig_197,1,terpene,NA,samp_4443_metabat2_135_contig_197_terpene
+7603,22901,samp_4443_metabat2_135,contig_211,1,terpene,NA,samp_4443_metabat2_135_contig_211_terpene
+0,35089,samp_4443_metabat2_135,contig_268,1,NRPS-like / T1PKS,1-heptadecene,samp_4443_metabat2_135_contig_268_NRPS-like / T1PKS
+0,13318,samp_4443_metabat2_135,contig_313,1,thioamitides,NA,samp_4443_metabat2_135_contig_313_thioamitides
+0,13417,samp_4443_metabat2_135,contig_349,1,hglE-KS,NA,samp_4443_metabat2_135_contig_349_hglE-KS
+0,15032,samp_4443_metabat2_135,contig_457,1,lanthipeptide-class-v,NA,samp_4443_metabat2_135_contig_457_lanthipeptide-class-v
+0,26564,samp_4443_metabat2_135,contig_520,1,T1PKS,NA,samp_4443_metabat2_135_contig_520_T1PKS
+0,5956,samp_4310_maxbin_176,contig_171,1,terpene,NA,samp_4310_maxbin_176_contig_171_terpene
+0,5000,samp_4317_maxbin_26,contig_19,1,microviridin,microviridin J,samp_4317_maxbin_26_contig_19_microviridin
+0,10016,samp_4317_maxbin_26,contig_153,1,LAP,NA,samp_4317_maxbin_26_contig_153_LAP
+0,79170,samp_4317_maxbin_26,contig_177,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4317_maxbin_26_contig_177_NRPS / T1PKS / NRPS-like
+0,14830,samp_4317_maxbin_26,contig_199,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4317_maxbin_26_contig_199_T1PKS
+0,7780,samp_4317_maxbin_26,contig_206,1,terpene,NA,samp_4317_maxbin_26_contig_206_terpene
+0,30029,samp_4317_maxbin_26,contig_274,1,NRPS / microviridin,anachelin,samp_4317_maxbin_26_contig_274_NRPS / microviridin
+0,24591,samp_4317_maxbin_26,contig_286,1,hglE-KS / PUFA,zeamine/zeamine I/zeamine II/prezeamine/prezeamine I,samp_4317_maxbin_26_contig_286_hglE-KS / PUFA
+0,12047,samp_4317_maxbin_26,contig_313,1,terpene,NA,samp_4317_maxbin_26_contig_313_terpene
+0,34752,samp_4317_maxbin_26,contig_354,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4317_maxbin_26_contig_354_T1PKS / NRPS-like / T3PKS
+0,22246,samp_4317_maxbin_26,contig_395,1,NRPS / NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4317_maxbin_26_contig_395_NRPS / NRPS-like
+0,6098,samp_4317_maxbin_26,contig_402,1,cyanobactin,NA,samp_4317_maxbin_26_contig_402_cyanobactin
+0,5108,samp_4317_maxbin_26,contig_404,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4317_maxbin_26_contig_404_cyanobactin
+0,7569,samp_4317_maxbin_26,contig_422,1,terpene,NA,samp_4317_maxbin_26_contig_422_terpene
+0,5423,samp_4317_maxbin_26,contig_523,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4317_maxbin_26_contig_523_cyanobactin
+0,15025,samp_4317_maxbin_26,contig_547,1,spliceotide,NA,samp_4317_maxbin_26_contig_547_spliceotide
+0,18055,samp_4317_maxbin_26,contig_563,1,NRPS-like / T1PKS,desmamide A/desmamide B/desmamide C,samp_4317_maxbin_26_contig_563_NRPS-like / T1PKS
+0,21482,samp_4317_maxbin_26,contig_612,1,T1PKS,NA,samp_4317_maxbin_26_contig_612_T1PKS
+0,8400,samp_4317_maxbin_26,contig_629,1,terpene,NA,samp_4317_maxbin_26_contig_629_terpene
+0,15900,samp_4331_VAMB_1007,contig_51,1,terpene,NA,samp_4331_VAMB_1007_contig_51_terpene
+41110,58192,samp_4331_VAMB_1007,contig_91,1,terpene,NA,samp_4331_VAMB_1007_contig_91_terpene
+76,14653,samp_4331_maxbin_374,contig_60,1,terpene,NA,samp_4331_maxbin_374_contig_60_terpene
+5350,26610,samp_4331_maxbin_374,contig_226,1,terpene,NA,samp_4331_maxbin_374_contig_226_terpene
+0,6278,samp_4435_concoct_1904,contig_96,1,lanthipeptide-class-v,NA,samp_4435_concoct_1904_contig_96_lanthipeptide-class-v
+0,7383,samp_4435_concoct_1904,contig_173,1,terpene,NA,samp_4435_concoct_1904_contig_173_terpene
+0,6472,samp_4435_concoct_1904,contig_197,1,NRPS,rhizomide A/rhizomide B/rhizomide C,samp_4435_concoct_1904_contig_197_NRPS
+0,14725,samp_4435_concoct_1904,contig_247,1,NRPS,anachelin,samp_4435_concoct_1904_contig_247_NRPS
+0,6031,samp_4435_concoct_1904,contig_427,1,cyanobactin,NA,samp_4435_concoct_1904_contig_427_cyanobactin
+0,6001,samp_4435_concoct_1904,contig_477,1,microviridin,microviridin 1777,samp_4435_concoct_1904_contig_477_microviridin
+0,9017,samp_4435_concoct_1904,contig_665,1,cyanobactin,NA,samp_4435_concoct_1904_contig_665_cyanobactin
+0,5344,samp_4435_concoct_1904,contig_753,1,RiPP-like,NA,samp_4435_concoct_1904_contig_753_RiPP-like
+0,19857,samp_4435_concoct_1904,contig_899,1,T1PKS / NRPS,NA,samp_4435_concoct_1904_contig_899_T1PKS / NRPS
+0,17587,samp_4435_concoct_1904,contig_1012,1,NRPS-like / T1PKS,nostoclide N1/nostoclide N2,samp_4435_concoct_1904_contig_1012_NRPS-like / T1PKS
+0,13701,samp_4435_concoct_1904,contig_1264,1,T3PKS,merocyclophane C/merocyclophane D,samp_4435_concoct_1904_contig_1264_T3PKS
+0,5482,samp_4435_concoct_1904,contig_1274,1,T1PKS,NA,samp_4435_concoct_1904_contig_1274_T1PKS
+0,6541,samp_4435_concoct_1904,contig_1372,1,microviridin,microviridin 1777,samp_4435_concoct_1904_contig_1372_microviridin
+0,5608,samp_4435_concoct_1904,contig_1418,1,NRPS,rhizomide A/rhizomide B/rhizomide C,samp_4435_concoct_1904_contig_1418_NRPS
+0,8609,samp_4435_concoct_1904,contig_2030,1,T1PKS,NA,samp_4435_concoct_1904_contig_2030_T1PKS
+0,10869,samp_4435_concoct_1904,contig_2065,1,terpene,NA,samp_4435_concoct_1904_contig_2065_terpene
+0,7762,samp_4435_concoct_1904,contig_2230,1,NRPS,NA,samp_4435_concoct_1904_contig_2230_NRPS
+0,5494,samp_4435_concoct_1904,contig_2327,1,NRPS,NA,samp_4435_concoct_1904_contig_2327_NRPS
+0,6665,samp_4435_concoct_1904,contig_2439,1,NRPS,NA,samp_4435_concoct_1904_contig_2439_NRPS
+0,5268,samp_4444_metabat2_75,contig_361,1,cyanobactin,NA,samp_4444_metabat2_75_contig_361_cyanobactin
+0,6226,samp_4444_metabat2_75,contig_469,1,terpene,NA,samp_4444_metabat2_75_contig_469_terpene
+0,8651,samp_4444_metabat2_75,contig_553,1,RRE-containing,NA,samp_4444_metabat2_75_contig_553_RRE-containing
+0,5408,samp_4444_metabat2_75,contig_746,1,microviridin,microviridin 1777,samp_4444_metabat2_75_contig_746_microviridin
+49482,55661,samp_4445_metabat2_90,contig_100,1,RiPP-like,NA,samp_4445_metabat2_90_contig_100_RiPP-like
+0,10151,samp_4445_metabat2_90,contig_118,1,RiPP-like,NA,samp_4445_metabat2_90_contig_118_RiPP-like
+0,6061,samp_4436_VAMB_168,contig_7649,1,NRPS,micropeptin K139,samp_4436_VAMB_168_contig_7649_NRPS
+0,11392,samp_4317_concoct_68,contig_90,1,NRPS-like,NA,samp_4317_concoct_68_contig_90_NRPS-like
+301,15574,samp_4317_concoct_68,contig_97,1,RRE-containing,NA,samp_4317_concoct_68_contig_97_RRE-containing
+4617,24293,samp_4317_concoct_68,contig_136,1,terpene,NA,samp_4317_concoct_68_contig_136_terpene
+0,30035,samp_4317_concoct_68,contig_140,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4317_concoct_68_contig_140_NRPS-like
+0,12311,samp_4317_concoct_68,contig_162,1,cyanobactin,NA,samp_4317_concoct_68_contig_162_cyanobactin
+0,42982,samp_4317_concoct_68,contig_195,1,NRPS-like,NA,samp_4317_concoct_68_contig_195_NRPS-like
+0,43967,samp_4317_concoct_68,contig_234,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4317_concoct_68_contig_234_hglE-KS / T1PKS
+1307,28832,samp_4317_concoct_68,contig_265,1,T1PKS,NA,samp_4317_concoct_68_contig_265_T1PKS
+0,35845,samp_4317_concoct_68,contig_274,1,hglE-KS,heterocyst glycolipids,samp_4317_concoct_68_contig_274_hglE-KS
+3615,55689,samp_4317_concoct_68,contig_312,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4317_concoct_68_contig_312_NRPS
+0,35822,samp_4317_concoct_68,contig_348,1,lanthipeptide-class-v,hassallidin C,samp_4317_concoct_68_contig_348_lanthipeptide-class-v
+24251,43865,samp_4317_concoct_68,contig_396,1,terpene,NA,samp_4317_concoct_68_contig_396_terpene
+4411,24182,samp_4317_concoct_68,contig_406,1,terpene,NA,samp_4317_concoct_68_contig_406_terpene
+0,11758,samp_4435_VAMB_847,contig_822,1,terpene,NA,samp_4435_VAMB_847_contig_822_terpene
+0,10535,samp_4444_metabat2_171,contig_181,1,terpene,NA,samp_4444_metabat2_171_contig_181_terpene
+0,6222,samp_4444_metabat2_171,contig_396,1,terpene,NA,samp_4444_metabat2_171_contig_396_terpene
+0,7631,samp_4324_VAMB_466,contig_8,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4324_VAMB_466_contig_8_cyanobactin
+0,8159,samp_4324_VAMB_466,contig_49,1,terpene,NA,samp_4324_VAMB_466_contig_49_terpene
+0,17395,samp_4324_VAMB_466,contig_86,1,NRPS / microviridin,anachelin,samp_4324_VAMB_466_contig_86_NRPS / microviridin
+0,9267,samp_4324_VAMB_466,contig_335,1,LAP,NA,samp_4324_VAMB_466_contig_335_LAP
+0,10100,samp_4324_VAMB_466,contig_348,1,spliceotide,NA,samp_4324_VAMB_466_contig_348_spliceotide
+0,11707,samp_4324_VAMB_466,contig_374,1,terpene,NA,samp_4324_VAMB_466_contig_374_terpene
+0,17856,samp_4324_VAMB_466,contig_461,1,lanthipeptide-class-ii,nostolysamide A/nostolysamide B,samp_4324_VAMB_466_contig_461_lanthipeptide-class-ii
+0,25892,samp_4324_VAMB_466,contig_481,1,PUFA / hglE-KS,zeamine/zeamine I/zeamine II/prezeamine/prezeamine I,samp_4324_VAMB_466_contig_481_PUFA / hglE-KS
+1553,14830,samp_4324_VAMB_466,contig_1058,1,terpene,NA,samp_4324_VAMB_466_contig_1058_terpene
+0,9787,samp_4324_VAMB_466,contig_1145,1,terpene,NA,samp_4324_VAMB_466_contig_1145_terpene
+0,20686,samp_4324_VAMB_466,contig_1457,1,T1PKS,NA,samp_4324_VAMB_466_contig_1457_T1PKS
+0,14176,samp_4324_VAMB_466,contig_1589,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4324_VAMB_466_contig_1589_cyanobactin
+0,14798,samp_4324_VAMB_466,contig_1604,1,NRPS-like / T1PKS,desmamide A/desmamide B/desmamide C,samp_4324_VAMB_466_contig_1604_NRPS-like / T1PKS
+0,10312,samp_4324_VAMB_466,contig_1744,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4324_VAMB_466_contig_1744_T1PKS
+0,36460,samp_4324_VAMB_466,contig_1752,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4324_VAMB_466_contig_1752_T1PKS / NRPS-like / T3PKS
+0,26824,samp_4324_VAMB_466,contig_1768,1,NRPS / NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4324_VAMB_466_contig_1768_NRPS / NRPS-like
+0,69891,samp_4324_VAMB_466,contig_1798,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4324_VAMB_466_contig_1798_NRPS / T1PKS / NRPS-like
+8609,29560,samp_4444_maxbin_831,contig_107,1,terpene,NA,samp_4444_maxbin_831_contig_107_terpene
+0,5139,samp_4444_maxbin_831,contig_286,1,terpene,NA,samp_4444_maxbin_831_contig_286_terpene
+0,10931,samp_4446_VAMB_222,contig_361,1,terpene,NA,samp_4446_VAMB_222_contig_361_terpene
+0,6571,samp_4446_VAMB_222,contig_1085,1,arylpolyene,NA,samp_4446_VAMB_222_contig_1085_arylpolyene
+3404,16604,samp_4448_metadecoder_625,contig_69,1,terpene,NA,samp_4448_metadecoder_625_contig_69_terpene
+0,5979,samp_4447_VAMB_472,contig_5,1,T1PKS,crocacin,samp_4447_VAMB_472_contig_5_T1PKS
+0,21167,samp_4447_VAMB_472,contig_32,1,terpene,NA,samp_4447_VAMB_472_contig_32_terpene
+0,12848,samp_4447_VAMB_472,contig_97,1,lanthipeptide-class-v,NA,samp_4447_VAMB_472_contig_97_lanthipeptide-class-v
+0,43154,samp_4447_VAMB_472,contig_107,1,hglE-KS,heterocyst glycolipids,samp_4447_VAMB_472_contig_107_hglE-KS
+0,6662,samp_4447_VAMB_472,contig_184,1,lanthipeptide-class-ii / NRPS-like,1-heptadecene,samp_4447_VAMB_472_contig_184_lanthipeptide-class-ii / NRPS-like
+0,11179,samp_4447_VAMB_472,contig_346,1,terpene,NA,samp_4447_VAMB_472_contig_346_terpene
+20681,47473,samp_4447_VAMB_472,contig_481,1,hglE-KS,heterocyst glycolipids,samp_4447_VAMB_472_contig_481_hglE-KS
+0,34069,samp_4447_VAMB_472,contig_513,1,NRPS-like,NA,samp_4447_VAMB_472_contig_513_NRPS-like
+0,12592,samp_4448_VAMB_889,contig_147,1,terpene,NA,samp_4448_VAMB_889_contig_147_terpene
+0,11958,samp_4445_maxbin_221,contig_353,1,NRPS-like / NRPS,rhizomide A/rhizomide B/rhizomide C,samp_4445_maxbin_221_contig_353_NRPS-like / NRPS
+0,10029,samp_4445_maxbin_221,contig_370,1,terpene,NA,samp_4445_maxbin_221_contig_370_terpene
+0,9275,samp_4445_maxbin_221,contig_459,1,terpene,NA,samp_4445_maxbin_221_contig_459_terpene
+0,23668,samp_4323_metabat2_108,contig_18,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4323_metabat2_108_contig_18_NRPS-like
+2099,28838,samp_4323_metabat2_108,contig_46,1,T1PKS,dynemicin A,samp_4323_metabat2_108_contig_46_T1PKS
+0,25196,samp_4323_metabat2_108,contig_98,1,hglE-KS,heterocyst glycolipids,samp_4323_metabat2_108_contig_98_hglE-KS
+0,11672,samp_4323_metabat2_108,contig_116,1,cyanobactin,anacyclamide A10,samp_4323_metabat2_108_contig_116_cyanobactin
+2282,32635,samp_4323_metabat2_108,contig_123,1,NRPS-like,NA,samp_4323_metabat2_108_contig_123_NRPS-like
+2068,46320,samp_4323_metabat2_108,contig_134,1,NRPS-like,NA,samp_4323_metabat2_108_contig_134_NRPS-like
+0,12247,samp_4323_metabat2_108,contig_191,1,terpene,NA,samp_4323_metabat2_108_contig_191_terpene
+0,6880,samp_4323_metabat2_108,contig_203,1,RRE-containing,NA,samp_4323_metabat2_108_contig_203_RRE-containing
+0,26393,samp_4323_metabat2_108,contig_240,1,lanthipeptide-class-v,hassallidin C,samp_4323_metabat2_108_contig_240_lanthipeptide-class-v
+0,38459,samp_4323_metabat2_108,contig_292,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4323_metabat2_108_contig_292_NRPS
+0,6580,samp_4323_metabat2_108,contig_308,1,terpene,NA,samp_4323_metabat2_108_contig_308_terpene
+0,39642,samp_4323_metabat2_108,contig_361,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4323_metabat2_108_contig_361_hglE-KS / T1PKS
+0,20340,samp_4323_metabat2_108,contig_387,1,terpene,NA,samp_4323_metabat2_108_contig_387_terpene
+0,41092,samp_4434_semibin_79,contig_21,1,NRPS-like,NA,samp_4434_semibin_79_contig_21_NRPS-like
+2522,15456,samp_4434_semibin_79,contig_25,1,terpene,NA,samp_4434_semibin_79_contig_25_terpene
+8507,51246,samp_4434_semibin_79,contig_54,1,NRPS-like,NA,samp_4434_semibin_79_contig_54_NRPS-like
+0,39740,samp_4434_semibin_79,contig_60,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4434_semibin_79_contig_60_hglE-KS / T1PKS
+21573,34134,samp_4434_semibin_79,contig_69,1,cyanobactin,NA,samp_4434_semibin_79_contig_69_cyanobactin
+2099,28119,samp_4434_semibin_79,contig_97,1,T1PKS,dynemicin A,samp_4434_semibin_79_contig_97_T1PKS
+279,22190,samp_4434_semibin_79,contig_126,1,terpene,NA,samp_4434_semibin_79_contig_126_terpene
+0,29321,samp_4434_semibin_79,contig_168,1,lanthipeptide-class-v,hassallidin C,samp_4434_semibin_79_contig_168_lanthipeptide-class-v
+0,20524,samp_4434_semibin_79,contig_177,1,terpene,NA,samp_4434_semibin_79_contig_177_terpene
+1431,14028,samp_4446_metabat2_472,contig_175,1,terpene,NA,samp_4446_metabat2_472_contig_175_terpene
+0,9313,samp_4446_metabat2_472,contig_239,1,terpene,NA,samp_4446_metabat2_472_contig_239_terpene
+2068,46320,samp_4323_VAMB_453,contig_2,1,NRPS-like,NA,samp_4323_VAMB_453_contig_2_NRPS-like
+2099,28838,samp_4323_VAMB_453,contig_39,1,T1PKS,dynemicin A,samp_4323_VAMB_453_contig_39_T1PKS
+0,39642,samp_4323_VAMB_453,contig_119,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4323_VAMB_453_contig_119_hglE-KS / T1PKS
+0,38459,samp_4323_VAMB_453,contig_157,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4323_VAMB_453_contig_157_NRPS
+0,6580,samp_4323_VAMB_453,contig_209,1,terpene,NA,samp_4323_VAMB_453_contig_209_terpene
+0,5146,samp_4323_VAMB_453,contig_219,1,lanthipeptide-class-ii,NA,samp_4323_VAMB_453_contig_219_lanthipeptide-class-ii
+0,6880,samp_4323_VAMB_453,contig_310,1,RRE-containing,NA,samp_4323_VAMB_453_contig_310_RRE-containing
+0,12247,samp_4323_VAMB_453,contig_351,1,terpene,NA,samp_4323_VAMB_453_contig_351_terpene
+0,25196,samp_4323_VAMB_453,contig_545,1,hglE-KS,heterocyst glycolipids,samp_4323_VAMB_453_contig_545_hglE-KS
+0,23668,samp_4323_VAMB_453,contig_548,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4323_VAMB_453_contig_548_NRPS-like
+0,26393,samp_4323_VAMB_453,contig_682,1,lanthipeptide-class-v,hassallidin C,samp_4323_VAMB_453_contig_682_lanthipeptide-class-v
+0,20340,samp_4323_VAMB_453,contig_736,1,terpene,NA,samp_4323_VAMB_453_contig_736_terpene
+2282,32635,samp_4323_VAMB_453,contig_879,1,NRPS-like,NA,samp_4323_VAMB_453_contig_879_NRPS-like
+0,11672,samp_4323_VAMB_453,contig_950,1,cyanobactin,anacyclamide A10,samp_4323_VAMB_453_contig_950_cyanobactin
+0,5956,samp_4310_concoct_701,contig_178,1,terpene,NA,samp_4310_concoct_701_contig_178_terpene
+7715,21808,samp_4324_VAMB_363,contig_112,1,terpene,NA,samp_4324_VAMB_363_contig_112_terpene
+0,35003,samp_4324_VAMB_363,contig_211,1,lanthipeptide-class-v,hassallidin C,samp_4324_VAMB_363_contig_211_lanthipeptide-class-v
+0,36400,samp_4324_VAMB_363,contig_246,1,NRPS-like,NA,samp_4324_VAMB_363_contig_246_NRPS-like
+2440,29626,samp_4324_VAMB_363,contig_383,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4324_VAMB_363_contig_383_T1PKS / hglE-KS
+17693,53067,samp_4324_VAMB_363,contig_572,1,hglE-KS,ambiguine P,samp_4324_VAMB_363_contig_572_hglE-KS
+0,28509,samp_4324_VAMB_363,contig_573,1,hglE-KS,heterocyst glycolipids,samp_4324_VAMB_363_contig_573_hglE-KS
+0,13694,samp_4324_VAMB_363,contig_584,1,terpene,NA,samp_4324_VAMB_363_contig_584_terpene
+31103,49311,samp_4324_VAMB_363,contig_626,1,terpene,NA,samp_4324_VAMB_363_contig_626_terpene
+0,23820,samp_4324_VAMB_363,contig_646,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4324_VAMB_363_contig_646_NRPS-like
+0,6988,samp_4324_VAMB_363,contig_678,1,cyanobactin,anacyclamide A10,samp_4324_VAMB_363_contig_678_cyanobactin
+0,42853,samp_4324_VAMB_363,contig_876,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4324_VAMB_363_contig_876_NRPS
+0,6870,samp_4324_VAMB_363,contig_897,1,RRE-containing,NA,samp_4324_VAMB_363_contig_897_RRE-containing
+0,23564,samp_4324_VAMB_363,contig_913,1,NRPS-like,NA,samp_4324_VAMB_363_contig_913_NRPS-like
+0,8116,samp_4443_metabat2_35,contig_186,1,terpene,NA,samp_4443_metabat2_35_contig_186_terpene
+0,9490,samp_4443_metabat2_35,contig_362,1,T3PKS,NA,samp_4443_metabat2_35_contig_362_T3PKS
+0,6693,samp_4313_VAMB_931,contig_274,1,terpene,NA,samp_4313_VAMB_931_contig_274_terpene
+0,10036,samp_4313_VAMB_931,contig_630,1,terpene,NA,samp_4313_VAMB_931_contig_630_terpene
+0,7518,samp_4447_semibin_188,contig_72,1,terpene,NA,samp_4447_semibin_188_contig_72_terpene
+384,11109,samp_4447_semibin_188,contig_118,1,terpene,NA,samp_4447_semibin_188_contig_118_terpene
+0,8116,samp_4443_maxbin_242,contig_293,1,terpene,NA,samp_4443_maxbin_242_contig_293_terpene
+0,9490,samp_4443_maxbin_242,contig_553,1,T3PKS,NA,samp_4443_maxbin_242_contig_553_T3PKS
+0,5280,samp_4443_maxbin_242,contig_585,1,NRPS-like,NA,samp_4443_maxbin_242_contig_585_NRPS-like
+8503,23328,samp_4445_VAMB_546,contig_44,1,terpene,NA,samp_4445_VAMB_546_contig_44_terpene
+0,6819,samp_4445_VAMB_546,contig_53,1,T3PKS,NA,samp_4445_VAMB_546_contig_53_T3PKS
+0,10029,samp_4445_metabat2_175,contig_253,1,terpene,NA,samp_4445_metabat2_175_contig_253_terpene
+0,9275,samp_4445_metabat2_175,contig_313,1,terpene,NA,samp_4445_metabat2_175_contig_313_terpene
+0,9683,samp_4448_metabat2_83,contig_48,1,terpene,NA,samp_4448_metabat2_83_contig_48_terpene
+0,10646,samp_4448_metabat2_83,contig_176,1,terpene,NA,samp_4448_metabat2_83_contig_176_terpene
+0,18823,samp_4444_semibin_569,contig_16,1,hglE-KS,heterocyst glycolipids,samp_4444_semibin_569_contig_16_hglE-KS
+0,29239,samp_4444_semibin_569,contig_43,1,lanthipeptide-class-v,hassallidin C,samp_4444_semibin_569_contig_43_lanthipeptide-class-v
+3016,23949,samp_4444_semibin_569,contig_85,1,terpene,NA,samp_4444_semibin_569_contig_85_terpene
+5589,26674,samp_4444_semibin_569,contig_138,1,terpene,NA,samp_4444_semibin_569_contig_138_terpene
+0,36054,samp_4444_semibin_569,contig_227,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4444_semibin_569_contig_227_hglE-KS / T1PKS
+0,8267,samp_4444_semibin_569,contig_231,1,NRPS-like,NA,samp_4444_semibin_569_contig_231_NRPS-like
+0,17594,samp_4444_semibin_569,contig_241,1,terpene,NA,samp_4444_semibin_569_contig_241_terpene
+0,6295,samp_4444_semibin_569,contig_312,1,NRPS-like,NA,samp_4444_semibin_569_contig_312_NRPS-like
+0,11370,samp_4444_semibin_569,contig_329,1,RRE-containing,NA,samp_4444_semibin_569_contig_329_RRE-containing
+0,12863,samp_4444_semibin_569,contig_375,1,NRPS-like,NA,samp_4444_semibin_569_contig_375_NRPS-like
+0,6882,samp_4444_semibin_569,contig_384,1,ectoine,NA,samp_4444_semibin_569_contig_384_ectoine
+0,9018,samp_4444_semibin_569,contig_414,1,NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4444_semibin_569_contig_414_NRPS-like
+0,7045,samp_4444_semibin_569,contig_471,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4444_semibin_569_contig_471_NRPS
+0,8458,samp_4447_VAMB_580,contig_16,1,terpene,NA,samp_4447_VAMB_580_contig_16_terpene
+0,6531,samp_4447_VAMB_580,contig_115,1,RRE-containing / lassopeptide,NA,samp_4447_VAMB_580_contig_115_RRE-containing / lassopeptide
+0,10754,samp_4447_VAMB_580,contig_830,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4447_VAMB_580_contig_830_cyanobactin
+0,9556,samp_4447_VAMB_580,contig_1433,1,terpene,NA,samp_4447_VAMB_580_contig_1433_terpene
+0,5979,samp_4447_VAMB_291,contig_4,1,T1PKS,crocacin,samp_4447_VAMB_291_contig_4_T1PKS
+0,21167,samp_4447_VAMB_291,contig_21,1,terpene,NA,samp_4447_VAMB_291_contig_21_terpene
+0,12848,samp_4447_VAMB_291,contig_69,1,lanthipeptide-class-v,NA,samp_4447_VAMB_291_contig_69_lanthipeptide-class-v
+0,43154,samp_4447_VAMB_291,contig_79,1,hglE-KS,heterocyst glycolipids,samp_4447_VAMB_291_contig_79_hglE-KS
+0,6662,samp_4447_VAMB_291,contig_126,1,lanthipeptide-class-ii / NRPS-like,1-heptadecene,samp_4447_VAMB_291_contig_126_lanthipeptide-class-ii / NRPS-like
+0,13467,samp_4447_VAMB_291,contig_134,1,thioamitides,NA,samp_4447_VAMB_291_contig_134_thioamitides
+0,11179,samp_4447_VAMB_291,contig_226,1,terpene,NA,samp_4447_VAMB_291_contig_226_terpene
+20681,47473,samp_4447_VAMB_291,contig_323,1,hglE-KS,heterocyst glycolipids,samp_4447_VAMB_291_contig_323_hglE-KS
+0,34069,samp_4447_VAMB_291,contig_347,1,NRPS-like,NA,samp_4447_VAMB_291_contig_347_NRPS-like
+0,14259,samp_4443_concoct_2141,contig_81,1,terpene,NA,samp_4443_concoct_2141_contig_81_terpene
+0,12184,samp_4443_concoct_2141,contig_213,1,terpene,NA,samp_4443_concoct_2141_contig_213_terpene
+0,59772,samp_4443_metadecoder_774,contig_17,1,T1PKS / NRPS,thuggacin A,samp_4443_metadecoder_774_contig_17_T1PKS / NRPS
+17812,38736,samp_4443_metadecoder_774,contig_28,1,terpene,NA,samp_4443_metadecoder_774_contig_28_terpene
+0,16293,samp_4443_metadecoder_774,contig_79,1,terpene,NA,samp_4443_metadecoder_774_contig_79_terpene
+0,7471,samp_4447_concoct_1018,contig_3,1,RRE-containing / RiPP-like,NA,samp_4447_concoct_1018_contig_3_RRE-containing / RiPP-like
+0,5535,samp_4447_concoct_1018,contig_5,1,NRPS,cyanopeptolin,samp_4447_concoct_1018_contig_5_NRPS
+0,11578,samp_4447_concoct_1018,contig_252,1,NRPS,cyanopeptolin,samp_4447_concoct_1018_contig_252_NRPS
+0,20863,samp_4447_concoct_1018,contig_285,1,NRPS,microcystin LR,samp_4447_concoct_1018_contig_285_NRPS
+0,20621,samp_4447_concoct_1018,contig_313,1,T1PKS / NRPS-like,microcystin LR,samp_4447_concoct_1018_contig_313_T1PKS / NRPS-like
+0,18509,samp_4447_concoct_1018,contig_589,1,T1PKS,NA,samp_4447_concoct_1018_contig_589_T1PKS
+0,7198,samp_4447_concoct_1018,contig_976,1,terpene,NA,samp_4447_concoct_1018_contig_976_terpene
+0,15491,samp_4447_concoct_1018,contig_1216,1,T1PKS,NA,samp_4447_concoct_1018_contig_1216_T1PKS
+0,14883,samp_4447_concoct_1018,contig_1414,1,NRPS,anachelin,samp_4447_concoct_1018_contig_1414_NRPS
+0,5150,samp_4447_concoct_1018,contig_1849,1,NRPS,bovienimide A,samp_4447_concoct_1018_contig_1849_NRPS
+8503,23328,samp_4445_semibin_359,contig_335,1,terpene,NA,samp_4445_semibin_359_contig_335_terpene
+0,5601,samp_4445_metabat2_158,contig_229,1,RiPP-like,NA,samp_4445_metabat2_158_contig_229_RiPP-like
+0,15549,samp_4445_metabat2_158,contig_277,1,lanthipeptide-class-ii,NA,samp_4445_metabat2_158_contig_277_lanthipeptide-class-ii
+0,6600,samp_4445_metabat2_158,contig_286,1,T1PKS,NA,samp_4445_metabat2_158_contig_286_T1PKS
+0,15514,samp_4445_metabat2_158,contig_330,1,thioamitides,NA,samp_4445_metabat2_158_contig_330_thioamitides
+0,15840,samp_4445_metabat2_158,contig_342,1,terpene,NA,samp_4445_metabat2_158_contig_342_terpene
+11916,60538,samp_4445_metabat2_158,contig_347,1,T1PKS / NRPS-like,1-heptadecene,samp_4445_metabat2_158_contig_347_T1PKS / NRPS-like
+0,14949,samp_4445_metabat2_158,contig_419,1,terpene,NA,samp_4445_metabat2_158_contig_419_terpene
+0,5845,samp_4445_metabat2_158,contig_426,1,RiPP-like,3-(2'-hydroxy-3'-oxo-4'-methylpentyl)-indole/3-(2'-hydroxy-3'-oxo-4'-methylhexyl)-indole/3-(2'-acetoxy-3'-oxo-4'-methylpentyl)-indole/3-(2'-acetoxy-3'-oxo-4'-methylhexyl)-indole,samp_4445_metabat2_158_contig_426_RiPP-like
+0,6033,samp_4445_concoct_1532,contig_113,1,NRPS,xenotetrapeptide,samp_4445_concoct_1532_contig_113_NRPS
+0,14196,samp_4445_concoct_1532,contig_132,1,terpene,NA,samp_4445_concoct_1532_contig_132_terpene
+0,7256,samp_4445_concoct_1532,contig_461,1,T1PKS,NA,samp_4445_concoct_1532_contig_461_T1PKS
+0,10734,samp_4445_maxbin_504,contig_64,1,terpene,NA,samp_4445_maxbin_504_contig_64_terpene
+0,7471,samp_4444_semibin_500,contig_1,1,terpene,NA,samp_4444_semibin_500_contig_1_terpene
+0,11035,samp_4444_semibin_500,contig_4,1,terpene,NA,samp_4444_semibin_500_contig_4_terpene
+0,9479,samp_4445_VAMB_580,contig_240,1,NRPS-like,NA,samp_4445_VAMB_580_contig_240_NRPS-like
+0,6822,samp_4445_VAMB_580,contig_277,1,terpene,NA,samp_4445_VAMB_580_contig_277_terpene
+0,7391,samp_4445_VAMB_580,contig_321,1,terpene,NA,samp_4445_VAMB_580_contig_321_terpene
+4179,56523,samp_4307_VAMB_554,contig_202,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4307_VAMB_554_contig_202_hglE-KS / T1PKS
+0,19751,samp_4307_VAMB_554,contig_257,1,NRPS-like / NRPS,varlaxin 1046A/varlaxin 1022A,samp_4307_VAMB_554_contig_257_NRPS-like / NRPS
+0,33008,samp_4307_VAMB_554,contig_479,1,hglE-KS,heterocyst glycolipids,samp_4307_VAMB_554_contig_479_hglE-KS
+0,12962,samp_4307_VAMB_554,contig_583,1,terpene,NA,samp_4307_VAMB_554_contig_583_terpene
+0,13414,samp_4307_VAMB_554,contig_750,1,T1PKS,NA,samp_4307_VAMB_554_contig_750_T1PKS
+0,22278,samp_4307_VAMB_554,contig_765,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4307_VAMB_554_contig_765_NRPS-like
+0,24047,samp_4307_VAMB_554,contig_875,1,NRPS-like,NA,samp_4307_VAMB_554_contig_875_NRPS-like
+0,15039,samp_4307_VAMB_554,contig_1042,1,cyanobactin,anacyclamide A10,samp_4307_VAMB_554_contig_1042_cyanobactin
+0,5074,samp_4307_VAMB_554,contig_1343,1,NRPS-like,NA,samp_4307_VAMB_554_contig_1343_NRPS-like
+1845,16410,samp_4307_VAMB_554,contig_1439,1,cyanobactin,anacyclamide A10,samp_4307_VAMB_554_contig_1439_cyanobactin
+150,20303,samp_4307_VAMB_554,contig_1447,1,terpene,NA,samp_4307_VAMB_554_contig_1447_terpene
+0,26393,samp_4307_VAMB_554,contig_1587,1,lanthipeptide-class-v,hassallidin C,samp_4307_VAMB_554_contig_1587_lanthipeptide-class-v
+0,18067,samp_4307_VAMB_554,contig_1838,1,terpene,NA,samp_4307_VAMB_554_contig_1838_terpene
+0,41092,samp_4434_concoct_1146,contig_55,1,NRPS-like,NA,samp_4434_concoct_1146_contig_55_NRPS-like
+2522,15456,samp_4434_concoct_1146,contig_63,1,terpene,NA,samp_4434_concoct_1146_contig_63_terpene
+8507,51246,samp_4434_concoct_1146,contig_143,1,NRPS-like,NA,samp_4434_concoct_1146_contig_143_NRPS-like
+0,39740,samp_4434_concoct_1146,contig_160,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4434_concoct_1146_contig_160_hglE-KS / T1PKS
+21573,34134,samp_4434_concoct_1146,contig_202,1,cyanobactin,NA,samp_4434_concoct_1146_contig_202_cyanobactin
+0,20735,samp_4434_concoct_1146,contig_280,1,hglE-KS,heterocyst glycolipids,samp_4434_concoct_1146_contig_280_hglE-KS
+0,11969,samp_4434_concoct_1146,contig_282,1,cyanobactin,anacyclamide A10,samp_4434_concoct_1146_contig_282_cyanobactin
+2099,28119,samp_4434_concoct_1146,contig_288,1,T1PKS,dynemicin A,samp_4434_concoct_1146_contig_288_T1PKS
+0,6846,samp_4434_concoct_1146,contig_363,1,RRE-containing,NA,samp_4434_concoct_1146_contig_363_RRE-containing
+279,22190,samp_4434_concoct_1146,contig_390,1,terpene,NA,samp_4434_concoct_1146_contig_390_terpene
+0,5176,samp_4434_concoct_1146,contig_421,1,cyanobactin,anacyclamide A10,samp_4434_concoct_1146_contig_421_cyanobactin
+0,29321,samp_4434_concoct_1146,contig_508,1,lanthipeptide-class-v,hassallidin C,samp_4434_concoct_1146_contig_508_lanthipeptide-class-v
+0,20524,samp_4434_concoct_1146,contig_557,1,terpene,NA,samp_4434_concoct_1146_contig_557_terpene
+0,9683,samp_4448_metadecoder_608,contig_33,1,terpene,NA,samp_4448_metadecoder_608_contig_33_terpene
+0,10646,samp_4448_metadecoder_608,contig_128,1,terpene,NA,samp_4448_metadecoder_608_contig_128_terpene
+0,5647,samp_4448_semibin_191,contig_143,1,terpene,NA,samp_4448_semibin_191_contig_143_terpene
+0,5278,samp_4448_semibin_191,contig_229,1,terpene,NA,samp_4448_semibin_191_contig_229_terpene
+0,5033,samp_4445_semibin_306,contig_96,1,terpene,NA,samp_4445_semibin_306_contig_96_terpene
+0,5820,samp_4445_semibin_306,contig_274,1,terpene,NA,samp_4445_semibin_306_contig_274_terpene
+0,14727,samp_4314_metabat2_100,contig_205,1,terpene,NA,samp_4314_metabat2_100_contig_205_terpene
+0,6061,samp_4436_concoct_82,contig_1076,1,NRPS,micropeptin K139,samp_4436_concoct_82_contig_1076_NRPS
+0,23975,samp_4445_semibin_421,contig_72,1,lanthipeptide-class-v,quinolidomicin A,samp_4445_semibin_421_contig_72_lanthipeptide-class-v
+0,31053,samp_4445_semibin_421,contig_112,1,T1PKS / NRPS-like / lanthipeptide-class-ii / proteusin,minutissamide A/minutissamide C/minutissamide D,samp_4445_semibin_421_contig_112_T1PKS / NRPS-like / lanthipeptide-class-ii / proteusin
+16987,30446,samp_4445_semibin_421,contig_114,1,lanthipeptide-class-ii,NA,samp_4445_semibin_421_contig_114_lanthipeptide-class-ii
+0,29347,samp_4445_semibin_421,contig_253,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4445_semibin_421_contig_253_hglE-KS / T1PKS
+0,13508,samp_4445_semibin_421,contig_279,1,terpene,NA,samp_4445_semibin_421_contig_279_terpene
+1946,15864,samp_4445_semibin_421,contig_290,1,RRE-containing,NA,samp_4445_semibin_421_contig_290_RRE-containing
+15738,36569,samp_4445_semibin_421,contig_292,1,terpene,NA,samp_4445_semibin_421_contig_292_terpene
+0,5860,samp_4445_semibin_421,contig_328,1,cyanobactin,NA,samp_4445_semibin_421_contig_328_cyanobactin
+0,7411,samp_4321_metadecoder_473,contig_1,1,cyanobactin,anacyclamide A10,samp_4321_metadecoder_473_contig_1_cyanobactin
+0,13431,samp_4321_metadecoder_473,contig_159,1,NRPS-like,NA,samp_4321_metadecoder_473_contig_159_NRPS-like
+0,20507,samp_4321_metadecoder_473,contig_197,1,lanthipeptide-class-v,hassallidin C,samp_4321_metadecoder_473_contig_197_lanthipeptide-class-v
+2186,23119,samp_4321_metadecoder_473,contig_232,1,terpene,NA,samp_4321_metadecoder_473_contig_232_terpene
+0,33306,samp_4321_metadecoder_473,contig_269,1,NRPS-like,NA,samp_4321_metadecoder_473_contig_269_NRPS-like
+0,25196,samp_4321_metadecoder_473,contig_276,1,hglE-KS,heterocyst glycolipids,samp_4321_metadecoder_473_contig_276_hglE-KS
+6041,26872,samp_4321_metadecoder_473,contig_288,1,terpene,NA,samp_4321_metadecoder_473_contig_288_terpene
+0,38444,samp_4321_metadecoder_473,contig_291,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4321_metadecoder_473_contig_291_hglE-KS / T1PKS
+0,13694,samp_4321_metadecoder_473,contig_295,1,terpene,NA,samp_4321_metadecoder_473_contig_295_terpene
+0,42553,samp_4321_metadecoder_473,contig_307,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4321_metadecoder_473_contig_307_NRPS
+0,15834,samp_4448_VAMB_876,contig_39,1,terpene,NA,samp_4448_VAMB_876_contig_39_terpene
+2850,9484,samp_4445_semibin_366,contig_44,1,RiPP-like,NA,samp_4445_semibin_366_contig_44_RiPP-like
+3358,24195,samp_4445_semibin_366,contig_76,1,terpene,carotenoid,samp_4445_semibin_366_contig_76_terpene
+10085,35955,samp_4439_concoct_171,contig_7,1,T1PKS,dynemicin A,samp_4439_concoct_171_contig_7_T1PKS
+0,39691,samp_4439_concoct_171,contig_52,1,NRPS-like,NA,samp_4439_concoct_171_contig_52_NRPS-like
+2076,23009,samp_4439_concoct_171,contig_78,1,terpene,NA,samp_4439_concoct_171_contig_78_terpene
+6074,23000,samp_4439_concoct_171,contig_79,1,terpene,NA,samp_4439_concoct_171_contig_79_terpene
+0,20175,samp_4439_concoct_171,contig_80,1,terpene,NA,samp_4439_concoct_171_contig_80_terpene
+0,25159,samp_4439_concoct_171,contig_86,1,NRPS-like,NA,samp_4439_concoct_171_contig_86_NRPS-like
+0,21970,samp_4439_concoct_171,contig_127,1,lanthipeptide-class-v,NA,samp_4439_concoct_171_contig_127_lanthipeptide-class-v
+0,29995,samp_4439_concoct_171,contig_138,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4439_concoct_171_contig_138_NRPS-like
+15169,35619,samp_4439_concoct_171,contig_155,1,RRE-containing,NA,samp_4439_concoct_171_contig_155_RRE-containing
+0,21120,samp_4439_concoct_171,contig_160,1,hglE-KS,heterocyst glycolipids,samp_4439_concoct_171_contig_160_hglE-KS
+0,23015,samp_4439_concoct_171,contig_176,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4439_concoct_171_contig_176_NRPS
+871,20714,samp_4439_concoct_171,contig_184,1,cyanobactin,anacyclamide A10,samp_4439_concoct_171_contig_184_cyanobactin
+0,38724,samp_4439_concoct_171,contig_409,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4439_concoct_171_contig_409_hglE-KS / T1PKS
+17521,27887,samp_4434_semibin_67,contig_9,1,microviridin,microviridin 1688/microviridin 1739/microviridin 1748,samp_4434_semibin_67_contig_9_microviridin
+0,10331,samp_4434_semibin_67,contig_107,1,microviridin,NA,samp_4434_semibin_67_contig_107_microviridin
+0,6546,samp_4434_semibin_67,contig_123,1,NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4434_semibin_67_contig_123_NRPS
+10191,25738,samp_4434_semibin_67,contig_168,1,terpene,NA,samp_4434_semibin_67_contig_168_terpene
+0,15683,samp_4434_semibin_67,contig_175,1,terpene,anacyclamide A10,samp_4434_semibin_67_contig_175_terpene
+0,32854,samp_4434_semibin_67,contig_183,1,T1PKS / transAT-PKS-like / NRPS-like,aranazole A/aranazole B/aranazole C/aranazole D,samp_4434_semibin_67_contig_183_T1PKS / transAT-PKS-like / NRPS-like
+0,13036,samp_4434_semibin_67,contig_203,1,NRPS-like,NA,samp_4434_semibin_67_contig_203_NRPS-like
+17220,33533,samp_4434_semibin_67,contig_284,1,crocagin,NA,samp_4434_semibin_67_contig_284_crocagin
+0,5139,samp_4444_VAMB_1051,contig_296,1,terpene,NA,samp_4444_VAMB_1051_contig_296_terpene
+8609,29560,samp_4444_VAMB_1051,contig_302,1,terpene,NA,samp_4444_VAMB_1051_contig_302_terpene
+0,7256,samp_4445_VAMB_673,contig_289,1,T1PKS,NA,samp_4445_VAMB_673_contig_289_T1PKS
+0,14196,samp_4445_VAMB_673,contig_331,1,terpene,NA,samp_4445_VAMB_673_contig_331_terpene
+0,10754,samp_4443_metadecoder_676,contig_286,1,NRPS-like,NA,samp_4443_metadecoder_676_contig_286_NRPS-like
+0,20263,samp_4443_metadecoder_676,contig_304,1,NRPS-like,NA,samp_4443_metadecoder_676_contig_304_NRPS-like
+0,11636,samp_4443_metadecoder_676,contig_327,1,terpene,NA,samp_4443_metadecoder_676_contig_327_terpene
+0,24638,samp_4443_metadecoder_676,contig_387,1,lanthipeptide-class-v,hassallidin C,samp_4443_metadecoder_676_contig_387_lanthipeptide-class-v
+0,11783,samp_4443_metadecoder_676,contig_412,1,terpene,NA,samp_4443_metadecoder_676_contig_412_terpene
+0,16325,samp_4443_metadecoder_676,contig_423,1,terpene,NA,samp_4443_metadecoder_676_contig_423_terpene
+0,29826,samp_4443_metadecoder_676,contig_433,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4443_metadecoder_676_contig_433_hglE-KS / T1PKS
+0,13617,samp_4443_metadecoder_676,contig_438,1,T1PKS,NA,samp_4443_metadecoder_676_contig_438_T1PKS
+0,20248,samp_4443_metadecoder_676,contig_440,1,hglE-KS,heterocyst glycolipids,samp_4443_metadecoder_676_contig_440_hglE-KS
+0,8369,samp_4445_metabat2_59,contig_300,1,terpene,NA,samp_4445_metabat2_59_contig_300_terpene
+0,8596,samp_4320_semibin_145,contig_9,1,terpene,NA,samp_4320_semibin_145_contig_9_terpene
+0,27136,samp_4320_semibin_145,contig_67,1,NRPS / NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4320_semibin_145_contig_67_NRPS / NRPS-like
+0,7916,samp_4320_semibin_145,contig_84,1,terpene,NA,samp_4320_semibin_145_contig_84_terpene
+0,23218,samp_4320_semibin_145,contig_123,1,NRPS-like / T1PKS,cylindrospermopsin,samp_4320_semibin_145_contig_123_NRPS-like / T1PKS
+0,7995,samp_4320_semibin_145,contig_205,1,terpene,NA,samp_4320_semibin_145_contig_205_terpene
+0,34695,samp_4320_semibin_145,contig_217,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4320_semibin_145_contig_217_T1PKS / NRPS-like / T3PKS
+0,12244,samp_4320_semibin_145,contig_273,1,terpene,NA,samp_4320_semibin_145_contig_273_terpene
+0,9268,samp_4320_semibin_145,contig_380,1,LAP,NA,samp_4320_semibin_145_contig_380_LAP
+0,10867,samp_4320_semibin_145,contig_384,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4320_semibin_145_contig_384_cyanobactin
+0,30359,samp_4320_semibin_145,contig_392,1,NRPS / microviridin,microginin,samp_4320_semibin_145_contig_392_NRPS / microviridin
+0,11889,samp_4320_semibin_145,contig_445,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4320_semibin_145_contig_445_T1PKS
+0,6688,samp_4320_semibin_145,contig_494,1,cyanobactin,NA,samp_4320_semibin_145_contig_494_cyanobactin
+0,70554,samp_4320_semibin_145,contig_500,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4320_semibin_145_contig_500_NRPS / T1PKS / NRPS-like
+0,19212,samp_4320_semibin_145,contig_547,1,T1PKS,NA,samp_4320_semibin_145_contig_547_T1PKS
+0,6140,samp_4326_VAMB_358,contig_187,1,hglE-KS,NA,samp_4326_VAMB_358_contig_187_hglE-KS
+0,30035,samp_4326_VAMB_358,contig_348,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4326_VAMB_358_contig_348_NRPS-like
+161,20336,samp_4326_VAMB_358,contig_387,1,terpene,NA,samp_4326_VAMB_358_contig_387_terpene
+3371,20297,samp_4326_VAMB_358,contig_415,1,terpene,NA,samp_4326_VAMB_358_contig_415_terpene
+0,21561,samp_4326_VAMB_358,contig_658,1,hglE-KS,heterocyst glycolipids,samp_4326_VAMB_358_contig_658_hglE-KS
+0,35286,samp_4326_VAMB_358,contig_739,1,lanthipeptide-class-v,hassallidin C,samp_4326_VAMB_358_contig_739_lanthipeptide-class-v
+0,6321,samp_4326_VAMB_358,contig_835,1,RRE-containing / spliceotide,NA,samp_4326_VAMB_358_contig_835_RRE-containing / spliceotide
+0,5665,samp_4326_VAMB_358,contig_971,1,NRPS-like,NA,samp_4326_VAMB_358_contig_971_NRPS-like
+19551,32414,samp_4326_VAMB_358,contig_1421,1,terpene,NA,samp_4326_VAMB_358_contig_1421_terpene
+0,13532,samp_4326_VAMB_358,contig_1530,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4326_VAMB_358_contig_1530_hglE-KS / T1PKS
+0,11256,samp_4326_VAMB_358,contig_1663,1,cyanobactin,anacyclamide A10,samp_4326_VAMB_358_contig_1663_cyanobactin
+0,9247,samp_4326_VAMB_358,contig_1678,1,T1PKS,NA,samp_4326_VAMB_358_contig_1678_T1PKS
+4324,16685,samp_4326_VAMB_358,contig_1827,1,cyanobactin,NA,samp_4326_VAMB_358_contig_1827_cyanobactin
+0,23048,samp_4326_VAMB_358,contig_1877,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4326_VAMB_358_contig_1877_NRPS
+0,8616,samp_4318_metabat2_38,contig_98,1,terpene,NA,samp_4318_metabat2_38_contig_98_terpene
+0,10552,samp_4318_metabat2_38,contig_132,1,terpene,NA,samp_4318_metabat2_38_contig_132_terpene
+0,10787,samp_4318_metabat2_38,contig_227,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4318_metabat2_38_contig_227_T1PKS
+0,30190,samp_4318_metabat2_38,contig_280,1,NRPS / microviridin,microginin,samp_4318_metabat2_38_contig_280_NRPS / microviridin
+0,5472,samp_4318_metabat2_38,contig_295,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4318_metabat2_38_contig_295_cyanobactin
+0,15236,samp_4318_metabat2_38,contig_303,1,T1PKS / NRPS-like,desmamide A/desmamide B/desmamide C,samp_4318_metabat2_38_contig_303_T1PKS / NRPS-like
+0,69405,samp_4318_metabat2_38,contig_326,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4318_metabat2_38_contig_326_NRPS / T1PKS / NRPS-like
+0,22669,samp_4318_metabat2_38,contig_346,1,T1PKS,NA,samp_4318_metabat2_38_contig_346_T1PKS
+0,10092,samp_4318_metabat2_38,contig_373,1,spliceotide,NA,samp_4318_metabat2_38_contig_373_spliceotide
+0,5504,samp_4318_metabat2_38,contig_401,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4318_metabat2_38_contig_401_cyanobactin
+0,7787,samp_4318_metabat2_38,contig_420,1,terpene,NA,samp_4318_metabat2_38_contig_420_terpene
+0,34630,samp_4318_metabat2_38,contig_432,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4318_metabat2_38_contig_432_T1PKS / NRPS-like / T3PKS
+0,6098,samp_4318_metabat2_38,contig_446,1,cyanobactin,NA,samp_4318_metabat2_38_contig_446_cyanobactin
+0,22525,samp_4318_metabat2_38,contig_462,1,NRPS-like / NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4318_metabat2_38_contig_462_NRPS-like / NRPS
+0,9052,samp_4318_metabat2_38,contig_464,1,LAP,NA,samp_4318_metabat2_38_contig_464_LAP
+0,14797,samp_4318_metabat2_38,contig_498,1,terpene,NA,samp_4318_metabat2_38_contig_498_terpene
+3948,25235,samp_4444_VAMB_1403,contig_9,1,terpene,NA,samp_4444_VAMB_1403_contig_9_terpene
+8342,29266,samp_4444_VAMB_1403,contig_171,1,terpene,NA,samp_4444_VAMB_1403_contig_171_terpene
+0,5268,samp_4444_VAMB_899,contig_400,1,cyanobactin,NA,samp_4444_VAMB_899_contig_400_cyanobactin
+0,6226,samp_4444_VAMB_899,contig_879,1,terpene,NA,samp_4444_VAMB_899_contig_879_terpene
+0,11427,samp_4444_metabat2_185,contig_143,1,crocagin,NA,samp_4444_metabat2_185_contig_143_crocagin
+0,8598,samp_4444_metabat2_185,contig_184,1,RiPP-like,NA,samp_4444_metabat2_185_contig_184_RiPP-like
+0,14675,samp_4444_metabat2_185,contig_246,1,T1PKS,NA,samp_4444_metabat2_185_contig_246_T1PKS
+0,10536,samp_4444_metabat2_185,contig_418,1,terpene,NA,samp_4444_metabat2_185_contig_418_terpene
+0,7936,samp_4444_metabat2_185,contig_588,1,RRE-containing,NA,samp_4444_metabat2_185_contig_588_RRE-containing
+0,6842,samp_4322_metabat2_24,contig_96,1,terpene,NA,samp_4322_metabat2_24_contig_96_terpene
+0,24157,samp_4322_metabat2_24,contig_109,1,NRPS-like / NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4322_metabat2_24_contig_109_NRPS-like / NRPS
+0,30339,samp_4322_metabat2_24,contig_110,1,NRPS / microviridin,anachelin,samp_4322_metabat2_24_contig_110_NRPS / microviridin
+0,7667,samp_4322_metabat2_24,contig_134,1,terpene,NA,samp_4322_metabat2_24_contig_134_terpene
+0,7461,samp_4322_metabat2_24,contig_153,1,LAP,NA,samp_4322_metabat2_24_contig_153_LAP
+0,12649,samp_4322_metabat2_24,contig_181,1,terpene,NA,samp_4322_metabat2_24_contig_181_terpene
+0,25244,samp_4322_metabat2_24,contig_185,1,T1PKS,NA,samp_4322_metabat2_24_contig_185_T1PKS
+0,10417,samp_4322_metabat2_24,contig_193,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4322_metabat2_24_contig_193_cyanobactin
+0,10882,samp_4322_metabat2_24,contig_281,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4322_metabat2_24_contig_281_T1PKS
+0,60472,samp_4322_metabat2_24,contig_329,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4322_metabat2_24_contig_329_NRPS / T1PKS / NRPS-like
+0,34459,samp_4322_metabat2_24,contig_347,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4322_metabat2_24_contig_347_T1PKS / NRPS-like / T3PKS
+0,13572,samp_4322_metabat2_24,contig_394,1,spliceotide,NA,samp_4322_metabat2_24_contig_394_spliceotide
+0,13291,samp_4322_metabat2_24,contig_418,1,NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4322_metabat2_24_contig_418_NRPS
+0,16295,samp_4322_metabat2_24,contig_428,1,T1PKS / NRPS-like,desmamide A/desmamide B/desmamide C,samp_4322_metabat2_24_contig_428_T1PKS / NRPS-like
+0,6119,samp_4322_metabat2_24,contig_438,1,cyanobactin,NA,samp_4322_metabat2_24_contig_438_cyanobactin
+0,9650,samp_4313_maxbin_367,contig_143,1,T1PKS,1-heptadecene,samp_4313_maxbin_367_contig_143_T1PKS
+0,16519,samp_4313_maxbin_367,contig_174,1,terpene,NA,samp_4313_maxbin_367_contig_174_terpene
+5364,16151,samp_4313_maxbin_367,contig_343,1,terpene,NA,samp_4313_maxbin_367_contig_343_terpene
+0,5564,samp_4313_maxbin_378,contig_31,1,RRE-containing,NA,samp_4313_maxbin_378_contig_31_RRE-containing
+0,6901,samp_4313_maxbin_378,contig_451,1,terpene,NA,samp_4313_maxbin_378_contig_451_terpene
+0,5159,samp_4432_VAMB_631,contig_1968,1,cyanobactin,prenylagaramide B/prenylagaramide C,samp_4432_VAMB_631_contig_1968_cyanobactin
+9952,21980,samp_4444_metabat2_168,contig_614,1,terpene,NA,samp_4444_metabat2_168_contig_614_terpene
+0,6669,samp_4448_metabat2_150,contig_144,1,terpene,NA,samp_4448_metabat2_150_contig_144_terpene
+0,12667,samp_4443_semibin_375,contig_24,1,terpene,NA,samp_4443_semibin_375_contig_24_terpene
+0,12660,samp_4443_semibin_375,contig_153,1,RiPP-like,NA,samp_4443_semibin_375_contig_153_RiPP-like
+0,6543,samp_4443_semibin_375,contig_457,1,arylpolyene,NA,samp_4443_semibin_375_contig_457_arylpolyene
+0,12311,samp_4447_metadecoder_888,contig_69,1,cyanobactin,NA,samp_4447_metadecoder_888_contig_69_cyanobactin
+0,20139,samp_4447_metadecoder_888,contig_72,1,terpene,NA,samp_4447_metadecoder_888_contig_72_terpene
+0,8644,samp_4447_metadecoder_888,contig_79,1,NRPS-like,NA,samp_4447_metadecoder_888_contig_79_NRPS-like
+0,20104,samp_4447_metadecoder_888,contig_81,1,hglE-KS,heterocyst glycolipids,samp_4447_metadecoder_888_contig_81_hglE-KS
+0,14020,samp_4447_metadecoder_888,contig_84,1,T1PKS,NA,samp_4447_metadecoder_888_contig_84_T1PKS
+0,13095,samp_4447_metadecoder_888,contig_88,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4447_metadecoder_888_contig_88_NRPS-like
+6211,23093,samp_4447_metadecoder_888,contig_107,1,terpene,NA,samp_4447_metadecoder_888_contig_107_terpene
+0,16901,samp_4447_metadecoder_888,contig_112,1,NRPS-like,bovienimide A,samp_4447_metadecoder_888_contig_112_NRPS-like
+1111,16915,samp_4447_metadecoder_888,contig_225,1,terpene,NA,samp_4447_metadecoder_888_contig_225_terpene
+0,26299,samp_4447_metadecoder_888,contig_226,1,lanthipeptide-class-v,hassallidin C,samp_4447_metadecoder_888_contig_226_lanthipeptide-class-v
+0,7104,samp_4448_concoct_1792,contig_100,1,RRE-containing,NA,samp_4448_concoct_1792_contig_100_RRE-containing
+0,8701,samp_4448_concoct_1792,contig_435,1,hglE-KS,NA,samp_4448_concoct_1792_contig_435_hglE-KS
+0,16567,samp_4448_concoct_1792,contig_649,1,NRPS-like,1-heptadecene,samp_4448_concoct_1792_contig_649_NRPS-like
+0,12949,samp_4448_concoct_1792,contig_692,1,terpene,NA,samp_4448_concoct_1792_contig_692_terpene
+0,7635,samp_4443_VAMB_834,contig_202,1,microviridin,anabaenopeptin,samp_4443_VAMB_834_contig_202_microviridin
+0,43244,samp_4443_VAMB_834,contig_247,1,T1PKS / NRPS / NRPS-like,nocuolin A,samp_4443_VAMB_834_contig_247_T1PKS / NRPS / NRPS-like
+301,10646,samp_4443_VAMB_834,contig_735,1,cyanobactin,NA,samp_4443_VAMB_834_contig_735_cyanobactin
+0,8995,samp_4443_VAMB_834,contig_786,1,terpene,NA,samp_4443_VAMB_834_contig_786_terpene
+0,5499,samp_4443_VAMB_834,contig_1087,1,NRPS,NA,samp_4443_VAMB_834_contig_1087_NRPS
+9507,38862,samp_4443_VAMB_834,contig_1293,1,terpene / oligosaccharide,NA,samp_4443_VAMB_834_contig_1293_terpene / oligosaccharide
+0,11117,samp_4443_VAMB_834,contig_1329,1,lanthipeptide-class-v,NA,samp_4443_VAMB_834_contig_1329_lanthipeptide-class-v
+0,30785,samp_4443_VAMB_834,contig_1766,1,lanthipeptide-class-v,NA,samp_4443_VAMB_834_contig_1766_lanthipeptide-class-v
+0,5430,samp_4443_VAMB_834,contig_1768,1,lanthipeptide-class-ii,NA,samp_4443_VAMB_834_contig_1768_lanthipeptide-class-ii
+0,12546,samp_4443_VAMB_834,contig_1795,1,terpene,NA,samp_4443_VAMB_834_contig_1795_terpene
+0,18702,samp_4443_VAMB_834,contig_1946,1,mycosporine-like,hexose-palythine-serine/hexose-shinorine,samp_4443_VAMB_834_contig_1946_mycosporine-like
+0,27531,samp_4443_VAMB_834,contig_2179,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4443_VAMB_834_contig_2179_hglE-KS / T1PKS
+0,26768,samp_4443_VAMB_834,contig_2237,1,hglE-KS,heterocyst glycolipids,samp_4443_VAMB_834_contig_2237_hglE-KS
+0,14675,samp_4444_semibin_567,contig_167,1,T1PKS,NA,samp_4444_semibin_567_contig_167_T1PKS
+0,27406,samp_4444_semibin_567,contig_259,1,T1PKS / NRPS-like,1-heptadecene,samp_4444_semibin_567_contig_259_T1PKS / NRPS-like
+0,23374,samp_4325_concoct_153,contig_28,1,NRPS-like,NA,samp_4325_concoct_153_contig_28_NRPS-like
+0,11991,samp_4325_concoct_153,contig_63,1,cyanobactin,anacyclamide A10,samp_4325_concoct_153_contig_63_cyanobactin
+0,23048,samp_4325_concoct_153,contig_128,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4325_concoct_153_contig_128_NRPS
+0,28760,samp_4325_concoct_153,contig_166,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4325_concoct_153_contig_166_NRPS-like
+0,26393,samp_4325_concoct_153,contig_173,1,lanthipeptide-class-v,hassallidin C,samp_4325_concoct_153_contig_173_lanthipeptide-class-v
+21410,39320,samp_4325_concoct_153,contig_194,1,terpene,NA,samp_4325_concoct_153_contig_194_terpene
+0,14120,samp_4325_concoct_153,contig_277,1,terpene,NA,samp_4325_concoct_153_contig_277_terpene
+0,25541,samp_4325_concoct_153,contig_436,1,hglE-KS,ambiguine P,samp_4325_concoct_153_contig_436_hglE-KS
+0,12311,samp_4325_concoct_153,contig_463,1,cyanobactin,NA,samp_4325_concoct_153_contig_463_cyanobactin
+0,6006,samp_4325_concoct_153,contig_485,1,terpene,NA,samp_4325_concoct_153_contig_485_terpene
+0,20682,samp_4325_concoct_153,contig_495,1,NRPS-like,NA,samp_4325_concoct_153_contig_495_NRPS-like
+0,26904,samp_4325_concoct_153,contig_505,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4325_concoct_153_contig_505_T1PKS / hglE-KS
+0,13425,samp_4325_concoct_153,contig_521,1,T1PKS,NA,samp_4325_concoct_153_contig_521_T1PKS
+7277,48758,samp_4325_concoct_153,contig_525,1,hglE-KS,heterocyst glycolipids,samp_4325_concoct_153_contig_525_hglE-KS
+0,5447,samp_4325_concoct_153,contig_526,1,terpene,geosmin,samp_4325_concoct_153_contig_526_terpene
+0,7411,samp_4321_VAMB_590,contig_83,1,cyanobactin,anacyclamide A10,samp_4321_VAMB_590_contig_83_cyanobactin
+6041,26872,samp_4321_VAMB_590,contig_113,1,terpene,NA,samp_4321_VAMB_590_contig_113_terpene
+0,38444,samp_4321_VAMB_590,contig_246,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4321_VAMB_590_contig_246_hglE-KS / T1PKS
+0,20507,samp_4321_VAMB_590,contig_323,1,lanthipeptide-class-v,hassallidin C,samp_4321_VAMB_590_contig_323_lanthipeptide-class-v
+0,13431,samp_4321_VAMB_590,contig_414,1,NRPS-like,NA,samp_4321_VAMB_590_contig_414_NRPS-like
+0,42553,samp_4321_VAMB_590,contig_532,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4321_VAMB_590_contig_532_NRPS
+0,33306,samp_4321_VAMB_590,contig_545,1,NRPS-like,NA,samp_4321_VAMB_590_contig_545_NRPS-like
+0,25196,samp_4321_VAMB_590,contig_625,1,hglE-KS,heterocyst glycolipids,samp_4321_VAMB_590_contig_625_hglE-KS
+0,13694,samp_4321_VAMB_590,contig_972,1,terpene,NA,samp_4321_VAMB_590_contig_972_terpene
+2186,23119,samp_4321_VAMB_590,contig_982,1,terpene,NA,samp_4321_VAMB_590_contig_982_terpene
+4435,23900,samp_4312_semibin_243,contig_26,1,terpene,NA,samp_4312_semibin_243_contig_26_terpene
+0,35195,samp_4312_semibin_243,contig_27,1,hglE-KS,heterocyst glycolipids,samp_4312_semibin_243_contig_27_hglE-KS
+0,14279,samp_4312_semibin_243,contig_34,1,cyanobactin,anacyclamide A10,samp_4312_semibin_243_contig_34_cyanobactin
+0,25452,samp_4312_semibin_243,contig_61,1,hglE-KS,ambiguine P,samp_4312_semibin_243_contig_61_hglE-KS
+0,30035,samp_4312_semibin_243,contig_79,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4312_semibin_243_contig_79_NRPS-like
+0,38009,samp_4312_semibin_243,contig_113,1,NRPS-like,NA,samp_4312_semibin_243_contig_113_NRPS-like
+0,6643,samp_4312_semibin_243,contig_145,1,cyanobactin,anacyclamide A10,samp_4312_semibin_243_contig_145_cyanobactin
+0,31493,samp_4312_semibin_243,contig_203,1,lanthipeptide-class-v,hassallidin C,samp_4312_semibin_243_contig_203_lanthipeptide-class-v
+0,23308,samp_4312_semibin_243,contig_205,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4312_semibin_243_contig_205_NRPS
+0,36347,samp_4312_semibin_243,contig_241,1,NRPS-like,NA,samp_4312_semibin_243_contig_241_NRPS-like
+0,12975,samp_4312_semibin_243,contig_250,1,T1PKS,NA,samp_4312_semibin_243_contig_250_T1PKS
+0,26905,samp_4312_semibin_243,contig_272,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4312_semibin_243_contig_272_T1PKS / hglE-KS
+2991,23924,samp_4312_semibin_243,contig_298,1,terpene,NA,samp_4312_semibin_243_contig_298_terpene
+20216,39918,samp_4312_semibin_243,contig_299,1,terpene,NA,samp_4312_semibin_243_contig_299_terpene
+0,10579,samp_4314_semibin_167,contig_269,1,terpene,NA,samp_4314_semibin_167_contig_269_terpene
+0,15488,samp_4314_semibin_167,contig_355,1,terpene,NA,samp_4314_semibin_167_contig_355_terpene
+0,5582,samp_4319_concoct_522,contig_2,1,terpene,geosmin,samp_4319_concoct_522_contig_2_terpene
+10724,41252,samp_4319_concoct_522,contig_26,1,NRPS-like,NA,samp_4319_concoct_522_contig_26_NRPS-like
+0,26425,samp_4319_concoct_522,contig_135,1,lanthipeptide-class-v,hassallidin C,samp_4319_concoct_522_contig_135_lanthipeptide-class-v
+26300,75594,samp_4319_concoct_522,contig_176,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4319_concoct_522_contig_176_T1PKS / hglE-KS
+8494,29427,samp_4319_concoct_522,contig_217,1,terpene,NA,samp_4319_concoct_522_contig_217_terpene
+0,36055,samp_4319_concoct_522,contig_357,1,NRPS-like,NA,samp_4319_concoct_522_contig_357_NRPS-like
+0,23048,samp_4319_concoct_522,contig_378,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4319_concoct_522_contig_378_NRPS
+0,9907,samp_4319_concoct_522,contig_387,1,RRE-containing,NA,samp_4319_concoct_522_contig_387_RRE-containing
+0,7513,samp_4319_concoct_522,contig_406,1,T1PKS,NA,samp_4319_concoct_522_contig_406_T1PKS
+0,9298,samp_4319_concoct_522,contig_529,1,terpene,NA,samp_4319_concoct_522_contig_529_terpene
+6265,40416,samp_4319_concoct_522,contig_661,1,hglE-KS,heterocyst glycolipids,samp_4319_concoct_522_contig_661_hglE-KS
+0,12311,samp_4319_concoct_522,contig_725,1,cyanobactin,NA,samp_4319_concoct_522_contig_725_cyanobactin
+4614,20488,samp_4319_concoct_522,contig_980,1,terpene,NA,samp_4319_concoct_522_contig_980_terpene
+0,5638,samp_4319_concoct_522,contig_1241,1,lanthipeptide-class-ii,NA,samp_4319_concoct_522_contig_1241_lanthipeptide-class-ii
+0,21167,samp_4447_maxbin_94,contig_47,1,terpene,NA,samp_4447_maxbin_94_contig_47_terpene
+0,7431,samp_4447_maxbin_94,contig_103,1,lanthipeptide-class-v,NA,samp_4447_maxbin_94_contig_103_lanthipeptide-class-v
+0,9573,samp_4447_maxbin_94,contig_134,1,NRPS-like,NA,samp_4447_maxbin_94_contig_134_NRPS-like
+20681,47473,samp_4447_maxbin_94,contig_142,1,hglE-KS,heterocyst glycolipids,samp_4447_maxbin_94_contig_142_hglE-KS
+0,12848,samp_4447_maxbin_94,contig_160,1,lanthipeptide-class-v,NA,samp_4447_maxbin_94_contig_160_lanthipeptide-class-v
+0,34069,samp_4447_maxbin_94,contig_225,1,NRPS-like,NA,samp_4447_maxbin_94_contig_225_NRPS-like
+0,6662,samp_4447_maxbin_94,contig_287,1,lanthipeptide-class-ii / NRPS-like,1-heptadecene,samp_4447_maxbin_94_contig_287_lanthipeptide-class-ii / NRPS-like
+0,43154,samp_4447_maxbin_94,contig_346,1,hglE-KS,heterocyst glycolipids,samp_4447_maxbin_94_contig_346_hglE-KS
+0,5979,samp_4447_maxbin_94,contig_480,1,T1PKS,crocacin,samp_4447_maxbin_94_contig_480_T1PKS
+0,13467,samp_4447_maxbin_94,contig_508,1,thioamitides,NA,samp_4447_maxbin_94_contig_508_thioamitides
+0,11179,samp_4447_maxbin_94,contig_584,1,terpene,NA,samp_4447_maxbin_94_contig_584_terpene
+15090,22586,samp_4435_semibin_217,contig_58,1,RiPP-like,NA,samp_4435_semibin_217_contig_58_RiPP-like
+0,7279,samp_4435_semibin_217,contig_240,1,terpene,NA,samp_4435_semibin_217_contig_240_terpene
+0,10813,samp_4435_semibin_217,contig_325,1,NRPS-like,NA,samp_4435_semibin_217_contig_325_NRPS-like
+0,14646,samp_4435_semibin_217,contig_357,1,NRPS-like,rhizomide A/rhizomide B/rhizomide C,samp_4435_semibin_217_contig_357_NRPS-like
+0,8377,samp_4435_semibin_217,contig_412,1,terpene,NA,samp_4435_semibin_217_contig_412_terpene
+0,15412,samp_4435_semibin_217,contig_481,1,NRPS,NA,samp_4435_semibin_217_contig_481_NRPS
+0,7262,samp_4435_concoct_1861,contig_409,1,NRPS-like,NA,samp_4435_concoct_1861_contig_409_NRPS-like
+0,10749,samp_4435_concoct_1861,contig_764,1,NRPS-like,NA,samp_4435_concoct_1861_contig_764_NRPS-like
+0,7903,samp_4435_concoct_1861,contig_1045,1,terpene,NA,samp_4435_concoct_1861_contig_1045_terpene
+0,9034,samp_4435_concoct_1861,contig_1133,1,hglE-KS,heterocyst glycolipids,samp_4435_concoct_1861_contig_1133_hglE-KS
+0,5582,samp_4319_maxbin_392,contig_1,1,terpene,geosmin,samp_4319_maxbin_392_contig_1_terpene
+0,36988,samp_4319_maxbin_392,contig_73,1,T1PKS / T3PKS / NRPS-like,merocyclophane C/merocyclophane D,samp_4319_maxbin_392_contig_73_T1PKS / T3PKS / NRPS-like
+0,76738,samp_4319_maxbin_392,contig_143,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4319_maxbin_392_contig_143_NRPS / T1PKS / NRPS-like
+83254,100718,samp_4319_maxbin_392,contig_143,2,terpene,NA,samp_4319_maxbin_392_contig_143_terpene
+0,12431,samp_4319_maxbin_392,contig_176,1,terpene,NA,samp_4319_maxbin_392_contig_176_terpene
+0,10616,samp_4319_maxbin_392,contig_208,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4319_maxbin_392_contig_208_T1PKS
+0,13697,samp_4319_maxbin_392,contig_238,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4319_maxbin_392_contig_238_cyanobactin
+0,16816,samp_4319_maxbin_392,contig_245,1,NRPS-like / T1PKS,desmamide A/desmamide B/desmamide C,samp_4319_maxbin_392_contig_245_NRPS-like / T1PKS
+0,24288,samp_4319_maxbin_392,contig_308,1,T1PKS,aeruginoside 126B/aeruginoside 126A,samp_4319_maxbin_392_contig_308_T1PKS
+0,9278,samp_4319_maxbin_392,contig_419,1,LAP,NA,samp_4319_maxbin_392_contig_419_LAP
+1504,18608,samp_4319_maxbin_392,contig_423,1,lassopeptide,NA,samp_4319_maxbin_392_contig_423_lassopeptide
+0,21391,samp_4319_maxbin_392,contig_424,1,PUFA / hglE-KS,NA,samp_4319_maxbin_392_contig_424_PUFA / hglE-KS
+0,26315,samp_4319_maxbin_392,contig_490,1,NRPS / microviridin,anachelin,samp_4319_maxbin_392_contig_490_NRPS / microviridin
+0,7033,samp_4319_maxbin_392,contig_617,1,spliceotide,NA,samp_4319_maxbin_392_contig_617_spliceotide
+0,39126,samp_4319_maxbin_392,contig_664,1,NRPS / NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4319_maxbin_392_contig_664_NRPS / NRPS-like
+0,6054,samp_4319_maxbin_392,contig_709,1,cyanobactin,NA,samp_4319_maxbin_392_contig_709_cyanobactin
+0,5638,samp_4319_maxbin_392,contig_726,1,lanthipeptide-class-ii,NA,samp_4319_maxbin_392_contig_726_lanthipeptide-class-ii
+0,11735,samp_4319_maxbin_392,contig_788,1,terpene,NA,samp_4319_maxbin_392_contig_788_terpene
+392,11248,samp_4444_semibin_482,contig_165,1,terpene,NA,samp_4444_semibin_482_contig_165_terpene
+187,14480,samp_4444_semibin_482,contig_216,1,terpene,NA,samp_4444_semibin_482_contig_216_terpene
+7367,43475,samp_4448_maxbin_437,contig_3,1,hglE-KS,heterocyst glycolipids,samp_4448_maxbin_437_contig_3_hglE-KS
+21471,41584,samp_4448_maxbin_437,contig_5,1,terpene,NA,samp_4448_maxbin_437_contig_5_terpene
+0,23796,samp_4448_maxbin_437,contig_7,1,NRPS-like,12-epi-hapalindole J isonitrile/ambiguine A isonitrile/ambiguine B isonitrile/ambiguine C isonitrile/ambiguine D isonitrile/ambiguine E isonitrile/ambiguine K isonitrile/ambiguine L isonitrile/ambiguine I isonitrile/ambiguine J isonitrile,samp_4448_maxbin_437_contig_7_NRPS-like
+2987,41997,samp_4448_maxbin_437,contig_26,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4448_maxbin_437_contig_26_hglE-KS / T1PKS
+0,18251,samp_4448_maxbin_437,contig_38,1,NRPS-like,NA,samp_4448_maxbin_437_contig_38_NRPS-like
+0,32900,samp_4448_maxbin_437,contig_40,1,T1PKS,bartoloside 2/bartoloside 3/bartoloside 4,samp_4448_maxbin_437_contig_40_T1PKS
+0,37930,samp_4448_maxbin_437,contig_126,1,NRPS-like,NA,samp_4448_maxbin_437_contig_126_NRPS-like
+0,26425,samp_4448_maxbin_437,contig_149,1,lanthipeptide-class-v,hassallidin C,samp_4448_maxbin_437_contig_149_lanthipeptide-class-v
+2076,23009,samp_4448_maxbin_437,contig_234,1,terpene,NA,samp_4448_maxbin_437_contig_234_terpene
+0,16786,samp_4448_maxbin_437,contig_237,1,terpene,NA,samp_4448_maxbin_437_contig_237_terpene
+0,5924,samp_4444_semibin_496,contig_283,1,terpene,NA,samp_4444_semibin_496_contig_283_terpene
+0,5125,samp_4315_maxbin_66,contig_375,1,NRPS-like,NA,samp_4315_maxbin_66_contig_375_NRPS-like
+0,6045,samp_4315_maxbin_66,contig_537,1,hglE-KS,NA,samp_4315_maxbin_66_contig_537_hglE-KS
+0,12661,samp_4315_maxbin_66,contig_564,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4315_maxbin_66_contig_564_T1PKS / hglE-KS
+0,6002,samp_4315_maxbin_66,contig_697,1,terpene,NA,samp_4315_maxbin_66_contig_697_terpene
+0,5960,samp_4449_semibin_251,contig_5,1,NRPS-like,NA,samp_4449_semibin_251_contig_5_NRPS-like
+0,5621,samp_4449_semibin_251,contig_13,1,NRPS-like,NA,samp_4449_semibin_251_contig_13_NRPS-like
+0,20929,samp_4449_semibin_251,contig_222,1,hglE-KS,NA,samp_4449_semibin_251_contig_222_hglE-KS
+0,10524,samp_4449_semibin_251,contig_227,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4449_semibin_251_contig_227_T1PKS / hglE-KS
+0,8485,samp_4449_semibin_251,contig_241,1,T1PKS,NA,samp_4449_semibin_251_contig_241_T1PKS
+0,8377,samp_4449_semibin_251,contig_252,1,terpene,NA,samp_4449_semibin_251_contig_252_terpene
+0,12157,samp_4449_semibin_251,contig_253,1,terpene,NA,samp_4449_semibin_251_contig_253_terpene
+0,10626,samp_4449_semibin_251,contig_308,1,terpene,NA,samp_4449_semibin_251_contig_308_terpene
+2369,14922,samp_4449_semibin_251,contig_471,1,cyanobactin,NA,samp_4449_semibin_251_contig_471_cyanobactin
+0,17927,samp_4449_semibin_251,contig_486,1,hglE-KS,heterocyst glycolipids,samp_4449_semibin_251_contig_486_hglE-KS
+6712,18857,samp_4445_metabat2_46,contig_72,1,terpene,NA,samp_4445_metabat2_46_contig_72_terpene
+0,6451,samp_4445_metabat2_46,contig_296,1,RiPP-like,NA,samp_4445_metabat2_46_contig_296_RiPP-like
+0,8899,samp_4445_metabat2_46,contig_482,1,terpene,NA,samp_4445_metabat2_46_contig_482_terpene
+0,6283,samp_4331_metabat2_24,contig_41,1,terpene,NA,samp_4331_metabat2_24_contig_41_terpene
+0,10754,samp_4443_maxbin_283,contig_315,1,NRPS-like,NA,samp_4443_maxbin_283_contig_315_NRPS-like
+0,20263,samp_4443_maxbin_283,contig_336,1,NRPS-like,NA,samp_4443_maxbin_283_contig_336_NRPS-like
+0,11636,samp_4443_maxbin_283,contig_363,1,terpene,NA,samp_4443_maxbin_283_contig_363_terpene
+0,24638,samp_4443_maxbin_283,contig_428,1,lanthipeptide-class-v,hassallidin C,samp_4443_maxbin_283_contig_428_lanthipeptide-class-v
+0,11783,samp_4443_maxbin_283,contig_453,1,terpene,NA,samp_4443_maxbin_283_contig_453_terpene
+0,16325,samp_4443_maxbin_283,contig_465,1,terpene,NA,samp_4443_maxbin_283_contig_465_terpene
+0,29826,samp_4443_maxbin_283,contig_474,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4443_maxbin_283_contig_474_T1PKS / hglE-KS
+0,13617,samp_4443_maxbin_283,contig_479,1,T1PKS,NA,samp_4443_maxbin_283_contig_479_T1PKS
+0,20248,samp_4443_maxbin_283,contig_481,1,hglE-KS,heterocyst glycolipids,samp_4443_maxbin_283_contig_481_hglE-KS
+0,21817,samp_4445_concoct_1415,contig_34,1,T1PKS / NRPS,nocuolin A,samp_4445_concoct_1415_contig_34_T1PKS / NRPS
+0,39274,samp_4445_concoct_1415,contig_72,1,NRPS / betalactone / microviridin,anabaenopeptin NZ857/nostamide A,samp_4445_concoct_1415_contig_72_NRPS / betalactone / microviridin
+0,8768,samp_4445_concoct_1415,contig_85,1,terpene,NA,samp_4445_concoct_1415_contig_85_terpene
+0,12060,samp_4445_concoct_1415,contig_253,1,hglE-KS,heterocyst glycolipids,samp_4445_concoct_1415_contig_253_hglE-KS
+0,23515,samp_4445_concoct_1415,contig_372,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4445_concoct_1415_contig_372_T1PKS / hglE-KS
+0,5512,samp_4445_concoct_1415,contig_469,1,terpene,NA,samp_4445_concoct_1415_contig_469_terpene
+0,7290,samp_4445_concoct_1415,contig_907,1,NRPS-like,pseudospumigin A/pseudospumigin B/pseudospumigin C/pseudospumigin D/pseudospumigin E/pseudospumigin F,samp_4445_concoct_1415_contig_907_NRPS-like
+0,20796,samp_4445_concoct_1415,contig_918,1,lanthipeptide-class-v,NA,samp_4445_concoct_1415_contig_918_lanthipeptide-class-v
+0,13964,samp_4445_concoct_1415,contig_928,1,proteusin / RiPP-like,landornamide A,samp_4445_concoct_1415_contig_928_proteusin / RiPP-like
+0,20441,samp_4445_semibin_379,contig_282,1,T1PKS / PUFA / hglE-KS,heterocyst glycolipids,samp_4445_semibin_379_contig_282_T1PKS / PUFA / hglE-KS
+0,15238,samp_4445_semibin_379,contig_460,1,RRE-containing,NA,samp_4445_semibin_379_contig_460_RRE-containing
+0,8791,samp_4445_semibin_379,contig_677,1,terpene,NA,samp_4445_semibin_379_contig_677_terpene
+0,7000,samp_4445_semibin_379,contig_755,1,T1PKS,NA,samp_4445_semibin_379_contig_755_T1PKS
+0,42008,samp_4322_concoct_184,contig_1,1,NRPS-like,NA,samp_4322_concoct_184_contig_1_NRPS-like
+10815,28725,samp_4322_concoct_184,contig_21,1,terpene,NA,samp_4322_concoct_184_contig_21_terpene
+3038,15765,samp_4322_concoct_184,contig_61,1,cyanobactin,anacyclamide A10,samp_4322_concoct_184_contig_61_cyanobactin
+0,33535,samp_4322_concoct_184,contig_168,1,hglE-KS,heterocyst glycolipids,samp_4322_concoct_184_contig_168_hglE-KS
+0,6581,samp_4322_concoct_184,contig_235,1,RiPP-like,NA,samp_4322_concoct_184_contig_235_RiPP-like
+0,16516,samp_4322_concoct_184,contig_278,1,terpene,NA,samp_4322_concoct_184_contig_278_terpene
+0,29015,samp_4322_concoct_184,contig_336,1,NRPS-like,NA,samp_4322_concoct_184_contig_336_NRPS-like
+0,26393,samp_4322_concoct_184,contig_345,1,lanthipeptide-class-v,hassallidin C,samp_4322_concoct_184_contig_345_lanthipeptide-class-v
+0,13348,samp_4322_concoct_184,contig_363,1,terpene,NA,samp_4322_concoct_184_contig_363_terpene
+20399,68944,samp_4322_concoct_184,contig_368,1,T1PKS / hglE-KS,heterocyst glycolipids,samp_4322_concoct_184_contig_368_T1PKS / hglE-KS
+0,8924,samp_4322_concoct_184,contig_380,1,RRE-containing,NA,samp_4322_concoct_184_contig_380_RRE-containing
+9605,63076,samp_4322_concoct_184,contig_432,1,NRPS,varlaxin 1046A/varlaxin 1022A,samp_4322_concoct_184_contig_432_NRPS
+0,9487,samp_4322_concoct_184,contig_448,1,T1PKS,NA,samp_4322_concoct_184_contig_448_T1PKS
+0,5000,samp_4317_concoct_87,contig_17,1,microviridin,microviridin J,samp_4317_concoct_87_contig_17_microviridin
+0,10016,samp_4317_concoct_87,contig_150,1,LAP,NA,samp_4317_concoct_87_contig_150_LAP
+0,79170,samp_4317_concoct_87,contig_176,1,NRPS / T1PKS / NRPS-like,microcystin LR,samp_4317_concoct_87_contig_176_NRPS / T1PKS / NRPS-like
+0,14830,samp_4317_concoct_87,contig_194,1,T1PKS,desmamide A/desmamide B/desmamide C,samp_4317_concoct_87_contig_194_T1PKS
+0,7780,samp_4317_concoct_87,contig_199,1,terpene,NA,samp_4317_concoct_87_contig_199_terpene
+0,30029,samp_4317_concoct_87,contig_271,1,NRPS / microviridin,anachelin,samp_4317_concoct_87_contig_271_NRPS / microviridin
+0,24591,samp_4317_concoct_87,contig_281,1,hglE-KS / PUFA,zeamine/zeamine I/zeamine II/prezeamine/prezeamine I,samp_4317_concoct_87_contig_281_hglE-KS / PUFA
+0,12047,samp_4317_concoct_87,contig_310,1,terpene,NA,samp_4317_concoct_87_contig_310_terpene
+0,34752,samp_4317_concoct_87,contig_352,1,T1PKS / NRPS-like / T3PKS,merocyclophane C/merocyclophane D,samp_4317_concoct_87_contig_352_T1PKS / NRPS-like / T3PKS
+0,22246,samp_4317_concoct_87,contig_394,1,NRPS / NRPS-like,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4317_concoct_87_contig_394_NRPS / NRPS-like
+0,6098,samp_4317_concoct_87,contig_398,1,cyanobactin,NA,samp_4317_concoct_87_contig_398_cyanobactin
+0,5108,samp_4317_concoct_87,contig_400,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4317_concoct_87_contig_400_cyanobactin
+0,7569,samp_4317_concoct_87,contig_416,1,terpene,NA,samp_4317_concoct_87_contig_416_terpene
+0,5423,samp_4317_concoct_87,contig_524,1,cyanobactin,piricyclamide 7005E1/piricyclamide 7005E2/piricyclamide 7005E3/piricyclamide 7005E4,samp_4317_concoct_87_contig_524_cyanobactin
+0,13772,samp_4317_concoct_87,contig_551,1,spliceotide,NA,samp_4317_concoct_87_contig_551_spliceotide
+0,18055,samp_4317_concoct_87,contig_568,1,NRPS-like / T1PKS,desmamide A/desmamide B/desmamide C,samp_4317_concoct_87_contig_568_NRPS-like / T1PKS
+0,21482,samp_4317_concoct_87,contig_620,1,T1PKS,NA,samp_4317_concoct_87_contig_620_T1PKS
+0,8400,samp_4317_concoct_87,contig_638,1,terpene,NA,samp_4317_concoct_87_contig_638_terpene
+0,37889,samp_4446_concoct_706,contig_218,1,NRPS-like,NA,samp_4446_concoct_706_contig_218_NRPS-like
+0,11599,samp_4446_concoct_706,contig_289,1,NRPS-like,NA,samp_4446_concoct_706_contig_289_NRPS-like
+0,32273,samp_4446_concoct_706,contig_307,1,hglE-KS,heterocyst glycolipids,samp_4446_concoct_706_contig_307_hglE-KS
+0,26560,samp_4446_concoct_706,contig_314,1,lanthipeptide-class-v,hassallidin C,samp_4446_concoct_706_contig_314_lanthipeptide-class-v
+0,31332,samp_4446_concoct_706,contig_431,1,hglE-KS / T1PKS,heterocyst glycolipids,samp_4446_concoct_706_contig_431_hglE-KS / T1PKS
+3513,16115,samp_4446_concoct_706,contig_536,1,RRE-containing,NA,samp_4446_concoct_706_contig_536_RRE-containing
+1594,13651,samp_4446_concoct_706,contig_538,1,terpene,NA,samp_4446_concoct_706_contig_538_terpene
+0,15103,samp_4446_concoct_706,contig_595,1,cyanobactin / terpene,anacyclamide A10,samp_4446_concoct_706_contig_595_cyanobactin / terpene
+0,13092,samp_4446_concoct_706,contig_611,1,cyanobactin,anacyclamide A10,samp_4446_concoct_706_contig_611_cyanobactin
+0,16387,samp_4446_concoct_706,contig_751,1,NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4446_concoct_706_contig_751_NRPS
+0,16797,samp_4446_concoct_706,contig_792,1,terpene,NA,samp_4446_concoct_706_contig_792_terpene
+0,12069,samp_4446_concoct_706,contig_840,1,terpene,NA,samp_4446_concoct_706_contig_840_terpene
+17521,27887,samp_4434_maxbin_358,contig_15,1,microviridin,microviridin 1688/microviridin 1739/microviridin 1748,samp_4434_maxbin_358_contig_15_microviridin
+0,10331,samp_4434_maxbin_358,contig_155,1,microviridin,NA,samp_4434_maxbin_358_contig_155_microviridin
+0,6546,samp_4434_maxbin_358,contig_177,1,NRPS,aeruginosin 98-A/aeruginosin 98-B/aeruginosin 98-C,samp_4434_maxbin_358_contig_177_NRPS
+10191,25738,samp_4434_maxbin_358,contig_243,1,terpene,NA,samp_4434_maxbin_358_contig_243_terpene
+0,15683,samp_4434_maxbin_358,contig_254,1,terpene,anacyclamide A10,samp_4434_maxbin_358_contig_254_terpene
+0,32854,samp_4434_maxbin_358,contig_268,1,T1PKS / transAT-PKS-like / NRPS-like,aranazole A/aranazole B/aranazole C/aranazole D,samp_4434_maxbin_358_contig_268_T1PKS / transAT-PKS-like / NRPS-like
+0,13036,samp_4434_maxbin_358,contig_298,1,NRPS-like,NA,samp_4434_maxbin_358_contig_298_NRPS-like
+17220,33533,samp_4434_maxbin_358,contig_424,1,crocagin,NA,samp_4434_maxbin_358_contig_424_crocagin
+0,10029,samp_4445_semibin_333,contig_230,1,terpene,NA,samp_4445_semibin_333_contig_230_terpene
+0,9275,samp_4445_semibin_333,contig_283,1,terpene,NA,samp_4445_semibin_333_contig_283_terpene
+0,14241,samp_4443_semibin_379,contig_6,1,terpene,NA,samp_4443_semibin_379_contig_6_terpene
+0,6001,samp_4443_semibin_379,contig_293,1,NRPS-like,nostovalerolactone/9-dehydronostovalerolactone,samp_4443_semibin_379_contig_293_NRPS-like
