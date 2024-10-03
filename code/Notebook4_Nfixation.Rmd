@@ -8,6 +8,8 @@ date: "2024-01-23"
 knitr::opts_chunk$set(echo = TRUE)
 library(data.table)
 library(Biostrings)
+library(tidyverse)
+library(RColorBrewer)
 ```
 
 This notebook is for mining nitrogen fixation genes and ENB from Lake Victoria, Kenya samples. 
@@ -205,7 +207,7 @@ head(nfix_kenya_bam_rpkm_mm2)
 #write and read csv 
 #write_csv(nfix_kenya_bam_rpkm_mm2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_kenya_bam_rpkm_mm2_Mar202024.csv") 
 
-#nfix_kenya_bam_rpkm_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_kenya_bam_rpkm_mm2_Mar202024.csv")
+nfix_kenya_bam_rpkm_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_kenya_bam_rpkm_mm2_Mar202024.csv")
 
 
 ######2. Process toxin marker gene read mapping results to get coverage and identity statistics 
@@ -299,6 +301,8 @@ plan(sequential)
 
 #write_csv(nfix_bgckenya_bam_stats_mm2_2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_bgckenya_bam_stats_mm2_2.csv")
 
+nfix_bgckenya_bam_stats_mm2_2 = read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_bgckenya_bam_stats_mm2_2.csv")
+
 nfix_bgckenya_bam_stats_mm2_50_cov2 <- nfix_bgckenya_bam_stats_mm2_2 %>%
     group_by(sample_id, seqnames) %>% 
       select(seqnames, sample_id, percent_cover, percent_id_ref_contig) %>% # skim down data table to just data for each ref
@@ -391,6 +395,7 @@ dim(nfix_50_all)
 #[1] 4171    5
 
 #write_csv(nfix_50_all, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_50_all.csv")
+nfix_50_all = read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/n_fixation/NFixDB/nfix_50_all.csv")
 
 #Filter out al chlN and chlB
 nfix50_filt = nfix_50_all[!grepl("ChlN$|ChlB$", nfix_50_all$seqnames), ]
@@ -1418,7 +1423,11 @@ nfix_9095_5 = left_join(nfix_9095_4, nfix_kenya_bam_rpkm_mm2, by = c("sample_id"
 dim(nfix_9095_5)
 #[1] 272  39
 
-#Issue where there is cyanobacteria and cyanobacteriota 
+
+###Fix RPKM value to be correct based on this equation: https://www.biostars.org/p/273537/
+#Difference between our value used and the correct FPKM value is actually just a scale of 2000
+
+nfix_9095_5 = nfix_9095_5 %>% mutate(FPKM = rpkm*2000)
 ```
 
 
@@ -1493,23 +1502,23 @@ nfix_9095_5_meta_all$site_name_sitenumber <- factor(nfix_9095_5_meta_all$site_na
 
 #Normalize 2022 samples for potential duplicates
 nfix_9095_5_meta_all_22 = nfix_9095_5_meta_all %>% filter(year == 2022)
-nfix_9095_5_meta_all_22 = nfix_9095_5_meta_all_22 %>% group_by(site_name_sitenumber, Genus, nif_type.x) %>% mutate(rpkm = mean(rpkm))
+nfix_9095_5_meta_all_22 = nfix_9095_5_meta_all_22 %>% group_by(site_name_sitenumber, Genus, nif_type.x) %>% mutate(FPKM = mean(FPKM))
 
-nfix_9095_5_meta_all_22 = unique(nfix_9095_5_meta_all_22[c('site_name_sitenumber', 'Genus', 'rpkm', 'nif_type.x')])
+nfix_9095_5_meta_all_22 = unique(nfix_9095_5_meta_all_22[c('site_name_sitenumber', 'Genus', 'FPKM', 'nif_type.x')])
 dim(nfix_9095_5_meta_all_22)
-#32, 3
+#32, 4
 
 nfix_9095_5_meta_all_22$year <- 2022
 
 #get 2023 data 
-nfix_9095_5_meta_all_23 = nfix_9095_5_meta_all %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, Genus, rpkm, year, nif_type.x)
+nfix_9095_5_meta_all_23 = nfix_9095_5_meta_all %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, Genus, FPKM, year, nif_type.x)
 dim(nfix_9095_5_meta_all_23)
 #136, 4
 
 #Combine 22 and 23 data together 
 nfix_9095_5_meta_all_2223 = rbind(nfix_9095_5_meta_all_23, nfix_9095_5_meta_all_22)
 dim(nfix_9095_5_meta_all_2223)
-#168, 4
+#168, 5
 
 
 additional_sites = c("6. Mbita West", "11. Dunga","13. Sondu River Bridge", "14. Sondu River Shore","16. Kibuon River", "19. Bala Rawi")
@@ -1555,11 +1564,11 @@ nfix_9095_5_meta_all_2223_order %>%
   mutate(Genus = if_else(Genus == "RDXV01", "Other Nostocales", Genus)) %>%
   mutate(Genus = if_else(Genus == "Sphaerospermopsis_A", "Sphaerospermopsis", Genus)) %>%
   mutate(Genus = factor(Genus, levels = c("Anabaena", "Dolichospermum", "Sphaerospermopsis", "Other Nostocales", "Other Bacteria or Archaea"))) %>%
-  ggplot(aes(y = site_name_sitenumber, fill = Genus, x = rpkm)) +
+  ggplot(aes(y = site_name_sitenumber, fill = Genus, x = FPKM)) +
   geom_bar(stat = "identity") +
   scale_fill_manual(values = col_vector) +
   theme_bw() +
-  labs(y = "Sampling Site", x = "Total RPKM", fill = "Genus") + 
+  labs(y = "Sampling Site", x = "Total Fragments Per Kilobase Per Million Mapped Reads (FPKM)", fill = "Genus") + 
   theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"), 
         axis.text.y = element_text(face = "bold"), 
         axis.title.y = element_text(face = "bold", size = 12), 

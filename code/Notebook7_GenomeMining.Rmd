@@ -242,7 +242,7 @@ write_csv(multimash_parse, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship
 
 6. Run bigscape on new antismash results
 ```{r}
-##Bigscape was run on all antismash results (downloaded from the online antismash submission) with the snakefile found here and code below: 
+#Bigscape was run on all antismash results (downloaded from the online antismash submission) with the snakefile found here and code below: 
 
 # import os
 # import re
@@ -280,7 +280,7 @@ write_csv(multimash_parse, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship
 #         """
 
 
-#Results found here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/bigscape2
+#Results found here: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/antismash_drep_BGCs/bigscape2
 
 #This folder was then downloaded onto my local computer. Htmls can visualize the output online. I gathered all the network files within output --> networks --> BGCname --> *.network file and dragged and dropped them into cytoscape. I then deleted all mibig singletons (BGC****). I then went to tools --> merge --> networks and merged all these networks together to get them into one. Next, I gathered the network_annotation_full.tsv and have added a genus column to it so i can visualize the genus of each bgc we have found based on bin annotation. Below I am getting the genera of the bins together to add to that list and then i will upload this as a table to the cytoscape merged network.
 
@@ -305,7 +305,7 @@ write_csv(genomes_qual, "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_ma
 #To do this, I used this script:
 #/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/scripts/parsing_gbks.py to parse the overall antismash gbk file found here:
 
-#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/antismash_drep_BGCs_9590/extractedbgcs_95_90_rep_seq/extractedbgcs_95_90_rep_seq.gbk 
+#/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/results/antismash_drep_BGCs/extractedbgcs/extractedbgcs_95_90_rep_seq/extractedbgcs_95_90_rep_seq.gbk 
 
 #This outputted a csv file: /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/drep95_antismash.csv
 
@@ -741,7 +741,7 @@ head(curatedbgc_kenya_bam_rpkm_mm2)
 #write and read csv 
 #write_csv(curatedbgc_kenya_bam_rpkm_mm2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/quality_bins/drep_99/antismash_bins99/antismash_drep_BGCs/readmap_manannot_drep95_bgc/curatedbgc_kenya_bam_rpkm_mm2_March5_24.csv") 
 
-#curatedbgc_kenya_bam_rpkm_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/quality_bins/drep_99/antismash_bins99/antismash_drep_BGCs/readmap_manannot_drep95_bgc/curatedbgc_kenya_bam_rpkm_mm2_March5_24.csv")
+curatedbgc_kenya_bam_rpkm_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/quality_bins/drep_99/antismash_bins99/antismash_drep_BGCs/readmap_manannot_drep95_bgc/curatedbgc_kenya_bam_rpkm_mm2_March5_24.csv")
 
 
 ######2. Process toxin marker gene read mapping results to get coverage and identity statistics 
@@ -811,7 +811,7 @@ curate_bgckenya_bam_stats_mm2 <-curate_bgckenya_bam_stats_mm2 %>% filter(!is.na(
 
 #write_csv(curate_bgckenya_bam_stats_mm2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/quality_bins/drep_99/antismash_bins99/antismash_drep_BGCs/readmap_manannot_drep95_bgc/curate_bgckenya_bam_stats_mm2_march52024.csv")
 
-#curate_bgckenya_bam_stats_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/quality_bins/drep_99/antismash_bins99/antismash_drep_BGCs/readmap_manannot_drep95_bgc/curate_bgckenya_bam_stats_mm2_march52024.csv", col_names = TRUE)
+curate_bgckenya_bam_stats_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/quality_bins/drep_99/antismash_bins99/antismash_drep_BGCs/readmap_manannot_drep95_bgc/curate_bgckenya_bam_stats_mm2_march52024.csv", col_names = TRUE)
 
 head(curate_bgckenya_bam_stats_mm2)
 
@@ -870,7 +870,7 @@ manannot_bgc_70_stats_rpkm_key$grouping[manannot_bgc_70_stats_rpkm_key$grouping 
 
 #################1. Add in metadata
 
-sample_table = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/metadata/GLOD_LH_Mar52024.csv") 
+sample_table = read.csv("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL2/tables/GLOD_LH_Mar52024.csv") 
 
 Kenya_sample_table <- sample_table %>% filter(StudyID == "set_55" | StudyID == "set_57") #include only StudyID's of interest (Kenya)
 
@@ -898,22 +898,26 @@ bgc70_meta = bgc70_meta %>% filter(!SampleID == "samp_4327", !SampleID == "samp_
 
 bgc70_meta = bgc70_meta %>% filter(!SampleID == "samp_4325", !SampleID == "samp_4326")
 
+##Fix RPKM value to be FPKM based on https://www.biostars.org/p/273537/
+#Difference between our value used and the correct FPKM value is actually just a scale of 2000
+bgc70_meta = bgc70_meta %>% mutate(FPKM = rpkm*2000)
+
 ##############3. Normalize for duplicates in 2022 samples
 
 bgc70_meta22 = bgc70_meta %>% filter(year == 2022)  #1778
-bgc70_meta22 = bgc70_meta22 %>% group_by(site_name_sitenumber, seqnames) %>% mutate(summed_rpkm = mean(rpkm), total_bgc_covered = mean(percent_cover))
+bgc70_meta22 = bgc70_meta22 %>% group_by(site_name_sitenumber, seqnames) %>% mutate(summed_fpkm = mean(FPKM), total_bgc_covered = mean(percent_cover))
 dim(bgc70_meta22)
 #[1] 1778   64
 
-bgc70_meta22 = unique(bgc70_meta22[c('site_name_sitenumber', 'seqnames', 'summed_rpkm', 'total_bgc_covered')])
+bgc70_meta22 = unique(bgc70_meta22[c('site_name_sitenumber', 'seqnames', 'summed_fpkm', 'total_bgc_covered')])
 dim(bgc70_meta22)
 #[1] 938   4
 
 bgc70_meta22$year <- 2022
 
 #get 2023 data 
-bgc70_meta23 = bgc70_meta %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, seqnames, rpkm, percent_cover, year)
-bgc70_meta23 = bgc70_meta23 %>% mutate(summed_rpkm = rpkm) %>% select(!rpkm) %>% mutate(total_bgc_covered = percent_cover) %>% select(!percent_cover)
+bgc70_meta23 = bgc70_meta %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, seqnames, FPKM, percent_cover, year)
+bgc70_meta23 = bgc70_meta23 %>% mutate(summed_fpkm = FPKM) %>% select(!FPKM) %>% mutate(total_bgc_covered = percent_cover) %>% select(!percent_cover)
 dim(bgc70_meta23)
 #[1] 2132    5
 
@@ -936,15 +940,15 @@ bgc70_metanorm = left_join(bgc70_metanorm, man_annot95, by = "seqnames")
 pg <- DBI::dbConnect(RPostgres::Postgres(),dbname = "glamr_data", host = "localhost", port = "5432", user = "glamr_admin", password = "glamr2023")
 
 #Load GLAMR GTDBTK data
-# gtdb <- tbl(pg, "GTDB") %>% 
-#   collect() %>% 
-#   mutate(sample = str_extract(user_genome, "samp_\\d+")) %>% 
-#   relocate(user_genome, sample) 
+# gtdb <- tbl(pg, "GTDB") %>%
+#   collect() %>%
+#   mutate(sample = str_extract(user_genome, "samp_\\d+")) %>%
+#   relocate(user_genome, sample)
 
 # #Load GLAMR CheckM data
-# checkM <- tbl(pg, "checkm") %>% 
-#   collect() %>% 
-#   mutate(sample = str_extract(`Bin Id`, "samp_\\d+")) %>% 
+# checkM <- tbl(pg, "checkm") %>%
+#   collect() %>%
+#   mutate(sample = str_extract(`Bin Id`, "samp_\\d+")) %>%
 #   relocate(`Bin Id`, sample)
 
 #gtdb table loaded in first chunk
@@ -1225,11 +1229,11 @@ full_multismash2_path_key %>%
 17. Making bubble plot figure 9
 ```{r}
 #######Make dataframe for plotting 
-bgc_data <- bgc70_metanorm %>% ungroup() %>% select(c(grouping, site_name_sitenumber, summed_rpkm))
+bgc_data <- bgc70_metanorm %>% ungroup() %>% select(c(grouping, site_name_sitenumber, summed_fpkm))
 bgc_data_summed <- bgc_data %>%
   group_by(site_name_sitenumber,grouping) %>%
-  summarise(summed_rpkm = sum(summed_rpkm, na.rm = TRUE)) %>%
-  pivot_wider(names_from = grouping, values_from = summed_rpkm)
+  summarise(summed_fpkm = sum(summed_fpkm, na.rm = TRUE)) %>%
+  pivot_wider(names_from = grouping, values_from = summed_fpkm)
 
 bgc_data_summed <- replace(bgc_data_summed, is.na(bgc_data_summed), 0)
 bgc_data_summed2 <- bgc_data_summed[, -1]
@@ -1242,7 +1246,7 @@ rownames(bgc_data_summed2) <- bgc_data_summed$site_name_sitenumber
 bgc_data$grouping <- gsub("Splideotide", "Spliceotide", bgc_data$grouping)
 
 bgc_data_sum = bgc_data %>% group_by(site_name_sitenumber,grouping) %>%
-  summarise(summed_rpkm = sum(summed_rpkm))
+  summarise(summed_fpkm = sum(summed_fpkm))
 
 #Order dataset based on site
 order_vector <- c(
@@ -1263,12 +1267,31 @@ bgc_data_sum$site_name_sitenumber <- factor(bgc_data_sum$site_name_sitenumber, l
 unique(bgc_data_sum$site_name_sitenumber)
 
 #ordered
+n <- 180
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+
+col_vector[11] <- "deeppink"
+col_vector[4] <- "salmon"
+col_vector[12] <- "#00A000"
+col_vector[9] <- "yellow3"
+col_vector[13] <- "#009099"
+col_vector[7] <- "orange"
+col_vector[10] <- "#9A8DA6"
+col_vector[5] <- "lightblue"
+col_vector[6] <- "red"
+col_vector[8] <- "lightpink"
+col_vector[14] <- "#CC5500"
+col_vector[1] <- "#FFDAB9"
+col_vector[3] <- "gray3"
+col_vector[2] <- "#8B8000"
+
 bgc_data_sum %>% filter(!grouping == "#VALUE!") %>% 
-  ggplot(aes(y = site_name_sitenumber, x = grouping, size = summed_rpkm, fill = grouping)) +
+  ggplot(aes(y = site_name_sitenumber, x = grouping, size = summed_fpkm, fill = grouping)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = col_vector) +
   scale_size_continuous(range = c(1, 10)) +
-  labs(y = "Sampling Site", x = "Biosynthetic Gene Cluster (BGC)", fill = "Genus of BGC", size = "Total RPKM") +
+  labs(y = "Sampling Site", x = "Biosynthetic Gene Cluster (BGC)", fill = "Genus of BGC", size = "Total FPKM") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"), axis.text.y = element_text(face = "bold"), axis.title.y = element_text(face = "bold", size = 12), axis.title.x = element_text(face = "bold", size = 12)) + guides(fill = guide_legend(override.aes = list(size = 5)))
 
@@ -1282,7 +1305,7 @@ bgc_data_sum %>% filter(!grouping == "#VALUE!") %>%
 
 bgc_data_reshaped <- bgc_data_sum %>%
   group_by(site_name_sitenumber,grouping) %>%
-  pivot_wider(names_from = grouping, values_from = summed_rpkm)
+  pivot_wider(names_from = grouping, values_from = summed_fpkm)
 
 bgc_data_reshaped <- replace(bgc_data_reshaped, is.na(bgc_data_reshaped), 0)
 bgc_data_reshaped2 <- bgc_data_reshaped[, -1]
@@ -1305,7 +1328,7 @@ dev.off()
 #Add rivers to bgc data sum
 new_stations <- data.frame(site_name_sitenumber = c("12. Nyando River", "13. Sondu River Bridge", "14. Sondu River Shore", "16. Kibuon River"),
                             grouping = "NRPS-like",
-                            summed_rpkm = NA)
+                            summed_fpkm = NA)
 
 
 # Combine new_stations with bgc_data_sum
@@ -1389,11 +1412,11 @@ col_vector[42] <- "yellowgreen"
 
 # Plot ggplot visualization--FINAL BUBBLE PLOT VISUALIZATION
 bgc_data_sum_updated2 %>% filter(!grouping == "#VALUE!") %>% 
-  ggplot(aes(y = site_name_sitenumber, x = grouping, size = summed_rpkm, fill = grouping)) +
+  ggplot(aes(y = site_name_sitenumber, x = grouping, size = summed_fpkm, fill = grouping)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = col_vector) +
-  scale_size_continuous(range = c(2, 10)) +
-  labs(y = "Sampling Site", x = "Biosynthetic Gene Cluster (BGC) Type", size = "Total RPKM") +
+  scale_size_continuous(range = c(2, 10), breaks = c(250, 500, 750, 1000)) +
+  labs(y = "Sampling Site", x = "Biosynthetic Gene Cluster (BGC) Type", size = "Total FPKM") +
   theme_light() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"), axis.text.y = element_text(face = "bold"), axis.title.y = element_text(face = "bold", size = 12), axis.title.x = element_text(face = "bold", size = 12), strip.text = element_text(face = "bold", color = "black"), strip.background = element_rect(fill = "white", color = "gray")) + guides(fill = guide_legend(override.aes = list(size = 5))) + facet_grid(~high_level_grouping, scales = "free_x")
 

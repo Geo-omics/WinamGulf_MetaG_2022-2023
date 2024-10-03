@@ -221,7 +221,7 @@ head(kenya_bam_rpkm_mm2)
 
 #write and read csv 
 #write_csv(kenya_bam_rpkm_mm2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_rpkm_mm2_Jan5_24.csv") 
-#kenya_bam_rpkm_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_rpkm_mm2_Jan5_24.csv")
+kenya_bam_rpkm_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_rpkm_mm2_Jan5_24.csv")
 ```
 
 
@@ -286,7 +286,7 @@ bam_paths <- system("ls /geomicro/data21/lnhart/Projects/Kenya_2023/flagship_man
     #Remove rows with NA for 'percent_cover'
 #kenya_bam_stats_mm2 <-kenya_bam_stats_mm2 %>% filter(!is.na(percent_cover))
 #write_csv(kenya_bam_stats_mm2, file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_stats_jan524.csv")
-#kenya_bam_stats_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_stats_jan524.csv", col_names = TRUE)
+kenya_bam_stats_mm2 <- read_csv(file = "/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/data/bgc_mining/data/kenya_bam_stats_jan524.csv", col_names = TRUE)
 
 #Sort for hits having 80% coverage
 
@@ -371,25 +371,29 @@ bam_stat_rpkm70_key = left_join(bam_stat_rpkm70, db_key_ref, by = "seqnames")
 
 7. Calculate how much of BGC is there based on % of BGC covered by reads and/or # of genes present based on 70% coverage
 ```{r}
+#Calculate FPKM value based on more correct RPKM value calculation:  https://www.biostars.org/p/273537/
+#Difference between our value used and the correct FPKM value is actually just a scale of 2000
+bam_stat_rpkm70_key = bam_stat_rpkm70_key %>% mutate(FPKM = rpkm*2000)
+
 #Calculating number of bases covered per gene 
 bam_stat_rpkm70_key_cov = bam_stat_rpkm70_key %>% mutate(bases_covered_gene = (percent_cover/100)*gene_length)
 
 #To get % of entire BGC covered, add # of bases covered for each gene in a BGC together. Divide that by total bases in the whole BGC * 100 to get percent BGC covered by gene.
 #need to ammend total_length so its actual gene length, easiest to do this in db_key likely 
 
-bam_stat_rpkm70_key_cov_whole = bam_stat_rpkm70_key_cov %>% group_by(sample_id, New_BGC_name, tot_gene_lengths, rpkm) %>% summarize(bases_covering_bgc = sum(bases_covered_gene), total_rpkm = sum(rpkm), percent_bgc_covered = (bases_covering_bgc/tot_gene_lengths)*100)
+bam_stat_rpkm70_key_cov_whole = bam_stat_rpkm70_key_cov %>% group_by(sample_id, New_BGC_name, tot_gene_lengths, FPKM) %>% summarize(bases_covering_bgc = sum(bases_covered_gene), total_fpkm = sum(FPKM), percent_bgc_covered = (bases_covering_bgc/tot_gene_lengths)*100)
 
 #Calculate % of bgc covered in each sample 
-bam_stat_whole_70_all = bam_stat_rpkm70_key_cov_whole %>% group_by(sample_id, New_BGC_name) %>% mutate(total_bgc_covered = sum(percent_bgc_covered), summed_rpkm = sum(rpkm))
+bam_stat_whole_70_all = bam_stat_rpkm70_key_cov_whole %>% group_by(sample_id, New_BGC_name) %>% mutate(total_bgc_covered = sum(percent_bgc_covered), summed_fpkm = sum(FPKM))
 
 #Pull distinct values for sample id and new bgc name 
-bam_whole_summary = unique(bam_stat_whole_70_all[c('sample_id', 'New_BGC_name', 'summed_rpkm', 'total_bgc_covered')])
+bam_whole_summary = unique(bam_stat_whole_70_all[c('sample_id', 'New_BGC_name', 'summed_fpkm', 'total_bgc_covered')])
 dim(bam_whole_summary)
 #[1] 590   4
 
 #Calculating how much of BGC is there based on # of genes 70% covered in the read mapping
 
-#bam_stat_rpkm70_key_cov_count = bam_stat_rpkm70_key_cov %>% group_by(sample_id, New_BGC_name, tot_genes, rpkm) %>% summarize(num_genes_present = sum(gene_present == TRUE), percent_genes_pres = (num_genes_present/tot_genes)*100, tot_rpkm = sum(rpkm))
+#bam_stat_rpkm70_key_cov_count = bam_stat_rpkm70_key_cov %>% group_by(sample_id, New_BGC_name, tot_genes, FPKM) %>% summarize(num_genes_present = sum(gene_present == TRUE), percent_genes_pres = (num_genes_present/tot_genes)*100, tot_fpkm = sum(FPKM))
 
 #Keep hits if 50% or more of gene cluster is covered 
 bam_whole_summary_50 = bam_whole_summary %>% filter(total_bgc_covered >= 50)
@@ -464,21 +468,21 @@ col_vector[8] <- "green"
 col_vector[18] <- "orange"
 
 bam_markerbgc_whole_50 %>%
-  ggplot(aes(x = site_name_sitenumber, y = New_BGC_name, fill = New_BGC_name, size = summed_rpkm)) +
+  ggplot(aes(x = site_name_sitenumber, y = New_BGC_name, fill = New_BGC_name, size = summed_fpkm)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = col_vector) +
   scale_size_continuous(range = c(2, 8)) +
-  labs(x = "Site Name Sitenumber", y = "BGC", fill = "BGC", size = "Total RPKM") +
+  labs(x = "Site Name Sitenumber", y = "BGC", fill = "BGC", size = "Total Fragments Per Kilobase Per Million Mapped Reads (FPKM)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  theme(legend.position="bottom") +
   guides(color=guide_legend(nrow=2)) + facet_grid(~year, scales = "free")
 
 bam_markerbgc_whole_70 %>%
-  ggplot(aes(x = site_name_sitenumber, y = New_BGC_name, fill = New_BGC_name, size = summed_rpkm)) +
+  ggplot(aes(x = site_name_sitenumber, y = New_BGC_name, fill = New_BGC_name, size = summed_fpkm)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = col_vector) +
   scale_size_continuous(range = c(2, 8)) +
-  labs(x = "Site Name Sitenumber", y = "BGC", fill = "BGC", size = "Total RPKM") +
+  labs(x = "Site Name Sitenumber", y = "BGC", fill = "BGC", size = "Total Fragments Per Kilobase Per Million Mapped Reads (FPKM)") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  theme(legend.position="bottom") +
   guides(color=guide_legend(nrow=2)) + facet_grid(~year, scales = "free")
@@ -543,17 +547,17 @@ meta_bam_summary_complete_all$year[meta_bam_summary_complete_all$site_name_siten
 
 #Normalize 2022 samples for potential duplicates
 meta_bam22 = meta_bam_summary_complete_all %>% filter(year == 2022)
-meta_bam22 = meta_bam22 %>% group_by(site_name_sitenumber, New_BGC_name) %>% mutate(summed_rpkm = mean(summed_rpkm), total_bgc_covered = mean(total_bgc_covered))
+meta_bam22 = meta_bam22 %>% group_by(site_name_sitenumber, New_BGC_name) %>% mutate(summed_fpkm = mean(summed_fpkm), total_bgc_covered = mean(total_bgc_covered))
 #103, 47
 
-meta_bam22 = unique(meta_bam22[c('site_name_sitenumber', 'New_BGC_name', 'summed_rpkm', 'total_bgc_covered')])
+meta_bam22 = unique(meta_bam22[c('site_name_sitenumber', 'New_BGC_name', 'summed_fpkm', 'total_bgc_covered')])
 dim(meta_bam22)
 #68,4
 
 meta_bam22$year <- 2022
 
 #get 2023 data 
-meta_bam23 = meta_bam_summary_complete_all %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, New_BGC_name, summed_rpkm, total_bgc_covered, year)
+meta_bam23 = meta_bam_summary_complete_all %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, New_BGC_name, summed_fpkm, total_bgc_covered, year)
 
 #Combine 22 and 23 data together 
 meta_bam_50 = rbind(meta_bam22, meta_bam23)
@@ -607,18 +611,18 @@ meta_bam_summary_complete_all_70$year[meta_bam_summary_complete_all_70$site_name
 
 #Normalize 2022 samples for potential duplicates
 meta_bam22_70 = meta_bam_summary_complete_all_70 %>% filter(year == 2022)
-meta_bam22_70 = meta_bam22_70 %>% group_by(site_name_sitenumber, New_BGC_name) %>% mutate(summed_rpkm = mean(summed_rpkm), total_bgc_covered = mean(total_bgc_covered))
+meta_bam22_70 = meta_bam22_70 %>% group_by(site_name_sitenumber, New_BGC_name) %>% mutate(summed_fpkm = mean(summed_fpkm), total_bgc_covered = mean(total_bgc_covered))
 dim(meta_bam22_70)
 #80, 47
 
-meta_bam22_70 = unique(meta_bam22_70[c('site_name_sitenumber', 'New_BGC_name', 'summed_rpkm', 'total_bgc_covered')])
+meta_bam22_70 = unique(meta_bam22_70[c('site_name_sitenumber', 'New_BGC_name', 'summed_fpkm', 'total_bgc_covered')])
 dim(meta_bam22_70)
 #55,4
 
 meta_bam22_70$year <- 2022
 
 #get 2023 data 
-meta_bam23_70 = meta_bam_summary_complete_all_70 %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, New_BGC_name, summed_rpkm, total_bgc_covered, year)
+meta_bam23_70 = meta_bam_summary_complete_all_70 %>% ungroup() %>% filter(year == 2023) %>% select(site_name_sitenumber, New_BGC_name, summed_fpkm, total_bgc_covered, year)
 
 #Combine 22 and 23 data together 
 meta_bam_70 = rbind(meta_bam22_70, meta_bam23_70)
@@ -694,19 +698,19 @@ col_vector[3] <- "#9A8DA6"
 col_vector[4] <- "#CC5500"
 
 meta_bam_70 %>%
-  ggplot(aes(y = site_name_sitenumber, x = easy_bgc_name, fill = BGC_genus, size = summed_rpkm)) +
+  ggplot(aes(y = site_name_sitenumber, x = easy_bgc_name, fill = BGC_genus, size = summed_fpkm)) +
   geom_point(shape = 21) +
   scale_fill_manual(values = col_vector) +
   scale_size_continuous(range = c(2, 6)) +
-  labs(y = "Sampling Site", x = "Biosynthetic Gene Cluster (BGC)", fill = "Genus of BGC", size = "Total RPKM") +
+  labs(y = "Sampling Site", x = "Biosynthetic Gene Cluster (BGC)", fill = "Genus of BGC", size = "FPKM") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold"), axis.text.y = element_text(face = "bold"), axis.title.y = element_text(face = "bold", size = 12), axis.title.x = element_text(face = "bold", size = 12)) + guides(fill = guide_legend(override.aes = list(size = 5)))
 
-ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.png",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.png",width = 12, height =10, dpi=300, scale =2, limitsize = FALSE))
 
-ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.svg",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.svg",width = 12, height =10, dpi=300, scale =2, limitsize = FALSE))
 
-ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.tiff",width = 12, height =8, dpi=300, scale =2, limitsize = FALSE))
+ggsave(ggsave("/geomicro/data21/lnhart/Projects/Kenya_2023/flagship_manuscript/FINAL/figures/bgc_mining/allbgcs_fixedcov_70_reversed_facet.tiff",width = 12, height =10, dpi=300, scale =2, limitsize = FALSE))
 ```
 
 
